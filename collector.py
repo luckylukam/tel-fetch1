@@ -13,7 +13,8 @@ CHANNELS = [
     "FreeConfigForYou",
     "Zed_NetMeli",
     "on_proxy1",
-    "Spotify_Porteghali"
+    "Spotify_Porteghali",
+    "oxnet_ir"
     # Add more channel usernames here (without @)
 ]
 
