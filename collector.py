@@ -8,14 +8,7 @@ from datetime import datetime
 
 # ── Config ────────────────────────────────────────────────────────────────────
 CHANNELS = [
-    "kurdconfig",
-    "Configir98",
-    "YamYamProxy",
-    "FreeConfigForYou",
-    "Zed_NetMeli",
-    "on_proxy1",
-    "Spotify_Porteghali",
-    "oxnet_ir"
+    "kurdconfig",     "Configir98",     "YamYamProxy",     "FreeConfigForYou",     "Zed_NetMeli",     "on_proxy1",     "Spotify_Porteghali",     "oxnet_ir"
 ]
 
 PROTOCOLS = ("vmess://", "vless://", "trojan://", "ss://", "ssr://", "tuic://", "hysteria2://", "hy2://")
