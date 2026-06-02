@@ -2,11 +2,12 @@ name: Collect V2Ray Configs
 
 on:
   schedule:
-    - cron: "0 */1 * * *"   # runs every 6 hours
-  workflow_dispatch:          # allow manual trigger from Actions tab
+    - cron: "0 */3 * * *"   # fallback: every 3 hours via GitHub scheduler
+  workflow_dispatch:          # manual trigger + self-trigger after each run
 
 permissions:
-  contents: write             # needed to push output/ back to the repo
+  contents: write
+  actions: write              # needed to re-trigger itself
 
 jobs:
   collect:
@@ -34,3 +35,13 @@ jobs:
           git add output/
           git diff --cached --quiet || git commit -m "chore: update configs [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           git push
+
+      - name: Schedule next run in 1 hour
+        run: |
+          curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/collect.yml/dispatches \
+            -d '{"ref":"main"}' \
+            --retry 3 --retry-delay 5
+          echo "✅ Next run queued"
