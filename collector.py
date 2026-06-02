@@ -7,11 +7,13 @@ from datetime import datetime
 
 # ── Config ────────────────────────────────────────────────────────────────────
 CHANNELS = [
-    "v2rayng_config",
-    "v2ray_configs_pool",
-    "freev2rays",
-    "v2rayngvpn",
-    "customv2ray",
+    "kurdconfig",
+    "Configir98",
+    "YamYamProxy",
+    "FreeConfigForYou",
+    "Zed_NetMeli",
+    "on_proxy1",
+    "Spotify_Porteghali"
     # Add more channel usernames here (without @)
 ]
 
