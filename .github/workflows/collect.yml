@@ -2,22 +2,20 @@ name: Collect V2Ray Configs
 
 on:
   schedule:
-    - cron: "0 */3 * * *"   # every 3 hours
-  workflow_dispatch:          # manual trigger only
+    - cron: "0 */6 * * *"  # fallback
+  workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   collect:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -27,10 +25,21 @@ jobs:
       - name: Run collector
         run: python collector.py
 
-      - name: Commit & push updated configs
+      - name: Commit & push
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add output/
           git diff --cached --quiet || git commit -m "chore: update configs [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           git push
+
+      - name: Wait 1 hour then trigger next run
+        run: |
+          echo "Sleeping for 1 hour..."
+          sleep 3600
+          curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/collect.yml/dispatches \
+            -d '{"ref":"main"}'
+          echo "Next run triggered."
