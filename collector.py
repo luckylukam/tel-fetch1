@@ -352,12 +352,6 @@ def build_clash_yaml(configs: list[str]) -> str:
 
     # ── proxy-groups block ─────────────────────────────────────────────────
     lines.append("proxy-groups:")
-    lines.append("  - name: \"PROXY\"")
-    lines.append("    type: select")
-    lines.append("    proxies:")
-    for n in proxy_names:
-        lines.append(f"      - \"{n}\"")
-    lines.append("")
     lines.append("  - name: \"AUTO\"")
     lines.append("    type: url-test")
     lines.append("    url: http://www.gstatic.com/generate_204")
@@ -366,10 +360,17 @@ def build_clash_yaml(configs: list[str]) -> str:
     for n in proxy_names:
         lines.append(f"      - \"{n}\"")
     lines.append("")
+    lines.append("  - name: \"PROXY\"")
+    lines.append("    type: select")
+    lines.append("    proxies:")
+    lines.append("      - \"AUTO\"")
+    for n in proxy_names:
+        lines.append(f"      - \"{n}\"")
+    lines.append("")
 
     # ── rules block ───────────────────────────────────────────────────────
     lines.append("rules:")
-    lines.append("  - MATCH,PROXY")
+    lines.append("  - MATCH,AUTO")
     lines.append("")
 
     return "\n".join(lines)
