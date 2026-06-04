@@ -1,5 +1,5 @@
 # Clash subscription — auto-generated
-# Generated: 2026-06-04 09:57 UTC
+# Generated: 2026-06-04 10:07 UTC
 # Total proxies: 134
 
 mixed-port: 7890
@@ -1086,20 +1086,6 @@ proxies:
         Host: "Appxdn.global.ssl.fastly.net"
 
   - name: "mn_conf94"
-    type: "vmess"
-    server: "192.204.42.215"
-    port: 80
-    uuid: "rootface"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "/rootface telegram"
-      headers:
-        Host: ""
-
-  - name: "mn_conf95"
     type: "vless"
     server: "173.245.59.191"
     port: 8443
@@ -1113,7 +1099,7 @@ proxies:
       headers:
         Host: "maple.adaspoloandco.com"
 
-  - name: "mn_conf96"
+  - name: "mn_conf95"
     type: "vless"
     server: "162.159.253.41"
     port: 8443
@@ -1127,7 +1113,7 @@ proxies:
       headers:
         Host: "focalin.adaspoloandco.com"
 
-  - name: "mn_conf97"
+  - name: "mn_conf96"
     type: "trojan"
     server: "199.232.78.158"
     port: 443
@@ -1138,14 +1124,14 @@ proxies:
     ws-opts:
       path: "%2F720f09dba195249b423f771661162528%2Fworkers%2Fservices%2Fview%2Fmitivpn%2Fproduction%2Fsettings"
 
-  - name: "mn_conf98"
+  - name: "mn_conf97"
     type: "trojan"
     server: "199.232.78.158"
     port: 443
     password: "mitivpn"
     udp: true
 
-  - name: "mn_conf99"
+  - name: "mn_conf98"
     type: "vless"
     server: "snapp.ir"
     port: 80
@@ -1157,7 +1143,7 @@ proxies:
       headers:
         Host: "cactos.cactuscloud.ir"
 
-  - name: "mn_conf100"
+  - name: "mn_conf99"
     type: "vless"
     server: "horizon.cloudureld.com"
     port: 443
@@ -1169,7 +1155,7 @@ proxies:
       short-id: "8d3188f4dba62e68"
     servername: "horizon.cloudureld.com"
 
-  - name: "mn_conf101"
+  - name: "mn_conf100"
     type: "vless"
     server: "thm.nomatterarefasf.xyz"
     port: 18382
@@ -1182,7 +1168,7 @@ proxies:
       headers:
         Host: ""
 
-  - name: "mn_conf102"
+  - name: "mn_conf101"
     type: "vless"
     server: "213.183.63.117"
     port: 8443
@@ -1194,7 +1180,7 @@ proxies:
       short-id: ""
     servername: "bunny.net"
 
-  - name: "mn_conf103"
+  - name: "mn_conf102"
     type: "vless"
     server: "fmmgkzjac48e.dxdx5.com"
     port: 9023
@@ -1204,7 +1190,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf105"
+  - name: "mn_conf104"
     type: "vless"
     server: "185.143.234.200"
     port: 8080
@@ -1216,12 +1202,26 @@ proxies:
       headers:
         Host: "cdn.namavax.ir"
 
-  - name: "mn_conf106"
+  - name: "mn_conf105"
     type: "vless"
     server: "46.8.64.167"
     port: 2568
     uuid: "28f02016-c422-4214-8bb4-4f9155c88c63"
     udp: true
+
+  - name: "mn_conf106"
+    type: "vless"
+    server: "ietf.org"
+    port: 443
+    uuid: "7d5e3346-039d-1d94-9582-521f0472e38e"
+    udp: true
+    tls: true
+    servername: "server10.nekagsm.com"
+    network: "ws"
+    ws-opts:
+      path: "%2F"
+      headers:
+        Host: "swmrz1.nekagsm.com"
 
   - name: "mn_conf107"
     type: "vless"
@@ -1643,7 +1643,7 @@ proxy-groups:
       - "mn_conf100"
       - "mn_conf101"
       - "mn_conf102"
-      - "mn_conf103"
+      - "mn_conf104"
       - "mn_conf105"
       - "mn_conf106"
       - "mn_conf107"
@@ -1782,7 +1782,7 @@ proxy-groups:
       - "mn_conf100"
       - "mn_conf101"
       - "mn_conf102"
-      - "mn_conf103"
+      - "mn_conf104"
       - "mn_conf105"
       - "mn_conf106"
       - "mn_conf107"
