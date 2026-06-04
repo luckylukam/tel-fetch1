@@ -2,12 +2,11 @@ name: Collect V2Ray Configs
 
 on:
   schedule:
-    - cron: "0 */6 * * *"  # fallback
+    - cron: "0 * * * *"  # every hour
   workflow_dispatch:
 
 permissions:
   contents: write
-  actions: write
 
 jobs:
   collect:
@@ -32,14 +31,3 @@ jobs:
           git add output/
           git diff --cached --quiet || git commit -m "chore: update configs [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           git push
-
-      - name: Wait 1 hour then trigger next run
-        run: |
-          echo "Sleeping for 1 hour..."
-          sleep 3600
-          curl -s -X POST \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${{ github.repository }}/actions/workflows/collect.yml/dispatches \
-            -d '{"ref":"main"}'
-          echo "Next run triggered."
