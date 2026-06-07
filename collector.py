@@ -10,11 +10,21 @@ from datetime import datetime
 # ── Config ────────────────────────────────────────────────────────────────────
 
 CHANNELS = [
-    "kurdconfig", "Configir98", "YamYamProxy", "FreeConfigForYou",
-    "Zed_NetMeli", "on_proxy1", "Spotify_Porteghali", "oxnet_ir"
+    "kurdconfig", "Configir98", "YamYamProxy", "FreeConfigForYou", "begoo_vpn_gp","iranconnecting",
+    "Zed_NetMeli", "on_proxy1", "Spotify_Porteghali", "oxnet_ir", "proxy_station", "bygfw"
 ]
+
+# ── External subscription URLs ────────────────────────────────────────────────
+# Add any v2ray (base64) or Clash (YAML) subscription URLs here.
+# The script auto-detects the format and merges configs into both outputs.
+EXTERNAL_SUB_URLS: list[str] = [
+    # "https://example.com/v2ray-sub",       # v2ray base64 subscription
+    # "https://example.com/clash-sub.yaml",  # Clash YAML subscription
+]
+
 PROTOCOLS = ("vmess://", "vless://", "trojan://", "ss://", "ssr://", "tuic://", "hysteria2://", "hy2://")
-OUTPUT_FILE = Path("output/configs.txt")
+
+OUTPUT_FILE       = Path("output/configs.txt")
 CLASH_OUTPUT_FILE = Path("output/clash.yaml")
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -23,7 +33,7 @@ CONFIG_PATTERN = re.compile(
     r'(?:vmess|vless|trojan|ss|ssr|tuic|hysteria2|hy2)://[^\s<>"\'`]+'
 )
 
-# ── Fetch ─────────────────────────────────────────────────────────────────────
+# ── Telegram fetch ────────────────────────────────────────────────────────────
 
 async def fetch_channel(client: httpx.AsyncClient, channel: str) -> list[str]:
     configs: list[str] = []
@@ -41,28 +51,269 @@ async def fetch_channel(client: httpx.AsyncClient, channel: str) -> list[str]:
         print(f"  ✘ {channel}: {e}")
     return configs
 
+# ── External subscription fetch ───────────────────────────────────────────────
+
+def _is_clash_yaml(text: str) -> bool:
+    """Heuristic: a Clash sub contains a 'proxies:' key near the top."""
+    return bool(re.search(r'^\s*proxies\s*:', text, re.MULTILINE))
+
+
+def _extract_configs_from_v2ray_sub(text: str) -> list[str]:
+    """
+    Decode a v2ray/xray base64 subscription.
+    The payload is a base64-encoded block of newline-separated proxy URIs.
+    """
+    text = text.strip()
+    try:
+        padded  = text + "=" * (-len(text) % 4)
+        decoded = base64.b64decode(padded).decode("utf-8", errors="ignore")
+    except Exception:
+        decoded = text  # maybe already plain text
+
+    configs: list[str] = []
+    for line in decoded.splitlines():
+        line = line.strip()
+        if any(line.startswith(p) for p in PROTOCOLS):
+            configs.append(line)
+    return configs
+
+
+# ── Minimal YAML parser for Clash proxy blocks (no external deps) ─────────────
+
+def _parse_clash_yaml_proxies(text: str) -> list[dict]:
+    """
+    Extract the 'proxies:' list from a Clash YAML without using PyYAML.
+    Each proxy is a block of '  - key: value' lines.  Nested dicts (ws-opts,
+    grpc-opts, reality-opts, headers) are also handled one level deep.
+    Returns a list of dicts.
+    """
+    proxies_block_match = re.search(
+        r'^proxies\s*:\s*\n(.*?)(?=^\S|\Z)',
+        text,
+        re.MULTILINE | re.DOTALL,
+    )
+    if not proxies_block_match:
+        return []
+
+    block = proxies_block_match.group(1)
+    proxies: list[dict] = []
+    current: dict | None = None
+    current_nested_key: str | None = None
+    current_nested: dict | None = None
+
+    for raw_line in block.splitlines():
+        item_start = re.match(r'^\s{0,4}-\s+(\w[\w-]*):\s*(.*)', raw_line)
+        if item_start:
+            if current is not None:
+                if current_nested is not None and current_nested_key:
+                    current[current_nested_key] = current_nested
+                proxies.append(current)
+            current = {}
+            current_nested_key = None
+            current_nested = None
+            key   = item_start.group(1)
+            value = item_start.group(2).strip().strip('"\'')
+            current[key] = _cast(value)
+            continue
+
+        if current is None:
+            continue
+
+        nested_start = re.match(r'^\s{4,6}([\w-]+)\s*:\s*$', raw_line)
+        if nested_start:
+            if current_nested is not None and current_nested_key:
+                current[current_nested_key] = current_nested
+            current_nested_key = nested_start.group(1)
+            current_nested = {}
+            continue
+
+        if current_nested is not None:
+            sub = re.match(r'^\s{6,8}([\w-]+)\s*:\s*(.*)', raw_line)
+            if sub:
+                current_nested[sub.group(1)] = _cast(sub.group(2).strip().strip('"\''))
+                continue
+            else:
+                current[current_nested_key] = current_nested
+                current_nested_key = None
+                current_nested = None
+
+        kv = re.match(r'^\s{4,6}([\w-]+)\s*:\s*(.*)', raw_line)
+        if kv:
+            current[kv.group(1)] = _cast(kv.group(2).strip().strip('"\''))
+
+    if current is not None:
+        if current_nested is not None and current_nested_key:
+            current[current_nested_key] = current_nested
+        proxies.append(current)
+
+    return proxies
+
+
+def _cast(value: str):
+    """Best-effort cast a YAML scalar string to int / bool / str."""
+    if value.lower() == "true":
+        return True
+    if value.lower() == "false":
+        return False
+    try:
+        return int(value)
+    except ValueError:
+        pass
+    return value
+
+
+def _clash_proxy_to_uri(proxy: dict) -> str | None:
+    """
+    Convert a single Clash proxy dict back to a proxy URI string.
+    Supports vmess, vless, trojan, ss, hysteria2.
+    Returns None for unsupported / unparseable entries.
+    """
+    ptype = str(proxy.get("type", "")).lower()
+    name  = str(proxy.get("name", "proxy"))
+    host  = str(proxy.get("server", ""))
+    port  = proxy.get("port", 443)
+
+    try:
+        if ptype == "vmess":
+            raw = {
+                "v":    "2",
+                "ps":   name,
+                "add":  host,
+                "port": str(port),
+                "id":   str(proxy.get("uuid", "")),
+                "aid":  str(proxy.get("alterId", 0)),
+                "scy":  str(proxy.get("cipher", "auto")),
+                "net":  "tcp",
+                "type": "none",
+                "tls":  "tls" if proxy.get("tls") else "",
+                "sni":  str(proxy.get("servername", "")),
+            }
+            ws = proxy.get("ws-opts", {})
+            if proxy.get("network") == "ws":
+                raw["net"]  = "ws"
+                raw["path"] = str(ws.get("path", "/"))
+                raw["host"] = str((ws.get("headers") or {}).get("Host", host))
+            elif proxy.get("network") == "grpc":
+                raw["net"]  = "grpc"
+                raw["path"] = str((proxy.get("grpc-opts") or {}).get("grpc-service-name", ""))
+            b64 = base64.b64encode(json.dumps(raw, ensure_ascii=False).encode()).decode()
+            return f"vmess://{b64}"
+
+        if ptype == "vless":
+            uuid   = str(proxy.get("uuid", ""))
+            params: list[str] = []
+            reality = proxy.get("reality-opts") or {}
+            if reality:
+                params.append("security=reality")
+                params.append(f"pbk={reality.get('public-key', '')}")
+                params.append(f"sid={reality.get('short-id', '')}")
+            elif proxy.get("tls"):
+                params.append("security=tls")
+            if proxy.get("servername"):
+                params.append(f"sni={proxy['servername']}")
+            if proxy.get("network") == "ws":
+                ws = proxy.get("ws-opts") or {}
+                params.append("type=ws")
+                params.append(f"path={ws.get('path', '/')}")
+                params.append(f"host={(ws.get('headers') or {}).get('Host', host)}")
+            elif proxy.get("network") == "grpc":
+                params.append("type=grpc")
+                params.append(f"serviceName={(proxy.get('grpc-opts') or {}).get('grpc-service-name', '')}")
+            qs = "?" + "&".join(params) if params else ""
+            return f"vless://{uuid}@{host}:{port}{qs}#{name}"
+
+        if ptype == "trojan":
+            password = str(proxy.get("password", ""))
+            params: list[str] = []
+            if proxy.get("sni"):
+                params.append(f"sni={proxy['sni']}")
+            if proxy.get("network") == "ws":
+                ws = proxy.get("ws-opts") or {}
+                params.append("type=ws")
+                params.append(f"path={ws.get('path', '/')}")
+            qs = "?" + "&".join(params) if params else ""
+            return f"trojan://{password}@{host}:{port}{qs}#{name}"
+
+        if ptype == "ss":
+            method   = str(proxy.get("cipher", "aes-256-gcm"))
+            password = str(proxy.get("password", ""))
+            userinfo = base64.b64encode(f"{method}:{password}".encode()).decode()
+            return f"ss://{userinfo}@{host}:{port}#{name}"
+
+        if ptype in ("hysteria2", "hy2"):
+            password = str(proxy.get("password", ""))
+            params: list[str] = []
+            if proxy.get("sni"):
+                params.append(f"sni={proxy['sni']}")
+            if proxy.get("skip-cert-verify"):
+                params.append("insecure=1")
+            qs = "?" + "&".join(params) if params else ""
+            return f"hysteria2://{password}@{host}:{port}{qs}#{name}"
+
+    except Exception:
+        pass
+
+    return None
+
+
+def _extract_configs_from_clash_sub(text: str) -> list[str]:
+    """Parse a Clash YAML subscription and convert each proxy back to a URI."""
+    proxies = _parse_clash_yaml_proxies(text)
+    configs: list[str] = []
+    for proxy in proxies:
+        uri = _clash_proxy_to_uri(proxy)
+        if uri:
+            configs.append(uri)
+    return configs
+
+
+async def fetch_external_sub(client: httpx.AsyncClient, url: str) -> list[str]:
+    """Fetch one external subscription URL (v2ray base64 or Clash YAML)."""
+    try:
+        r = await client.get(url, timeout=30, follow_redirects=True)
+        r.raise_for_status()
+        text = r.text.strip()
+
+        if _is_clash_yaml(text):
+            configs = _extract_configs_from_clash_sub(text)
+            print(f"  ✔ [Clash sub] {url}: {len(configs)} proxies converted")
+        else:
+            configs = _extract_configs_from_v2ray_sub(text)
+            print(f"  ✔ [V2Ray sub] {url}: {len(configs)} configs found")
+
+        return configs
+
+    except Exception as e:
+        print(f"  ✘ [External sub] {url}: {e}")
+        return []
+
+
 async def collect_all() -> list[str]:
     headers = {"User-Agent": "Mozilla/5.0 (compatible; v2ray-collector/1.0)"}
     async with httpx.AsyncClient(headers=headers, follow_redirects=True) as client:
-        tasks = [fetch_channel(client, ch) for ch in CHANNELS]
-        results = await asyncio.gather(*tasks)
+        tg_tasks  = [fetch_channel(client, ch) for ch in CHANNELS]
+        sub_tasks = [fetch_external_sub(client, url) for url in EXTERNAL_SUB_URLS]
+
+        tg_results  = await asyncio.gather(*tg_tasks)
+        sub_results = await asyncio.gather(*sub_tasks)
 
     seen: set[str] = set()
     all_configs: list[str] = []
-    for batch in results:
+
+    for batch in (*tg_results, *sub_results):
         for cfg in batch:
-            # FIX 1: dedup on URI only (strip remark) so the same proxy from
-            # two channels or with different remark labels isn't duplicated.
+            # FIX 1: dedup on URI only (strip remark) so the same proxy posted
+            # in two channels or with different remark labels isn't duplicated.
             uri = cfg.split("#")[0]
             if uri not in seen:
                 seen.add(uri)
                 all_configs.append(cfg)
+
     return all_configs
 
 # ── Rename remarks ────────────────────────────────────────────────────────────
 
 def rename_remarks(configs: list[str]) -> list[str]:
-    """Replace whatever remark is after # with mn_conf<N>."""
     renamed = []
     for i, cfg in enumerate(configs, start=1):
         # FIX 2: strip trailing '?' left by empty query strings (e.g. ss://...@host:port?)
@@ -73,22 +324,18 @@ def rename_remarks(configs: list[str]) -> list[str]:
 # ── Clash conversion ──────────────────────────────────────────────────────────
 
 def _decode_vmess(uri: str) -> dict | None:
-    """Decode a vmess:// URI and return a raw config dict, or None on failure."""
     try:
-        b64 = uri[len("vmess://"):]
+        b64  = uri[len("vmess://"):]
         b64 += "=" * (-len(b64) % 4)
         data = json.loads(base64.b64decode(b64).decode())
         return data
     except Exception:
         return None
 
+
 def _parse_userinfo_host(uri: str, scheme: str) -> tuple[str, str, int, str] | None:
-    """
-    Parse scheme://user@host:port#remark (used by vless, trojan, ss, hy2…).
-    Returns (user, host, port, remark) or None.
-    """
     try:
-        body = uri[len(scheme):]
+        body   = uri[len(scheme):]
         remark = ""
         if "#" in body:
             body, remark = body.split("#", 1)
@@ -107,163 +354,125 @@ def _parse_userinfo_host(uri: str, scheme: str) -> tuple[str, str, int, str] | N
     except Exception:
         return None
 
-def config_to_clash_proxy(cfg: str, name: str) -> dict | None:
-    """
-    Convert a single proxy URI to a Clash proxy dict.
-    Supported: vmess, vless, trojan, ss, hy2/hysteria2.
-    Returns None for unsupported / unparseable configs.
-    """
 
-    # ── VMess ──────────────────────────────────────────────────────────────
+def config_to_clash_proxy(cfg: str, name: str) -> dict | None:
     if cfg.startswith("vmess://"):
         raw = _decode_vmess(cfg.split("#")[0])
         if not raw:
             return None
         proxy: dict = {
-            "name": name,
-            "type": "vmess",
-            "server": str(raw.get("add", "")),
-            "port": int(raw.get("port", 443)),
-            "uuid": str(raw.get("id", "")),
+            "name":    name,
+            "type":    "vmess",
+            "server":  str(raw.get("add", "")),
+            "port":    int(raw.get("port", 443)),
+            "uuid":    str(raw.get("id", "")),
             "alterId": int(raw.get("aid", 0)),
-            "cipher": str(raw.get("scy", raw.get("security", "auto"))),
-            "udp": True,
+            "cipher":  str(raw.get("scy", raw.get("security", "auto"))),
+            "udp":     True,
         }
         net = str(raw.get("net", "tcp"))
         if net == "ws":
-            proxy["network"] = "ws"
-            proxy["ws-opts"] = {
-                "path": str(raw.get("path", "/")),
+            proxy["network"]  = "ws"
+            proxy["ws-opts"]  = {
+                "path":    str(raw.get("path", "/")),
                 "headers": {"Host": str(raw.get("host", proxy["server"]))},
             }
         elif net == "grpc":
-            proxy["network"] = "grpc"
+            proxy["network"]   = "grpc"
             proxy["grpc-opts"] = {"grpc-service-name": str(raw.get("path", ""))}
-        # FIX 3: handle xhttp and httpupgrade transport types for VMess
+        # FIX 3: handle xhttp and httpupgrade transport for VMess
         elif net == "xhttp":
-            proxy["network"] = "xhttp"
+            proxy["network"]    = "xhttp"
             proxy["xhttp-opts"] = {
                 "path": str(raw.get("path", "/")),
                 "host": str(raw.get("host", proxy["server"])),
             }
         elif net == "httpupgrade":
-            proxy["network"] = "httpupgrade"
-            proxy["httpupgrade-opts"] = {
+            proxy["network"]           = "httpupgrade"
+            proxy["httpupgrade-opts"]  = {
                 "path": str(raw.get("path", "/")),
                 "host": str(raw.get("host", proxy["server"])),
             }
-        tls = str(raw.get("tls", ""))
-        if tls == "tls":
+        if str(raw.get("tls", "")) == "tls":
             proxy["tls"] = True
             sni = str(raw.get("sni", raw.get("host", "")))
             if sni:
                 proxy["servername"] = sni
         return proxy
 
-    # ── VLESS ──────────────────────────────────────────────────────────────
     if cfg.startswith("vless://"):
         try:
-            body = cfg[len("vless://"):]
-            remark = ""
+            body       = cfg[len("vless://"):]
             if "#" in body:
-                body, remark = body.split("#", 1)
+                body, _ = body.split("#", 1)
             params_str = ""
             if "?" in body:
                 body, params_str = body.split("?", 1)
             uuid, hostport = body.split("@", 1)
             host, port_str = hostport.rsplit(":", 1)
-            port = int(port_str)
+            port   = int(port_str)
             params = dict(p.split("=", 1) for p in params_str.split("&") if "=" in p)
         except Exception:
             return None
-
-        proxy = {
-            "name": name,
-            "type": "vless",
-            "server": host,
-            "port": port,
-            "uuid": uuid,
-            "udp": True,
-        }
-
+        proxy = {"name": name, "type": "vless", "server": host, "port": port, "uuid": uuid, "udp": True}
         if params.get("security") == "tls":
             proxy["tls"] = True
-            sni = params.get("sni", "")
-            if sni:
-                proxy["servername"] = sni
-
+            if params.get("sni"):
+                proxy["servername"] = params["sni"]
         if params.get("security") == "reality":
             proxy["tls"] = True
-            proxy["reality-opts"] = {
-                "public-key": params.get("pbk", ""),
-                "short-id": params.get("sid", ""),
-            }
-            sni = params.get("sni", "")
-            if sni:
-                proxy["servername"] = sni
-
+            proxy["reality-opts"] = {"public-key": params.get("pbk", ""), "short-id": params.get("sid", "")}
+            if params.get("sni"):
+                proxy["servername"] = params["sni"]
         net = params.get("type", "tcp")
         if net == "ws":
-            proxy["network"] = "ws"
-            proxy["ws-opts"] = {
-                "path": params.get("path", "/"),
-                "headers": {"Host": params.get("host", host)},
-            }
+            proxy["network"]  = "ws"
+            proxy["ws-opts"]  = {"path": params.get("path", "/"), "headers": {"Host": params.get("host", host)}}
         elif net == "grpc":
-            proxy["network"] = "grpc"
+            proxy["network"]   = "grpc"
             proxy["grpc-opts"] = {"grpc-service-name": params.get("serviceName", "")}
-        # FIX 3: handle xhttp and httpupgrade for VLESS
+        # FIX 3: handle xhttp and httpupgrade transport for VLESS
         elif net == "xhttp":
-            proxy["network"] = "xhttp"
+            proxy["network"]    = "xhttp"
             proxy["xhttp-opts"] = {
                 "path": params.get("path", "/"),
                 "host": params.get("host", host),
             }
         elif net == "httpupgrade":
-            proxy["network"] = "httpupgrade"
+            proxy["network"]          = "httpupgrade"
             proxy["httpupgrade-opts"] = {
                 "path": params.get("path", "/"),
                 "host": params.get("host", host),
             }
-
         return proxy
 
-    # ── Trojan ─────────────────────────────────────────────────────────────
     if cfg.startswith("trojan://"):
         parsed = _parse_userinfo_host(cfg, "trojan://")
         if not parsed:
             return None
         password, host, port, _ = parsed
-        proxy = {
-            "name": name,
-            "type": "trojan",
-            "server": host,
-            "port": port,
-            "password": password,
-            "udp": True,
-        }
+        proxy = {"name": name, "type": "trojan", "server": host, "port": port, "password": password, "udp": True}
         try:
             params_str = cfg.split("?", 1)[1].split("#")[0] if "?" in cfg else ""
             params = dict(p.split("=", 1) for p in params_str.split("&") if "=" in p)
-            sni = params.get("sni", "")
-            if sni:
-                proxy["sni"] = sni
+            if params.get("sni"):
+                proxy["sni"] = params["sni"]
             net = params.get("type", "tcp")
             if net == "ws":
-                proxy["network"] = "ws"
-                proxy["ws-opts"] = {"path": params.get("path", "/")}
+                proxy["network"]  = "ws"
+                proxy["ws-opts"]  = {"path": params.get("path", "/")}
             elif net == "grpc":
-                proxy["network"] = "grpc"
+                proxy["network"]   = "grpc"
                 proxy["grpc-opts"] = {"grpc-service-name": params.get("serviceName", "")}
-            # FIX 3: handle xhttp and httpupgrade for Trojan
+            # FIX 3: handle xhttp and httpupgrade transport for Trojan
             elif net == "xhttp":
-                proxy["network"] = "xhttp"
+                proxy["network"]    = "xhttp"
                 proxy["xhttp-opts"] = {
                     "path": params.get("path", "/"),
                     "host": params.get("host", host),
                 }
             elif net == "httpupgrade":
-                proxy["network"] = "httpupgrade"
+                proxy["network"]          = "httpupgrade"
                 proxy["httpupgrade-opts"] = {
                     "path": params.get("path", "/"),
                     "host": params.get("host", host),
@@ -272,88 +481,63 @@ def config_to_clash_proxy(cfg: str, name: str) -> dict | None:
             pass
         return proxy
 
-    # ── Shadowsocks ────────────────────────────────────────────────────────
     if cfg.startswith("ss://"):
         try:
             body = cfg[len("ss://"):]
-            remark = ""
             if "#" in body:
-                body, remark = body.split("#", 1)
-            # FIX 2 (also here pre-rename): strip trailing '?' from query-less ss URIs
+                body, _ = body.split("#", 1)
+            # FIX 2 (also in Clash parser): strip trailing '?' from query-less ss URIs
             body = body.rstrip("?")
             if "@" in body:
                 userinfo, hostport = body.rsplit("@", 1)
-                host, port_str = hostport.rsplit(":", 1)
-                port = int(port_str)
+                host, port_str     = hostport.rsplit(":", 1)
+                port               = int(port_str)
                 if ":" in userinfo:
                     method, password = userinfo.split(":", 1)
                 else:
-                    decoded = base64.b64decode(userinfo + "==").decode()
+                    decoded  = base64.b64decode(userinfo + "==").decode()
                     method, password = decoded.split(":", 1)
             else:
-                decoded = base64.b64decode(body + "==").decode()
+                decoded            = base64.b64decode(body + "==").decode()
                 method_pass, hostport = decoded.split("@", 1)
-                method, password = method_pass.split(":", 1)
-                host, port_str = hostport.rsplit(":", 1)
-                port = int(port_str)
+                method, password   = method_pass.split(":", 1)
+                host, port_str     = hostport.rsplit(":", 1)
+                port               = int(port_str)
         except Exception:
             return None
+        return {"name": name, "type": "ss", "server": host, "port": port, "cipher": method, "password": password, "udp": True}
 
-        return {
-            "name": name,
-            "type": "ss",
-            "server": host,
-            "port": port,
-            "cipher": method,
-            "password": password,
-            "udp": True,
-        }
-
-    # ── Hysteria2 / hy2 ────────────────────────────────────────────────────
     if cfg.startswith("hysteria2://") or cfg.startswith("hy2://"):
         scheme = "hysteria2://" if cfg.startswith("hysteria2://") else "hy2://"
         try:
             body = cfg[len(scheme):]
-            remark = ""
             if "#" in body:
-                body, remark = body.split("#", 1)
+                body, _ = body.split("#", 1)
             params_str = ""
             if "?" in body:
                 body, params_str = body.split("?", 1)
             password, hostport = body.split("@", 1)
-            host, port_str = hostport.rsplit(":", 1)
-            port = int(port_str)
+            host, port_str     = hostport.rsplit(":", 1)
+            port               = int(port_str)
             params = dict(p.split("=", 1) for p in params_str.split("&") if "=" in p)
         except Exception:
             return None
-
-        proxy: dict = {
-            "name": name,
-            "type": "hysteria2",
-            "server": host,
-            "port": port,
-            "password": password,
-            "udp": True,
-        }
-        sni = params.get("sni", "")
-        if sni:
-            proxy["sni"] = sni
+        proxy: dict = {"name": name, "type": "hysteria2", "server": host, "port": port, "password": password, "udp": True}
+        if params.get("sni"):
+            proxy["sni"] = params["sni"]
         if params.get("insecure", "0") == "1":
             proxy["skip-cert-verify"] = True
         return proxy
 
-    return None  # unsupported protocol
+    return None
+
 
 def build_clash_yaml(configs: list[str]) -> str:
-    """
-    Convert renamed configs to a Clash-compatible subscription YAML string.
-    Only successfully parsed proxies are included.
-    """
-    proxies: list[dict] = []
-    proxy_names: list[str] = []
+    proxies:     list[dict] = []
+    proxy_names: list[str]  = []
 
     for cfg in configs:
-        name = cfg.split("#")[-1] if "#" in cfg else f"proxy_{len(proxies)+1}"
+        name  = cfg.split("#")[-1] if "#" in cfg else f"proxy_{len(proxies)+1}"
         proxy = config_to_clash_proxy(cfg, name)
         if proxy:
             proxies.append(proxy)
@@ -372,7 +556,6 @@ def build_clash_yaml(configs: list[str]) -> str:
     lines.append("mode: rule")
     lines.append("log-level: info")
     lines.append("")
-
     lines.append("proxies:")
     for p in proxies:
         lines.append(f"  - name: \"{p['name']}\"")
@@ -395,7 +578,6 @@ def build_clash_yaml(configs: list[str]) -> str:
             else:
                 lines.append(f"    {k}: {v}")
         lines.append("")
-
     lines.append("proxy-groups:")
     lines.append("  - name: \"AUTO\"")
     lines.append("    type: url-test")
@@ -412,7 +594,6 @@ def build_clash_yaml(configs: list[str]) -> str:
     for n in proxy_names:
         lines.append(f"      - \"{n}\"")
     lines.append("")
-
     lines.append("rules:")
     lines.append("  - MATCH,AUTO")
     lines.append("")
@@ -425,14 +606,14 @@ def save(configs: list[str]) -> None:
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     configs = rename_remarks(configs)
 
-    raw = "\n".join(configs)
+    raw     = "\n".join(configs)
     encoded = base64.b64encode(raw.encode()).decode()
     OUTPUT_FILE.write_text(encoded)
     Path("output/configs_plain.txt").write_text(raw)
     print(f"\n✅ Saved {len(configs)} unique configs → {OUTPUT_FILE}")
     print(f"   Base64 length: {len(encoded)} chars")
 
-    clash_yaml = build_clash_yaml(configs)
+    clash_yaml  = build_clash_yaml(configs)
     CLASH_OUTPUT_FILE.write_text(clash_yaml, encoding="utf-8")
     clash_count = clash_yaml.count("\n  - name:")
     print(f"✅ Saved Clash subscription → {CLASH_OUTPUT_FILE} ({clash_count} proxies)")
@@ -441,18 +622,21 @@ def save(configs: list[str]) -> None:
 
 def main() -> None:
     print(f"🔍 Collecting V2Ray configs [{datetime.now().strftime('%Y-%m-%d %H:%M UTC')}]")
-    print(f"   Channels : {len(CHANNELS)}")
-    print(f"   Protocols : {', '.join(p.rstrip('://') for p in PROTOCOLS)}\n")
+    print(f"   Channels      : {len(CHANNELS)}")
+    print(f"   External subs : {len(EXTERNAL_SUB_URLS)}")
+    print(f"   Protocols     : {', '.join(p.rstrip('://') for p in PROTOCOLS)}\n")
 
     configs = asyncio.run(collect_all())
+
     if not configs:
-        print("⚠️  No configs found. Channels may have changed or be empty.")
+        print("⚠️  No configs found.")
         OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
         OUTPUT_FILE.write_text("")
         CLASH_OUTPUT_FILE.write_text("proxies: []\n")
         return
 
     save(configs)
+
 
 if __name__ == "__main__":
     main()
