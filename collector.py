@@ -11,7 +11,8 @@ from datetime import datetime
 
 CHANNELS = [
     "kurdconfig", "Configir98", "YamYamProxy", "FreeConfigForYou", "begoo_vpn_gp","iranconnecting",
-    "Zed_NetMeli", "on_proxy1", "Spotify_Porteghali", "oxnet_ir", "proxy_station", "bygfw"
+    "Zed_NetMeli", "on_proxy1", "Spotify_Porteghali", "oxnet_ir", "proxy_station", "bygfw" , "ezaccess1",
+    "appxa", "v2rayyngvpn", "sparrk_vpn", "amir_webstudio"
 ]
 
 # ── External subscription URLs ────────────────────────────────────────────────
