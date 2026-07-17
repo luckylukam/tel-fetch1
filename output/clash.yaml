@@ -1,6 +1,6 @@
 # Clash subscription — auto-generated
-# Generated: 2026-07-17 22:45 UTC
-# Total proxies: 360
+# Generated: 2026-07-17 23:49 UTC
+# Total proxies: 363
 
 mixed-port: 7890
 allow-lan: false
@@ -9,85 +9,6 @@ log-level: info
 
 proxies:
   - name: "mn_conf1"
-    type: "trojan"
-    server: "151.101.110.219"
-    port: 443
-    password: "MiTiVPN"
-    udp: true
-    sni: "ssl.fastly.com"
-    network: "ws"
-    ws-opts:
-      path: "%2FMiTiVPN%3DNL"
-
-  - name: "mn_conf2"
-    type: "vless"
-    server: "89.106.64.15"
-    port: 7000
-    uuid: "0a715ede-593a-4018-8406-66e2c3b1169c"
-    udp: true
-    network: "xhttp"
-    xhttp-opts:
-      path: "%2F"
-      host: "a12.crowsvpn.shop"
-
-  - name: "mn_conf3"
-    type: "trojan"
-    server: "151.101.110.219"
-    port: 443
-    password: "MITIVPN"
-    udp: true
-    sni: "global.fastly.com"
-    network: "ws"
-    ws-opts:
-      path: "%2FMiTiVPN%3DDe"
-
-  - name: "mn_conf4"
-    type: "trojan"
-    server: "151.101.56.6"
-    port: 443
-    password: "MITIVPN"
-    udp: true
-    sni: "global.fastly.com"
-    network: "ws"
-    ws-opts:
-      path: "%2FMiTiVPN%3DUsa"
-
-  - name: "mn_conf5"
-    type: "trojan"
-    server: "151.101.56.6"
-    port: 443
-    password: "MiTiVPN"
-    udp: true
-    sni: "ssl.fastly.com"
-    network: "ws"
-    ws-opts:
-      path: "%2FMiTiVPN%3DfL"
-
-  - name: "mn_conf6"
-    type: "vless"
-    server: "173.199.117.62"
-    port: 3
-    uuid: "f356ae17-12ad-43ce-9961-56de0725452e"
-    udp: true
-    network: "xhttp"
-    xhttp-opts:
-      path: "%2F"
-      host: "173.199.117.62"
-
-  - name: "mn_conf7"
-    type: "vless"
-    server: "s2.zynavo.ir"
-    port: 2087
-    uuid: "a490e46d-e450-4c73-631f-920da539186c"
-    udp: true
-    tls: true
-    servername: "cdn.zynavo.ir"
-    network: "xhttp"
-    xhttp-opts:
-      path: "%2FBetForward"
-      host: "cdn.zynavo.ir"
-
-  - name: "mn_conf8"
     type: "vless"
     server: "172.67.167.207"
     port: 443
@@ -101,7 +22,7 @@ proxies:
       headers:
         Host: "edt2.yfqh08811.ccwu.cc"
 
-  - name: "mn_conf9"
+  - name: "mn_conf2"
     type: "vless"
     server: "172.64.145.158"
     port: 443
@@ -115,21 +36,21 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf10"
+  - name: "mn_conf3"
     type: "vless"
     server: "51.44.138.45"
     port: 22224
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf11"
+  - name: "mn_conf4"
     type: "vless"
     server: "51.44.138.45"
     port: 22222
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf12"
+  - name: "mn_conf5"
     type: "vmess"
     server: "31.77.149.131"
     port: 110
@@ -138,14 +59,14 @@ proxies:
     cipher: "auto"
     udp: true
 
-  - name: "mn_conf13"
+  - name: "mn_conf6"
     type: "vless"
     server: "51.44.138.45"
     port: 22223
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf14"
+  - name: "mn_conf7"
     type: "trojan"
     server: "151.101.34.144"
     port: 443
@@ -157,7 +78,7 @@ proxies:
       path: "%2Fda"
       host: "networkzvx.global.ssl.fastly.net"
 
-  - name: "mn_conf15"
+  - name: "mn_conf8"
     type: "vless"
     server: "172.64.53.34"
     port: 443
@@ -171,7 +92,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf16"
+  - name: "mn_conf9"
     type: "vless"
     server: "soskeynets.monopolitass.ir"
     port: 56625
@@ -186,7 +107,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf17"
+  - name: "mn_conf10"
     type: "vless"
     server: "nexusmods.com"
     port: 443
@@ -200,7 +121,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf18"
+  - name: "mn_conf11"
     type: "vless"
     server: "www.speedtest.org"
     port: 443
@@ -214,7 +135,7 @@ proxies:
       headers:
         Host: "shegeftihaaa.net"
 
-  - name: "mn_conf19"
+  - name: "mn_conf12"
     type: "trojan"
     server: "188.114.99.0"
     port: 443
@@ -225,7 +146,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf20"
+  - name: "mn_conf13"
     type: "trojan"
     server: "45.130.125.162"
     port: 443
@@ -236,7 +157,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf21"
+  - name: "mn_conf14"
     type: "vless"
     server: "173.245.58.153"
     port: 2053
@@ -250,7 +171,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf22"
+  - name: "mn_conf15"
     type: "trojan"
     server: "172.64.147.227"
     port: 443
@@ -261,7 +182,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf23"
+  - name: "mn_conf16"
     type: "vless"
     server: "162.159.38.119"
     port: 443
@@ -275,7 +196,7 @@ proxies:
       headers:
         Host: "vangoghhh.info"
 
-  - name: "mn_conf24"
+  - name: "mn_conf17"
     type: "vless"
     server: "162.159.38.119"
     port: 443
@@ -289,7 +210,7 @@ proxies:
       headers:
         Host: "shegeftihaaa.net"
 
-  - name: "mn_conf25"
+  - name: "mn_conf18"
     type: "vless"
     server: "x4g-production-88cb7.up.railway.app"
     port: 443
@@ -303,7 +224,7 @@ proxies:
       headers:
         Host: "x4g-production-88cb7.up.railway.app"
 
-  - name: "mn_conf26"
+  - name: "mn_conf19"
     type: "vless"
     server: "x4g-production-88cb7.up.railway.app"
     port: 443
@@ -317,7 +238,7 @@ proxies:
       headers:
         Host: "x4g-production-88cb7.up.railway.app"
 
-  - name: "mn_conf27"
+  - name: "mn_conf20"
     type: "vless"
     server: "x4g-production-88cb7.up.railway.app"
     port: 443
@@ -331,7 +252,7 @@ proxies:
       headers:
         Host: "x4g-production-88cb7.up.railway.app"
 
-  - name: "mn_conf28"
+  - name: "mn_conf21"
     type: "vless"
     server: "31.77.201.85"
     port: 443
@@ -343,7 +264,7 @@ proxies:
       short-id: "0b0aa9caed9d011e"
     servername: "ag-03.rita-cloud.com"
 
-  - name: "mn_conf29"
+  - name: "mn_conf22"
     type: "vless"
     server: "1.tls.fastly.veraspeed.ir"
     port: 443
@@ -357,7 +278,7 @@ proxies:
       headers:
         Host: "pan21.global.ssl.fastly.net"
 
-  - name: "mn_conf30"
+  - name: "mn_conf23"
     type: "hysteria2"
     server: "91.107.152.188"
     port: 40460
@@ -366,14 +287,14 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf31"
+  - name: "mn_conf24"
     type: "vless"
     server: "91.148.135.191"
     port: 54217
     uuid: "5aca6fb1-b21a-4f63-9cab-54986613f6aa"
     udp: true
 
-  - name: "mn_conf32"
+  - name: "mn_conf25"
     type: "vless"
     server: "config85bot-idchanl-timazadi.up.railway.app"
     port: 443
@@ -386,7 +307,7 @@ proxies:
       path: "%2Fxhttp-siz10%2Fstream-up%2Fdc2f9b12-c085-fc47-da5c-36a01aff6547"
       host: "config85bot-idchanl-timazadi.up.railway.app"
 
-  - name: "mn_conf33"
+  - name: "mn_conf26"
     type: "vless"
     server: "test-production-afb6.up.railway.app"
     port: 443
@@ -400,7 +321,7 @@ proxies:
       headers:
         Host: "test-production-afb6.up.railway.app"
 
-  - name: "mn_conf34"
+  - name: "mn_conf27"
     type: "trojan"
     server: "test-production-afb6.up.railway.app"
     port: 443
@@ -411,7 +332,7 @@ proxies:
     ws-opts:
       path: "%2Fws%2Fcc7b3f9c-4b31-c966-fc21-f9e207d88cef"
 
-  - name: "mn_conf35"
+  - name: "mn_conf28"
     type: "vless"
     server: "104.18.2.186"
     port: 2095
@@ -423,7 +344,7 @@ proxies:
       headers:
         Host: "cnmfangbinxing.cnmfangbinxing-q.workers.dev"
 
-  - name: "mn_conf36"
+  - name: "mn_conf29"
     type: "trojan"
     server: "89.116.250.135"
     port: 443
@@ -434,21 +355,21 @@ proxies:
     ws-opts:
       path: "%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%3DWIN-nl"
 
-  - name: "mn_conf37"
+  - name: "mn_conf30"
     type: "vless"
     server: "18.194.9.102"
     port: 22223
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf38"
+  - name: "mn_conf31"
     type: "vless"
     server: "18.194.9.102"
     port: 22224
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf39"
+  - name: "mn_conf32"
     type: "vless"
     server: "173.245.58.214"
     port: 2053
@@ -462,7 +383,7 @@ proxies:
       headers:
         Host: "snowy-waterfall-1901.ali1112.workers.dev"
 
-  - name: "mn_conf40"
+  - name: "mn_conf33"
     type: "trojan"
     server: "172.67.218.196"
     port: 443
@@ -473,7 +394,7 @@ proxies:
     ws-opts:
       path: "%2FNovan-ID9"
 
-  - name: "mn_conf41"
+  - name: "mn_conf34"
     type: "vless"
     server: "www.gov.ua"
     port: 8880
@@ -485,7 +406,7 @@ proxies:
       headers:
         Host: "calm-haze-d105.21-7cd.workers.dev"
 
-  - name: "mn_conf42"
+  - name: "mn_conf35"
     type: "vless"
     server: "mybb.com"
     port: 443
@@ -499,7 +420,7 @@ proxies:
       headers:
         Host: "rayan-007.nastaran.dpdns.org"
 
-  - name: "mn_conf43"
+  - name: "mn_conf36"
     type: "vless"
     server: "185.148.107.40"
     port: 8880
@@ -511,7 +432,7 @@ proxies:
       headers:
         Host: "vms.lifetime55.workers.dev"
 
-  - name: "mn_conf44"
+  - name: "mn_conf37"
     type: "vless"
     server: "164.38.155.13"
     port: 443
@@ -525,7 +446,7 @@ proxies:
       headers:
         Host: "edge-4cb23bf6.pages.dev"
 
-  - name: "mn_conf45"
+  - name: "mn_conf38"
     type: "vless"
     server: "104.24.197.20"
     port: 2095
@@ -537,7 +458,7 @@ proxies:
       headers:
         Host: "cnmfangbinxing.cnmfangbinxing-q.workers.dev"
 
-  - name: "mn_conf46"
+  - name: "mn_conf39"
     type: "vless"
     server: "46.8.229.199"
     port: 443
@@ -549,7 +470,7 @@ proxies:
       short-id: "da"
     servername: "intel.com"
 
-  - name: "mn_conf47"
+  - name: "mn_conf40"
     type: "vless"
     server: "45.196.182.49"
     port: 443
@@ -561,7 +482,7 @@ proxies:
       short-id: "d020b987f84eb78a"
     servername: "storage.yandex.net"
 
-  - name: "mn_conf48"
+  - name: "mn_conf41"
     type: "ss"
     server: "mmd.radanjami.org"
     port: 37309
@@ -569,7 +490,7 @@ proxies:
     password: "jjmjdvnkfy9al8jb"
     udp: true
 
-  - name: "mn_conf49"
+  - name: "mn_conf42"
     type: "vless"
     server: "66.234.150.145"
     port: 443
@@ -581,7 +502,7 @@ proxies:
       short-id: "d020b987f84eb78a"
     servername: "storage.yandex.net"
 
-  - name: "mn_conf50"
+  - name: "mn_conf43"
     type: "ss"
     server: "82.38.31.32"
     port: 443
@@ -589,7 +510,7 @@ proxies:
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
 
-  - name: "mn_conf51"
+  - name: "mn_conf44"
     type: "vless"
     server: "max-ep.443.erangle.ru"
     port: 14368
@@ -602,7 +523,7 @@ proxies:
       path: "%2F"
       host: "max-ep.443.erangle.ru"
 
-  - name: "mn_conf52"
+  - name: "mn_conf45"
     type: "vless"
     server: "104.25.189.214"
     port: 2052
@@ -613,7 +534,7 @@ proxies:
       path: "%2F"
       host: "cdn.safev2ray.site"
 
-  - name: "mn_conf53"
+  - name: "mn_conf46"
     type: "vless"
     server: "upload.ansooyefilter.ir"
     port: 8443
@@ -625,7 +546,7 @@ proxies:
       short-id: "8ed95b"
     servername: "search.led.samsung.com"
 
-  - name: "mn_conf54"
+  - name: "mn_conf47"
     type: "vless"
     server: "104.25.189.214"
     port: 2095
@@ -636,7 +557,7 @@ proxies:
       path: "%2F"
       host: "cdn.safev2ray.site"
 
-  - name: "mn_conf55"
+  - name: "mn_conf48"
     type: "vless"
     server: "104.25.193.8"
     port: 2083
@@ -650,7 +571,7 @@ proxies:
       headers:
         Host: "zeus-panel-55srwb.arynzlfkhany.workers.dev"
 
-  - name: "mn_conf56"
+  - name: "mn_conf49"
     type: "vless"
     server: "104.25.193.8"
     port: 443
@@ -664,7 +585,7 @@ proxies:
       headers:
         Host: "zeus-panel-55srwb.arynzlfkhany.workers.dev"
 
-  - name: "mn_conf57"
+  - name: "mn_conf50"
     type: "vless"
     server: "104.25.193.8"
     port: 2053
@@ -678,7 +599,7 @@ proxies:
       headers:
         Host: "zeus-panel-55srwb.arynzlfkhany.workers.dev"
 
-  - name: "mn_conf58"
+  - name: "mn_conf51"
     type: "vless"
     server: "ansooyefilter88.up.railway.app"
     port: 443
@@ -692,7 +613,7 @@ proxies:
       headers:
         Host: "ansooyefilter88.up.railway.app"
 
-  - name: "mn_conf59"
+  - name: "mn_conf52"
     type: "vless"
     server: "www.cnae.top"
     port: 443
@@ -705,6 +626,85 @@ proxies:
       path: "%2F"
       headers:
         Host: "hhslb.vavava.kdns.fr"
+
+  - name: "mn_conf53"
+    type: "trojan"
+    server: "151.101.110.219"
+    port: 443
+    password: "MiTiVPN"
+    udp: true
+    sni: "ssl.fastly.com"
+    network: "ws"
+    ws-opts:
+      path: "%2FMiTiVPN%3DNL"
+
+  - name: "mn_conf54"
+    type: "vless"
+    server: "89.106.64.15"
+    port: 7000
+    uuid: "0a715ede-593a-4018-8406-66e2c3b1169c"
+    udp: true
+    network: "xhttp"
+    xhttp-opts:
+      path: "%2F"
+      host: "a12.crowsvpn.shop"
+
+  - name: "mn_conf55"
+    type: "trojan"
+    server: "151.101.110.219"
+    port: 443
+    password: "MITIVPN"
+    udp: true
+    sni: "global.fastly.com"
+    network: "ws"
+    ws-opts:
+      path: "%2FMiTiVPN%3DDe"
+
+  - name: "mn_conf56"
+    type: "trojan"
+    server: "151.101.56.6"
+    port: 443
+    password: "MITIVPN"
+    udp: true
+    sni: "global.fastly.com"
+    network: "ws"
+    ws-opts:
+      path: "%2FMiTiVPN%3DUsa"
+
+  - name: "mn_conf57"
+    type: "trojan"
+    server: "151.101.56.6"
+    port: 443
+    password: "MiTiVPN"
+    udp: true
+    sni: "ssl.fastly.com"
+    network: "ws"
+    ws-opts:
+      path: "%2FMiTiVPN%3DfL"
+
+  - name: "mn_conf58"
+    type: "vless"
+    server: "173.199.117.62"
+    port: 3
+    uuid: "f356ae17-12ad-43ce-9961-56de0725452e"
+    udp: true
+    network: "xhttp"
+    xhttp-opts:
+      path: "%2F"
+      host: "173.199.117.62"
+
+  - name: "mn_conf59"
+    type: "vless"
+    server: "s2.zynavo.ir"
+    port: 2087
+    uuid: "a490e46d-e450-4c73-631f-920da539186c"
+    udp: true
+    tls: true
+    servername: "cdn.zynavo.ir"
+    network: "xhttp"
+    xhttp-opts:
+      path: "%2FBetForward"
+      host: "cdn.zynavo.ir"
 
   - name: "mn_conf60"
     type: "vless"
@@ -1040,192 +1040,211 @@ proxies:
 
   - name: "mn_conf89"
     type: "ss"
-    server: "67.220.85.74"
-    port: 6697
-    cipher: "aes-256-gcm"
-    password: "TEzjfAYq2IjtuoS"
+    server: "free.2weradf.xyz"
+    port: 36721
+    cipher: "ss"
+    password: "//Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YWRkNWMxOC05NmRmLTRiNjAtYTUyMi0zMWI1YzZhNWQ5MzM"
     udp: true
 
   - name: "mn_conf90"
-    type: "vless"
-    server: "www.speedtest.net"
-    port: 2086
-    uuid: "8137e9a6-22e6-4707-a120-a6dea17c7e00"
+    type: "ss"
+    server: "free.2weradf.xyz"
+    port: 36341
+    cipher: "ss"
+    password: "//Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YWRkNWMxOC05NmRmLTRiNjAtYTUyMi0zMWI1YzZhNWQ5MzM"
     udp: true
-    network: "ws"
-    ws-opts:
-      path: "%2FeyJqdW5rIjoic1VBWDhGMXJsREg5WUoiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6WyI4My4xNDcuMjU0LjI0NSJdfQ%3D%3D%3Fed%3D2560"
-      headers:
-        Host: "dry-snow-2e6f.fastip25478.workers.dev"
 
   - name: "mn_conf91"
-    type: "vless"
-    server: "104.17.148.22"
-    port: 8880
-    uuid: "a9e7c2b0-8693-432c-9dc5-36d1bb8476f6"
+    type: "trojan"
+    server: "162.159.153.13"
+    port: 443
+    password: "tg-dns68"
     udp: true
+    sni: "vip.putata.eu.org"
     network: "ws"
     ws-opts:
-      path: "%2F-LiV2ry%40LIGHTNING6-TEL--%40LIGHTNING6-TEL--%40LIGHTNING6-TEL--%40LIGHTNING6-JOIN-%40LIGHTNING6-TEL--%40LIGHTNING6-JOIN-%40LIGHTNING6-TEL-%40LIGHTNING6-TEL--%40LIGHTNING6-JOIN-%40LIGHTNING6-TEL--%40LIGHTNING6%3Fed%3D2056"
-      headers:
-        Host: "www.speedtest.net.A.lightning-6.LiVE."
+      path: "/?ed=2560"
 
   - name: "mn_conf92"
     type: "vless"
-    server: "198.41.208.42"
+    server: "217.179.5.62"
     port: 443
-    uuid: "9ce7ac33-5004-40ea-8236-15bc2d25a37c"
+    uuid: "VIPTelegramVIP%3ATurboConfigs"
     udp: true
-    tls: true
-    servername: "calm-base-e99e.pofokjimi.workers.dev"
-    network: "ws"
-    ws-opts:
-      path: "%2FV2ngFast--V2ngFast--V2ngFast--V2ngFast--V2ngFast--V2ngFast--V2ngFast"
-      headers:
-        Host: "calm-base-e99e.pofokjimi.workers.dev"
 
   - name: "mn_conf93"
-    type: "vless"
-    server: "testserv1.zer0zypher.ir"
-    port: 443
-    uuid: "9149a9c5-d2e5-4fa0-841c-99f7e12dfced"
-    udp: true
-    tls: true
-    reality-opts:
-      public-key: "RQLrLXb2bSZ6hd_UsZ7zHj-dJ0nLgtfq0RVPtOQRWUY"
-      short-id: "e457c0e0f564"
-    servername: "fr-ca.rogers.yahoo.com"
-
-  - name: "mn_conf94"
-    type: "vless"
-    server: "juso5.pastilbastani.ir"
-    port: 443
-    uuid: "799843c2-ebb5-4376-b402-a8f479c029b9"
-    udp: true
-
-  - name: "mn_conf95"
-    type: "vless"
-    server: "036o7.pastilbastani.ir"
-    port: 443
-    uuid: "22a5e89c-24ff-414a-afd2-100463194a06"
-    udp: true
-
-  - name: "mn_conf96"
-    type: "vless"
-    server: "43.174.246.46"
-    port: 443
-    uuid: "fd9a728d-ece1-4168-c5a4-c28ecb5a0065"
-    udp: true
-    tls: true
-    servername: "sni2.irandoc.info"
-    network: "ws"
-    ws-opts:
-      path: "%2F37807%2Fapi"
-      headers:
-        Host: "m.irandoc.info"
-
-  - name: "mn_conf97"
-    type: "vless"
-    server: "89.167.16.234"
-    port: 8526
-    uuid: "9d6104a5-fc6d-4fe6-95b7-80d8f699e09d"
-    udp: true
-    tls: true
-    reality-opts:
-      public-key: "-zNDEqKkScKvMWB7spEper78GE_u-nR4jDHZ3DpOoxM"
-      short-id: "62ad184af31fc8cf"
-    servername: "www.yahoo.com"
-
-  - name: "mn_conf98"
-    type: "vless"
-    server: "v2.gafe-rezvan.ir"
-    port: 2087
-    uuid: "9d6104a5-fc6d-4fe6-95b7-80d8f699e09d"
-    udp: true
-    tls: true
-    servername: "ch-de.sdcards.ir"
-    network: "xhttp"
-    xhttp-opts:
-      path: "%2F"
-      host: "ch-de.sdcards.ir"
-
-  - name: "mn_conf99"
-    type: "vless"
-    server: "104.16.72.41"
-    port: 80
-    uuid: "dc8eccdb-ecfa-435f-9ac1-5dc4882e7b51"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "%2Fhttp"
-      headers:
-        Host: "de.vpnbase.net"
-
-  - name: "mn_conf100"
-    type: "vless"
-    server: "fighton.moviedownload.shop"
-    port: 2048
-    uuid: "ec2aeda9-0c72-4a17-9c64-3ae581099890"
-    udp: true
-
-  - name: "mn_conf101"
-    type: "vless"
-    server: "join.kiava.cloud.ohbah.com"
-    port: 8880
-    uuid: "83c4cb63-c8af-4234-9e9d-6d9ac7361b17"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "%2F%3Fed%3D2560"
-      headers:
-        Host: "join.2.kiava.cloud.speedtest.net.xn--mgba2h8quf.cdn.ws88.awscloudfront.net.kiava.fun"
-
-  - name: "mn_conf102"
     type: "ss"
     server: "free.2apzhfa.xyz"
-    port: 31571
+    port: 31171
     cipher: "ss"
     password: "//Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowYWU1OGE0OC1iYzE3LTQxZDItODQ3MS1mMGFhNWI5YjVlN2I"
     udp: true
 
-  - name: "mn_conf103"
+  - name: "mn_conf95"
     type: "ss"
-    server: "127.0.0.1"
-    port: 1080
-    cipher: "none"
-    password: "bcbacaa-acab-caba-bcad-baaaccbcabbc"
+    server: "free.2apzhfa.xyz"
+    port: 31173
+    cipher: "ss"
+    password: "//Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowYWU1OGE0OC1iYzE3LTQxZDItODQ3MS1mMGFhNWI5YjVlN2I"
     udp: true
+
+  - name: "mn_conf96"
+    type: "ss"
+    server: "free.2apzhfa.xyz"
+    port: 31213
+    cipher: "ss"
+    password: "//Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowYWU1OGE0OC1iYzE3LTQxZDItODQ3MS1mMGFhNWI5YjVlN2I"
+    udp: true
+
+  - name: "mn_conf97"
+    type: "ss"
+    server: "free.2apzhfa.xyz"
+    port: 31315
+    cipher: "ss"
+    password: "//Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowYWU1OGE0OC1iYzE3LTQxZDItODQ3MS1mMGFhNWI5YjVlN2I"
+    udp: true
+
+  - name: "mn_conf98"
+    type: "vless"
+    server: "172.67.140.54"
+    port: 443
+    uuid: "89b3cbba-e6ac-485a-9481-976a0415eab9"
+    udp: true
+    tls: true
+    servername: "azADNet-FReeDoM-irANIAn.pages.DEV"
+    network: "ws"
+    ws-opts:
+      path: "%2Ftelegram-proxy_mtm-Telegram-proxy_mtm-Telegram-proxy_mtm%3Fed%3D2560"
+      headers:
+        Host: "azAdneT-FREeDom-IraniaN.PAGES.dEv"
+
+  - name: "mn_conf99"
+    type: "ss"
+    server: "free.2apzhfa.xyz"
+    port: 31471
+    cipher: "ss"
+    password: "//Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowYWU1OGE0OC1iYzE3LTQxZDItODQ3MS1mMGFhNWI5YjVlN2I"
+    udp: true
+
+  - name: "mn_conf100"
+    type: "vless"
+    server: "13.48.95.21"
+    port: 22222
+    uuid: "05519058-d2ac-4f28-9e4a-2b2a1386749e"
+    udp: true
+    tls: true
+    servername: "telegram-channel-vlessconfig.sohala.uk"
+    network: "ws"
+    ws-opts:
+      path: "%2Ftelegram-channel-vlessconfig-ws"
+      headers:
+        Host: "telegram-channel-vlessconfig.sohala.uk"
+
+  - name: "mn_conf101"
+    type: "vless"
+    server: "159.65.7.154"
+    port: 443
+    uuid: "3c5e6124-decf-425d-8c1e-fe05cb4dd298"
+    udp: true
+    tls: true
+    reality-opts:
+      public-key: "iNTKMWUbyqCAOQ4VeJaNiHWK3T4w2T7R4zKPioC8qT8"
+      short-id: "b68b884d89e9a242"
+    servername: "onic.pk"
+
+  - name: "mn_conf102"
+    type: "vless"
+    server: "web-production-32ae5.up.railway.app"
+    port: 443
+    uuid: "0d504baf-399c-4079-8fa9-84095f6c7cc9"
+    udp: true
+    tls: true
+    servername: "web-production-32ae5.up.railway.app"
+    network: "ws"
+    ws-opts:
+      path: "%2Fws%2F0d504baf-399c-4079-8fa9-84095f6c7cc9"
+      headers:
+        Host: "web-production-32ae5.up.railway.app"
+
+  - name: "mn_conf103"
+    type: "trojan"
+    server: "179.237.75.28"
+    port: 61235
+    password: "lKwC5b3iFW"
+    udp: true
+    sni: "yahoo.com"
 
   - name: "mn_conf104"
     type: "vless"
-    server: "127.0.0.1"
-    port: 8080
-    uuid: "bacaacb-caba-cbaa-dcab-aacccbabbcab"
+    server: "w9kbq.pastilbastani.ir"
+    port: 443
+    uuid: "14b62416-547e-49c1-818a-510218ab101e"
     udp: true
-    tls: true
 
   - name: "mn_conf105"
-    type: "vless"
-    server: "45.80.110.161"
-    port: 2083
-    uuid: "d342d11e-d424-4583-b36e-524ab1f0afa4"
+    type: "vmess"
+    server: "104.19.46.36"
+    port: 2086
+    uuid: "e9e3cc13-db48-4cc1-8c24-7626439a5339"
+    alterId: 0
+    cipher: "auto"
     udp: true
-    tls: true
-    servername: "a.ssll.gay"
     network: "ws"
     ws-opts:
-      path: "freecodesfreecodes"
+      path: "/"
       headers:
-        Host: "45.80.110.161"
+        Host: "104.19.46.36"
 
   - name: "mn_conf106"
+    type: "ss"
+    server: "127.0.0.1"
+    port: 8080
+    cipher: "none"
+    password: "baaabcc-bcaa-abca-dacb-bbaccacabcba"
+    udp: true
+
+  - name: "mn_conf107"
+    type: "vless"
+    server: "www.shopify.com"
+    port: 443
+    uuid: "5b9fa73b-b549-480b-add9-c45e650d236f"
+    udp: true
+    tls: true
+    servername: "gddy.hhlfy.de5.net"
+    network: "ws"
+    ws-opts:
+      path: "%2F"
+      headers:
+        Host: "gddy.hhlfy.de5.net"
+
+  - name: "mn_conf108"
+    type: "ss"
+    server: "free.2weradf.xyz"
+    port: 36141
+    cipher: "ss"
+    password: "//Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YWRkNWMxOC05NmRmLTRiNjAtYTUyMi0zMWI1YzZhNWQ5MzM"
+    udp: true
+
+  - name: "mn_conf109"
+    type: "vless"
+    server: "naran-de-ow.fizikade.ir"
+    port: 443
+    uuid: "88c739fb-0cd9-423f-af44-35dbdae47158"
+    udp: true
+    tls: true
+    reality-opts:
+      public-key: "V2FVglvB5lw4cSrkhSPRpve27gV2Wp7sO6NUAyxXGQs"
+      short-id: "68cd"
+    servername: "play.google.com"
+
+  - name: "mn_conf110"
     type: "vless"
     server: "85.198.10.213"
     port: 5050
     uuid: "06287fd2-c6af-49ab-9e48-451bd0eee1d4"
     udp: true
 
-  - name: "mn_conf107"
+  - name: "mn_conf111"
     type: "trojan"
     server: "13.37.56.251"
     port: 22223
@@ -1233,7 +1252,7 @@ proxies:
     udp: true
     sni: "trojan.burgerip.co.uk"
 
-  - name: "mn_conf108"
+  - name: "mn_conf112"
     type: "vless"
     server: "swed.oplatasite.ru"
     port: 8443
@@ -1242,7 +1261,7 @@ proxies:
     tls: true
     servername: "vpn.oplatasite.ru"
 
-  - name: "mn_conf109"
+  - name: "mn_conf113"
     type: "vless"
     server: "fast.cd-tur4.ir"
     port: 443
@@ -1256,7 +1275,7 @@ proxies:
       headers:
         Host: "bazaryabab.global.ssl.fastly.net"
 
-  - name: "mn_conf110"
+  - name: "mn_conf114"
     type: "vless"
     server: "tmesubgift.up.railway.app"
     port: 443
@@ -1270,7 +1289,7 @@ proxies:
       headers:
         Host: "tmesubgift.up.railway.app"
 
-  - name: "mn_conf111"
+  - name: "mn_conf115"
     type: "vless"
     server: "rvg-production-300c.up.railway.app"
     port: 443
@@ -1284,14 +1303,14 @@ proxies:
       headers:
         Host: "rvg-production-300c.up.railway.app"
 
-  - name: "mn_conf112"
+  - name: "mn_conf116"
     type: "vless"
     server: "217.28.48.29"
     port: 25752
     uuid: "27f2ae85-3e15-4a9a-9c71-49ee032e7b26"
     udp: true
 
-  - name: "mn_conf113"
+  - name: "mn_conf117"
     type: "vless"
     server: "31.76.39.41"
     port: 443
@@ -1303,14 +1322,14 @@ proxies:
       short-id: "6aa1c5864bc69202"
     servername: "cdn.jsdelivr.net"
 
-  - name: "mn_conf114"
+  - name: "mn_conf118"
     type: "trojan"
     server: "92.119.35.131"
     port: 443
     password: "urhj8z8R8nBovrNsYzXhL35jLGC5ruguRh"
     udp: true
 
-  - name: "mn_conf115"
+  - name: "mn_conf119"
     type: "vless"
     server: "31.57.62.87"
     port: 2095
@@ -1322,7 +1341,7 @@ proxies:
       headers:
         Host: "31.57.62.87"
 
-  - name: "mn_conf116"
+  - name: "mn_conf120"
     type: "vless"
     server: "fast.motorbazan.com"
     port: 443
@@ -1336,7 +1355,7 @@ proxies:
       headers:
         Host: "firsttime.global.ssl.fastly.net"
 
-  - name: "mn_conf117"
+  - name: "mn_conf121"
     type: "vless"
     server: "186.190.211.188"
     port: 443
@@ -1345,7 +1364,7 @@ proxies:
     tls: true
     servername: "186.190.211.188"
 
-  - name: "mn_conf118"
+  - name: "mn_conf122"
     type: "vless"
     server: "dl4.gooniforoshi.fun"
     port: 443
@@ -1359,7 +1378,7 @@ proxies:
       headers:
         Host: "dl4.gooniforoshi.fun"
 
-  - name: "mn_conf119"
+  - name: "mn_conf123"
     type: "vless"
     server: "87.121.47.237"
     port: 443
@@ -1371,7 +1390,7 @@ proxies:
       short-id: "1aa760b0"
     servername: "am-1.alpha-ai-studio.com"
 
-  - name: "mn_conf120"
+  - name: "mn_conf124"
     type: "vless"
     server: "4e0540dcdf7095a2.mbmovietime.ir"
     port: 50567
@@ -1383,7 +1402,7 @@ proxies:
       short-id: "c39acc8cb9481d24"
     servername: "play.google.com"
 
-  - name: "mn_conf121"
+  - name: "mn_conf125"
     type: "vless"
     server: "cdn1.portalcode.ir"
     port: 8443
@@ -1396,7 +1415,7 @@ proxies:
       path: "%2F"
       host: "84990d01cab36213.rainzone.ir"
 
-  - name: "mn_conf122"
+  - name: "mn_conf126"
     type: "vless"
     server: "9507b8978a304ca0.mbcloudy.ir"
     port: 56625
@@ -1411,7 +1430,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf123"
+  - name: "mn_conf127"
     type: "vless"
     server: "fa4469271a39c9ae.mbcloudynias.ir"
     port: 50567
@@ -1423,7 +1442,7 @@ proxies:
       short-id: "184a6838386d384e"
     servername: "play.google.com"
 
-  - name: "mn_conf124"
+  - name: "mn_conf128"
     type: "vless"
     server: "3ab4181f3049b805.mechanicir.ir"
     port: 56625
@@ -1438,7 +1457,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf125"
+  - name: "mn_conf129"
     type: "vless"
     server: "8b7a22c2664b71e2.nimaghaffarzadeh.ir"
     port: 56625
@@ -1453,7 +1472,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf126"
+  - name: "mn_conf130"
     type: "vless"
     server: "304331dec0350d1e.mbcloudynias.ir"
     port: 50567
@@ -1465,7 +1484,7 @@ proxies:
       short-id: "c39acc8cb9481d24"
     servername: "play.google.com"
 
-  - name: "mn_conf127"
+  - name: "mn_conf131"
     type: "trojan"
     server: "162.159.38.119"
     port: 443
@@ -1476,7 +1495,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf128"
+  - name: "mn_conf132"
     type: "vless"
     server: "568643e0b90957d2.mbcloudy.ir"
     port: 56625
@@ -1491,7 +1510,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf129"
+  - name: "mn_conf133"
     type: "vless"
     server: "bb6c31cc8f34e597.nimaghaffarzadeh.ir"
     port: 56625
@@ -1506,7 +1525,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf130"
+  - name: "mn_conf134"
     type: "vless"
     server: "e2e4891da9d1a749.mechanicir.ir"
     port: 56625
@@ -1521,14 +1540,14 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf131"
+  - name: "mn_conf135"
     type: "hysteria2"
     server: "assets.gateway-stream.com"
     port: 52000
     password: "elknam6l7izf3z71"
     udp: true
 
-  - name: "mn_conf132"
+  - name: "mn_conf136"
     type: "vless"
     server: "soskeynets.mbmovietime.ir"
     port: 50567
@@ -1540,7 +1559,7 @@ proxies:
       short-id: "c39acc8cb9481d24"
     servername: "play.google.com"
 
-  - name: "mn_conf133"
+  - name: "mn_conf137"
     type: "vless"
     server: "104.19.130.119"
     port: 443
@@ -1554,7 +1573,7 @@ proxies:
       headers:
         Host: "ez-9f37ae.ezaccess1ee9898.workers.dev"
 
-  - name: "mn_conf134"
+  - name: "mn_conf138"
     type: "vless"
     server: "162.159.38.119"
     port: 443
@@ -1568,7 +1587,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf135"
+  - name: "mn_conf139"
     type: "vless"
     server: "hudrososov.blog"
     port: 443
@@ -1580,21 +1599,21 @@ proxies:
       short-id: "d1c2b3a4"
     servername: "hudrososov.blog"
 
-  - name: "mn_conf136"
+  - name: "mn_conf140"
     type: "vless"
     server: "79.143.85.197"
     port: 12332
     uuid: "9d2d89b9-48d4-4e73-8369-0751be28c23b"
     udp: true
 
-  - name: "mn_conf137"
+  - name: "mn_conf141"
     type: "vless"
     server: "63.184.37.237"
     port: 22223
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf138"
+  - name: "mn_conf142"
     type: "vless"
     server: "x4g-production-734e.up.railway.app"
     port: 443
@@ -1607,7 +1626,7 @@ proxies:
       headers:
         Host: "x4g-production-734e.up.railway.app"
 
-  - name: "mn_conf139"
+  - name: "mn_conf143"
     type: "vless"
     server: "185.91.54.30"
     port: 443
@@ -1619,7 +1638,7 @@ proxies:
       short-id: "abcd"
     servername: "www.ya.ru"
 
-  - name: "mn_conf140"
+  - name: "mn_conf144"
     type: "vless"
     server: "195.63.163.190"
     port: 8090
@@ -1631,7 +1650,7 @@ proxies:
       headers:
         Host: "rukr.speedload.ru"
 
-  - name: "mn_conf141"
+  - name: "mn_conf145"
     type: "vless"
     server: "hudrososov.blog"
     port: 443
@@ -1642,7 +1661,7 @@ proxies:
       public-key: "yuKSmrb2MumCllTTmBJiuNTQcGxEaNhqmZVR8dVjLwI"
       short-id: "d1c2b3a4"
 
-  - name: "mn_conf142"
+  - name: "mn_conf146"
     type: "vless"
     server: "kamo1.parsianboton.ir"
     port: 8443
@@ -1656,7 +1675,7 @@ proxies:
       headers:
         Host: "ips-good.parsianboton.ir"
 
-  - name: "mn_conf143"
+  - name: "mn_conf147"
     type: "vless"
     server: "sp.foot8all.ir"
     port: 56625
@@ -1671,7 +1690,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf144"
+  - name: "mn_conf148"
     type: "vless"
     server: "195.63.136.11"
     port: 8090
@@ -1683,7 +1702,7 @@ proxies:
       headers:
         Host: "rukr.speedload.ru"
 
-  - name: "mn_conf145"
+  - name: "mn_conf149"
     type: "vless"
     server: "ansooyefilter-channel-production-8be6.up.railway.app"
     port: 443
@@ -1696,7 +1715,7 @@ proxies:
       headers:
         Host: "ansooyefilter-channel-production-8be6.up.railway.app"
 
-  - name: "mn_conf146"
+  - name: "mn_conf150"
     type: "vless"
     server: "x4g-production-8395.up.railway.app"
     port: 443
@@ -1710,7 +1729,7 @@ proxies:
       headers:
         Host: "x4g-production-8395.up.railway.app"
 
-  - name: "mn_conf147"
+  - name: "mn_conf151"
     type: "vless"
     server: "103.75.118.228"
     port: 11452
@@ -1722,21 +1741,21 @@ proxies:
       short-id: "48050fab"
     servername: "www.apple.com"
 
-  - name: "mn_conf148"
+  - name: "mn_conf152"
     type: "vless"
     server: "63.183.189.222"
     port: 22224
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf149"
+  - name: "mn_conf153"
     type: "vless"
     server: "3.122.121.39"
     port: 22222
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf150"
+  - name: "mn_conf154"
     type: "vless"
     server: "0b889c24f5229843.mechanicir.ir"
     port: 56625
@@ -1751,7 +1770,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf151"
+  - name: "mn_conf155"
     type: "vless"
     server: "italy.prostoshield.ru"
     port: 443
@@ -1763,7 +1782,7 @@ proxies:
       short-id: "151233424646c9da"
     servername: "italy.prostoshield.ru"
 
-  - name: "mn_conf152"
+  - name: "mn_conf156"
     type: "vless"
     server: "69.46.46.5"
     port: 443
@@ -1777,7 +1796,7 @@ proxies:
       headers:
         Host: "x4g-production-325d.up.railway.app"
 
-  - name: "mn_conf153"
+  - name: "mn_conf157"
     type: "vless"
     server: "87.252.237.100"
     port: 8443
@@ -1789,7 +1808,7 @@ proxies:
       short-id: ""
     servername: "tradingview.com"
 
-  - name: "mn_conf154"
+  - name: "mn_conf158"
     type: "vless"
     server: "104.26.14.85"
     port: 8443
@@ -1803,14 +1822,14 @@ proxies:
       headers:
         Host: "chopin.adaspoloandco.com"
 
-  - name: "mn_conf155"
+  - name: "mn_conf159"
     type: "vless"
     server: "3.122.121.39"
     port: 22222
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf156"
+  - name: "mn_conf160"
     type: "vless"
     server: "qq.utiltools.ru"
     port: 443
@@ -1822,7 +1841,7 @@ proxies:
       short-id: ""
     servername: "qq.utiltools.ru"
 
-  - name: "mn_conf157"
+  - name: "mn_conf161"
     type: "vless"
     server: "add.oneoker.com"
     port: 443
@@ -1837,7 +1856,7 @@ proxies:
     grpc-opts:
       grpc-service-name: "api.v1.StreamService"
 
-  - name: "mn_conf158"
+  - name: "mn_conf162"
     type: "trojan"
     server: "edededededededededededede-66.poki-pakipon.ir"
     port: 61383
@@ -1848,7 +1867,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf159"
+  - name: "mn_conf163"
     type: "vless"
     server: "185.93.33.7"
     port: 443
@@ -1860,7 +1879,7 @@ proxies:
       short-id: "43dcff53849b81e6"
     servername: "auto.quattro-tech.ru"
 
-  - name: "mn_conf160"
+  - name: "mn_conf164"
     type: "ss"
     server: "128.251.12.23"
     port: 443
@@ -1868,7 +1887,7 @@ proxies:
     password: "lghX3rcG7bqSQ8L6"
     udp: true
 
-  - name: "mn_conf161"
+  - name: "mn_conf165"
     type: "vless"
     server: "eu.oneokgames.com"
     port: 443
@@ -1883,7 +1902,7 @@ proxies:
     grpc-opts:
       grpc-service-name: "home.v1.ApiService"
 
-  - name: "mn_conf162"
+  - name: "mn_conf166"
     type: "vless"
     server: "87.199.206.227"
     port: 2566
@@ -1895,7 +1914,7 @@ proxies:
       short-id: "b220cebe89a795"
     servername: "play.google.com"
 
-  - name: "mn_conf163"
+  - name: "mn_conf167"
     type: "vless"
     server: "81.31.211.120"
     port: 2085
@@ -1905,7 +1924,7 @@ proxies:
     grpc-opts:
       grpc-service-name: "vless"
 
-  - name: "mn_conf164"
+  - name: "mn_conf168"
     type: "vless"
     server: "main.oneoker.com"
     port: 443
@@ -1920,7 +1939,7 @@ proxies:
     grpc-opts:
       grpc-service-name: "api.v1.StreamService"
 
-  - name: "mn_conf165"
+  - name: "mn_conf169"
     type: "vless"
     server: "fetch.anotherok.com"
     port: 443
@@ -1935,14 +1954,14 @@ proxies:
     grpc-opts:
       grpc-service-name: "api.v1.StreamService"
 
-  - name: "mn_conf166"
+  - name: "mn_conf170"
     type: "vless"
     server: "15.188.61.203"
     port: 22223
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf167"
+  - name: "mn_conf171"
     type: "vless"
     server: "192.71.82.2"
     port: 443
@@ -1956,7 +1975,7 @@ proxies:
       headers:
         Host: "192.71.82.2"
 
-  - name: "mn_conf168"
+  - name: "mn_conf172"
     type: "vless"
     server: "104.18.0.0"
     port: 443
@@ -1970,7 +1989,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf169"
+  - name: "mn_conf173"
     type: "vless"
     server: "151.115.164.37"
     port: 8880
@@ -1980,7 +1999,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf170"
+  - name: "mn_conf174"
     type: "ss"
     server: "82.38.31.181"
     port: 8080
@@ -1988,7 +2007,7 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
 
-  - name: "mn_conf171"
+  - name: "mn_conf175"
     type: "vless"
     server: "104.17.25.173"
     port: 443
@@ -2002,7 +2021,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf172"
+  - name: "mn_conf176"
     type: "ss"
     server: "82.38.31.200"
     port: 8080
@@ -2010,7 +2029,7 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
 
-  - name: "mn_conf173"
+  - name: "mn_conf177"
     type: "vless"
     server: "141.193.213.21"
     port: 443
@@ -2024,7 +2043,7 @@ proxies:
       headers:
         Host: "amoosamiii.net"
 
-  - name: "mn_conf174"
+  - name: "mn_conf178"
     type: "trojan"
     server: "104.16.72.2"
     port: 443
@@ -2035,14 +2054,14 @@ proxies:
     ws-opts:
       path: "%2Fbr-orcl"
 
-  - name: "mn_conf175"
+  - name: "mn_conf179"
     type: "trojan"
     server: "185.137.157.138"
     port: 443
     password: "dh-Ws-YoJIgTYLZ-A5VljeduVse-vhDl7Q"
     udp: true
 
-  - name: "mn_conf176"
+  - name: "mn_conf180"
     type: "vless"
     server: "31.77.161.2"
     port: 8443
@@ -2054,7 +2073,7 @@ proxies:
       short-id: "db04ce8bdb8900f1"
     servername: "prod.de-node-01.security-sbrf.ru"
 
-  - name: "mn_conf177"
+  - name: "mn_conf181"
     type: "vless"
     server: "188.114.98.193"
     port: 443
@@ -2068,7 +2087,7 @@ proxies:
       headers:
         Host: "188.114.98.193"
 
-  - name: "mn_conf178"
+  - name: "mn_conf182"
     type: "vless"
     server: "192.71.82.2"
     port: 443
@@ -2082,7 +2101,7 @@ proxies:
       headers:
         Host: "192.71.82.2"
 
-  - name: "mn_conf179"
+  - name: "mn_conf183"
     type: "vless"
     server: "162.159.38.119"
     port: 443
@@ -2096,7 +2115,7 @@ proxies:
       headers:
         Host: "vangoghhh.info"
 
-  - name: "mn_conf180"
+  - name: "mn_conf184"
     type: "vless"
     server: "love.ns.cloudflare.com"
     port: 443
@@ -2110,7 +2129,7 @@ proxies:
       headers:
         Host: "deicl.redstone-vex.sbs"
 
-  - name: "mn_conf181"
+  - name: "mn_conf185"
     type: "vless"
     server: "104.16.72.41"
     port: 443
@@ -2124,7 +2143,7 @@ proxies:
       headers:
         Host: "c.downloadphysics.ir"
 
-  - name: "mn_conf182"
+  - name: "mn_conf186"
     type: "vless"
     server: "104.16.72.101"
     port: 443
@@ -2138,7 +2157,7 @@ proxies:
       headers:
         Host: "shegeftihaaa.net"
 
-  - name: "mn_conf183"
+  - name: "mn_conf187"
     type: "vless"
     server: "172.64.145.158"
     port: 443
@@ -2152,7 +2171,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf184"
+  - name: "mn_conf188"
     type: "vless"
     server: "217.217.247.248"
     port: 443
@@ -2164,7 +2183,7 @@ proxies:
       short-id: "6ba85179e30d4fc2"
     servername: "enterprisekitten.com"
 
-  - name: "mn_conf185"
+  - name: "mn_conf189"
     type: "vless"
     server: "103.112.71.228"
     port: 443
@@ -2173,7 +2192,7 @@ proxies:
     tls: true
     servername: "bootnl1.strangerwhale.fun"
 
-  - name: "mn_conf186"
+  - name: "mn_conf190"
     type: "vless"
     server: "alese.locations-sub.com"
     port: 6300
@@ -2185,7 +2204,7 @@ proxies:
       short-id: ""
     servername: "play.google.com"
 
-  - name: "mn_conf187"
+  - name: "mn_conf191"
     type: "vless"
     server: "104.16.72.41"
     port: 443
@@ -2199,7 +2218,7 @@ proxies:
       headers:
         Host: "shegeftihaaa.net"
 
-  - name: "mn_conf188"
+  - name: "mn_conf192"
     type: "vless"
     server: "104.16.72.101"
     port: 443
@@ -2213,7 +2232,7 @@ proxies:
       headers:
         Host: "vangoghhh.info"
 
-  - name: "mn_conf189"
+  - name: "mn_conf193"
     type: "vless"
     server: "jush.sukario.ir"
     port: 443
@@ -2227,7 +2246,7 @@ proxies:
       headers:
         Host: "MzGvUtTz7.MaKeAcHeCk.oRg"
 
-  - name: "mn_conf190"
+  - name: "mn_conf194"
     type: "vless"
     server: "192.71.82.2"
     port: 443
@@ -2241,7 +2260,7 @@ proxies:
       headers:
         Host: "192.71.82.2"
 
-  - name: "mn_conf191"
+  - name: "mn_conf195"
     type: "vless"
     server: "188.114.98.193"
     port: 443
@@ -2255,7 +2274,7 @@ proxies:
       headers:
         Host: "188.114.98.193"
 
-  - name: "mn_conf192"
+  - name: "mn_conf196"
     type: "vless"
     server: "186.190.211.188"
     port: 443
@@ -2264,21 +2283,21 @@ proxies:
     tls: true
     servername: "186.190.211.188"
 
-  - name: "mn_conf193"
+  - name: "mn_conf197"
     type: "vless"
     server: "it.fifapes.monster"
     port: 29148
     uuid: "eab915bc-d2df-73d1-47d0-6eb240497055"
     udp: true
 
-  - name: "mn_conf194"
+  - name: "mn_conf198"
     type: "vless"
     server: "gr1.fifapes.monster"
     port: 8882
     uuid: "eab915bc-d2df-73d1-47d0-6eb240497055"
     udp: true
 
-  - name: "mn_conf195"
+  - name: "mn_conf199"
     type: "vless"
     server: "57.131.19.38"
     port: 58846
@@ -2293,7 +2312,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf196"
+  - name: "mn_conf200"
     type: "vless"
     server: "104.16.72.50"
     port: 443
@@ -2307,7 +2326,7 @@ proxies:
       headers:
         Host: "104.16.72.50"
 
-  - name: "mn_conf197"
+  - name: "mn_conf201"
     type: "vless"
     server: "172.67.193.253"
     port: 443
@@ -2321,7 +2340,7 @@ proxies:
       headers:
         Host: "octopusss5.info"
 
-  - name: "mn_conf198"
+  - name: "mn_conf202"
     type: "vless"
     server: "hayabusa.proxy.rlwy.net"
     port: 14821
@@ -2337,7 +2356,7 @@ proxies:
       path: "%2F"
       host: "hayabusa.proxy.rlwy.net"
 
-  - name: "mn_conf199"
+  - name: "mn_conf203"
     type: "trojan"
     server: "45.130.125.112"
     port: 443
@@ -2348,7 +2367,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf200"
+  - name: "mn_conf204"
     type: "trojan"
     server: "104.16.72.2"
     port: 443
@@ -2359,7 +2378,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf201"
+  - name: "mn_conf205"
     type: "vless"
     server: "172.64.145.2"
     port: 443
@@ -2373,7 +2392,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf202"
+  - name: "mn_conf206"
     type: "trojan"
     server: "141.193.213.21"
     port: 443
@@ -2384,7 +2403,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf203"
+  - name: "mn_conf207"
     type: "vless"
     server: "hub.oneoknews.com"
     port: 443
@@ -2399,7 +2418,7 @@ proxies:
     grpc-opts:
       grpc-service-name: "api.v1.StreamService"
 
-  - name: "mn_conf204"
+  - name: "mn_conf208"
     type: "vless"
     server: "162.159.38.119"
     port: 443
@@ -2413,7 +2432,7 @@ proxies:
       headers:
         Host: "octopusss5.info"
 
-  - name: "mn_conf205"
+  - name: "mn_conf209"
     type: "trojan"
     server: "151.101.34.144"
     port: 443
@@ -2425,7 +2444,7 @@ proxies:
       path: "%2Fda"
       host: "networkzvx.global.ssl.fastly.net"
 
-  - name: "mn_conf206"
+  - name: "mn_conf210"
     type: "vless"
     server: "162.159.38.119"
     port: 443
@@ -2439,7 +2458,7 @@ proxies:
       headers:
         Host: "terazhediii.info"
 
-  - name: "mn_conf207"
+  - name: "mn_conf211"
     type: "vless"
     server: "ansooyefilter-production.up.railway.app"
     port: 443
@@ -2453,14 +2472,14 @@ proxies:
       headers:
         Host: "ansooyefilter-production.up.railway.app"
 
-  - name: "mn_conf208"
+  - name: "mn_conf212"
     type: "vless"
     server: "tr-wsdxc-sds-w-sd-wd-s-w-2w-23.codesystem.ir"
     port: 8080
     uuid: "f8cae104-2eaa-4b16-b258-65be28281b70"
     udp: true
 
-  - name: "mn_conf209"
+  - name: "mn_conf213"
     type: "vless"
     server: "104.16.72.41"
     port: 443
@@ -2474,7 +2493,7 @@ proxies:
       headers:
         Host: "shegeftihaaa.net"
 
-  - name: "mn_conf210"
+  - name: "mn_conf214"
     type: "vless"
     server: "am1.foot8all.ir"
     port: 56625
@@ -2489,7 +2508,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf211"
+  - name: "mn_conf215"
     type: "vless"
     server: "45.131.211.136"
     port: 443
@@ -2503,7 +2522,7 @@ proxies:
       headers:
         Host: "vangoghhh.info"
 
-  - name: "mn_conf212"
+  - name: "mn_conf216"
     type: "vless"
     server: "162.159.38.119"
     port: 8443
@@ -2517,7 +2536,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf213"
+  - name: "mn_conf217"
     type: "ss"
     server: "82.38.31.185"
     port: 8080
@@ -2525,7 +2544,7 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
 
-  - name: "mn_conf214"
+  - name: "mn_conf218"
     type: "vless"
     server: "30078f12035fb0b9.mechanicir.ir"
     port: 56625
@@ -2540,7 +2559,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf215"
+  - name: "mn_conf219"
     type: "vless"
     server: "104.18.42.163"
     port: 2095
@@ -2552,7 +2571,7 @@ proxies:
       headers:
         Host: "download.pusytroller.gq"
 
-  - name: "mn_conf216"
+  - name: "mn_conf220"
     type: "vless"
     server: "www.dgmcd.cn"
     port: 443
@@ -2566,7 +2585,7 @@ proxies:
       headers:
         Host: "aron.irandoc.info"
 
-  - name: "mn_conf217"
+  - name: "mn_conf221"
     type: "vless"
     server: "84.32.209.210"
     port: 7443
@@ -2578,7 +2597,7 @@ proxies:
       short-id: "6ba85179e30d4fc2"
     servername: "statusdetector404.ru"
 
-  - name: "mn_conf218"
+  - name: "mn_conf222"
     type: "trojan"
     server: "188.213.131.90"
     port: 59618
@@ -2586,7 +2605,7 @@ proxies:
     udp: true
     sni: "google.com"
 
-  - name: "mn_conf219"
+  - name: "mn_conf223"
     type: "vless"
     server: "162.159.38.119"
     port: 443
@@ -2600,14 +2619,14 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf220"
+  - name: "mn_conf224"
     type: "vless"
     server: "uk.roomode.ir"
     port: 8443
     uuid: "2d6d2242-95d0-490d-8791-f74ffe33533a"
     udp: true
 
-  - name: "mn_conf221"
+  - name: "mn_conf225"
     type: "vless"
     server: "check-host.net"
     port: 8880
@@ -2618,7 +2637,7 @@ proxies:
       path: "%2F"
       host: "sni.abilim.info"
 
-  - name: "mn_conf222"
+  - name: "mn_conf226"
     type: "trojan"
     server: "151.101.34.144"
     port: 443
@@ -2630,14 +2649,14 @@ proxies:
       path: "%2Fdb"
       host: "edgezvx.global.ssl.fastly.net"
 
-  - name: "mn_conf223"
+  - name: "mn_conf227"
     type: "vless"
     server: "63.179.29.71"
     port: 22223
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf224"
+  - name: "mn_conf228"
     type: "vless"
     server: "194.110.172.150"
     port: 443
@@ -2649,7 +2668,7 @@ proxies:
       short-id: "3094219d2cfd2b3d"
     servername: "www.samsung.com"
 
-  - name: "mn_conf225"
+  - name: "mn_conf229"
     type: "vless"
     server: "185.68.184.186"
     port: 443
@@ -2660,14 +2679,14 @@ proxies:
       public-key: "zdUruFsb8e_EEIqEMyykFbpNaOZCk_RDRaYInsgD9y0"
       short-id: "0a076a46"
 
-  - name: "mn_conf226"
+  - name: "mn_conf230"
     type: "vless"
     server: "15.224.86.98"
     port: 22224
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf227"
+  - name: "mn_conf231"
     type: "vless"
     server: "104.26.14.85"
     port: 443
@@ -2681,7 +2700,7 @@ proxies:
       headers:
         Host: "rubifen.adaspoloandco.com"
 
-  - name: "mn_conf228"
+  - name: "mn_conf232"
     type: "vless"
     server: "173.245.59.1"
     port: 443
@@ -2695,7 +2714,7 @@ proxies:
       headers:
         Host: "rubifen.adaspoloandco.com"
 
-  - name: "mn_conf229"
+  - name: "mn_conf233"
     type: "vmess"
     server: "107.173.7.186"
     port: 2095
@@ -2709,7 +2728,7 @@ proxies:
       headers:
         Host: ""
 
-  - name: "mn_conf230"
+  - name: "mn_conf234"
     type: "ss"
     server: "5.8.35.77"
     port: 443
@@ -2717,7 +2736,7 @@ proxies:
     password: "2XePCIarnpu8So9kxLZRqxEvQaiJNU1Eqguwz6VdcOU=:eZyEKRO51GzXTvAwHxYpdEYmJ0JPL4s3dyDX/3eheRE="
     udp: true
 
-  - name: "mn_conf231"
+  - name: "mn_conf235"
     type: "vless"
     server: "69.46.46.42"
     port: 443
@@ -2731,14 +2750,14 @@ proxies:
       headers:
         Host: "node-7946883854-80433a-production.up.railway.app"
 
-  - name: "mn_conf232"
+  - name: "mn_conf236"
     type: "vless"
     server: "51.44.143.26"
     port: 22223
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf233"
+  - name: "mn_conf237"
     type: "vless"
     server: "173.245.59.1"
     port: 443
@@ -2752,7 +2771,7 @@ proxies:
       headers:
         Host: "rubifen.adaspoloandco.com"
 
-  - name: "mn_conf234"
+  - name: "mn_conf238"
     type: "vless"
     server: "172.67.74.10"
     port: 2087
@@ -2766,7 +2785,7 @@ proxies:
       headers:
         Host: "amphetamine.adaspoloandco.com"
 
-  - name: "mn_conf235"
+  - name: "mn_conf239"
     type: "vless"
     server: "144.31.237.82"
     port: 443
@@ -2778,7 +2797,7 @@ proxies:
       short-id: "27d53dfed8185f24"
     servername: "www.mozilla.org"
 
-  - name: "mn_conf236"
+  - name: "mn_conf240"
     type: "vless"
     server: "82.47.22.240"
     port: 443
@@ -2790,7 +2809,7 @@ proxies:
       short-id: ""
     servername: "ee-hs-1.minzt.su"
 
-  - name: "mn_conf237"
+  - name: "mn_conf241"
     type: "vless"
     server: "104.26.14.85"
     port: 8443
@@ -2804,7 +2823,7 @@ proxies:
       headers:
         Host: "chopin.adaspoloandco.com"
 
-  - name: "mn_conf238"
+  - name: "mn_conf242"
     type: "vless"
     server: "185.231.101.85"
     port: 8443
@@ -2816,7 +2835,7 @@ proxies:
       short-id: "43dcff53849b81e6"
     servername: "se.quattro-tech.ru"
 
-  - name: "mn_conf239"
+  - name: "mn_conf243"
     type: "vless"
     server: "173.245.59.1"
     port: 443
@@ -2830,7 +2849,7 @@ proxies:
       headers:
         Host: "rubifen.adaspoloandco.com"
 
-  - name: "mn_conf240"
+  - name: "mn_conf244"
     type: "vless"
     server: "62.152.56.110"
     port: 6443
@@ -2842,7 +2861,7 @@ proxies:
       short-id: "45ba91f179ad1f26"
     servername: "api-maps.yandex.ru"
 
-  - name: "mn_conf241"
+  - name: "mn_conf245"
     type: "vless"
     server: "194.156.26.1"
     port: 443
@@ -2856,14 +2875,14 @@ proxies:
       headers:
         Host: "194.156.26.1"
 
-  - name: "mn_conf242"
+  - name: "mn_conf246"
     type: "vless"
     server: "85.222.198.181"
     port: 2550
     uuid: "d8b42cd5-a149-4356-9e61-000000000000"
     udp: true
 
-  - name: "mn_conf243"
+  - name: "mn_conf247"
     type: "vless"
     server: "43.174.246.46"
     port: 443
@@ -2877,7 +2896,7 @@ proxies:
       headers:
         Host: "m.irandoc.info"
 
-  - name: "mn_conf244"
+  - name: "mn_conf248"
     type: "vless"
     server: "76.164.202.210"
     port: 448
@@ -2889,7 +2908,7 @@ proxies:
       short-id: "9e96f30390d6be81"
     servername: "www.samsung.com"
 
-  - name: "mn_conf245"
+  - name: "mn_conf249"
     type: "vless"
     server: "3.114.220.22"
     port: 10583
@@ -2901,14 +2920,14 @@ proxies:
       short-id: "48050fab"
     servername: "www.apple.com"
 
-  - name: "mn_conf246"
+  - name: "mn_conf250"
     type: "vless"
     server: "18.194.133.160"
     port: 22224
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf247"
+  - name: "mn_conf251"
     type: "vless"
     server: "89.105.212.138"
     port: 443
@@ -2920,7 +2939,7 @@ proxies:
       short-id: "43dcff53849b81e6"
     servername: "nl.quattro-tech.ru"
 
-  - name: "mn_conf248"
+  - name: "mn_conf252"
     type: "vless"
     server: "104.26.14.85"
     port: 8443
@@ -2934,7 +2953,7 @@ proxies:
       headers:
         Host: "chopin.adaspoloandco.com"
 
-  - name: "mn_conf249"
+  - name: "mn_conf253"
     type: "vless"
     server: "195.63.137.251"
     port: 8090
@@ -2946,7 +2965,7 @@ proxies:
       headers:
         Host: "rukr.speedload.ru"
 
-  - name: "mn_conf250"
+  - name: "mn_conf254"
     type: "trojan"
     server: "162.159.38.119"
     port: 443
@@ -2957,7 +2976,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf251"
+  - name: "mn_conf255"
     type: "trojan"
     server: "43.162.101.185"
     port: 3480
@@ -2965,7 +2984,7 @@ proxies:
     udp: true
     sni: "us04031316.tmdsb.org"
 
-  - name: "mn_conf252"
+  - name: "mn_conf256"
     type: "ss"
     server: "2.144.23.23"
     port: 2053
@@ -2973,21 +2992,21 @@ proxies:
     password: "KpikV0WcN54ul7ytP0QOGW7njSS9xqqy/Ji85PM4KQQ="
     udp: true
 
-  - name: "mn_conf253"
+  - name: "mn_conf257"
     type: "vless"
     server: "51.44.144.101"
     port: 22222
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf254"
+  - name: "mn_conf258"
     type: "vless"
     server: "63.185.211.137"
     port: 22224
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf255"
+  - name: "mn_conf259"
     type: "ss"
     server: "213.109.147.242"
     port: 62685
@@ -2995,7 +3014,7 @@ proxies:
     password: "VpKABcOpNNA0l5G2AVOmw8"
     udp: true
 
-  - name: "mn_conf256"
+  - name: "mn_conf260"
     type: "vless"
     server: "188.114.97.4"
     port: 443
@@ -3009,7 +3028,7 @@ proxies:
       headers:
         Host: "rubifen.adaspoloandco.com"
 
-  - name: "mn_conf257"
+  - name: "mn_conf261"
     type: "vless"
     server: "172.67.117.177"
     port: 443
@@ -3023,7 +3042,7 @@ proxies:
       headers:
         Host: "mail.qbo.qzz.io"
 
-  - name: "mn_conf258"
+  - name: "mn_conf262"
     type: "vless"
     server: "185.231.101.88"
     port: 443
@@ -3035,7 +3054,7 @@ proxies:
       short-id: "43dcff53849b81e6"
     servername: "se.quattro-tech.ru"
 
-  - name: "mn_conf259"
+  - name: "mn_conf263"
     type: "vless"
     server: "69.46.46.4"
     port: 443
@@ -3049,7 +3068,7 @@ proxies:
       headers:
         Host: "x4g-production-be5c.up.railway.app"
 
-  - name: "mn_conf260"
+  - name: "mn_conf264"
     type: "vless"
     server: "212.233.78.243"
     port: 8443
@@ -3061,7 +3080,7 @@ proxies:
       short-id: "f8a8ee8381529673"
     servername: "secget.ru"
 
-  - name: "mn_conf261"
+  - name: "mn_conf265"
     type: "vless"
     server: "45.196.201.228"
     port: 443
@@ -3073,7 +3092,7 @@ proxies:
       short-id: "c6ef72e4635d15a5"
     servername: "storage.yandex.net"
 
-  - name: "mn_conf262"
+  - name: "mn_conf266"
     type: "vless"
     server: "117.55.202.176"
     port: 443
@@ -3085,28 +3104,28 @@ proxies:
       short-id: "d9662905"
     servername: "4ew328q3df43we11-topology-gslb-yccdn.ru"
 
-  - name: "mn_conf263"
+  - name: "mn_conf267"
     type: "vless"
     server: "3.122.121.39"
     port: 22223
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf264"
+  - name: "mn_conf268"
     type: "vless"
     server: "15.224.123.16"
     port: 22223
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf265"
+  - name: "mn_conf269"
     type: "vless"
     server: "45.155.71.44"
     port: 54762
     uuid: "5ffd5ee2-c4ef-4537-81e8-f0df21de56ae"
     udp: true
 
-  - name: "mn_conf266"
+  - name: "mn_conf270"
     type: "ss"
     server: "82.38.31.34"
     port: 8080
@@ -3114,7 +3133,7 @@ proxies:
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
 
-  - name: "mn_conf267"
+  - name: "mn_conf271"
     type: "ss"
     server: "158.173.20.208"
     port: 443
@@ -3122,7 +3141,7 @@ proxies:
     password: "shadowsocks"
     udp: true
 
-  - name: "mn_conf268"
+  - name: "mn_conf272"
     type: "vless"
     server: "104.26.14.85"
     port: 443
@@ -3136,7 +3155,7 @@ proxies:
       headers:
         Host: "rubifen.adaspoloandco.com"
 
-  - name: "mn_conf269"
+  - name: "mn_conf273"
     type: "ss"
     server: "87.120.108.28"
     port: 999
@@ -3144,7 +3163,7 @@ proxies:
     password: "pziaehtxed1ztfd3"
     udp: true
 
-  - name: "mn_conf270"
+  - name: "mn_conf274"
     type: "vless"
     server: "185.209.15.91"
     port: 443
@@ -3156,21 +3175,21 @@ proxies:
       short-id: "5e3ab3ab228625"
     servername: "gedolam-vawset.ru"
 
-  - name: "mn_conf271"
+  - name: "mn_conf275"
     type: "vless"
     server: "169.40.32.4"
     port: 3030
     uuid: "dfe03868-edda-4dd2-a1fb-19818d6089e3"
     udp: true
 
-  - name: "mn_conf272"
+  - name: "mn_conf276"
     type: "vless"
     server: "63.183.189.222"
     port: 22222
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf273"
+  - name: "mn_conf277"
     type: "vless"
     server: "172.64.146.59"
     port: 2087
@@ -3184,7 +3203,7 @@ proxies:
       headers:
         Host: "cf11.evan00.dpdns.org"
 
-  - name: "mn_conf274"
+  - name: "mn_conf278"
     type: "vless"
     server: "5.252.26.173"
     port: 8380
@@ -3196,7 +3215,7 @@ proxies:
       short-id: "50acf6"
     servername: "yahoo.com"
 
-  - name: "mn_conf275"
+  - name: "mn_conf279"
     type: "vless"
     server: "89.105.204.107"
     port: 443
@@ -3208,7 +3227,7 @@ proxies:
       short-id: "43dcff53849b81e6"
     servername: "nl.quattro-tech.ru"
 
-  - name: "mn_conf276"
+  - name: "mn_conf280"
     type: "vmess"
     server: "45.63.117.27"
     port: 25015
@@ -3217,7 +3236,7 @@ proxies:
     cipher: "auto"
     udp: true
 
-  - name: "mn_conf277"
+  - name: "mn_conf281"
     type: "vless"
     server: "185.231.101.89"
     port: 443
@@ -3229,7 +3248,7 @@ proxies:
       short-id: "43dcff53849b81e6"
     servername: "se.quattro-tech.ru"
 
-  - name: "mn_conf278"
+  - name: "mn_conf282"
     type: "ss"
     server: "146.70.222.126"
     port: 1080
@@ -3237,14 +3256,14 @@ proxies:
     password: "Vr06rU_v1vFPYeXq9zbsAA"
     udp: true
 
-  - name: "mn_conf279"
+  - name: "mn_conf283"
     type: "vless"
     server: "52.47.123.79"
     port: 22222
     uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
 
-  - name: "mn_conf280"
+  - name: "mn_conf284"
     type: "vless"
     server: "81.94.148.204"
     port: 8443
@@ -3256,7 +3275,7 @@ proxies:
       short-id: "43dcff53849b81e6"
     servername: "player.mediavitrina.ru"
 
-  - name: "mn_conf281"
+  - name: "mn_conf285"
     type: "vless"
     server: "104.17.108.69"
     port: 443
@@ -3270,7 +3289,7 @@ proxies:
       headers:
         Host: "lIvE-uK-3vY3l7M2-9C56VtpR.NEtriNOVPN.CoM"
 
-  - name: "mn_conf282"
+  - name: "mn_conf286"
     type: "vless"
     server: "172.64.146.68"
     port: 443
@@ -3284,7 +3303,7 @@ proxies:
       headers:
         Host: "octopusss4.com"
 
-  - name: "mn_conf283"
+  - name: "mn_conf287"
     type: "trojan"
     server: "104.19.229.21"
     port: 443
@@ -3295,7 +3314,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf284"
+  - name: "mn_conf288"
     type: "vless"
     server: "208.103.161.170"
     port: 443
@@ -3309,7 +3328,7 @@ proxies:
       headers:
         Host: "octopusss4.com"
 
-  - name: "mn_conf285"
+  - name: "mn_conf289"
     type: "vless"
     server: "172.66.47.45"
     port: 443
@@ -3323,7 +3342,7 @@ proxies:
       headers:
         Host: "octopusss4.com"
 
-  - name: "mn_conf286"
+  - name: "mn_conf290"
     type: "trojan"
     server: "188.114.98.0"
     port: 443
@@ -3334,7 +3353,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf287"
+  - name: "mn_conf291"
     type: "vless"
     server: "62.238.32.25"
     port: 443
@@ -3346,7 +3365,7 @@ proxies:
       short-id: "5e841fab"
     servername: "yastatic.net"
 
-  - name: "mn_conf288"
+  - name: "mn_conf292"
     type: "vless"
     server: "cdn7-39.vk-cdnvideo.com"
     port: 8443
@@ -3354,7 +3373,7 @@ proxies:
     udp: true
     tls: true
 
-  - name: "mn_conf289"
+  - name: "mn_conf293"
     type: "trojan"
     server: "104.18.152.233"
     port: 443
@@ -3365,7 +3384,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf290"
+  - name: "mn_conf294"
     type: "vless"
     server: "172.64.147.137"
     port: 443
@@ -3379,7 +3398,7 @@ proxies:
       headers:
         Host: "octopusss4.com"
 
-  - name: "mn_conf291"
+  - name: "mn_conf295"
     type: "vless"
     server: "93.113.230.145"
     port: 9090
@@ -3391,7 +3410,7 @@ proxies:
       headers:
         Host: "web.irivp.ir"
 
-  - name: "mn_conf292"
+  - name: "mn_conf296"
     type: "vless"
     server: "cdn9-33.vk-cdnvideo.com"
     port: 8443
@@ -3399,7 +3418,7 @@ proxies:
     udp: true
     tls: true
 
-  - name: "mn_conf293"
+  - name: "mn_conf297"
     type: "vless"
     server: "188.114.97.6"
     port: 443
@@ -3413,7 +3432,7 @@ proxies:
       headers:
         Host: "octopusss4.com"
 
-  - name: "mn_conf294"
+  - name: "mn_conf298"
     type: "ss"
     server: "54.36.174.134"
     port: 443
@@ -3421,7 +3440,7 @@ proxies:
     password: "8zw5j9h"
     udp: true
 
-  - name: "mn_conf295"
+  - name: "mn_conf299"
     type: "vless"
     server: "85.234.114.53"
     port: 22231
@@ -3430,7 +3449,7 @@ proxies:
     tls: true
     servername: "r1.mizulina.top"
 
-  - name: "mn_conf296"
+  - name: "mn_conf300"
     type: "vmess"
     server: "uk5.taskflowhub.org"
     port: 2053
@@ -3440,14 +3459,14 @@ proxies:
     udp: true
     tls: true
 
-  - name: "mn_conf297"
+  - name: "mn_conf301"
     type: "vless"
     server: "206.189.20.90"
     port: 27774
     uuid: "c83014e0-ad3e-4ebd-9e8f-8f7a1f6088d6"
     udp: true
 
-  - name: "mn_conf298"
+  - name: "mn_conf302"
     type: "ss"
     server: "82.38.31.176"
     port: 8080
@@ -3455,7 +3474,7 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
 
-  - name: "mn_conf299"
+  - name: "mn_conf303"
     type: "ss"
     server: "82.38.31.15"
     port: 443
@@ -3463,7 +3482,7 @@ proxies:
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
 
-  - name: "mn_conf300"
+  - name: "mn_conf304"
     type: "vless"
     server: "de1.hypergate.shop"
     port: 8443
@@ -3475,7 +3494,7 @@ proxies:
       short-id: "d16290c64205a717"
     servername: "www.microsoft.com"
 
-  - name: "mn_conf301"
+  - name: "mn_conf305"
     type: "ss"
     server: "82.38.31.205"
     port: 8080
@@ -3483,7 +3502,7 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
 
-  - name: "mn_conf302"
+  - name: "mn_conf306"
     type: "vless"
     server: "de.ko.prod.n7.homes"
     port: 8443
@@ -3495,7 +3514,7 @@ proxies:
       short-id: "3ca620a7ed5f3196"
     servername: "google.com"
 
-  - name: "mn_conf304"
+  - name: "mn_conf308"
     type: "vless"
     server: "backend.xwhiteness.site"
     port: 443
@@ -3507,7 +3526,7 @@ proxies:
       short-id: ""
     servername: "backend.xwhiteness.site"
 
-  - name: "mn_conf305"
+  - name: "mn_conf309"
     type: "vless"
     server: "150.241.71.35"
     port: 443
@@ -3519,7 +3538,7 @@ proxies:
       short-id: ""
     servername: "google.com"
 
-  - name: "mn_conf306"
+  - name: "mn_conf310"
     type: "trojan"
     server: "91.233.8.138"
     port: 443
@@ -3527,7 +3546,7 @@ proxies:
     udp: true
     sni: "www.homelywebs.click"
 
-  - name: "mn_conf307"
+  - name: "mn_conf311"
     type: "vless"
     server: "162.249.126.72"
     port: 8443
@@ -3536,7 +3555,7 @@ proxies:
     tls: true
     servername: "cdn3-87.vk-cdnvideo.com"
 
-  - name: "mn_conf308"
+  - name: "mn_conf312"
     type: "vless"
     server: "89.124.78.248"
     port: 1310
@@ -3548,7 +3567,7 @@ proxies:
       headers:
         Host: "play.google.com"
 
-  - name: "mn_conf309"
+  - name: "mn_conf313"
     type: "vless"
     server: "2.26.88.109"
     port: 443
@@ -3560,7 +3579,7 @@ proxies:
       short-id: ""
     servername: "google.com"
 
-  - name: "mn_conf310"
+  - name: "mn_conf314"
     type: "vless"
     server: "151.101.109.223"
     port: 80
@@ -3572,7 +3591,7 @@ proxies:
       headers:
         Host: "max-gb1.global.ssl.fastly.net"
 
-  - name: "mn_conf311"
+  - name: "mn_conf315"
     type: "trojan"
     server: "104.19.229.21"
     port: 443
@@ -3583,7 +3602,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf312"
+  - name: "mn_conf316"
     type: "vless"
     server: "45.89.106.4"
     port: 443
@@ -3595,7 +3614,7 @@ proxies:
       short-id: "972e3378"
     servername: "microsoft.com"
 
-  - name: "mn_conf313"
+  - name: "mn_conf317"
     type: "trojan"
     server: "104.18.13.149"
     port: 443
@@ -3606,7 +3625,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf314"
+  - name: "mn_conf318"
     type: "ss"
     server: "82.38.31.210"
     port: 8080
@@ -3614,7 +3633,7 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
 
-  - name: "mn_conf315"
+  - name: "mn_conf319"
     type: "vless"
     server: "195.96.132.125"
     port: 443
@@ -3626,7 +3645,7 @@ proxies:
       short-id: "8237eb"
     servername: "www.vk.ru"
 
-  - name: "mn_conf316"
+  - name: "mn_conf320"
     type: "ss"
     server: "82.38.31.214"
     port: 8080
@@ -3634,7 +3653,7 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
 
-  - name: "mn_conf317"
+  - name: "mn_conf321"
     type: "vless"
     server: "204.168.193.204"
     port: 8443
@@ -3646,7 +3665,7 @@ proxies:
       short-id: "c56ae159fc"
     servername: "icloud.com"
 
-  - name: "mn_conf318"
+  - name: "mn_conf322"
     type: "vless"
     server: "46.229.243.133"
     port: 8443
@@ -3655,7 +3674,7 @@ proxies:
     tls: true
     servername: "cdn3-87.vk-cdnvideo.com"
 
-  - name: "mn_conf319"
+  - name: "mn_conf323"
     type: "trojan"
     server: "188.114.97.6"
     port: 443
@@ -3666,7 +3685,7 @@ proxies:
     ws-opts:
       path: "%2F%3Fmitivpn"
 
-  - name: "mn_conf320"
+  - name: "mn_conf324"
     type: "vless"
     server: "204.168.193.204"
     port: 8443
@@ -3678,7 +3697,7 @@ proxies:
       short-id: "98fecc4ca44d"
     servername: "icloud.com"
 
-  - name: "mn_conf321"
+  - name: "mn_conf325"
     type: "vless"
     server: "95.85.228.80"
     port: 443
@@ -3690,7 +3709,7 @@ proxies:
       short-id: "054602d818379876"
     servername: "nid1.hatvpn.org"
 
-  - name: "mn_conf322"
+  - name: "mn_conf326"
     type: "vless"
     server: "141.193.213.21"
     port: 443
@@ -3704,7 +3723,7 @@ proxies:
       headers:
         Host: "octopusss4.com"
 
-  - name: "mn_conf323"
+  - name: "mn_conf327"
     type: "vless"
     server: "178.159.10.78"
     port: 443
@@ -3716,7 +3735,7 @@ proxies:
       short-id: "d27683580fc15f1e"
     servername: "www.vodafone.co.uk"
 
-  - name: "mn_conf324"
+  - name: "mn_conf328"
     type: "vless"
     server: "snapp.ir"
     port: 80
@@ -3728,7 +3747,7 @@ proxies:
       headers:
         Host: "pstar.nopm.ir"
 
-  - name: "mn_conf325"
+  - name: "mn_conf329"
     type: "vless"
     server: "45.196.224.216"
     port: 8443
@@ -3740,7 +3759,7 @@ proxies:
       short-id: "f34818a561dfd1fe"
     servername: "storage.yandex.net"
 
-  - name: "mn_conf326"
+  - name: "mn_conf330"
     type: "vless"
     server: "betty.ns.cloudflare.com"
     port: 443
@@ -3754,7 +3773,7 @@ proxies:
       headers:
         Host: "amoosamiii.net"
 
-  - name: "mn_conf327"
+  - name: "mn_conf331"
     type: "vless"
     server: "www.speedtest.org"
     port: 443
@@ -3768,7 +3787,7 @@ proxies:
       headers:
         Host: "shegeftihaaa.net"
 
-  - name: "mn_conf328"
+  - name: "mn_conf332"
     type: "trojan"
     server: "172.66.47.69"
     port: 443
@@ -3779,7 +3798,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf329"
+  - name: "mn_conf333"
     type: "trojan"
     server: "www.multiplydose.com"
     port: 443
@@ -3790,7 +3809,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf330"
+  - name: "mn_conf334"
     type: "vless"
     server: "www.speedtest.org"
     port: 443
@@ -3804,7 +3823,7 @@ proxies:
       headers:
         Host: "alphacdn.alphashops.shop"
 
-  - name: "mn_conf331"
+  - name: "mn_conf335"
     type: "trojan"
     server: "www.speedtest.org"
     port: 443
@@ -3815,7 +3834,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf332"
+  - name: "mn_conf336"
     type: "trojan"
     server: "103.133.1.2"
     port: 443
@@ -3826,7 +3845,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf333"
+  - name: "mn_conf337"
     type: "trojan"
     server: "104.17.111.4"
     port: 443
@@ -3837,7 +3856,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf334"
+  - name: "mn_conf338"
     type: "hysteria2"
     server: "91.107.152.188"
     port: 31999
@@ -3846,7 +3865,7 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf335"
+  - name: "mn_conf339"
     type: "hysteria2"
     server: "66.92.161.59"
     port: 42286
@@ -3855,7 +3874,7 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf336"
+  - name: "mn_conf340"
     type: "hysteria2"
     server: "91.107.152.188"
     port: 31999
@@ -3864,14 +3883,14 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf337"
+  - name: "mn_conf341"
     type: "vless"
     server: "66.92.161.153"
     port: 30402
     uuid: "9a9979e6-1576-46f7-80c9-e7f804f8752c"
     udp: true
 
-  - name: "mn_conf338"
+  - name: "mn_conf342"
     type: "hysteria2"
     server: "91.107.152.188"
     port: 31999
@@ -3880,7 +3899,7 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf339"
+  - name: "mn_conf343"
     type: "hysteria2"
     server: "91.107.174.32"
     port: 25810
@@ -3889,7 +3908,7 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf340"
+  - name: "mn_conf344"
     type: "hysteria2"
     server: "91.107.174.32"
     port: 25810
@@ -3898,7 +3917,7 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf341"
+  - name: "mn_conf345"
     type: "hysteria2"
     server: "91.107.152.188"
     port: 31999
@@ -3907,7 +3926,7 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf342"
+  - name: "mn_conf346"
     type: "hysteria2"
     server: "91.107.174.32"
     port: 25810
@@ -3916,7 +3935,7 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf343"
+  - name: "mn_conf347"
     type: "hysteria2"
     server: "91.107.152.188"
     port: 31999
@@ -3925,7 +3944,7 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf344"
+  - name: "mn_conf348"
     type: "hysteria2"
     server: "91.107.174.32"
     port: 25810
@@ -3934,7 +3953,7 @@ proxies:
     sni: "www.amd.com"
     skip-cert-verify: true
 
-  - name: "mn_conf345"
+  - name: "mn_conf349"
     type: "vless"
     server: "45.130.125.207"
     port: 443
@@ -3948,7 +3967,7 @@ proxies:
       headers:
         Host: "hhvl.hhapp.kdns.fr"
 
-  - name: "mn_conf346"
+  - name: "mn_conf350"
     type: "vless"
     server: "191.40.4.88"
     port: 500
@@ -3960,7 +3979,7 @@ proxies:
       short-id: "79"
     servername: "www.tesla.com"
 
-  - name: "mn_conf347"
+  - name: "mn_conf351"
     type: "vless"
     server: "45.130.125.207"
     port: 443
@@ -3974,7 +3993,7 @@ proxies:
       headers:
         Host: "shegeftihaaa.net"
 
-  - name: "mn_conf348"
+  - name: "mn_conf352"
     type: "vless"
     server: "94.242.55.42"
     port: 443
@@ -3986,7 +4005,7 @@ proxies:
       short-id: "6ba85179e30d4fc2"
     servername: "enterprisekitten.com"
 
-  - name: "mn_conf349"
+  - name: "mn_conf353"
     type: "vless"
     server: "151.80.147.30"
     port: 443
@@ -3998,7 +4017,7 @@ proxies:
       short-id: "42b395462da31c0e"
     servername: "speedtest.net"
 
-  - name: "mn_conf350"
+  - name: "mn_conf354"
     type: "ss"
     server: "82.38.31.11"
     port: 8080
@@ -4006,7 +4025,7 @@ proxies:
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
 
-  - name: "mn_conf351"
+  - name: "mn_conf355"
     type: "vless"
     server: "130.49.185.196"
     port: 443
@@ -4018,7 +4037,7 @@ proxies:
       short-id: "808a7e8a2e32c697"
     servername: "site.rumedia-cdn.com"
 
-  - name: "mn_conf352"
+  - name: "mn_conf356"
     type: "ss"
     server: "128.251.12.23"
     port: 443
@@ -4026,7 +4045,7 @@ proxies:
     password: "lghX3rcG7bqSQ8L6"
     udp: true
 
-  - name: "mn_conf353"
+  - name: "mn_conf357"
     type: "vless"
     server: "45.130.125.207"
     port: 443
@@ -4040,7 +4059,7 @@ proxies:
       headers:
         Host: "t1s1.rittbo.kdns.fr"
 
-  - name: "mn_conf354"
+  - name: "mn_conf358"
     type: "vless"
     server: "45.130.125.207"
     port: 80
@@ -4052,21 +4071,21 @@ proxies:
       headers:
         Host: "de.vpnbase.net"
 
-  - name: "mn_conf355"
+  - name: "mn_conf359"
     type: "trojan"
     server: "185.137.157.128"
     port: 443
     password: "dh-Ws-YoJIgTYLZ-A5VljeduVse-vhDl7Q"
     udp: true
 
-  - name: "mn_conf356"
+  - name: "mn_conf360"
     type: "trojan"
     server: "185.137.157.135"
     port: 443
     password: "dh-Ws-YoJIgTYLZ-A5VljeduVse-vhDl7Q"
     udp: true
 
-  - name: "mn_conf357"
+  - name: "mn_conf361"
     type: "vless"
     server: "asl3.feeliran.org"
     port: 449
@@ -4075,7 +4094,7 @@ proxies:
     tls: true
     servername: "v2rayNplus--v2rayNplus--v2rayNplus"
 
-  - name: "mn_conf358"
+  - name: "mn_conf362"
     type: "vless"
     server: "ronaldo27.fordnsdirect.shop"
     port: 8880
@@ -4085,7 +4104,7 @@ proxies:
     grpc-opts:
       grpc-service-name: ""
 
-  - name: "mn_conf359"
+  - name: "mn_conf363"
     type: "vless"
     server: "bot.sobhanpor.ir"
     port: 443
@@ -4094,14 +4113,14 @@ proxies:
     tls: true
     servername: "bot.sobhanpor.ir"
 
-  - name: "mn_conf360"
+  - name: "mn_conf364"
     type: "vless"
     server: "193.151.150.135"
     port: 2095
     uuid: "aff6f31d-e503-4a75-b87f-6f2e566ffb88"
     udp: true
 
-  - name: "mn_conf361"
+  - name: "mn_conf365"
     type: "vless"
     server: "da.mfa.gov.ua"
     port: 443
@@ -4214,7 +4233,6 @@ proxy-groups:
       - "mn_conf91"
       - "mn_conf92"
       - "mn_conf93"
-      - "mn_conf94"
       - "mn_conf95"
       - "mn_conf96"
       - "mn_conf97"
@@ -4423,10 +4441,10 @@ proxy-groups:
       - "mn_conf300"
       - "mn_conf301"
       - "mn_conf302"
+      - "mn_conf303"
       - "mn_conf304"
       - "mn_conf305"
       - "mn_conf306"
-      - "mn_conf307"
       - "mn_conf308"
       - "mn_conf309"
       - "mn_conf310"
@@ -4481,6 +4499,10 @@ proxy-groups:
       - "mn_conf359"
       - "mn_conf360"
       - "mn_conf361"
+      - "mn_conf362"
+      - "mn_conf363"
+      - "mn_conf364"
+      - "mn_conf365"
 
   - name: "PROXY"
     type: select
@@ -4579,7 +4601,6 @@ proxy-groups:
       - "mn_conf91"
       - "mn_conf92"
       - "mn_conf93"
-      - "mn_conf94"
       - "mn_conf95"
       - "mn_conf96"
       - "mn_conf97"
@@ -4788,10 +4809,10 @@ proxy-groups:
       - "mn_conf300"
       - "mn_conf301"
       - "mn_conf302"
+      - "mn_conf303"
       - "mn_conf304"
       - "mn_conf305"
       - "mn_conf306"
-      - "mn_conf307"
       - "mn_conf308"
       - "mn_conf309"
       - "mn_conf310"
@@ -4846,6 +4867,10 @@ proxy-groups:
       - "mn_conf359"
       - "mn_conf360"
       - "mn_conf361"
+      - "mn_conf362"
+      - "mn_conf363"
+      - "mn_conf364"
+      - "mn_conf365"
 
 rules:
   - MATCH,AUTO
