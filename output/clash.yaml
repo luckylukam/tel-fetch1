@@ -1,6 +1,6 @@
 # Clash subscription — auto-generated
-# Generated: 2026-08-09 01:23 UTC
-# Total proxies: 211
+# Generated: 2026-08-09 03:38 UTC
+# Total proxies: 212
 
 mixed-port: 7890
 allow-lan: false
@@ -855,156 +855,147 @@ proxies:
       headers:
         Host: "162.159.38.119"
 
-  - name: "mn_conf84"
-    type: "ss"
-    server: "paris.telegavpn.com"
-    port: 9802
-    cipher: "chacha20-ietf-poly1305"
-    password: "aSsoG8kTeefvH0s5A7tchH"
-    udp: true
-
-  - name: "mn_conf85"
-    type: "ss"
-    server: "45.136.58.86"
-    port: 17451
-    cipher: "chacha20-ietf-poly1305"
-    password: "hjrlXGNINHE2jspnma04TP"
-    udp: true
-
-  - name: "mn_conf87"
+  - name: "mn_conf83"
     type: "vless"
-    server: "89.105.197.203"
+    server: "144.31.213.172"
     port: 443
-    uuid: "631ee34f-4faf-4ad7-b49d-e6f50403cf0e"
+    uuid: "f692629b-3557-488a-9c9b-60775331e423"
     udp: true
     tls: true
     reality-opts:
-      public-key: "mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0"
-      short-id: "64c1fe36c7846400"
-    servername: "anyfile2file.com"
+      public-key: "f3Mwf_vaM2TDw1X8HZORkYPLY0-DE5smNYgHuhrQLTA"
+      short-id: ""
+    servername: "fi1-cosmostechnology.ru"
+    network: "grpc"
+    grpc-opts:
+      grpc-service-name: "fi1cosmos"
 
-  - name: "mn_conf88"
+  - name: "mn_conf84"
     type: "vless"
-    server: "de-04.tradex2080.com"
-    port: 443
-    uuid: "cb4fca5f-edf8-415b-aa8f-ac52f415296a"
+    server: "176.120.17.21"
+    port: 1010
+    uuid: "97889283-55a0-474a-9f26-9fa23c886b45"
     udp: true
     tls: true
-    servername: "de-04.tradex2080.com"
+    reality-opts:
+      public-key: "t4Fkmbkn4UPi4RqPPBy3wJrevUSQmZ2Z627MLvrKmGQ"
+      short-id: "ba1c09a40121ce01"
+    servername: "icloud.com"
+
+  - name: "mn_conf85"
+    type: "vless"
+    server: "3.64.99.156"
+    port: 22223
+    uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
+    udp: true
+
+  - name: "mn_conf86"
+    type: "vless"
+    server: "104.18.101.41"
+    port: 8080
+    uuid: "927eb03d-f806-4f21-88ea-de23d0f755ec"
+    udp: true
     network: "ws"
     ws-opts:
-      path: "/gPGhgE3kwHBXqpNptGAxAtI0QM"
+      path: "/Telegram:@vmessorg-Telegram:@vmessorg-Telegram:@vmessorg?ed=8080"
       headers:
-        Host: "de-04.tradex2080.com"
+        Host: "join-to.vmessorg.Community."
+
+  - name: "mn_conf88"
+    type: "trojan"
+    server: "54.155.44.231"
+    port: 22222
+    password: "telegram-id-privatevpns"
+    udp: true
+    sni: "trojan.burgerip.co.uk"
 
   - name: "mn_conf89"
-    type: "vless"
-    server: "66.81.247.105"
-    port: 8880
-    uuid: "82fdc77c-5def-4930-89a6-afb5cc609d4b"
+    type: "trojan"
+    server: "35.176.142.159"
+    port: 22222
+    password: "telegram-id-directvpn"
     udp: true
-    network: "ws"
-    ws-opts:
-      path: "VPNPROXY?ed=8080"
-      headers:
-        Host: "github_vpn_proxy66_marg_bar_khamenei.proxy66.shop."
+    sni: "trojan.burgerip.co.uk"
 
   - name: "mn_conf90"
-    type: "vless"
-    server: "185.174.138.53"
-    port: 8880
-    uuid: "82fdc77c-5def-4930-89a6-afb5cc609d4b"
+    type: "trojan"
+    server: "54.217.60.216"
+    port: 22222
+    password: "telegram-id-directvpn"
     udp: true
-    network: "ws"
-    ws-opts:
-      path: "VPNPROXY?ed=8080"
-      headers:
-        Host: "github_vpn_proxy66_marg_bar_khamenei.proxy66.shop."
+    sni: "trojan.burgerip.co.uk"
 
   - name: "mn_conf91"
     type: "vless"
-    server: "de.tradex2080.com"
-    port: 443
-    uuid: "cb4fca5f-edf8-415b-aa8f-ac52f415296a"
+    server: "cdn.discordapp.com"
+    port: 8880
+    uuid: "82fdc77c-5def-4930-89a6-afb5cc609d4b"
     udp: true
-    tls: true
-    servername: "de.tradex2080.com"
     network: "ws"
     ws-opts:
-      path: "/gPGhgE3kwHBXqpNptGAxAtI0QM"
+      path: "VPNPROXY?ed=8080"
       headers:
-        Host: "de.tradex2080.com"
+        Host: "github_vpn_proxy66_marg_bar_khamenei.proxy66.shop."
 
   - name: "mn_conf92"
     type: "vless"
-    server: "172.67.137.11"
+    server: "185.146.173.58"
     port: 8080
+    uuid: "d617f9de-8905-478d-b30c-f4e5db5b3abc"
+    udp: true
+    network: "ws"
+    ws-opts:
+      path: "/servernett"
+      headers:
+        Host: "dcc10.servernet.fun."
+
+  - name: "mn_conf93"
+    type: "ss"
+    server: "69.50.95.39"
+    port: 9101
+    cipher: "aes-256-gcm"
+    password: "e4FCWrgpkji3QY"
+    udp: true
+
+  - name: "mn_conf94"
+    type: "trojan"
+    server: "18.224.186.175"
+    port: 22222
+    password: "telegram-id-directvpn"
+    udp: true
+    sni: "trojan.burgerip.co.uk"
+
+  - name: "mn_conf95"
+    type: "trojan"
+    server: "13.60.165.212"
+    port: 22222
+    password: "telegram-id-directvpn"
+    udp: true
+    sni: "trojan.burgerip.co.uk"
+
+  - name: "mn_conf96"
+    type: "vless"
+    server: "172.67.137.11"
+    port: 2082
     uuid: "416f18ec-11f3-4648-9693-8c6480d0662d"
     udp: true
     network: "ws"
     ws-opts:
       path: "/"
       headers:
-        Host: "PbDpGsCo7.HaMeCi-dSsTeMaNe.oRg"
-
-  - name: "mn_conf93"
-    type: "vless"
-    server: "3.77.122.78"
-    port: 22223
-    uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
-    udp: true
-
-  - name: "mn_conf94"
-    type: "vless"
-    server: "154.83.159.240"
-    port: 8443
-    uuid: "0047a8bc-0025-4d45-899b-c75c669f3ede"
-    udp: true
-    tls: true
-    reality-opts:
-      public-key: "LT_0j3zQkaqgtJHvyaG24xz0IfmXUswVCTeC75Qsgjo"
-      short-id: "6f15101ff2cc4887"
-    servername: "storage.yandex.net"
-
-  - name: "mn_conf95"
-    type: "vless"
-    server: "gert.lorqino.ir"
-    port: 8088
-    uuid: "928cfab8-097c-4f24-9bad-0d6e2abdfc66"
-    udp: true
-    tls: true
-    reality-opts:
-      public-key: "hYLvEGoxIMNpQkqxVJt298bBGE1Tz8dhtXGsPsLznj0"
-      short-id: "2acf8977eb67ea0c"
-    servername: "www.yahoo.com"
-    network: "xhttp"
-    xhttp-opts:
-      path: "%2Fpath"
-      host: "hostname"
-
-  - name: "mn_conf96"
-    type: "vless"
-    server: "95.lorqino.ir"
-    port: 998
-    uuid: "928cfab8-097c-4f24-9bad-0d6e2abdfc66"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "%2Fmmd"
-      headers:
-        Host: "95.lorqino.ir"
+        Host: "PbDpGsCo2.HaMeCi-dSsTeMaNe.oRg"
 
   - name: "mn_conf97"
     type: "vless"
-    server: "158.94.216.232"
-    port: 9145
-    uuid: "928cfab8-097c-4f24-9bad-0d6e2abdfc66"
+    server: "www.parsvds.ir"
+    port: 8080
+    uuid: "9e802d62-510f-4f64-b73c-5d116a7aea44"
     udp: true
-    tls: true
-    reality-opts:
-      public-key: "Fw1tpKBQ_bT_eSTbaCSYBthpXAQ76kujwfywvjgpUA0"
-      short-id: "5e06032a9c448538"
-    servername: "yahoo.com"
+    network: "ws"
+    ws-opts:
+      path: "VPNCUSTOMIZE?ed=8080"
+      headers:
+        Host: "VPNcustomize-vpnCUSTOMIZE-VPNcustomize.CUSTOMIZEspeedtest.net."
 
   - name: "mn_conf98"
     type: "vless"
@@ -2543,9 +2534,10 @@ proxy-groups:
       - "mn_conf80"
       - "mn_conf81"
       - "mn_conf82"
+      - "mn_conf83"
       - "mn_conf84"
       - "mn_conf85"
-      - "mn_conf87"
+      - "mn_conf86"
       - "mn_conf88"
       - "mn_conf89"
       - "mn_conf90"
@@ -2759,9 +2751,10 @@ proxy-groups:
       - "mn_conf80"
       - "mn_conf81"
       - "mn_conf82"
+      - "mn_conf83"
       - "mn_conf84"
       - "mn_conf85"
-      - "mn_conf87"
+      - "mn_conf86"
       - "mn_conf88"
       - "mn_conf89"
       - "mn_conf90"
