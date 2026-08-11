@@ -1,5 +1,5 @@
 # Clash subscription — auto-generated
-# Generated: 2026-08-11 09:57 UTC
+# Generated: 2026-08-11 10:50 UTC
 # Total proxies: 239
 
 mixed-port: 7890
@@ -2582,18 +2582,6 @@ proxies:
 
   - name: "mn_conf222"
     type: "vless"
-    server: "104.171.133.53"
-    port: 2200
-    uuid: "aef0e934-09d7-4b8f-b3bc-de78d2eec928"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "%2Fv1"
-      headers:
-        Host: "rzd.ru"
-
-  - name: "mn_conf223"
-    type: "vless"
     server: "84.32.96.102"
     port: 443
     uuid: "f7c25743-140c-4d32-a296-a53bc49682d8"
@@ -2604,7 +2592,7 @@ proxies:
       short-id: ""
     servername: "direct-nl.bachidze.com"
 
-  - name: "mn_conf224"
+  - name: "mn_conf223"
     type: "vless"
     server: "193.29.224.185"
     port: 8443
@@ -2613,7 +2601,7 @@ proxies:
     tls: true
     servername: "fi1.hys.braidx.tech"
 
-  - name: "mn_conf225"
+  - name: "mn_conf224"
     type: "trojan"
     server: "172.67.149.60"
     port: 443
@@ -2624,7 +2612,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf226"
+  - name: "mn_conf225"
     type: "vless"
     server: "217.154.244.251"
     port: 8443
@@ -2633,7 +2621,7 @@ proxies:
     tls: true
     servername: "de1.hys.braidx.tech"
 
-  - name: "mn_conf227"
+  - name: "mn_conf226"
     type: "vless"
     server: "104.171.132.232"
     port: 2200
@@ -2645,7 +2633,7 @@ proxies:
       headers:
         Host: "104.171.132.232"
 
-  - name: "mn_conf228"
+  - name: "mn_conf227"
     type: "vless"
     server: "45.143.201.8"
     port: 443
@@ -2657,7 +2645,7 @@ proxies:
       short-id: ""
     servername: "hasty-dolphin.cdn.cachefleet.com"
 
-  - name: "mn_conf229"
+  - name: "mn_conf228"
     type: "vless"
     server: "vip.overkill.tr"
     port: 15861
@@ -2669,7 +2657,7 @@ proxies:
       short-id: "f68910b762547193"
     servername: "yahoo.com"
 
-  - name: "mn_conf230"
+  - name: "mn_conf229"
     type: "ss"
     server: "108.181.58.239"
     port: 8388
@@ -2677,7 +2665,7 @@ proxies:
     password: "CJmTCCx7Ltud"
     udp: true
 
-  - name: "mn_conf231"
+  - name: "mn_conf230"
     type: "ss"
     server: "158.173.20.208"
     port: 443
@@ -2685,7 +2673,7 @@ proxies:
     password: "shadowsocks"
     udp: true
 
-  - name: "mn_conf232"
+  - name: "mn_conf231"
     type: "vless"
     server: "138.124.244.77"
     port: 8443
@@ -2694,7 +2682,7 @@ proxies:
     tls: true
     servername: "fi1.hys.braidx.tech"
 
-  - name: "mn_conf233"
+  - name: "mn_conf232"
     type: "vless"
     server: "31.76.246.59"
     port: 443
@@ -2706,7 +2694,7 @@ proxies:
       short-id: "7a3f9e2b1c8d4f6a"
     servername: "v.gb-cdn.ru"
 
-  - name: "mn_conf234"
+  - name: "mn_conf233"
     type: "vless"
     server: "62.233.39.6"
     port: 993
@@ -2718,14 +2706,14 @@ proxies:
       short-id: ""
     servername: "dl.dell.com"
 
-  - name: "mn_conf235"
+  - name: "mn_conf234"
     type: "vless"
     server: "31.130.151.39"
     port: 27755
     uuid: "13f912b6-8390-4dce-b871-8b503c8c5e0f"
     udp: true
 
-  - name: "mn_conf236"
+  - name: "mn_conf235"
     type: "vless"
     server: "62.113.42.149"
     port: 2445
@@ -2736,6 +2724,21 @@ proxies:
       public-key: "yVJmN1Tm4AnW_HbQI-c8phj65L2h2XU6yNEvXVgIqiA"
       short-id: ""
     servername: "yandex.ru"
+
+  - name: "mn_conf236"
+    type: "vless"
+    server: "134.0.116.208"
+    port: 9877
+    uuid: "130e6aab-9eba-441e-9021-22cbccc72832"
+    udp: true
+    tls: true
+    reality-opts:
+      public-key: "bnRIb3Er1i-K6NGGByCO9UbGfOvu43ZoiK7ulPd1SzU"
+      short-id: ""
+    servername: "dl.google.com"
+    network: "grpc"
+    grpc-opts:
+      grpc-service-name: "grpc-tunnel"
 
   - name: "mn_conf237"
     type: "vless"
