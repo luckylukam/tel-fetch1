@@ -1,6 +1,6 @@
 # Clash subscription — auto-generated
-# Generated: 2026-08-17 10:28 UTC
-# Total proxies: 188
+# Generated: 2026-08-17 11:21 UTC
+# Total proxies: 187
 
 mixed-port: 7890
 allow-lan: false
@@ -750,151 +750,179 @@ proxies:
 
   - name: "mn_conf69"
     type: "vless"
-    server: "welcome-shop-jd5.mobileahmad.ir"
-    port: 2035
-    uuid: "3f1699fd-f552-4e69-bc91-02f5f13ad8a8"
+    server: "tr.koomeh.net"
+    port: 80
+    uuid: "0b6cf606-9771-4bb1-b61d-5982bddc78fc"
     udp: true
+    network: "xhttp"
+    xhttp-opts:
+      path: "%2F%3Fed%3D2048"
+      host: "tr.koomeh.net"
 
   - name: "mn_conf70"
-    type: "trojan"
-    server: "52.79.210.229"
-    port: 443
-    password: "ND91608427"
+    type: "ss"
+    server: "15.235.75.71"
+    port: 8388
+    cipher: "chacha20-ietf-poly1305"
+    password: "FD3rCuOsxOay"
     udp: true
-    sni: "chief-bluegill.rooster465.autos"
 
   - name: "mn_conf71"
-    type: "trojan"
-    server: "188.114.97.6"
-    port: 443
-    password: "mitivpn"
+    type: "vless"
+    server: "15.224.118.91"
+    port: 22222
+    uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
     udp: true
-    sni: "b5r.ir"
-    network: "ws"
-    ws-opts:
-      path: "/ed=mitivpn"
 
   - name: "mn_conf72"
-    type: "trojan"
-    server: "179.237.74.104"
-    port: 361
-    password: "---------BanV2ray------------"
+    type: "ss"
+    server: "82.38.31.201"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
-    sni: "world.yahoo.com:443"
-    network: "grpc"
-    grpc-opts:
-      grpc-service-name: ""
 
   - name: "mn_conf73"
-    type: "trojan"
-    server: "57.180.13.78"
-    port: 443
-    password: "ND91608427"
+    type: "ss"
+    server: "82.38.31.201"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
-    sni: "healthy-louse.rooster465.autos"
 
   - name: "mn_conf74"
-    type: "trojan"
-    server: "104.18.152.225"
+    type: "vless"
+    server: "193.176.242.26"
     port: 443
-    password: "MITIVPN"
+    uuid: "673fe1b7-69cb-4c32-b80f-80a4bceead9c"
     udp: true
-    sni: "Dee---7-MiTiVPN----o.aPp-cLoud.IR"
-    network: "ws"
-    ws-opts:
-      path: "/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/D-e"
+    tls: true
+    servername: "abcde.gfdcty.ir"
+    network: "xhttp"
+    xhttp-opts:
+      path: "%2Fhhhhh"
+      host: "abcde.gfdcty.ir"
 
   - name: "mn_conf75"
-    type: "trojan"
-    server: "27.50.48.49"
-    port: 443
-    password: "mitivpn"
+    type: "vmess"
+    server: "82.198.246.97"
+    port: 180
+    uuid: "d13fc2f5-3e05-4795-81eb-44143a09e552"
+    alterId: 0
+    cipher: "auto"
     udp: true
-    sni: "gamingdll.ir"
-    network: "ws"
-    ws-opts:
-      path: "/index.html/ed=mitivpn"
 
   - name: "mn_conf76"
-    type: "trojan"
-    server: "34.251.228.118"
+    type: "vless"
+    server: "172.66.44.97"
     port: 443
-    password: "UO36402987"
+    uuid: "83afd88f-200f-4d89-bfc7-66eff160c1d8"
     udp: true
-    sni: "definite-ladybird.rooster465.autos"
+    tls: true
+    servername: "josni.hoyes.cloudns.ch"
+    network: "ws"
+    ws-opts:
+      path: "%2Fsg-melbi%2F%3D512"
+      headers:
+        Host: "josni.hoyes.cloudns.ch"
 
   - name: "mn_conf77"
     type: "vless"
-    server: "217.179.5.62"
+    server: "172.66.44.97"
     port: 443
-    uuid: "VIPTelegramVIPConfigs"
-    udp: true
-
-  - name: "mn_conf78"
-    type: "vless"
-    server: "179.255.185.105"
-    port: 443
-    uuid: "2cb6b4d9-0c74-45e2-a4fb-645bb8ac532a"
+    uuid: "83afd88f-200f-4d89-bfc7-66eff160c1d8"
     udp: true
     tls: true
-    reality-opts:
-      public-key: "V2JprbR_aJkS7uX6anyU3nrswGxdvDQT2HpY4WnzuC8"
-      short-id: "5629431325884ff0"
-    servername: "sha6.o4ka-internet.com"
+    servername: "josni.hoyes.cloudns.ch"
+    network: "ws"
+    ws-opts:
+      path: "%3Fed%3D512"
+      headers:
+        Host: "josni.hoyes.cloudns.ch"
+
+  - name: "mn_conf78"
+    type: "vmess"
+    server: "2001:bc8:32d7:1a9::2"
+    port: 23388
+    uuid: "3a966d20-7b9d-48cc-ba2c-8d38161b6d3a"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: "ws"
+    ws-opts:
+      path: "/github.com/Alvin9999-newpac/fanqiang"
+      headers:
+        Host: "2001:bc8:32d7:1a9::2"
 
   - name: "mn_conf79"
     type: "vless"
-    server: "130.185.120.239"
-    port: 80
-    uuid: "dd5cba91-634a-4ca9-a52d-5294487a74cf"
+    server: "104.16.79.73"
+    port: 443
+    uuid: "83afd88f-200f-4d89-bfc7-66eff160c1d8"
     udp: true
+    tls: true
+    servername: "josni.hoyes.cloudns.ch"
+    network: "ws"
+    ws-opts:
+      path: "%3Fed%3D512"
+      headers:
+        Host: "josni.hoyes.cloudns.ch"
 
   - name: "mn_conf80"
     type: "vless"
-    server: "84.32.98.192"
+    server: "172.66.44.97"
     port: 443
-    uuid: "2642342c-fa52-4f62-b44d-fb77de8f75e3"
+    uuid: "83afd88f-200f-4d89-bfc7-66eff160c1d8"
     udp: true
     tls: true
-    reality-opts:
-      public-key: "C6nh6hqFTbtizgSH8vGmw2XUxsQAbAW3jPylpgGvfl4"
-      short-id: "4a7d3e9f2b8c6a1d"
-    servername: "de.moktana.app"
+    servername: "josni.hoyes.cloudns.ch"
+    network: "ws"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "josni.hoyes.cloudns.ch"
 
   - name: "mn_conf81"
     type: "vless"
-    server: "cf.levikogjgfdd.ir"
-    port: 2053
-    uuid: "e7961655-9674-4cbd-a36f-ec0d5d7d660c"
+    server: "172.66.44.97"
+    port: 443
+    uuid: "83afd88f-200f-4d89-bfc7-66eff160c1d8"
     udp: true
     tls: true
-    servername: "po.fastbrokencompony.com"
+    servername: "josni.hoyes.cloudns.ch"
     network: "ws"
     ws-opts:
-      path: "%2F%3Fed%3D2053"
+      path: "%3Fed%3D2048"
       headers:
-        Host: "po.fastbrokencompony.com"
+        Host: "josni.hoyes.cloudns.ch"
 
   - name: "mn_conf82"
     type: "vless"
-    server: "146.75.119.82"
-    port: 80
-    uuid: "d4feb96a-e415-4c15-8117-a6468d40eb45"
+    server: "104.18.37.228"
+    port: 443
+    uuid: "83afd88f-200f-4d89-bfc7-66eff160c1d8"
     udp: true
+    tls: true
+    servername: "josni.hoyes.cloudns.ch"
     network: "ws"
     ws-opts:
-      path: "ws%2F%3Fed%3D2048%2F%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%40VPNine1%2F%3F2048"
+      path: "musiclovers85%3Fed"
       headers:
-        Host: "rb24.ir"
+        Host: "josni.hoyes.cloudns.ch"
 
   - name: "mn_conf83"
     type: "vless"
-    server: "139.100.197.28"
-    port: 52006
-    uuid: "c8996c48-0e45-07d0-8f33-338ef260a01d"
+    server: "172.66.44.97"
+    port: 443
+    uuid: "83afd88f-200f-4d89-bfc7-66eff160c1d8"
     udp: true
     tls: true
-    servername: "search.setlisting.ru"
+    servername: "josni.hoyes.cloudns.ch"
+    network: "ws"
+    ws-opts:
+      path: "%3Fed%3D2560"
+      headers:
+        Host: "josni.hoyes.cloudns.ch"
 
   - name: "mn_conf84"
     type: "vless"
@@ -1888,20 +1916,6 @@ proxies:
 
   - name: "mn_conf167"
     type: "vless"
-    server: "172.66.44.97"
-    port: 443
-    uuid: "83afd88f-200f-4d89-bfc7-66eff160c1d8"
-    udp: true
-    tls: true
-    servername: "josni.hoyes.cloudns.ch"
-    network: "ws"
-    ws-opts:
-      path: "/"
-      headers:
-        Host: "josni.hoyes.cloudns.ch"
-
-  - name: "mn_conf168"
-    type: "vless"
     server: "104.18.37.228"
     port: 443
     uuid: "83afd88f-200f-4d89-bfc7-66eff160c1d8"
@@ -1914,7 +1928,7 @@ proxies:
       headers:
         Host: "josni.hoyes.cloudns.ch"
 
-  - name: "mn_conf169"
+  - name: "mn_conf168"
     type: "vless"
     server: "tls.mehr-print.ir"
     port: 443
@@ -1930,7 +1944,7 @@ proxies:
       path: "%2F"
       host: "vearahost.com"
 
-  - name: "mn_conf170"
+  - name: "mn_conf169"
     type: "vmess"
     server: "202.47.89.133"
     port: 53548
@@ -1944,7 +1958,7 @@ proxies:
       headers:
         Host: ""
 
-  - name: "mn_conf171"
+  - name: "mn_conf170"
     type: "vless"
     server: "185.143.234.238"
     port: 2086
@@ -1956,7 +1970,7 @@ proxies:
       headers:
         Host: "parsi.parsi.sbs"
 
-  - name: "mn_conf172"
+  - name: "mn_conf171"
     type: "vless"
     server: "199.232.78.159"
     port: 443
@@ -1970,7 +1984,7 @@ proxies:
       headers:
         Host: "lsjaoijji.global.ssl.fastly.neT"
 
-  - name: "mn_conf173"
+  - name: "mn_conf172"
     type: "vmess"
     server: "202.47.89.133"
     port: 53548
@@ -1984,7 +1998,7 @@ proxies:
       headers:
         Host: ""
 
-  - name: "mn_conf174"
+  - name: "mn_conf173"
     type: "vless"
     server: "104.16.6.70"
     port: 443
@@ -1998,7 +2012,7 @@ proxies:
       headers:
         Host: "josni.hoyes.cloudns.ch"
 
-  - name: "mn_conf175"
+  - name: "mn_conf174"
     type: "trojan"
     server: "188.114.97.7"
     port: 443
@@ -2009,7 +2023,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf176"
+  - name: "mn_conf175"
     type: "vless"
     server: "104.18.37.228"
     port: 443
@@ -2023,7 +2037,7 @@ proxies:
       headers:
         Host: "josni.hoyes.cloudns.ch"
 
-  - name: "mn_conf177"
+  - name: "mn_conf176"
     type: "vless"
     server: "0nlysms.ir"
     port: 443
@@ -2037,7 +2051,7 @@ proxies:
       headers:
         Host: "rubifen.adaspoloandco.com"
 
-  - name: "mn_conf178"
+  - name: "mn_conf177"
     type: "ss"
     server: "217.70.14.216"
     port: 8443
@@ -2045,7 +2059,7 @@ proxies:
     password: "48UQWJVetDr7ETiOXF+aEQ=="
     udp: true
 
-  - name: "mn_conf179"
+  - name: "mn_conf178"
     type: "vless"
     server: "67.159.42.154"
     port: 443
@@ -2059,7 +2073,7 @@ proxies:
       headers:
         Host: "67.159.42.154"
 
-  - name: "mn_conf180"
+  - name: "mn_conf179"
     type: "vless"
     server: "69.46.46.123"
     port: 443
@@ -2073,7 +2087,7 @@ proxies:
       headers:
         Host: "x4g-production-fb14.up.railway.app"
 
-  - name: "mn_conf181"
+  - name: "mn_conf180"
     type: "vless"
     server: "a2.arshia-nova.ir"
     port: 443
@@ -2087,7 +2101,7 @@ proxies:
       headers:
         Host: "c12.com"
 
-  - name: "mn_conf182"
+  - name: "mn_conf181"
     type: "hysteria2"
     server: "assets.gateway-stream.com"
     port: 52009
@@ -2095,7 +2109,7 @@ proxies:
     udp: true
     sni: "assets.gateway-stream.com"
 
-  - name: "mn_conf183"
+  - name: "mn_conf182"
     type: "trojan"
     server: "172.67.218.38"
     port: 443
@@ -2106,7 +2120,7 @@ proxies:
     ws-opts:
       path: "%2Ftr%2FdxyX388XOtyAjF3A%3Fed%3D2560"
 
-  - name: "mn_conf184"
+  - name: "mn_conf183"
     type: "trojan"
     server: "104.18.28.234"
     port: 443
@@ -2117,7 +2131,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf185"
+  - name: "mn_conf184"
     type: "trojan"
     server: "31.76.11.46"
     port: 443
@@ -2128,7 +2142,7 @@ proxies:
     grpc-opts:
       grpc-service-name: "%2F50779%2FNQmry9z8yR"
 
-  - name: "mn_conf186"
+  - name: "mn_conf185"
     type: "trojan"
     server: "172.67.132.19"
     port: 443
@@ -2139,7 +2153,7 @@ proxies:
     ws-opts:
       path: "%2Ftr%2FbDodLFtTQwCZ6EX3ffMYJ06j9EjLse4d%3Fed%3D2560"
 
-  - name: "mn_conf187"
+  - name: "mn_conf186"
     type: "trojan"
     server: "34.251.228.118"
     port: 443
@@ -2147,7 +2161,7 @@ proxies:
     udp: true
     sni: "definite-ladybird.rooster465.autos"
 
-  - name: "mn_conf188"
+  - name: "mn_conf187"
     type: "trojan"
     server: "44.242.235.129"
     port: 443
@@ -2155,7 +2169,7 @@ proxies:
     udp: true
     sni: "devoted-tapir.rooster465.autos"
 
-  - name: "mn_conf189"
+  - name: "mn_conf188"
     type: "trojan"
     server: "35.86.90.51"
     port: 443
@@ -2356,7 +2370,6 @@ proxy-groups:
       - "mn_conf186"
       - "mn_conf187"
       - "mn_conf188"
-      - "mn_conf189"
 
   - name: "PROXY"
     type: select
@@ -2549,7 +2562,6 @@ proxy-groups:
       - "mn_conf186"
       - "mn_conf187"
       - "mn_conf188"
-      - "mn_conf189"
 
 rules:
   - MATCH,AUTO
