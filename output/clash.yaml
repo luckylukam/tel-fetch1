@@ -1,6 +1,6 @@
 # Clash subscription — auto-generated
-# Generated: 2026-08-18 09:28 UTC
-# Total proxies: 185
+# Generated: 2026-08-18 10:23 UTC
+# Total proxies: 186
 
 mixed-port: 7890
 allow-lan: false
@@ -682,77 +682,87 @@ proxies:
 
   - name: "mn_conf62"
     type: "vless"
-    server: "89.105.208.124"
-    port: 443
-    uuid: "91d0fa43-e557-43e7-a731-f0c3d1fb306a"
+    server: "www.speedtest.net"
+    port: 8080
+    uuid: "98950131-7300-4b69-8fcf-3d707798c5fa"
     udp: true
-    tls: true
-    reality-opts:
-      public-key: "ivgTfLR13A6xBsicIA28OPoav2tXlsstTTmGuETfnSk"
-      short-id: "6d6f13013d3e1d0c"
-    servername: "n1.cloudgaming.one"
+    network: "ws"
+    ws-opts:
+      path: "%2Fvl%2F83xiwE6CChCQpnplz0AzNMNEEZ%3Fed%3D2560"
+      headers:
+        Host: "micro-svc-2337e0.amiralihsp27.workers.dev"
 
   - name: "mn_conf63"
-    type: "vless"
-    server: "194.87.220.242"
-    port: 8443
-    uuid: "f4540796-ce50-4c2b-a41c-58f18f36ab96"
+    type: "trojan"
+    server: "micro-svc-2337e0.amiralihsp27.workers.dev"
+    port: 443
+    password: "09ca66181ccb484087d8e9ec6c7eb14e"
     udp: true
-    tls: true
-    reality-opts:
-      public-key: "k2gF2ZrpECMogTk1dY1uQ_BaWuyUVRTrewS-dnRL53s"
-      short-id: "5ae57d5673"
-    servername: "nltw6.lckdwn.ru"
+    sni: "miCRO-sVC-2337E0.amiraLIhSp27.wOrkErS.dEV"
+    network: "ws"
+    ws-opts:
+      path: "%2Ftr%2FBmarM5b0CCvalWjhG%3Fed%3D2560"
 
   - name: "mn_conf64"
-    type: "ss"
-    server: "142.4.216.225"
+    type: "vless"
+    server: "tgf35bot-production.up.railway.app"
     port: 443
-    cipher: "chacha20-ietf-poly1305"
-    password: "ytw2awn"
+    uuid: "f1dd9ca3-8900-d355-8056-690e2d903d08"
     udp: true
+    tls: true
+    servername: "tgf35bot-production.up.railway.app"
+    network: "ws"
+    ws-opts:
+      path: "/ws/f1dd9ca3-8900-d355-8056-690e2d903d08"
+      headers:
+        Host: "tgf35bot-production.up.railway.app"
 
   - name: "mn_conf65"
     type: "vless"
-    server: "63.187.235.95"
-    port: 22222
-    uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
+    server: "it.uarlixo.ir"
+    port: 3050
+    uuid: "7f897a20-6062-47c0-80f0-ce02274fd10d"
     udp: true
+    tls: true
+    reality-opts:
+      public-key: "m9qa-h8IRAgNClJ2_ktXKWufJ8WXTCjKHDLmFPyDmAY"
+      short-id: "a6ca5fa542af7884"
+    servername: "apple.com"
 
   - name: "mn_conf66"
     type: "vless"
-    server: "63.187.235.95"
-    port: 22223
-    uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
+    server: "k2.cloud--vpn.site"
+    port: 443
+    uuid: "8f20ce8e-917f-4946-e03f-31a7bbf8a965"
     udp: true
+    tls: true
+    servername: "ssl.fastly.com"
+    network: "ws"
+    ws-opts:
+      path: "%2F"
+      headers:
+        Host: "c12.com"
 
   - name: "mn_conf67"
-    type: "vless"
-    server: "63.187.235.95"
-    port: 22224
-    uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e"
+    type: "trojan"
+    server: "193.124.46.65"
+    port: 443
+    password: "8bS8vVC5CQ2GsckhMh8IT1jv"
     udp: true
+    sni: "193.124.46.65"
 
   - name: "mn_conf68"
     type: "vless"
-    server: "re.lanzivo.ir"
-    port: 8443
-    uuid: "d1661d13-9abf-47eb-873e-49577834cef8"
+    server: "usnode.mamadhpbot.ir"
+    port: 50118
+    uuid: "ef01f8c1-e02b-427a-926a-6d3c403c21f2"
     udp: true
-    tls: true
-    servername: "re.lanzivo.ir"
-    network: "xhttp"
-    xhttp-opts:
-      path: "%2F"
-      host: "re.lanzivo.ir"
 
   - name: "mn_conf69"
-    type: "vmess"
-    server: "91.107.255.181"
-    port: 28110
-    uuid: "9b4cf5b4-7fd9-436b-a441-6e9dfe601bf9"
-    alterId: 0
-    cipher: "auto"
+    type: "vless"
+    server: "netherholan-90.horlutr.ir"
+    port: 2087
+    uuid: "348ebbfd-b6b9-4111-8e57-7959cbca12f6"
     udp: true
 
   - name: "mn_conf70"
@@ -2008,23 +2018,6 @@ proxies:
     servername: "fr.sellflow.org"
 
   - name: "mn_conf174"
-    type: "hysteria2"
-    server: "51.79.91.52"
-    port: 38871
-    password: "4T3sB0DeFo"
-    udp: true
-    sni: "play.google.com"
-    skip-cert-verify: true
-
-  - name: "mn_conf175"
-    type: "ss"
-    server: "194.87.47.61"
-    port: 10901
-    cipher: "aes-256-gcm"
-    password: "d1fa2f4b98a38bc8"
-    udp: true
-
-  - name: "mn_conf176"
     type: "vless"
     server: "46.8.210.139"
     port: 443
@@ -2036,7 +2029,7 @@ proxies:
       short-id: "0f4daaf87f9dff"
     servername: "smartcaptcha.yandexcloud.net"
 
-  - name: "mn_conf177"
+  - name: "mn_conf175"
     type: "hysteria2"
     server: "51.79.91.52"
     port: 38871
@@ -2045,7 +2038,7 @@ proxies:
     sni: "play.google.com"
     skip-cert-verify: true
 
-  - name: "mn_conf178"
+  - name: "mn_conf176"
     type: "vless"
     server: "138.124.67.209"
     port: 13868
@@ -2057,7 +2050,7 @@ proxies:
       short-id: "e852dc"
     servername: "booking.com"
 
-  - name: "mn_conf179"
+  - name: "mn_conf177"
     type: "vless"
     server: "31.76.80.69"
     port: 2083
@@ -2073,7 +2066,38 @@ proxies:
       path: "%2F"
       host: "31.76.80.69"
 
+  - name: "mn_conf178"
+    type: "vless"
+    server: "31.77.57.112"
+    port: 6243
+    uuid: "003c712d-daa1-4c3f-bed2-658e7787d04c"
+    udp: true
+    tls: true
+    reality-opts:
+      public-key: "B55CpLIn63ajsDxoRe9icE2qa-rXcEiQXLpqfhHp2B0"
+      short-id: "0dabc5964c"
+    servername: "github.com"
+
+  - name: "mn_conf179"
+    type: "trojan"
+    server: "172.67.149.60"
+    port: 443
+    password: "humanity"
+    udp: true
+    sni: "www.ignitelimit.com"
+    network: "ws"
+    ws-opts:
+      path: "%2Fassignment"
+
   - name: "mn_conf180"
+    type: "ss"
+    server: "64.83.33.45"
+    port: 443
+    cipher: "aes-256-gcm"
+    password: "AyqX8KynyyQLReOZorQRQbsvmiwxBQOf"
+    udp: true
+
+  - name: "mn_conf181"
     type: "trojan"
     server: "172.67.218.38"
     port: 443
@@ -2084,7 +2108,7 @@ proxies:
     ws-opts:
       path: "%2Ftr%2FdxyX388XOtyAjF3A%3Fed%3D2560"
 
-  - name: "mn_conf181"
+  - name: "mn_conf182"
     type: "trojan"
     server: "104.18.28.234"
     port: 443
@@ -2095,7 +2119,7 @@ proxies:
     ws-opts:
       path: "%2Fassignment"
 
-  - name: "mn_conf182"
+  - name: "mn_conf183"
     type: "trojan"
     server: "31.76.11.46"
     port: 443
@@ -2106,7 +2130,7 @@ proxies:
     grpc-opts:
       grpc-service-name: "%2F50779%2FNQmry9z8yR"
 
-  - name: "mn_conf183"
+  - name: "mn_conf184"
     type: "trojan"
     server: "172.67.132.19"
     port: 443
@@ -2117,7 +2141,7 @@ proxies:
     ws-opts:
       path: "%2Ftr%2FbDodLFtTQwCZ6EX3ffMYJ06j9EjLse4d%3Fed%3D2560"
 
-  - name: "mn_conf184"
+  - name: "mn_conf185"
     type: "trojan"
     server: "34.251.228.118"
     port: 443
@@ -2125,7 +2149,7 @@ proxies:
     udp: true
     sni: "definite-ladybird.rooster465.autos"
 
-  - name: "mn_conf185"
+  - name: "mn_conf186"
     type: "trojan"
     server: "44.242.235.129"
     port: 443
@@ -2133,7 +2157,7 @@ proxies:
     udp: true
     sni: "devoted-tapir.rooster465.autos"
 
-  - name: "mn_conf186"
+  - name: "mn_conf187"
     type: "trojan"
     server: "35.86.90.51"
     port: 443
@@ -2332,6 +2356,7 @@ proxy-groups:
       - "mn_conf184"
       - "mn_conf185"
       - "mn_conf186"
+      - "mn_conf187"
 
   - name: "PROXY"
     type: select
@@ -2522,6 +2547,7 @@ proxy-groups:
       - "mn_conf184"
       - "mn_conf185"
       - "mn_conf186"
+      - "mn_conf187"
 
 rules:
   - MATCH,AUTO
