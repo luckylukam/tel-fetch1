@@ -34,38 +34,6 @@
       "settings": {
         "vnext": [
           {
-            "address": "199.232.78.159",
-            "port": 443,
-            "users": [
-              {
-                "id": "e0454af2-6fe9-4983-a55d-05e1da202602",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2F",
-          "headers": {
-            "Host": "lsjaoijji.global.ssl.fastly.neT"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "ssl.fastly.com",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p2",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
             "address": "151.101.56.6",
             "port": 443,
             "users": [
@@ -83,6 +51,38 @@
           "path": "%2F",
           "headers": {
             "Host": "c12.com"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "ssl.fastly.com",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "199.232.78.159",
+            "port": 443,
+            "users": [
+              {
+                "id": "e0454af2-6fe9-4983-a55d-05e1da202602",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2F",
+          "headers": {
+            "Host": "lsjaoijji.global.ssl.fastly.neT"
           }
         },
         "security": "tls",
@@ -126,552 +126,17 @@
     },
     {
       "tag": "p4",
-      "protocol": "vless",
+      "protocol": "vmess",
       "settings": {
         "vnext": [
           {
-            "address": "104.18.37.228",
-            "port": 443,
-            "users": [
-              {
-                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2F%3FTELEGRAM-%2F_%2F_%2F_%2F_ProxyStation%3Fed%3D512",
-          "headers": {
-            "Host": "josni.hoyes.cloudns.ch"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "josni.hoyes.cloudns.ch",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p5",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.26.14.85",
+            "address": "104.19.47.21",
             "port": 8443,
             "users": [
               {
-                "id": "f798a2c4-c51b-409d-b349-ca8455b36796",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2Fdownload.php",
-          "headers": {
-            "Host": "chopin.adaspoloandco.com"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "chopin.adaspoloandco.com",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p6",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.97.6",
-            "port": 443,
-            "users": [
-              {
-                "id": "cf39fab0-bb85-42cb-9945-2ad69d78e575",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2FGOrbEh",
-          "headers": {
-            "Host": "rubifen.adaspoloandco.com"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "rubifen.adaspoloandco.com",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p7",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.16.79.73",
-            "port": 443,
-            "users": [
-              {
-                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2F%3FTELEGRAM-MARAMBASHI_MARAMBASHI%3Fed%3D512",
-          "headers": {
-            "Host": "josni.hoyes.cloudns.ch"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "josni.hoyes.cloudns.ch",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p8",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.26.14.85",
-            "port": 8443,
-            "users": [
-              {
-                "id": "f798a2c4-c51b-409d-b349-ca8455b36796",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2Fdownload.php",
-          "headers": {
-            "Host": "chopin.adaspoloandco.com"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "chopin.adaspoloandco.com",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p9",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.18.24.41",
-            "port": 8443,
-            "users": [
-              {
-                "id": "88360a6d-0fd7-49ef-ad06-6397fc7a80e5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2F",
-          "headers": {
-            "Host": "pn.lox30shop.ir"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "pn.lox30shop.ir",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p10",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.18.155.69",
-            "port": 2087,
-            "users": [
-              {
-                "id": "11e17410-7b67-495a-ad7d-e85e8a054e43",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2F",
-          "headers": {
-            "Host": "hikologoly.dearhossein-taktaz.ir"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "hikologoly.dearhossein-taktaz.ir",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p11",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "198.41.209.56",
-            "port": 8443,
-            "users": [
-              {
-                "id": "6ede8d99-be53-4b7f-9183-255325c71bf2",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "httpupgrade",
-        "httpupgradeSettings": {
-          "path": "%2F",
-          "host": "198.41.209.56"
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "fdsa.cjdpars-m.ir",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p12",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.66.44.97",
-            "port": 443,
-            "users": [
-              {
-                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2F%3FTELEGRAM-MARAMBASHI_MARAMBASHI%3Fed%3D512",
-          "headers": {
-            "Host": "josni.hoyes.cloudns.ch"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "josni.hoyes.cloudns.ch",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p13",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.66.44.97",
-            "port": 443,
-            "users": [
-              {
-                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2Fsg-melbi%23TELEGRAM-TOOTFFARANGI%3Fed%3D512",
-          "headers": {
-            "Host": "josni.hoyes.cloudns.ch"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "josni.hoyes.cloudns.ch",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p14",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.18.37.228",
-            "port": 443,
-            "users": [
-              {
-                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "musiclovers85%3Fed%3D512",
-          "headers": {
-            "Host": "josni.hoyes.cloudns.ch"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "josni.hoyes.cloudns.ch",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p15",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "94.140.0.1",
-            "port": 443,
-            "users": [
-              {
-                "id": "3a3de813-bfaa-4355-bc47-05c7245431d2",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2F%3Fed%3D2560",
-          "headers": {
-            "Host": "Australia.havray2025.ir"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "Australia.havray2025.ir",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p16",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.18.37.228",
-            "port": 443,
-            "users": [
-              {
-                "id": "e5cc16a6-ea42-46b2-82ae-ad2157e1641b",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2Ffp",
-          "headers": {
-            "Host": "hhlfy.twiladaphne.ndjp.net"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "hhlfy.twiladaphne.ndjp.net",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p17",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "89.116.250.135",
-            "port": 8880,
-            "users": [
-              {
-                "id": "3a3de813-bfaa-4355-bc47-05c7245431d2",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "httpupgrade",
-        "httpupgradeSettings": {
-          "path": "%2F%3Fed%3D2082",
-          "host": "FFar.9.postshup.ir"
-        },
-        "security": "none"
-      }
-    },
-    {
-      "tag": "p18",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.99.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e5cc16a6-ea42-46b2-82ae-ad2157e1641b",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2Fsg-melbi",
-          "headers": {
-            "Host": "hhlfy.twiladaphne.ndjp.net"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "hhlfy.twiladaphne.ndjp.net",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p19",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.26.14.85",
-            "port": 8443,
-            "users": [
-              {
-                "id": "f798a2c4-c51b-409d-b349-ca8455b36796",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2Fdownload.php%23TELEGRAM-MARAMBASHI_MARAMBASHI%3Fed%3D2560",
-          "headers": {
-            "Host": "chopin.adaspoloandco.com"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "chopin.adaspoloandco.com",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p20",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.16.6.70",
-            "port": 443,
-            "users": [
-              {
-                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "musiclovers85%3Fed%3D512",
-          "headers": {
-            "Host": "josni.hoyes.cloudns.ch"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "josni.hoyes.cloudns.ch",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p21",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.66.44.97",
-            "port": 443,
-            "users": [
-              {
-                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
-                "encryption": "none"
+                "id": "39135a39-e6ca-43df-a360-d859eea58d86",
+                "alterId": 0,
+                "security": "auto"
               }
             ]
           }
@@ -682,110 +147,18 @@
         "wsSettings": {
           "path": "/",
           "headers": {
-            "Host": "josni.hoyes.cloudns.ch"
+            "Host": "hk01.linkitnow.net"
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "josni.hoyes.cloudns.ch",
+          "serverName": "104.19.47.21",
           "allowInsecure": false
         }
       }
     },
     {
-      "tag": "p22",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.27.67.3",
-            "port": 8080,
-            "users": [
-              {
-                "id": "50414e45-4c5f-5a45-5553-41cadaa40bbb",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2Fstream%2FPANEL_ZEUS%2F41cadaa40bbb",
-          "headers": {
-            "Host": "xqzenielujls.drsyg44.workers.dev"
-          }
-        },
-        "security": "none"
-      }
-    },
-    {
-      "tag": "p23",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.67.74.10",
-            "port": 2087,
-            "users": [
-              {
-                "id": "97ea73b6-2043-4238-903c-a1e3d4a43c96",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2Fdownload.php",
-          "headers": {
-            "Host": "amphetamine.adaspoloandco.com"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "amphetamine.adaspoloandco.com",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p24",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "173.245.49.157",
-            "port": 443,
-            "users": [
-              {
-                "id": "cf39fab0-bb85-42cb-9945-2ad69d78e575",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2FGOrbEh",
-          "headers": {
-            "Host": "rubifen.adaspoloandco.com"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "rubifen.adaspoloandco.com",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p25",
+      "tag": "p5",
       "protocol": "trojan",
       "settings": {
         "servers": [
@@ -810,41 +183,16 @@
       }
     },
     {
-      "tag": "p26",
-      "protocol": "trojan",
-      "settings": {
-        "servers": [
-          {
-            "address": "188.114.97.6",
-            "port": 443,
-            "password": "MITIVPN"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%3Dde--win",
-          "headers": {}
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "9bvv292-28bv3-3j82vv-jkk282-8bvc2.Maqror.Ir",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p27",
+      "tag": "p6",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.89.120",
+            "address": "188.114.97.6",
             "port": 443,
             "users": [
               {
-                "id": "03707fb7-0990-440f-88f6-b0e0f7242a38",
+                "id": "cf39fab0-bb85-42cb-9945-2ad69d78e575",
                 "encryption": "none"
               }
             ]
@@ -854,20 +202,20 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/",
+          "path": "%2FGOrbEh%23TELEGRAM-%2F_%2F_%2F_%2F_ProxyStation%3Fed%3D2048",
           "headers": {
-            "Host": "104.16.89.120"
+            "Host": "rubifen.adaspoloandco.com"
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "de-new-1.ariyuz.org",
+          "serverName": "rubifen.adaspoloandco.com",
           "allowInsecure": false
         }
       }
     },
     {
-      "tag": "p28",
+      "tag": "p7",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -899,7 +247,229 @@
       }
     },
     {
-      "tag": "p29",
+      "tag": "p8",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "cf39fab0-bb85-42cb-9945-2ad69d78e575",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2FGOrbEh",
+          "headers": {
+            "Host": "rubifen.adaspoloandco.com"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rubifen.adaspoloandco.com",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p9",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.66.44.97",
+            "port": 443,
+            "users": [
+              {
+                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "josni.hoyes.cloudns.ch"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "josni.hoyes.cloudns.ch",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p10",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.6.70",
+            "port": 443,
+            "users": [
+              {
+                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "musiclovers85%3Fed%3D512",
+          "headers": {
+            "Host": "josni.hoyes.cloudns.ch"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "josni.hoyes.cloudns.ch",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p11",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.67.74.10",
+            "port": 2087,
+            "users": [
+              {
+                "id": "97ea73b6-2043-4238-903c-a1e3d4a43c96",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2Fdownload.php",
+          "headers": {
+            "Host": "amphetamine.adaspoloandco.com"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "amphetamine.adaspoloandco.com",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p12",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "198.41.209.56",
+            "port": 8443,
+            "users": [
+              {
+                "id": "6ede8d99-be53-4b7f-9183-255325c71bf2",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {
+          "path": "%2F",
+          "host": "198.41.209.56"
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "fdsa.cjdpars-m.ir",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p13",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.18.37.228",
+            "port": 443,
+            "users": [
+              {
+                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2F%3FTELEGRAM-%2F_%2F_%2F_%2F_ProxyStation%3Fed%3D512",
+          "headers": {
+            "Host": "josni.hoyes.cloudns.ch"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "josni.hoyes.cloudns.ch",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p14",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.26.14.85",
+            "port": 8443,
+            "users": [
+              {
+                "id": "f798a2c4-c51b-409d-b349-ca8455b36796",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2Fdownload.php",
+          "headers": {
+            "Host": "chopin.adaspoloandco.com"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "chopin.adaspoloandco.com",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p15",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -931,16 +501,16 @@
       }
     },
     {
-      "tag": "p30",
+      "tag": "p16",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.16.6.70",
-            "port": 2087,
+            "address": "104.18.24.41",
+            "port": 8443,
             "users": [
               {
-                "id": "2ed4d629-09a2-44b5-b231-d8cc4b318bdb",
+                "id": "88360a6d-0fd7-49ef-ad06-6397fc7a80e5",
                 "encryption": "none"
               }
             ]
@@ -948,25 +518,167 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
-        "xhttpSettings": {
+        "network": "ws",
+        "wsSettings": {
           "path": "%2F",
-          "host": "ip-7.xn--fjqyexxidv2znoe9rk1n8ada0532g6usa.com"
+          "headers": {
+            "Host": "pn.lox30shop.ir"
+          }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "ip-8.xn--fjqyexxidv2znoe9rk1n8ada0532g6usa.com",
+          "serverName": "pn.lox30shop.ir",
           "allowInsecure": false
         }
       }
     },
     {
-      "tag": "p31",
+      "tag": "p17",
+      "protocol": "trojan",
+      "settings": {
+        "servers": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "password": "MITIVPN"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%2F---%40MiTiVPN%3Dde--win",
+          "headers": {}
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "9bvv292-28bv3-3j82vv-jkk282-8bvc2.Maqror.Ir",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p18",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.64.150.28",
+            "address": "104.26.14.85",
+            "port": 8443,
+            "users": [
+              {
+                "id": "f798a2c4-c51b-409d-b349-ca8455b36796",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2Fdownload.php",
+          "headers": {
+            "Host": "chopin.adaspoloandco.com"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "chopin.adaspoloandco.com",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p19",
+      "protocol": "trojan",
+      "settings": {
+        "servers": [
+          {
+            "address": "104.16.72.101",
+            "port": 443,
+            "password": "6c862415-30d2-4813-8e49-42e99a0bd415"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2Fus-gllc@ThePackageCom",
+          "headers": {}
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "space.byu.id.yxls.eu.cc",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p20",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "89.116.250.135",
+            "port": 8880,
+            "users": [
+              {
+                "id": "3a3de813-bfaa-4355-bc47-05c7245431d2",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {
+          "path": "%2F%3Fed%3D2082",
+          "host": "FFar.9.postshup.ir"
+        },
+        "security": "none"
+      }
+    },
+    {
+      "tag": "p21",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.16.89.120",
+            "port": 443,
+            "users": [
+              {
+                "id": "03707fb7-0990-440f-88f6-b0e0f7242a38",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "104.16.89.120"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "de-new-1.ariyuz.org",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p22",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.18.37.228",
             "port": 443,
             "users": [
               {
@@ -988,6 +700,285 @@
         "security": "tls",
         "tlsSettings": {
           "serverName": "hhlfy.twiladaphne.ndjp.net",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p23",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.18.37.228",
+            "port": 443,
+            "users": [
+              {
+                "id": "83afd88f-200f-4d89-bfc7-66eff160c1d8",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "musiclovers85%3Fed%3D512",
+          "headers": {
+            "Host": "josni.hoyes.cloudns.ch"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "josni.hoyes.cloudns.ch",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p24",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.4",
+            "port": 443,
+            "users": [
+              {
+                "id": "cf39fab0-bb85-42cb-9945-2ad69d78e575",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2FGOrbEh",
+          "headers": {
+            "Host": "rubifen.adaspoloandco.com"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rubifen.adaspoloandco.com",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p25",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "173.245.49.157",
+            "port": 443,
+            "users": [
+              {
+                "id": "cf39fab0-bb85-42cb-9945-2ad69d78e575",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2FGOrbEh",
+          "headers": {
+            "Host": "rubifen.adaspoloandco.com"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rubifen.adaspoloandco.com",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p26",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.18.155.69",
+            "port": 2087,
+            "users": [
+              {
+                "id": "11e17410-7b67-495a-ad7d-e85e8a054e43",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2F",
+          "headers": {
+            "Host": "hikologoly.dearhossein-taktaz.ir"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "hikologoly.dearhossein-taktaz.ir",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p27",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "a2.arshia-nova.ir",
+            "port": 443,
+            "users": [
+              {
+                "id": "65f5f17f-fa6a-44a8-9d23-271c61da2963",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2F",
+          "headers": {
+            "Host": "c12.com"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "ssl.fastly.com",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p28",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "199.232.78.159",
+            "port": 443,
+            "users": [
+              {
+                "id": "be42674a-296a-43d8-bf04-b8314d65ff63",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2FTELEGRAM_NUFiLTER%2CTELEGRAM_NUFiLTER%2CTELEGRAM_NUFiLTER%2CTELEGRAM_NUFiLTER%2CTELEGRAM_NUFiLTER%2CTELEGRAM_NUFiLTER%2CTELEGRAM_NUFiLTER",
+          "headers": {
+            "Host": "pane2.global.ssl.fastly.net"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "ssl.fastly.com",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p29",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "162.159.38.119",
+            "port": 443,
+            "users": [
+              {
+                "id": "8ad6f598-cd8d-4fca-848e-05fc9be15ff3",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2Fsea",
+          "headers": {
+            "Host": "deicl.redstone-vex.sbs"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "deicl.redstone-vex.sbs",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p30",
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "82.198.246.250",
+            "port": 180,
+            "users": [
+              {
+                "id": "d13fc2f5-3e05-4795-81eb-44143a09e552",
+                "alterId": 0,
+                "security": "auto"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none"
+      }
+    },
+    {
+      "tag": "p31",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "69.46.46.30",
+            "port": 443,
+            "users": [
+              {
+                "id": "1e3332a1-82d4-3c60-166b-5c54db9ff355",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2Fws%2F1e3332a1-82d4-3c60-166b-5c54db9ff355",
+          "headers": {
+            "Host": "rvg-production-01ad.up.railway.app"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rvg-production-01ad.up.railway.app",
           "allowInsecure": false
         }
       }
@@ -1030,6 +1021,38 @@
       "settings": {
         "vnext": [
           {
+            "address": "69.46.46.20",
+            "port": 443,
+            "users": [
+              {
+                "id": "93944f49-75cf-3a81-bf96-df734db609b6",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2Fws%2F93944f49-75cf-3a81-bf96-df734db609b6",
+          "headers": {
+            "Host": "rvg-production-c94d.up.railway.app"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rvg-production-c94d.up.railway.app",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p34",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "104.26.14.85",
             "port": 8443,
             "users": [
@@ -1057,71 +1080,7 @@
       }
     },
     {
-      "tag": "p34",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.97.4",
-            "port": 443,
-            "users": [
-              {
-                "id": "cf39fab0-bb85-42cb-9945-2ad69d78e575",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2FGOrbEh",
-          "headers": {
-            "Host": "rubifen.adaspoloandco.com"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "rubifen.adaspoloandco.com",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
       "tag": "p35",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.99.47",
-            "port": 443,
-            "users": [
-              {
-                "id": "1f40d742-dfaa-4694-a509-3d81918a5673",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "%2F%3FTELEGRAM-TOOTFFARANGI%3Fed%3D2560",
-          "headers": {
-            "Host": "auto-1f40d7.rohawmk.workers.dev"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "auto-1f40d7.rohawmk.workers.dev",
-          "allowInsecure": false
-        }
-      }
-    },
-    {
-      "tag": "p36",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1153,16 +1112,16 @@
       }
     },
     {
-      "tag": "p37",
+      "tag": "p36",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "69.46.46.30",
-            "port": 443,
+            "address": "162.159.38.119",
+            "port": 8443,
             "users": [
               {
-                "id": "1e3332a1-82d4-3c60-166b-5c54db9ff355",
+                "id": "eeb6823c-b926-4ea2-866a-5542edd26e59",
                 "encryption": "none"
               }
             ]
@@ -1172,25 +1131,25 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "%2Fws%2F1e3332a1-82d4-3c60-166b-5c54db9ff355",
+          "path": "/",
           "headers": {
-            "Host": "rvg-production-01ad.up.railway.app"
+            "Host": "162.159.38.119"
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "rvg-production-01ad.up.railway.app",
+          "serverName": "t1s1.rittbo.kdns.fr",
           "allowInsecure": false
         }
       }
     },
     {
-      "tag": "p38",
+      "tag": "p37",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.97.6",
+            "address": "188.114.97.4",
             "port": 443,
             "users": [
               {
@@ -1204,7 +1163,7 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "%2FGOrbEh%23TELEGRAM-%2F_%2F_%2F_%2F_ProxyStation%3Fed%3D2048",
+          "path": "%2FGOrbEh",
           "headers": {
             "Host": "rubifen.adaspoloandco.com"
           }
@@ -1217,16 +1176,16 @@
       }
     },
     {
-      "tag": "p39",
+      "tag": "p38",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "162.159.38.119",
+            "address": "94.140.0.1",
             "port": 443,
             "users": [
               {
-                "id": "8ad6f598-cd8d-4fca-848e-05fc9be15ff3",
+                "id": "3a3de813-bfaa-4355-bc47-05c7245431d2",
                 "encryption": "none"
               }
             ]
@@ -1236,14 +1195,46 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "%2Fsea",
+          "path": "%2F%3Fed%3D2560",
           "headers": {
-            "Host": "deicl.redstone-vex.sbs"
+            "Host": "Australia.havray2025.ir"
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "deicl.redstone-vex.sbs",
+          "serverName": "Australia.havray2025.ir",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "p39",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.99.47",
+            "port": 443,
+            "users": [
+              {
+                "id": "1f40d742-dfaa-4694-a509-3d81918a5673",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "%2F%3FTELEGRAM-TOOTFFARANGI%3Fed%3D2560",
+          "headers": {
+            "Host": "auto-1f40d7.rohawmk.workers.dev"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "auto-1f40d7.rohawmk.workers.dev",
           "allowInsecure": false
         }
       }
