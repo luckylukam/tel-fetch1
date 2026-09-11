@@ -1,6 +1,6 @@
 # Clash subscription — auto-generated
-# Generated: 2026-09-11 19:25 UTC
-# Total proxies: 366
+# Generated: 2026-09-11 22:12 UTC
+# Total proxies: 355
 
 mixed-port: 7890
 allow-lan: false
@@ -579,169 +579,37 @@ proxies:
 
   - name: "mn_conf52"
     type: "vless"
-    server: "84.38.187.169"
+    server: "188.137.234.211"
     port: 443
-    uuid: "82282910-54a0-0032-b2df-86bfbce8ed36"
+    uuid: "6072ca43-2715-49a4-a9a2-a56be73ecfb0"
     udp: true
     tls: true
     reality-opts:
-      public-key: "rJMYW6mHgjs61mHxfm8Gmm_Re23sV_xe5b0IrTpLsiQ"
-      short-id: "94c9dbbf07366d96"
-    servername: "mc.yandex.tr"
-    network: "xhttp"
-    xhttp-opts:
-      path: "%2Fscript"
-      host: "84.38.187.169"
-
-  - name: "mn_conf53"
-    type: "vless"
-    server: "103.86.49.57"
-    port: 80
-    uuid: "3c52e091-6714-4915-949f-2149fe69951b"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "%2Fws"
-      headers:
-        Host: "aIs.SpEeDtEsT.nEt"
-
-  - name: "mn_conf54"
-    type: "vless"
-    server: "tg.riotvpn.eu"
-    port: 443
-    uuid: "a18f7c2d-9e45-4b8a-af3c-1d5e7f9c8b2a"
-    udp: true
-    tls: true
-    reality-opts:
-      public-key: "8h8t5eBWL9oERK7xWHQLFJE5j6sZdgNDQAs3EGnNbho"
-      short-id: "2f49bccf11150ef2"
-    servername: "ads.x5.ru"
-
-  - name: "mn_conf55"
-    type: "vless"
-    server: "165.231.99.52"
-    port: 8443
-    uuid: "6b03ffdd-6646-410b-b575-6c05eafdaf60"
-    udp: true
-    tls: true
-    servername: "vusr-6aa2cf2b.adhil.uk"
-
-  - name: "mn_conf56"
-    type: "trojan"
-    server: "130.250.137.171"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.ignitelimit.com"
-    network: "ws"
-    ws-opts:
-      path: "%2Fassignment"
-
-  - name: "mn_conf57"
-    type: "vless"
-    server: "151.101.56.6"
-    port: 443
-    uuid: "cc4a473a-2e15-4fc6-ec54-47c3aa5cec09"
-    udp: true
-    tls: true
-    servername: "ssl.fastly.com"
-    network: "ws"
-    ws-opts:
-      path: "%2F%3F---TELEGRAM---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI"
-      headers:
-        Host: "c12.com"
-
-  - name: "mn_conf58"
-    type: "trojan"
-    server: "www.speedtest.net"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.ignitelimit.com"
-    network: "ws"
-    ws-opts:
-      path: "%2Fassignment"
-
-  - name: "mn_conf59"
-    type: "vless"
-    server: "66.90.104.42"
-    port: 2083
-    uuid: "cd3bb7d9-7df3-4644-ac05-c260990ac277"
-    udp: true
+      public-key: "998RpVD5c_cwZC3GOK_JCQqICnDfI-5d9anOlT7Wf0w"
+      short-id: "033a8331"
+    servername: "google.com"
     network: "grpc"
     grpc-opts:
-      grpc-service-name: "vless"
+      grpc-service-name: "MediaService"
+
+  - name: "mn_conf59"
+    type: "ss"
+    server: "193.29.139.152"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
 
   - name: "mn_conf60"
     type: "trojan"
-    server: "render.com"
+    server: "humanity.183.88.136"
     port: 443
-    password: "humanity"
+    password: ""
     udp: true
+    sni: "www.calmlunch.com"
     network: "ws"
     ws-opts:
       path: "%2Fassignment"
-
-  - name: "mn_conf61"
-    type: "vless"
-    server: "146.103.98.84"
-    port: 443
-    uuid: "eaae5be2-8a3b-4edb-a968-39366a478ab2"
-    udp: true
-    tls: true
-    reality-opts:
-      public-key: "3e_yPFFI_hf_CmzsfdElJHdI9HlVaULKWanfMYY5qB0"
-      short-id: "65201ddbe0cef5"
-    servername: "nl-74.southnets.work"
-
-  - name: "mn_conf62"
-    type: "vless"
-    server: "172.67.211.218"
-    port: 443
-    uuid: "dac5b2de-7df9-4d38-ba41-f98ceb19bd75"
-    udp: true
-    tls: true
-    servername: "sandWorm.PaGES.DEv"
-    network: "ws"
-    ws-opts:
-      path: "/07n1q4ys4Pwba7qM"
-      headers:
-        Host: "sANDWOrm.pAGEs.DeV"
-
-  - name: "mn_conf63"
-    type: "trojan"
-    server: "193.148.253.210"
-    port: 2053
-    password: "iqroboyc82nkec6h"
-    udp: true
-    sni: "193.148.253.210"
-    network: "ws"
-    ws-opts:
-      path: "%2F"
-
-  - name: "mn_conf64"
-    type: "vless"
-    server: "104.17.215.59"
-    port: 80
-    uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "/"
-      headers:
-        Host: "us3.rtacg.com"
-
-  - name: "mn_conf65"
-    type: "vless"
-    server: "158.69.112.254"
-    port: 443
-    uuid: "661f395d-b153-4199-a04b-693f5fe7f261"
-    udp: true
-    tls: true
-    reality-opts:
-      public-key: "wo417FrFdjy7ZhccQ-VWGZEKcoCHSEfyWcJT1pIVc1Y"
-      short-id: "3d3c1e645f763ee3"
-    servername: "www.speedtest.net"
 
   - name: "mn_conf66"
     type: "vless"
@@ -4327,19 +4195,8 @@ proxy-groups:
       - "mn_conf50"
       - "mn_conf51"
       - "mn_conf52"
-      - "mn_conf53"
-      - "mn_conf54"
-      - "mn_conf55"
-      - "mn_conf56"
-      - "mn_conf57"
-      - "mn_conf58"
       - "mn_conf59"
       - "mn_conf60"
-      - "mn_conf61"
-      - "mn_conf62"
-      - "mn_conf63"
-      - "mn_conf64"
-      - "mn_conf65"
       - "mn_conf66"
       - "mn_conf67"
       - "mn_conf68"
@@ -4698,19 +4555,8 @@ proxy-groups:
       - "mn_conf50"
       - "mn_conf51"
       - "mn_conf52"
-      - "mn_conf53"
-      - "mn_conf54"
-      - "mn_conf55"
-      - "mn_conf56"
-      - "mn_conf57"
-      - "mn_conf58"
       - "mn_conf59"
       - "mn_conf60"
-      - "mn_conf61"
-      - "mn_conf62"
-      - "mn_conf63"
-      - "mn_conf64"
-      - "mn_conf65"
       - "mn_conf66"
       - "mn_conf67"
       - "mn_conf68"
