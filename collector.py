@@ -19,6 +19,7 @@ CHANNELS = [
 # Add any v2ray (base64) or Clash (YAML) subscription URLs here.
 # The script auto-detects the format and merges configs into both outputs.
 EXTERNAL_SUB_URLS: list[str] = [
+    "https://raw.githubusercontent.com/patterniha/Free-Configs/main/configs.txt"
     # "https://example.com/v2ray-sub",       # v2ray base64 subscription
     # "https://example.com/clash-sub.yaml",  # Clash YAML subscription
 ]
