@@ -36,9 +36,7 @@
       "tag": "proxy",
       "outbounds": [
         "auto",
-        "s1",
-        "s2",
-        "s3"
+        "s1"
       ],
       "default": "auto"
     },
@@ -46,9 +44,7 @@
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
-        "s1",
-        "s2",
-        "s3"
+        "s1"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
@@ -57,70 +53,15 @@
     {
       "type": "vless",
       "tag": "s1",
-      "server": "172.67.173.89",
-      "server_port": 443,
-      "uuid": "ffa431ab-a59b-4092-a418-905fcb1e4d5f",
-      "tls": {
-        "enabled": true,
-        "server_name": "s0p42f8wwpdde5tf7m4l6l.ab1x-sn9o4y3n7ondkrd.workers.dev",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
+      "server": "104.16.107.139",
+      "server_port": 8880,
+      "uuid": "37fce9ce-9fec-4f30-89a0-fbb1f6f33b3c",
       "transport": {
         "type": "ws",
-        "path": "/vl/rYScQPG1EEjxXdswdMEU2b3rM4",
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol",
+        "path": "/pyip=ProxyIP.US.CMLiussss.net",
         "headers": {
-          "Host": "s0p42f8wwpdde5tf7m4l6l.ab1x-sn9o4y3n7ondkrd.workers.dev"
+          "Host": "white-night-afee.419-acc.workers.dev"
         }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s2",
-      "server": "172.67.148.34",
-      "server_port": 443,
-      "uuid": "805e7cd4-883c-484e-9dbb-7a36e4f42292",
-      "tls": {
-        "enabled": true,
-        "server_name": "4oBdAPhmDX83yTmG7QnS.z9LMpDR-YKsBwrG4QF6QP4-NMiKOuMU4.worKErs.deV",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/vl/stK698zfX13ibDRd4B1gBg1xCg4f",
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "headers": {
-          "Host": "4obdaphmdx83ytmg7qns.z9lmpdr-yksbwrg4qf6qp4-nmikoumu4.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "trojan",
-      "tag": "s3",
-      "server": "188.114.97.7",
-      "server_port": 443,
-      "password": "humanity",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.ignitelimit.com"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/assignment?ed#Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET"
       }
     },
     {
