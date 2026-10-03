@@ -1,11 +1,14 @@
+import os
 import re
 import ssl
-import base64
 import json
-import ipaddress
+import socket
+import base64
+import shutil
+import asyncio
+import tempfile
 import uuid as _uuid
 import httpx
-import asyncio
 from html import unescape
 from pathlib import Path
 from datetime import datetime, timezone
@@ -42,44 +45,43 @@ OUTPUT_FILE       = Path("output/configs.txt")
 PLAIN_OUTPUT_FILE = Path("output/configs_plain.txt")
 CLASH_OUTPUT_FILE = Path("output/clash.yaml")
 
-# ── Live tests ────────────────────────────────────────────────────────────────
+# ── Testing ───────────────────────────────────────────────────────────────────
+# ONE tested output. Every config goes through:
+#   1. cheap TCP-connect prefilter (drops obviously dead hosts)
+#   2. REAL end-to-end test: the config is loaded into an actual xray / sing-box
+#      process and a request is made THROUGH it. Only configs that really carry
+#      traffic survive. There is NO dedupe by server:port (many different working
+#      configs share one CDN ip:port) — each config is judged on its own.
+#
+# Where you run the script decides what "works" means: run it from a machine
+# inside Iran (or a VPS/network that behaves like it) to get Iran-true results.
 
-TEST_TIMEOUT_SECONDS  = 5      # per-server TCP connect timeout
-TEST_CONCURRENCY      = 60     # parallel TCP tests in flight
-TLS_TIMEOUT_SECONDS   = 5      # TLS handshake timeout (TLS/Reality/Trojan configs)
-TLS_CONCURRENCY       = 40
+TEST_TIMEOUT_SECONDS = 5       # TCP prefilter timeout
+TEST_CONCURRENCY     = 60      # parallel TCP prefilter connects
+TLS_TIMEOUT_SECONDS  = 5       # only used by the no-core fallback
 
-# ── Small verified list ───────────────────────────────────────────────────────
-# Deduped by server:port, TCP-tested (+ TLS handshake where the config uses TLS).
-# Configs that CAN'T be TCP-tested (hysteria2/tuic/ssr/...) are kept at the end,
-# checked as far as possible (DNS resolves) and labelled "untested".
+XRAY_BIN    = os.environ.get("XRAY_BIN")    or shutil.which("xray")
+SINGBOX_BIN = os.environ.get("SINGBOX_BIN") or shutil.which("sing-box")   # only needed for hysteria2
 
-SMALL_TESTED_OUTPUT_FILE     = Path("output/configs_tested_small.txt")
-SMALL_TESTED_B64_OUTPUT_FILE = Path("output/configs_tested_small_base64.txt")
-SMALL_TESTED_MAX             = 50     # cap on fully-tested configs
-SMALL_UNTESTED_MAX           = None   # cap on untestable ones; None = keep them all
+REAL_TEST_URLS    = ("https://www.gstatic.com/generate_204", "https://cp.cloudflare.com/generate_204")
+REAL_TEST_TIMEOUT = 8          # seconds per request through the proxy
+REAL_TEST_BATCH   = 40         # configs loaded into one core process
+CORE_PARALLEL     = 4          # core processes running at once
+CORE_START_WAIT   = 10         # seconds to wait for a core to open its local ports
 
-# ── Tested-only LeastPing balancer config ─────────────────────────────────────
+TESTED_OUTPUT_FILE     = Path("output/configs_tested.txt")
+TESTED_B64_OUTPUT_FILE = Path("output/configs_tested_base64.txt")
+TESTED_MAX             = 100   # cap on the tested list, fastest first; None = keep every working config
+
+# ── Balancer / sing-box profiles (built from the tested list) ─────────────────
 LEASTPING_OUTPUT_FILE      = Path("output/xray_leastping.json")
 MAX_BALANCER_SERVERS       = 40
 OBSERVATORY_PROBE_INTERVAL = "1s"   # raise to e.g. "5s" if battery/data use is noticeable
 
-# ── Iran-reachability re-test via check-host.net ──────────────────────────────
-IRAN_WORKING_OUTPUT_FILE      = Path("output/configs_iran_working.txt")
-IRAN_WORKING_B64_OUTPUT_FILE  = Path("output/configs_iran_working_base64.txt")
-IRAN_CHECK_MAX_CANDIDATES     = 60
-IRAN_CHECK_CONCURRENCY        = 3
-IRAN_CHECK_MAX_NODES          = 4
-IRAN_CHECK_POLL_INTERVAL      = 2
-IRAN_CHECK_POLL_ATTEMPTS      = 6
-IRAN_CHECK_MIN_SUCCESS_RATIO  = 0.5
-
-# ── sing-box output settings ──────────────────────────────────────────────────
-SINGBOX_OUTPUT_FILE       = Path("output/singbox.json")
-SINGBOX_IRAN_OUTPUT_FILE  = Path("output/singbox_iran_working.json")
-MAX_SINGBOX_SERVERS       = 40
-SINGBOX_TEST_URL          = "https://www.gstatic.com/generate_204"
-SINGBOX_TEST_INTERVAL     = "1m"
+SINGBOX_OUTPUT_FILE   = Path("output/singbox.json")
+MAX_SINGBOX_SERVERS   = 40
+SINGBOX_TEST_URL      = "https://www.gstatic.com/generate_204"
+SINGBOX_TEST_INTERVAL = "1m"
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -613,55 +615,84 @@ def config_to_clash_proxy(cfg: str, name: str) -> dict | None:
     except Exception:
         return None
 
+# ── Full dedup (canonical identity) ───────────────────────────────────────────
+# Two configs are duplicates when they would behave identically on the wire.
+# The old key compared raw query strings / raw vmess JSON, so cosmetic
+# differences (param order, missing-vs-default fields, "hy2" vs "hysteria2",
+# host case, empty sni vs sni==host, fp/alpn tweaks, ...) kept dupes alive.
+# Here every config is reduced to its meaningful fields, with defaults filled in.
 
-def _endpoint_of(cfg: str) -> tuple[str, int] | None:
-    """host/port for ANY supported URI, including ones the Clash parser can't represent."""
-    scheme = _scheme_of(cfg)
-    base   = cfg.split("#", 1)[0]
-    try:
-        if scheme == "vmess":
-            raw = _decode_vmess(base)
-            return (str(raw["add"]), int(raw["port"])) if raw else None
-        if scheme == "ss":
-            ss = _parse_ss(base)
-            return (ss["host"], ss["port"]) if ss else None
-        if scheme == "ssr":
-            main  = _b64d(base[len("ssr://"):]).split("/?")[0]
-            parts = main.split(":")                 # host:port:protocol:method:obfs:pass
-            return ":".join(parts[:-5]), int(parts[-5])
-        parts = _uri_parts(base)
-        if parts and parts[1]:
-            return parts[1], parts[2]
-    except Exception:
-        pass
-    return None
+_NOISE_PARAMS = {"fp", "alpn", "allowinsecure", "insecure", "headertype", "encryption", "udp", "ed"}
 
-# ── Full dedup ────────────────────────────────────────────────────────────────
+
+def _norm_host(h: str) -> str:
+    return str(h).strip().strip("[]").rstrip(".").lower()
+
+
+def _canon_stream(net: str, host_hdr: str, path: str, service: str, server: str) -> tuple:
+    net = (net or "tcp").lower()
+    if net == "tcp":
+        return ("tcp",)
+    if net == "grpc":
+        return ("grpc", service or path)
+    return (net, (host_hdr or server).lower(), path or "/")
+
 
 def _dedup_key(cfg: str) -> str:
-    """
-    Canonical identity of a config, ignoring remark/label and cosmetic differences:
-      - vmess: the remark lives INSIDE the base64 JSON ("ps"), so strings differ
-        even for the same server — compare the decoded JSON minus "ps".
-      - ss: normalises the base64-vs-plain userinfo forms.
-      - others: scheme + credentials + host + port + query params (order-insensitive).
-    """
-    base = cfg.split("#", 1)[0].rstrip("?")
+    base = cfg.split("#", 1)[0].strip().rstrip("?")
     try:
         scheme = _scheme_of(base)
+        if scheme == "hy2":
+            scheme = "hysteria2"
+
         if scheme == "vmess":
             raw = _decode_vmess(base)
             if raw:
-                return "vmess|" + json.dumps({k: str(v) for k, v in raw.items() if k != "ps"}, sort_keys=True)
+                def g(k: str, d: str = "") -> str:
+                    v = raw.get(k)
+                    return d if v is None or str(v).strip() == "" else str(v).strip()
+                server = _norm_host(g("add"))
+                tls    = g("tls").lower() == "tls"
+                net    = g("net", "tcp").lower()
+                path   = g("path")
+                sni    = (g("sni") or g("host") or server).lower() if tls else ""
+                htype  = g("type", "none").lower() if net == "tcp" else ""
+                return repr(("vmess", server, _int(g("port")), g("id").lower(), _int(g("aid")),
+                             g("scy", g("security", "auto")).lower(), tls, sni,
+                             _canon_stream(net, g("host"), path, path, server), htype))
+
         elif scheme == "ss":
             ss = _parse_ss(base)
             if ss:
-                return f"ss|{ss['method']}|{ss['password']}|{ss['host'].lower()}|{ss['port']}|{ss['plugin']}"
-        elif scheme != "ssr":
+                return repr(("ss", ss["method"].lower(), ss["password"], _norm_host(ss["host"]),
+                             ss["port"], ss["plugin"]))
+
+        elif scheme == "ssr":
+            return "ssr|" + _b64d(base[len("ssr://"):]).split("/?")[0]
+
+        elif scheme in ("vless", "trojan"):
             parts = _uri_parts(base)
             if parts and parts[1]:
-                user, host, port, params = parts
-                return f"{scheme}|{user}|{host.lower()}|{port}|{sorted(params.items())}"
+                user, host, port, raw = parts
+                p = {k.lower(): v for k, v in raw.items() if v != ""}
+                server = _norm_host(host)
+                sec    = p.get("security", "tls" if scheme == "trojan" else "none").lower()
+                net    = p.get("type", "tcp")
+                sni    = (p.get("sni") or p.get("peer") or p.get("host") or server).lower() \
+                         if sec in ("tls", "reality") else ""
+                htype  = p.get("headertype", "none").lower() if net.lower() == "tcp" else ""
+                return repr((scheme, user.lower() if scheme == "vless" else user, server, port, sec, sni,
+                             _canon_stream(net, p.get("host", ""), p.get("path", ""),
+                                           p.get("servicename", ""), server),
+                             p.get("pbk", ""), p.get("sid", "").lower(), p.get("flow", ""), htype))
+
+        else:   # hysteria2, tuic, ...
+            parts = _uri_parts(base)
+            if parts and parts[1]:
+                user, host, port, raw = parts
+                p = sorted((k.lower(), v) for k, v in raw.items()
+                           if v != "" and k.lower() not in _NOISE_PARAMS)
+                return repr((scheme, user, _norm_host(host), port, p))
     except Exception:
         pass
     return base
@@ -781,285 +812,7 @@ def save(configs: list[str]) -> None:
     clash_count = clash_yaml.count("\n  - name:")
     print(f"✅ Saved Clash subscription → {CLASH_OUTPUT_FILE} ({clash_count} proxies)")
 
-# ── Live testing ──────────────────────────────────────────────────────────────
-
-async def _tcp_ping(host: str, port: int, timeout: float = TEST_TIMEOUT_SECONDS) -> float | None:
-    """Raw TCP connect. Returns latency in ms, or None if dead."""
-    loop  = asyncio.get_running_loop()
-    start = loop.time()
-    try:
-        _, writer = await asyncio.wait_for(asyncio.open_connection(host, port), timeout=timeout)
-        latency_ms = (loop.time() - start) * 1000
-        writer.close()
-        try:
-            await writer.wait_closed()
-        except Exception:
-            pass
-        return latency_ms
-    except Exception:
-        return None
-
-
-async def _tls_handshake(host: str, port: int, sni: str) -> bool:
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode    = ssl.CERT_NONE
-    try:
-        _, writer = await asyncio.wait_for(
-            asyncio.open_connection(host, port, ssl=ctx, server_hostname=sni or None),
-            timeout=TLS_TIMEOUT_SECONDS,
-        )
-        writer.close()
-        try:
-            await writer.wait_closed()
-        except Exception:
-            pass
-        return True
-    except Exception:
-        return False
-
-
-async def _resolves(host: str) -> bool:
-    try:
-        ipaddress.ip_address(host)
-        return True                                   # literal IP, nothing to resolve
-    except ValueError:
-        pass
-    try:
-        await asyncio.wait_for(asyncio.get_running_loop().getaddrinfo(host, None), timeout=5)
-        return True
-    except Exception:
-        return False
-
-
-async def test_configs(configs: list[str]):
-    """
-    Returns (alive, untestable):
-      alive      — [(uri, clash_proxy_dict, latency_ms)] that answered a TCP connect, fastest first
-      untestable — [(uri, host, port)] configs a TCP connect can't judge (hysteria2/tuic are
-                   UDP/QUIC; ssr / unparseable ones) — kept, NOT discarded
-    TCP-testable configs that fail the connect are dead and dropped.
-    """
-    sem = asyncio.Semaphore(TEST_CONCURRENCY)
-    alive: list[tuple[str, dict, float]] = []
-    untestable: list[tuple[str, str, int]] = []
-
-    async def _check(cfg: str) -> None:
-        scheme = _scheme_of(cfg)
-        proxy  = None if (scheme in UDP_SCHEMES or scheme == "ssr") else config_to_clash_proxy(cfg, "test")
-        if proxy and proxy.get("server") and proxy.get("port"):
-            async with sem:
-                latency = await _tcp_ping(str(proxy["server"]), int(proxy["port"]))
-            if latency is not None:
-                alive.append((cfg, proxy, latency))
-            return
-        ep = _endpoint_of(cfg)
-        if ep:
-            untestable.append((cfg, ep[0], ep[1]))
-
-    await asyncio.gather(*(_check(c) for c in configs))
-    alive.sort(key=lambda r: r[2])
-    return alive, untestable
-
-
-async def verify_and_dedupe(alive: list[tuple[str, dict, float]]) -> list[tuple[str, dict, float]]:
-    """
-    Confirm a TLS handshake for every config that uses TLS/Reality/Trojan (a TCP
-    connect alone doesn't prove the TLS layer works; non-TLS configs pass on the
-    TCP result), THEN keep only the fastest survivor per server:port. Verifying
-    before deduping means a failed TLS config can't knock out a working config
-    that shares its endpoint. Identical (host, port, sni) handshakes are cached.
-    """
-    sem = asyncio.Semaphore(TLS_CONCURRENCY)
-    cache: dict[tuple[str, int, str], asyncio.Task] = {}
-
-    async def _handshake(host: str, port: int, sni: str) -> bool:
-        async with sem:
-            return await _tls_handshake(host, port, sni)
-
-    async def _verify(item):
-        proxy = item[1]
-        if not (proxy.get("tls") or proxy.get("type") == "trojan"):
-            return item
-        key = (str(proxy["server"]), int(proxy["port"]), str(proxy.get("servername") or proxy.get("sni") or ""))
-        if key not in cache:
-            cache[key] = asyncio.ensure_future(_handshake(*key))
-        return item if await cache[key] else None
-
-    passed = [r for r in await asyncio.gather(*(_verify(i) for i in alive)) if r]
-    passed.sort(key=lambda r: r[2])                     # fastest first
-
-    seen: set[tuple[str, int]] = set()
-    verified: list[tuple[str, dict, float]] = []
-    for item in passed:
-        key = (str(item[1]["server"]).lower(), int(item[1]["port"]))
-        if key not in seen:
-            seen.add(key)
-            verified.append(item)
-    print(f"   {len(alive)} TCP-alive → {len(passed)} after TLS check → {len(verified)} unique servers")
-    return verified
-
-
-async def check_untestable(items: list[tuple[str, str, int]]) -> list[tuple[str, str, int]]:
-    """Dedupe untestable configs by host:port and drop only those whose hostname doesn't resolve."""
-    seen: set[tuple[str, int, bool]] = set()
-    unique: list[tuple[str, str, int]] = []
-    for cfg, host, port in items:
-        key = (host.lower(), port, _scheme_of(cfg) in UDP_SCHEMES)
-        if key not in seen:
-            seen.add(key)
-            unique.append((cfg, host, port))
-
-    sem = asyncio.Semaphore(TEST_CONCURRENCY)
-
-    async def _r(item):
-        async with sem:
-            return item if await _resolves(item[1]) else None
-
-    kept = [r for r in await asyncio.gather(*(_r(i) for i in unique)) if r]
-    print(f"   {len(items)} untestable → {len(unique)} unique → {len(kept)} with resolvable host (kept, marked untested)")
-    return kept
-
-
-async def run_local_tests(configs: list[str]):
-    alive, untestable = await test_configs(configs)
-    print(f"   ✅ {len(alive)}/{len(configs)} answered TCP; {len(untestable)} can't be TCP-tested (UDP/other)")
-    verified = await verify_and_dedupe(alive)
-    untested = await check_untestable(untestable)
-    return verified, untested
-
-
-def save_small_list(verified: list[tuple[str, dict, float]], untested: list[tuple[str, str, int]]) -> None:
-    lines: list[str] = []
-    for i, (cfg, _p, lat) in enumerate(verified[:SMALL_TESTED_MAX], start=1):
-        lines.append(_with_remark(cfg, f"ok{i}_{int(lat)}ms"))
-    n_ok = len(lines)
-    pool = untested if SMALL_UNTESTED_MAX is None else untested[:SMALL_UNTESTED_MAX]
-    for j, (cfg, _h, _p) in enumerate(pool, start=1):
-        lines.append(_with_remark(cfg, f"untested{j}_{_scheme_of(cfg)}"))
-    if not lines:
-        print("⚠️  Nothing for the small verified list — leaving it untouched.")
-        return
-    raw = "\n".join(lines)
-    SMALL_TESTED_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    SMALL_TESTED_OUTPUT_FILE.write_text(raw)
-    SMALL_TESTED_B64_OUTPUT_FILE.write_text(base64.b64encode(raw.encode()).decode())
-    print(f"✅ Saved small list → {SMALL_TESTED_OUTPUT_FILE}: {n_ok} tested + {len(lines) - n_ok} untested (+ base64 version)")
-
-# ── Iran-reachability re-test via check-host.net ──────────────────────────────
-
-CHECK_HOST_API = "https://check-host.net"
-
-
-async def _fetch_iran_nodes(client: httpx.AsyncClient) -> list[str]:
-    """Live list of check-host.net nodes located in Iran."""
-    try:
-        r = await client.get(f"{CHECK_HOST_API}/nodes/hosts", headers={"Accept": "application/json"}, timeout=15)
-        r.raise_for_status()
-        data  = r.json()
-        nodes = data.get("nodes", {}) if isinstance(data, dict) else {}
-        out = []
-        for name, info in nodes.items():
-            if not isinstance(info, dict):
-                continue
-            location = info.get("location") or []
-            if (str(location[0]).lower() if location else "") == "ir":
-                out.append(name)
-        return out
-    except Exception as e:
-        print(f"  ⚠️  Could not fetch check-host.net node list: {e}")
-        return []
-
-
-async def _check_host_submit(client: httpx.AsyncClient, host: str, port: int, nodes: list[str]) -> str | None:
-    params = [("host", f"{host}:{port}")] + [("node", n) for n in nodes[:IRAN_CHECK_MAX_NODES]]
-    for attempt in range(2):                      # one retry (rate limits / transient errors)
-        try:
-            r = await client.get(f"{CHECK_HOST_API}/check-tcp", params=params,
-                                 headers={"Accept": "application/json"}, timeout=15)
-            r.raise_for_status()
-            data = r.json()
-            if data.get("ok"):
-                return data.get("request_id")
-        except Exception:
-            pass
-        if attempt == 0:
-            await asyncio.sleep(3)
-    return None
-
-
-async def _check_host_poll(client: httpx.AsyncClient, request_id: str) -> dict:
-    last: dict = {}
-    for _ in range(IRAN_CHECK_POLL_ATTEMPTS):
-        await asyncio.sleep(IRAN_CHECK_POLL_INTERVAL)
-        try:
-            r = await client.get(f"{CHECK_HOST_API}/check-result/{request_id}",
-                                 headers={"Accept": "application/json"}, timeout=15)
-            r.raise_for_status()
-            last = r.json() or {}
-            if all(v is not None for v in last.values()):
-                break
-        except Exception:
-            continue
-    return last
-
-
-def _check_host_success_ratio(result: dict) -> float:
-    total = ok = 0
-    for _node, entries in result.items():
-        if not entries:
-            continue                              # pending / never answered: excluded, not a failure
-        for entry in entries:
-            if not isinstance(entry, dict):
-                continue
-            total += 1
-            if "error" not in entry:
-                ok += 1
-    return (ok / total) if total else 0.0
-
-
-async def test_iran_reachability(tested: list[tuple[str, dict, float]]) -> list[tuple[str, dict, float]]:
-    headers = {"User-Agent": "Mozilla/5.0 (compatible; v2ray-collector/1.0)"}
-    async with httpx.AsyncClient(headers=headers, follow_redirects=True) as client:
-        iran_nodes = await _fetch_iran_nodes(client)
-        if not iran_nodes:
-            print("  ⚠️  No check-host.net Iran nodes available right now — skipping Iran-reachability stage.")
-            return []
-        print(f"  🇮🇷 Using {len(iran_nodes)} check-host.net Iran vantage node(s)")
-
-        candidates = tested[:IRAN_CHECK_MAX_CANDIDATES]
-        sem = asyncio.Semaphore(IRAN_CHECK_CONCURRENCY)
-        passed: list[tuple[str, dict, float]] = []
-
-        async def _check(item: tuple[str, dict, float]) -> None:
-            _cfg, proxy, _lat = item
-            host, port = str(proxy.get("server", "")), proxy.get("port")
-            if not host or not port:
-                return
-            async with sem:
-                request_id = await _check_host_submit(client, host, int(port), iran_nodes)
-                if not request_id:
-                    return
-                result = await _check_host_poll(client, request_id)
-            if _check_host_success_ratio(result) >= IRAN_CHECK_MIN_SUCCESS_RATIO:
-                passed.append(item)
-
-        await asyncio.gather(*(_check(c) for c in candidates))
-
-    passed.sort(key=lambda r: r[2])
-    return passed
-
-
-def save_iran_working(iran_ok: list[tuple[str, dict, float]]) -> None:
-    configs = [cfg for cfg, _p, _l in iran_ok]
-    IRAN_WORKING_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    raw = "\n".join(configs)
-    IRAN_WORKING_OUTPUT_FILE.write_text(raw)
-    IRAN_WORKING_B64_OUTPUT_FILE.write_text(base64.b64encode(raw.encode()).decode())
-    print(f"✅ Saved {len(configs)} Iran-confirmed-working configs → {IRAN_WORKING_OUTPUT_FILE}")
-    print(f"✅ Saved base64 subscription → {IRAN_WORKING_B64_OUTPUT_FILE}")
-
-# ── Xray "leastPing" balancer config ──────────────────────────────────────────
+# ── Xray outbound builder (Clash dict -> Xray) ────────────────────────────────
 
 _XRAY_VMESS_SECURITY = {"auto", "aes-128-gcm", "chacha20-poly1305", "none", "zero"}
 
@@ -1147,47 +900,7 @@ def clash_proxy_to_xray_outbound(proxy: dict, tag: str) -> dict | None:
         return None
     return None
 
-
-def build_xray_leastping_config(tested: list[tuple[str, dict, float]]) -> dict:
-    outbounds: list[dict] = []
-    for _cfg, proxy, _lat in tested:
-        if len(outbounds) >= MAX_BALANCER_SERVERS:
-            break
-        ob = clash_proxy_to_xray_outbound(proxy, tag=f"p{len(outbounds) + 1}")
-        if ob:
-            outbounds.append(ob)
-
-    proxy_tags = [ob["tag"] for ob in outbounds]
-    outbounds.append({"tag": "direct", "protocol": "freedom", "settings": {}})
-    outbounds.append({"tag": "block", "protocol": "blackhole", "settings": {}})
-
-    balancer: dict = {"tag": "auto", "selector": ["p"], "strategy": {"type": "leastPing"}}
-    if proxy_tags:
-        balancer["fallbackTag"] = proxy_tags[0]       # defined behaviour before the first probe finishes
-
-    return {
-        "log": {"loglevel": "warning"},
-        "inbounds": [
-            {"tag": "socks-in", "listen": "127.0.0.1", "port": 10808, "protocol": "socks",
-             "settings": {"auth": "noauth", "udp": True},
-             "sniffing": {"enabled": True, "destOverride": ["http", "tls"]}},
-            {"tag": "http-in", "listen": "127.0.0.1", "port": 10809, "protocol": "http"},
-        ],
-        "outbounds": outbounds,
-        "routing": {
-            "domainStrategy": "AsIs",
-            "balancers": [balancer],
-            "rules": [{"type": "field", "network": "tcp,udp", "balancerTag": "auto"}],
-        },
-        "observatory": {
-            "subjectSelector":   ["p"],
-            "probeURL":          "https://www.gstatic.com/generate_204",
-            "probeInterval":     OBSERVATORY_PROBE_INTERVAL,
-            "enableConcurrency": True,
-        },
-    }
-
-# ── sing-box output ───────────────────────────────────────────────────────────
+# ── sing-box outbound builder (URI -> sing-box) ───────────────────────────────
 # Parses the ORIGINAL URIs, so it keeps fields the Clash dict drops (VLESS flow,
 # uTLS fingerprint, alpn, ws early-data, hysteria2 obfs, ...).
 
@@ -1275,20 +988,6 @@ def _sb_transport(net: str, params: dict, server: str) -> tuple[bool, dict | Non
             t["host"] = host
         return True, t
     return False, None
-
-
-def _sb_parse_hostport(hostport: str) -> tuple[str, int] | None:
-    try:
-        if hostport.startswith("["):
-            host, _, port = hostport[1:].partition("]:")
-        else:
-            host, _, port = hostport.rpartition(":")
-        p = int(port)
-        if not host or not 1 <= p <= 65535:
-            return None
-        return host, p
-    except Exception:
-        return None
 
 
 def uri_to_singbox_outbound(cfg: str, tag: str) -> dict | None:
@@ -1393,6 +1092,299 @@ def uri_to_singbox_outbound(cfg: str, tag: str) -> dict | None:
     except Exception:
         return None
 
+# ── Testing: TCP prefilter ────────────────────────────────────────────────────
+
+async def _tcp_ping(host: str, port: int, timeout: float = TEST_TIMEOUT_SECONDS) -> float | None:
+    """Raw TCP connect. Returns latency in ms, or None if dead."""
+    loop  = asyncio.get_running_loop()
+    start = loop.time()
+    try:
+        _, writer = await asyncio.wait_for(asyncio.open_connection(host, port), timeout=timeout)
+        latency_ms = (loop.time() - start) * 1000
+        writer.close()
+        try:
+            await writer.wait_closed()
+        except Exception:
+            pass
+        return latency_ms
+    except Exception:
+        return None
+
+
+async def prefilter(configs: list[str]) -> list[tuple[str, dict, float]]:
+    """
+    Cheap first pass -> [(uri, clash_proxy_dict, tcp_ms)].
+    TCP-based configs must accept a TCP connect. UDP/QUIC ones (hysteria2) skip it.
+    Configs we can't parse into a testable proxy (ssr, tuic, plugin-ss, ...) are dropped.
+    """
+    sem = asyncio.Semaphore(TEST_CONCURRENCY)
+    out: list[tuple[str, dict, float]] = []
+
+    async def _one(cfg: str) -> None:
+        proxy = config_to_clash_proxy(cfg, "t")
+        if not proxy or not proxy.get("server") or not proxy.get("port"):
+            return
+        if _scheme_of(cfg) in UDP_SCHEMES:
+            out.append((cfg, proxy, 0.0))
+            return
+        async with sem:
+            ms = await _tcp_ping(str(proxy["server"]), int(proxy["port"]))
+        if ms is not None:
+            out.append((cfg, proxy, ms))
+
+    await asyncio.gather(*(_one(c) for c in configs))
+    return out
+
+# ── Testing: real end-to-end test through xray / sing-box ─────────────────────
+
+def _free_ports(n: int) -> list[int]:
+    socks, ports = [], []
+    for _ in range(n):
+        s = socket.socket()
+        s.bind(("127.0.0.1", 0))
+        socks.append(s)
+        ports.append(s.getsockname()[1])
+    for s in socks:
+        s.close()
+    return ports
+
+
+def _xray_test_config(items: list, ports: list[int]) -> dict:
+    """One inbound per config; routing sends inbound i -> outbound i."""
+    inbounds, outbounds, rules = [], [], []
+    for i, ((_cfg, _proxy, ob), port) in enumerate(zip(items, ports)):
+        outbounds.append({**ob, "tag": f"o{i}"})
+        inbounds.append({"tag": f"i{i}", "listen": "127.0.0.1", "port": port,
+                         "protocol": "http", "settings": {}})
+        rules.append({"type": "field", "inboundTag": [f"i{i}"], "outboundTag": f"o{i}"})
+    outbounds.append({"tag": "direct", "protocol": "freedom", "settings": {}})
+    return {"log": {"loglevel": "none"}, "inbounds": inbounds, "outbounds": outbounds,
+            "routing": {"domainStrategy": "AsIs", "rules": rules}}
+
+
+def _singbox_test_config(items: list, ports: list[int]) -> dict:
+    inbounds, outbounds, rules = [], [], []
+    for i, ((_cfg, _proxy, ob), port) in enumerate(zip(items, ports)):
+        outbounds.append({**ob, "tag": f"o{i}"})
+        inbounds.append({"type": "http", "tag": f"i{i}", "listen": "127.0.0.1", "listen_port": port})
+        rules.append({"inbound": [f"i{i}"], "outbound": f"o{i}"})
+    outbounds.append({"type": "direct", "tag": "direct"})
+    return {"log": {"level": "error"},
+            "dns": {"servers": [{"type": "local", "tag": "dns-local"}]},
+            "inbounds": inbounds, "outbounds": outbounds,
+            "route": {"rules": rules, "final": "direct", "default_domain_resolver": "dns-local"}}
+
+
+async def _probe(port: int) -> float | None:
+    """Fetch a generate_204 page THROUGH the proxy. Returns latency (ms) or None.
+    Must be exactly HTTP 204: this rejects dead tunnels AND hijacking/captive proxies."""
+    loop = asyncio.get_running_loop()
+    for url in REAL_TEST_URLS:
+        try:
+            async with httpx.AsyncClient(proxy=f"http://127.0.0.1:{port}", timeout=REAL_TEST_TIMEOUT) as c:
+                t0 = loop.time()
+                r = await c.get(url)
+                if r.status_code != 204:
+                    continue
+                first = (loop.time() - t0) * 1000       # includes tunnel/TLS setup
+                try:                                     # warm round trip = fairer latency
+                    t1 = loop.time()
+                    r2 = await c.get(url)
+                    if r2.status_code == 204:
+                        return (loop.time() - t1) * 1000
+                except Exception:
+                    pass
+                return first
+        except Exception:
+            continue
+    return None
+
+
+async def _wait_ready(proc, ports: list[int]) -> bool:
+    deadline = asyncio.get_running_loop().time() + CORE_START_WAIT
+    while asyncio.get_running_loop().time() < deadline:
+        if proc.returncode is not None:
+            return False
+        res = await asyncio.gather(*(_tcp_ping("127.0.0.1", p, timeout=0.5) for p in ports))
+        if all(r is not None for r in res):
+            return True
+        await asyncio.sleep(0.3)
+    return False
+
+
+async def _stop(proc) -> None:
+    if proc.returncode is None:
+        try:
+            proc.terminate()
+        except ProcessLookupError:
+            return
+        try:
+            await asyncio.wait_for(proc.wait(), 3)
+        except asyncio.TimeoutError:
+            proc.kill()
+            await proc.wait()
+
+
+async def _run_batch(kind: str, items: list) -> list[tuple[str, dict, float]]:
+    """
+    Load `items` [(uri, proxy, outbound)] into ONE core process and probe each through its own port.
+    If the core refuses to start (one bad outbound poisons the whole config), split the batch
+    in half and retry, so a single broken config can't take the others down with it.
+    """
+    ports = _free_ports(len(items))
+    build = _xray_test_config if kind == "xray" else _singbox_test_config
+    binary = XRAY_BIN if kind == "xray" else SINGBOX_BIN
+    fd, path = tempfile.mkstemp(suffix=".json", prefix=f"{kind}_test_")
+    with os.fdopen(fd, "w") as f:
+        json.dump(build(items, ports), f)
+    proc = None
+    try:
+        proc = await asyncio.create_subprocess_exec(
+            binary, "run", "-c", path,
+            stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.DEVNULL)
+        if not await _wait_ready(proc, ports):
+            await _stop(proc)
+            if len(items) == 1:
+                return []
+            mid = len(items) // 2
+            return await _run_batch(kind, items[:mid]) + await _run_batch(kind, items[mid:])
+        lats = await asyncio.gather(*(_probe(p) for p in ports))
+    finally:
+        if proc is not None:
+            await _stop(proc)
+        try:
+            os.unlink(path)
+        except OSError:
+            pass
+    return [(cfg, proxy, lat) for (cfg, proxy, _ob), lat in zip(items, lats) if lat is not None]
+
+
+async def _tls_only_fallback(cands: list[tuple[str, dict, float]]) -> list[tuple[str, dict, float]]:
+    """Only used when no xray/sing-box binary is installed. Much weaker than the real test."""
+    sem = asyncio.Semaphore(40)
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+
+    async def _one(item):
+        _cfg, proxy, _ms = item
+        if not (proxy.get("tls") or proxy.get("type") == "trojan"):
+            return item
+        sni = str(proxy.get("servername") or proxy.get("sni") or "") or None
+        try:
+            async with sem:
+                _, w = await asyncio.wait_for(
+                    asyncio.open_connection(str(proxy["server"]), int(proxy["port"]), ssl=ctx, server_hostname=sni),
+                    timeout=TLS_TIMEOUT_SECONDS)
+            w.close()
+            return item
+        except Exception:
+            return None
+
+    res = [r for r in await asyncio.gather(*(_one(c) for c in cands)) if r]
+    return sorted(res, key=lambda r: r[2])
+
+
+async def run_tests(configs: list[str]) -> list[tuple[str, dict, float]]:
+    """-> [(uri, clash_proxy_dict, latency_ms)] of configs that really work, fastest first."""
+    cands = await prefilter(configs)
+    print(f"   {len(cands)}/{len(configs)} passed the TCP prefilter (UDP types skip it)")
+    if not cands:
+        return []
+
+    if not XRAY_BIN and not SINGBOX_BIN:
+        print("   ⚠️  Neither xray nor sing-box found (set XRAY_BIN / install xray-core).")
+        print("      Falling back to TCP+TLS only — this is NOT a real test and will let dead configs through.")
+        return await _tls_only_fallback(cands)
+
+    xray_items, sb_items, skipped = [], [], 0
+    for cfg, proxy, _ms in cands:
+        if proxy.get("type") == "hysteria2":
+            ob = uri_to_singbox_outbound(cfg, "x") if SINGBOX_BIN else None
+            if ob:
+                sb_items.append((cfg, proxy, ob))
+            else:
+                skipped += 1
+        else:
+            ob = clash_proxy_to_xray_outbound(proxy, "x") if XRAY_BIN else None
+            if ob:
+                xray_items.append((cfg, proxy, ob))
+            else:
+                skipped += 1
+    if skipped:
+        print(f"   {skipped} configs skipped (no core available / transport the core can't express)")
+
+    sem = asyncio.Semaphore(CORE_PARALLEL)
+
+    async def _go(kind: str, batch: list):
+        async with sem:
+            return await _run_batch(kind, batch)
+
+    jobs = [_go("xray", xray_items[i:i + REAL_TEST_BATCH]) for i in range(0, len(xray_items), REAL_TEST_BATCH)]
+    jobs += [_go("singbox", sb_items[i:i + REAL_TEST_BATCH]) for i in range(0, len(sb_items), REAL_TEST_BATCH)]
+    print(f"   Real-testing {len(xray_items) + len(sb_items)} configs in {len(jobs)} batch(es)...")
+
+    results = [r for part in await asyncio.gather(*jobs) for r in part]
+    results.sort(key=lambda r: r[2])
+    print(f"   ✅ {len(results)} configs carried real traffic")
+    return results
+
+
+def save_tested(verified: list[tuple[str, dict, float]]) -> None:
+    if not verified:
+        print("⚠️  No config passed the real test — leaving the tested list untouched.")
+        return
+    top = verified if TESTED_MAX is None else verified[:TESTED_MAX]
+    lines = [_with_remark(cfg, f"ok{i}_{_scheme_of(cfg)}_{int(lat)}ms")
+             for i, (cfg, _p, lat) in enumerate(top, start=1)]
+    raw = "\n".join(lines)
+    TESTED_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    TESTED_OUTPUT_FILE.write_text(raw)
+    TESTED_B64_OUTPUT_FILE.write_text(base64.b64encode(raw.encode()).decode())
+    print(f"✅ Saved {len(lines)} tested configs → {TESTED_OUTPUT_FILE} (+ base64 version)")
+
+# ── Xray "leastPing" balancer config ──────────────────────────────────────────
+
+def build_xray_leastping_config(tested: list[tuple[str, dict, float]]) -> dict:
+    outbounds: list[dict] = []
+    for _cfg, proxy, _lat in tested:
+        if len(outbounds) >= MAX_BALANCER_SERVERS:
+            break
+        ob = clash_proxy_to_xray_outbound(proxy, tag=f"p{len(outbounds) + 1}")
+        if ob:
+            outbounds.append(ob)
+
+    proxy_tags = [ob["tag"] for ob in outbounds]
+    outbounds.append({"tag": "direct", "protocol": "freedom", "settings": {}})
+    outbounds.append({"tag": "block", "protocol": "blackhole", "settings": {}})
+
+    balancer: dict = {"tag": "auto", "selector": ["p"], "strategy": {"type": "leastPing"}}
+    if proxy_tags:
+        balancer["fallbackTag"] = proxy_tags[0]       # defined behaviour before the first probe finishes
+
+    return {
+        "log": {"loglevel": "warning"},
+        "inbounds": [
+            {"tag": "socks-in", "listen": "127.0.0.1", "port": 10808, "protocol": "socks",
+             "settings": {"auth": "noauth", "udp": True},
+             "sniffing": {"enabled": True, "destOverride": ["http", "tls"]}},
+            {"tag": "http-in", "listen": "127.0.0.1", "port": 10809, "protocol": "http"},
+        ],
+        "outbounds": outbounds,
+        "routing": {
+            "domainStrategy": "AsIs",
+            "balancers": [balancer],
+            "rules": [{"type": "field", "network": "tcp,udp", "balancerTag": "auto"}],
+        },
+        "observatory": {
+            "subjectSelector":   ["p"],
+            "probeURL":          "https://www.gstatic.com/generate_204",
+            "probeInterval":     OBSERVATORY_PROBE_INTERVAL,
+            "enableConcurrency": True,
+        },
+    }
+
+# ── sing-box profile ──────────────────────────────────────────────────────────
 
 def build_singbox_config(tested: list) -> dict | None:
     outbounds: list[dict] = []
@@ -1458,7 +1450,8 @@ def main() -> None:
     print(f"   Channels      : {len(CHANNELS)}")
     print(f"   External subs : {len(EXTERNAL_SUB_URLS)}")
     print(f"   Protocols     : {', '.join(p.removesuffix('://') for p in PROTOCOLS)}")
-    print(f"   Clash parser  : {'PyYAML' if yaml else 'built-in fallback'}\n")
+    print(f"   Clash parser  : {'PyYAML' if yaml else 'built-in fallback'}")
+    print(f"   Test cores    : xray={XRAY_BIN or 'NOT FOUND'}  sing-box={SINGBOX_BIN or 'not found'}\n")
 
     configs = asyncio.run(collect_all())
 
@@ -1471,12 +1464,9 @@ def main() -> None:
 
     save(configs)
 
-    # Live tests: TCP connect (+ TLS handshake for TLS configs), deduped by server:port.
-    # Configs that can't be TCP-tested are kept separately, not discarded.
-    print(f"\n🧪 Testing {len(configs)} configs (TCP timeout {TEST_TIMEOUT_SECONDS}s)...")
-    verified, untested = asyncio.run(run_local_tests(configs))
-
-    save_small_list(verified, untested)
+    print(f"\n🧪 Testing {len(configs)} configs...")
+    verified = asyncio.run(run_tests(configs))
+    save_tested(verified)
 
     if verified:
         leastping_cfg = build_xray_leastping_config(verified)
@@ -1486,19 +1476,7 @@ def main() -> None:
         print(f"✅ Saved tested LeastPing config → {LEASTPING_OUTPUT_FILE} ({included} servers, auto-switching)")
         save_singbox(verified, SINGBOX_OUTPUT_FILE)
     else:
-        print("⚠️  No configs passed the reachability test — skipping LeastPing / sing-box configs.")
-
-    # Re-test the verified configs from inside Iran (check-host.net).
-    if verified:
-        candidate_count = min(len(verified), IRAN_CHECK_MAX_CANDIDATES)
-        print(f"\n🇮🇷 Re-testing {candidate_count} verified configs for reachability from inside Iran (via check-host.net)...")
-        iran_ok = asyncio.run(test_iran_reachability(verified))
-        print(f"   ✅ {len(iran_ok)}/{candidate_count} configs confirmed reachable from Iran")
-        if iran_ok:
-            save_iran_working(iran_ok)
-            save_singbox(iran_ok, SINGBOX_IRAN_OUTPUT_FILE)
-        else:
-            print(f"⚠️  No configs confirmed reachable from Iran this run — leaving {IRAN_WORKING_OUTPUT_FILE} untouched.")
+        print("⚠️  Nothing passed — skipping LeastPing / sing-box configs.")
 
 
 if __name__ == "__main__":
