@@ -33,8 +33,7 @@ TELEGRAM_PAGES = 3   # t.me/s/<channel> only shows ~20 posts per page; fetch thi
 # Add any v2ray (plain or base64) or Clash (YAML, block or inline style) sub URLs.
 
 EXTERNAL_SUB_URLS: list[str] = [
-    "https://raw.githubusercontent.com/patterniha/Free-Configs/main/configs.txt",
-    "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/patt/all.txt"
+    "https://raw.githubusercontent.com/patterniha/Free-Configs/main/configs.txt"
     # "https://example.com/v2ray-sub",       # v2ray base64 / plain subscription
     # "https://example.com/clash-sub.yaml",  # Clash YAML subscription
 ]
