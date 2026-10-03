@@ -71,7 +71,14 @@ CORE_START_WAIT   = 10         # seconds to wait for a core to open its local po
 
 TESTED_OUTPUT_FILE     = Path("output/configs_tested.txt")
 TESTED_B64_OUTPUT_FILE = Path("output/configs_tested_base64.txt")
-TESTED_MAX             = 100   # cap on the tested list, fastest first; None = keep every working config
+TESTED_MAX             = None  # cap on the tested list, fastest first; None = keep every working config
+
+TCP_PREFILTER   = False   # False = send every parsable config to the real test (a runner-side TCP failure
+                          # can wrongly kill configs that work from Iran); True = drop TCP-dead hosts first
+RETRY_FAILED    = True    # second, gentler pass over configs that failed (fewer parallel, longer timeout)
+RETRY_BATCH     = 20
+RETRY_TIMEOUT   = 15
+KNOWN_GOOD_FILE = Path("known_good.txt")   # optional: configs you verified by hand -> per-config diagnosis
 
 # ── Balancer / sing-box profiles (built from the tested list) ─────────────────
 LEASTPING_OUTPUT_FILE      = Path("output/xray_leastping.json")
@@ -1124,7 +1131,7 @@ async def prefilter(configs: list[str]) -> list[tuple[str, dict, float]]:
         proxy = config_to_clash_proxy(cfg, "t")
         if not proxy or not proxy.get("server") or not proxy.get("port"):
             return
-        if _scheme_of(cfg) in UDP_SCHEMES:
+        if _scheme_of(cfg) in UDP_SCHEMES or not TCP_PREFILTER:
             out.append((cfg, proxy, 0.0))
             return
         async with sem:
@@ -1175,13 +1182,13 @@ def _singbox_test_config(items: list, ports: list[int]) -> dict:
             "route": {"rules": rules, "final": "direct", "default_domain_resolver": "dns-local"}}
 
 
-async def _probe(port: int) -> float | None:
+async def _probe(port: int, timeout: float | None = None) -> float | None:
     """Fetch a generate_204 page THROUGH the proxy. Returns latency (ms) or None.
     Must be exactly HTTP 204: this rejects dead tunnels AND hijacking/captive proxies."""
     loop = asyncio.get_running_loop()
     for url in REAL_TEST_URLS:
         try:
-            async with httpx.AsyncClient(proxy=f"http://127.0.0.1:{port}", timeout=REAL_TEST_TIMEOUT) as c:
+            async with httpx.AsyncClient(proxy=f"http://127.0.0.1:{port}", timeout=timeout or REAL_TEST_TIMEOUT) as c:
                 t0 = loop.time()
                 r = await c.get(url)
                 if r.status_code != 204:
@@ -1225,7 +1232,7 @@ async def _stop(proc) -> None:
             await proc.wait()
 
 
-async def _run_batch(kind: str, items: list) -> list[tuple[str, dict, float]]:
+async def _run_batch(kind: str, items: list, timeout: float | None = None) -> list[tuple[str, dict, float]]:
     """
     Load `items` [(uri, proxy, outbound)] into ONE core process and probe each through its own port.
     If the core refuses to start (one bad outbound poisons the whole config), split the batch
@@ -1247,8 +1254,8 @@ async def _run_batch(kind: str, items: list) -> list[tuple[str, dict, float]]:
             if len(items) == 1:
                 return []
             mid = len(items) // 2
-            return await _run_batch(kind, items[:mid]) + await _run_batch(kind, items[mid:])
-        lats = await asyncio.gather(*(_probe(p) for p in ports))
+            return await _run_batch(kind, items[:mid], timeout) + await _run_batch(kind, items[mid:], timeout)
+        lats = await asyncio.gather(*(_probe(p, timeout) for p in ports))
     finally:
         if proc is not None:
             await _stop(proc)
@@ -1285,10 +1292,15 @@ async def _tls_only_fallback(cands: list[tuple[str, dict, float]]) -> list[tuple
     return sorted(res, key=lambda r: r[2])
 
 
+_TRACE: dict = {"prefilter": set(), "skipped": {}, "ran": set(), "rescued": set()}
+
+
 async def run_tests(configs: list[str]) -> list[tuple[str, dict, float]]:
     """-> [(uri, clash_proxy_dict, latency_ms)] of configs that really work, fastest first."""
     cands = await prefilter(configs)
-    print(f"   {len(cands)}/{len(configs)} passed the TCP prefilter (UDP types skip it)")
+    _TRACE["prefilter"] = {c for c, _p, _m in cands}
+    print(f"   {len(cands)}/{len(configs)} convertible candidates"
+          + (" after TCP prefilter" if TCP_PREFILTER else " (TCP prefilter off)"))
     if not cands:
         return []
 
@@ -1297,37 +1309,100 @@ async def run_tests(configs: list[str]) -> list[tuple[str, dict, float]]:
         print("      Falling back to TCP+TLS only — this is NOT a real test and will let dead configs through.")
         return await _tls_only_fallback(cands)
 
-    xray_items, sb_items, skipped = [], [], 0
+    items = []
     for cfg, proxy, _ms in cands:
         if proxy.get("type") == "hysteria2":
             ob = uri_to_singbox_outbound(cfg, "x") if SINGBOX_BIN else None
-            if ob:
-                sb_items.append((cfg, proxy, ob))
-            else:
-                skipped += 1
+            why = "hysteria2: sing-box missing or option unsupported (e.g. port-hopping)"
         else:
             ob = clash_proxy_to_xray_outbound(proxy, "x") if XRAY_BIN else None
-            if ob:
-                xray_items.append((cfg, proxy, ob))
-            else:
-                skipped += 1
-    if skipped:
-        print(f"   {skipped} configs skipped (no core available / transport the core can't express)")
+            why = "xray outbound could not be built"
+        if ob:
+            items.append((cfg, proxy, ob))
+        else:
+            _TRACE["skipped"][cfg] = why
+    if _TRACE["skipped"]:
+        print(f"   {len(_TRACE['skipped'])} configs skipped (no core available / config the core can't express)")
+    _TRACE["ran"] = {i[0] for i in items}
 
-    sem = asyncio.Semaphore(CORE_PARALLEL)
+    async def run_pass(pool: list, batch: int, timeout: float | None) -> list:
+        sem = asyncio.Semaphore(CORE_PARALLEL)
 
-    async def _go(kind: str, batch: list):
-        async with sem:
-            return await _run_batch(kind, batch)
+        async def _go(kind: str, b: list):
+            async with sem:
+                return await _run_batch(kind, b, timeout)
 
-    jobs = [_go("xray", xray_items[i:i + REAL_TEST_BATCH]) for i in range(0, len(xray_items), REAL_TEST_BATCH)]
-    jobs += [_go("singbox", sb_items[i:i + REAL_TEST_BATCH]) for i in range(0, len(sb_items), REAL_TEST_BATCH)]
-    print(f"   Real-testing {len(xray_items) + len(sb_items)} configs in {len(jobs)} batch(es)...")
+        jobs = []
+        for kind, lst in (("xray",    [i for i in pool if i[1].get("type") != "hysteria2"]),
+                          ("singbox", [i for i in pool if i[1].get("type") == "hysteria2"])):
+            jobs += [_go(kind, lst[k:k + batch]) for k in range(0, len(lst), batch)]
+        return [r for part in await asyncio.gather(*jobs) for r in part]
 
-    results = [r for part in await asyncio.gather(*jobs) for r in part]
+    print(f"   Real-testing {len(items)} configs...")
+    results = await run_pass(items, REAL_TEST_BATCH, None)
+    print(f"   Pass 1: {len(results)} worked")
+
+    if RETRY_FAILED:
+        ok = {r[0] for r in results}
+        failed = [i for i in items if i[0] not in ok]
+        if failed:
+            print(f"   Retrying {len(failed)} failures gently (batch {RETRY_BATCH}, timeout {RETRY_TIMEOUT}s)...")
+            second = await run_pass(failed, RETRY_BATCH, RETRY_TIMEOUT)
+            _TRACE["rescued"] = {r[0] for r in second}
+            print(f"   Retry rescued {len(second)}")
+            results += second
+
     results.sort(key=lambda r: r[2])
     print(f"   ✅ {len(results)} configs carried real traffic")
     return results
+
+
+def _describe(cfg: str) -> str:
+    """Original (pre-conversion) transport info, so lossy conversions are visible."""
+    try:
+        if cfg.startswith("vmess://"):
+            r = _decode_vmess(cfg.split("#")[0]) or {}
+            return f"vmess net={r.get('net','tcp')} hdr={r.get('type','none')} tls={r.get('tls','') or 'none'}"
+        parts = _uri_parts(cfg)
+        if parts:
+            p = parts[3]
+            return (f"{_scheme_of(cfg)} net={p.get('type','tcp')} hdr={p.get('headerType','none')} "
+                    f"sec={p.get('security','none')} flow={p.get('flow','')}")
+    except Exception:
+        pass
+    return _scheme_of(cfg)
+
+
+def report_known_good(all_configs: list[str], verified: list) -> None:
+    """If known_good.txt exists, show at which stage each hand-verified config was lost."""
+    if not KNOWN_GOOD_FILE.exists():
+        return
+    good = _find_uris(KNOWN_GOOD_FILE.read_text(encoding="utf-8", errors="ignore"))
+    if not good:
+        return
+    by_key = {_dedup_key(c): c for c in all_configs}
+    rank   = {_dedup_key(c): i for i, (c, _p, _l) in enumerate(verified)}
+    kept_n = len(verified) if TESTED_MAX is None else TESTED_MAX
+    tally: dict[str, int] = {}
+    print(f"\n🎯 known_good.txt: {len(good)} hand-verified configs")
+    for g in good:
+        k, cfg = _dedup_key(g), None
+        cfg = by_key.get(k)
+        if cfg is None:
+            stage = "NOT COLLECTED this run"
+        elif k in rank:
+            stage = "OK" if rank[k] < kept_n else "CUT by TESTED_MAX"
+            if stage == "OK" and cfg in _TRACE["rescued"]:
+                stage = "OK (rescued by retry)"
+        elif cfg in _TRACE["skipped"]:
+            stage = "SKIPPED: " + _TRACE["skipped"][cfg]
+        elif cfg not in _TRACE["prefilter"]:
+            stage = "FAILED TCP prefilter" if TCP_PREFILTER else "NOT CONVERTIBLE (parser/unsupported type)"
+        else:
+            stage = "FAILED real test from the runner"
+        tally[stage] = tally.get(stage, 0) + 1
+        print(f"   [{stage}] {_describe(g)}")
+    print("   Summary: " + "; ".join(f"{v}× {k}" for k, v in sorted(tally.items(), key=lambda x: -x[1])))
 
 
 def save_tested(verified: list[tuple[str, dict, float]]) -> None:
@@ -1467,6 +1542,7 @@ def main() -> None:
     print(f"\n🧪 Testing {len(configs)} configs...")
     verified = asyncio.run(run_tests(configs))
     save_tested(verified)
+    report_known_good(configs, verified)
 
     if verified:
         leastping_cfg = build_xray_leastping_config(verified)
