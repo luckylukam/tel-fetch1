@@ -8,9 +8,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
 jobs:
   collect:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -19,7 +24,25 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install httpx
+        run: pip install "httpx>=0.26" pyyaml
+
+      - name: Install xray-core
+        run: |
+          curl -fsSL -o xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
+          sudo unzip -o -q xray.zip xray -d /usr/local/bin
+          sudo chmod +x /usr/local/bin/xray
+          xray version
+
+      # Optional: only needed to test hysteria2 configs. Safe to delete this step.
+      - name: Install sing-box
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --repo SagerNet/sing-box --pattern '*linux-amd64.tar.gz' --output sb.tar.gz
+          mkdir sb && tar -xzf sb.tar.gz -C sb --strip-components=1
+          sudo install sb/sing-box /usr/local/bin/sing-box
+          sing-box version
 
       - name: Run collector
         run: python collector.py
