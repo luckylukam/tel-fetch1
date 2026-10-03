@@ -1,7 +1,7 @@
 import os
 import re
-import ssl
 import json
+import random
 import socket
 import base64
 import shutil
@@ -39,26 +39,23 @@ EXTERNAL_SUB_URLS: list[str] = [
 ]
 
 PROTOCOLS = ("vmess://", "vless://", "trojan://", "ss://", "ssr://", "tuic://", "hysteria2://", "hy2://")
-UDP_SCHEMES = ("hysteria2", "hy2", "tuic")   # QUIC/UDP: a TCP connect test is meaningless for these
 
-OUTPUT_FILE       = Path("output/configs.txt")
-PLAIN_OUTPUT_FILE = Path("output/configs_plain.txt")
-CLASH_OUTPUT_FILE = Path("output/clash.yaml")
+# ── Outputs ───────────────────────────────────────────────────────────────────
+# configs.txt          tested configs only (plain text, one URI per line)
+# configs_untested.txt every unique config collected, untested
+# Every config is named  mn_<random emoji>_<number>  in each file.
+
+OUTPUT_FILE                = Path("output/configs.txt")
+UNTESTED_OUTPUT_FILE       = Path("output/configs_untested.txt")
+CLASH_OUTPUT_FILE          = Path("output/clash.yaml")
+CLASH_UNTESTED_OUTPUT_FILE = Path("output/clash_untested.yaml")
 
 # ── Testing ───────────────────────────────────────────────────────────────────
-# ONE tested output. Every config goes through:
-#   1. cheap TCP-connect prefilter (drops obviously dead hosts)
-#   2. REAL end-to-end test: the config is loaded into an actual xray / sing-box
-#      process and a request is made THROUGH it. Only configs that really carry
-#      traffic survive. There is NO dedupe by server:port (many different working
-#      configs share one CDN ip:port) — each config is judged on its own.
-#
-# Where you run the script decides what "works" means: run it from a machine
-# inside Iran (or a VPS/network that behaves like it) to get Iran-true results.
-
-TEST_TIMEOUT_SECONDS = 5       # TCP prefilter timeout
-TEST_CONCURRENCY     = 60      # parallel TCP prefilter connects
-TLS_TIMEOUT_SECONDS  = 5       # only used by the no-core fallback
+# Each config is loaded into a real xray / sing-box process and a request is made
+# THROUGH it. Only configs that really carry traffic are kept. No dedupe by
+# server:port (many different working configs share one CDN ip:port).
+# Where you run the script decides what "works" means: run it from inside Iran
+# to get Iran-true results.
 
 XRAY_BIN    = os.environ.get("XRAY_BIN")    or shutil.which("xray")
 SINGBOX_BIN = os.environ.get("SINGBOX_BIN") or shutil.which("sing-box")   # only needed for hysteria2
@@ -69,16 +66,11 @@ REAL_TEST_BATCH   = 40         # configs loaded into one core process
 CORE_PARALLEL     = 4          # core processes running at once
 CORE_START_WAIT   = 10         # seconds to wait for a core to open its local ports
 
-TESTED_OUTPUT_FILE     = Path("output/configs_tested.txt")
-TESTED_B64_OUTPUT_FILE = Path("output/configs_tested_base64.txt")
-TESTED_MAX             = None  # cap on the tested list, fastest first; None = keep every working config
+RETRY_FAILED  = True           # second, gentler pass over failures (smaller batches, longer timeout)
+RETRY_BATCH   = 20
+RETRY_TIMEOUT = 15
 
-TCP_PREFILTER   = False   # False = send every parsable config to the real test (a runner-side TCP failure
-                          # can wrongly kill configs that work from Iran); True = drop TCP-dead hosts first
-RETRY_FAILED    = True    # second, gentler pass over configs that failed (fewer parallel, longer timeout)
-RETRY_BATCH     = 20
-RETRY_TIMEOUT   = 15
-KNOWN_GOOD_FILE = Path("known_good.txt")   # optional: configs you verified by hand -> per-config diagnosis
+TESTED_MAX = None              # cap on the tested list, fastest first; None = keep every working config
 
 # ── Balancer / sing-box profiles (built from the tested list) ─────────────────
 LEASTPING_OUTPUT_FILE      = Path("output/xray_leastping.json")
@@ -738,8 +730,16 @@ def _with_remark(cfg: str, remark: str) -> str:
     return f"{base}#{remark}"
 
 
-def rename_remarks(configs: list[str]) -> list[str]:
-    return [_with_remark(cfg, f"mn_conf{i}") for i, cfg in enumerate(configs, start=1)]
+_EMOJIS = list("🔥⚡🌙⭐🌈🍀🌸🍉🍋🍒🍓🍑🥝🍄🌻🌊🦊🐼🐧🦄🐬🦋🐢🚀🎯🎲🎧💎🧿🎈🎁🪐☀🍩🍕🥑🐙🦉🐝")
+
+
+def name_configs(configs: list[str]) -> list[str]:
+    """Name every config  mn_<random emoji>_<number>  (number = position in this output)."""
+    return [_with_remark(cfg, f"mn_{random.choice(_EMOJIS)}_{i}") for i, cfg in enumerate(configs, start=1)]
+
+
+def _remark(cfg: str) -> str:
+    return cfg.split("#", 1)[1] if "#" in cfg else ""
 
 # ── Clash YAML output ─────────────────────────────────────────────────────────
 
@@ -802,22 +802,34 @@ def build_clash_yaml(configs: list[str]) -> str:
     lines += ["", "rules:", "  - MATCH,AUTO", ""]
     return "\n".join(lines)
 
-# ── Save main outputs ─────────────────────────────────────────────────────────
+# ── Save outputs ──────────────────────────────────────────────────────────────
 
-def save(configs: list[str]) -> None:
+def save_untested(configs: list[str]) -> None:
+    named = name_configs(configs)
+    UNTESTED_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    UNTESTED_OUTPUT_FILE.write_text("\n".join(named), encoding="utf-8")
+    clash_yaml = build_clash_yaml(named)
+    CLASH_UNTESTED_OUTPUT_FILE.write_text(clash_yaml, encoding="utf-8")
+    print(f"\n✅ Saved {len(named)} unique untested configs → {UNTESTED_OUTPUT_FILE}")
+    print(f"✅ Saved untested Clash subscription → {CLASH_UNTESTED_OUTPUT_FILE} "
+          f"({clash_yaml.split('proxy-groups:')[0].count(chr(10) + '  - name:')} proxies)")
+
+
+def save_tested(verified: list[tuple[str, dict, float]]) -> list[tuple[str, dict, float]]:
+    """Write the tested outputs; returns the verified tuples with their final mn_ names applied."""
+    if not verified:
+        print("⚠️  No config passed the real test — leaving the tested outputs untouched.")
+        return []
+    top   = verified if TESTED_MAX is None else verified[:TESTED_MAX]
+    named = name_configs([cfg for cfg, _p, _l in top])
+    out   = [(n, p, lat) for n, (_c, p, lat) in zip(named, top)]
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    configs = rename_remarks(configs)
-    raw     = "\n".join(configs)
-    encoded = base64.b64encode(raw.encode()).decode()
-    OUTPUT_FILE.write_text(encoded)
-    PLAIN_OUTPUT_FILE.write_text(raw)
-    print(f"\n✅ Saved {len(configs)} unique configs → {OUTPUT_FILE}")
-    print(f"   Base64 length: {len(encoded)} chars")
-
-    clash_yaml  = build_clash_yaml(configs)
+    OUTPUT_FILE.write_text("\n".join(named), encoding="utf-8")
+    clash_yaml = build_clash_yaml(named)
     CLASH_OUTPUT_FILE.write_text(clash_yaml, encoding="utf-8")
-    clash_count = clash_yaml.count("\n  - name:")
-    print(f"✅ Saved Clash subscription → {CLASH_OUTPUT_FILE} ({clash_count} proxies)")
+    print(f"✅ Saved {len(named)} tested configs → {OUTPUT_FILE}")
+    print(f"✅ Saved tested Clash subscription → {CLASH_OUTPUT_FILE}")
+    return out
 
 # ── Xray outbound builder (Clash dict -> Xray) ────────────────────────────────
 
@@ -1099,9 +1111,9 @@ def uri_to_singbox_outbound(cfg: str, tag: str) -> dict | None:
     except Exception:
         return None
 
-# ── Testing: TCP prefilter ────────────────────────────────────────────────────
+# ── Testing: helpers ──────────────────────────────────────────────────────────
 
-async def _tcp_ping(host: str, port: int, timeout: float = TEST_TIMEOUT_SECONDS) -> float | None:
+async def _tcp_ping(host: str, port: int, timeout: float = 5) -> float | None:
     """Raw TCP connect. Returns latency in ms, or None if dead."""
     loop  = asyncio.get_running_loop()
     start = loop.time()
@@ -1118,28 +1130,13 @@ async def _tcp_ping(host: str, port: int, timeout: float = TEST_TIMEOUT_SECONDS)
         return None
 
 
-async def prefilter(configs: list[str]) -> list[tuple[str, dict, float]]:
-    """
-    Cheap first pass -> [(uri, clash_proxy_dict, tcp_ms)].
-    TCP-based configs must accept a TCP connect. UDP/QUIC ones (hysteria2) skip it.
-    Configs we can't parse into a testable proxy (ssr, tuic, plugin-ss, ...) are dropped.
-    """
-    sem = asyncio.Semaphore(TEST_CONCURRENCY)
-    out: list[tuple[str, dict, float]] = []
-
-    async def _one(cfg: str) -> None:
+def convertible(configs: list[str]) -> list[tuple[str, dict]]:
+    """[(uri, clash_proxy_dict)] for every config we can turn into a testable proxy."""
+    out = []
+    for cfg in configs:
         proxy = config_to_clash_proxy(cfg, "t")
-        if not proxy or not proxy.get("server") or not proxy.get("port"):
-            return
-        if _scheme_of(cfg) in UDP_SCHEMES or not TCP_PREFILTER:
-            out.append((cfg, proxy, 0.0))
-            return
-        async with sem:
-            ms = await _tcp_ping(str(proxy["server"]), int(proxy["port"]))
-        if ms is not None:
-            out.append((cfg, proxy, ms))
-
-    await asyncio.gather(*(_one(c) for c in configs))
+        if proxy and proxy.get("server") and proxy.get("port"):
+            out.append((cfg, proxy))
     return out
 
 # ── Testing: real end-to-end test through xray / sing-box ─────────────────────
@@ -1266,64 +1263,21 @@ async def _run_batch(kind: str, items: list, timeout: float | None = None) -> li
     return [(cfg, proxy, lat) for (cfg, proxy, _ob), lat in zip(items, lats) if lat is not None]
 
 
-async def _tls_only_fallback(cands: list[tuple[str, dict, float]]) -> list[tuple[str, dict, float]]:
-    """Only used when no xray/sing-box binary is installed. Much weaker than the real test."""
-    sem = asyncio.Semaphore(40)
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
-
-    async def _one(item):
-        _cfg, proxy, _ms = item
-        if not (proxy.get("tls") or proxy.get("type") == "trojan"):
-            return item
-        sni = str(proxy.get("servername") or proxy.get("sni") or "") or None
-        try:
-            async with sem:
-                _, w = await asyncio.wait_for(
-                    asyncio.open_connection(str(proxy["server"]), int(proxy["port"]), ssl=ctx, server_hostname=sni),
-                    timeout=TLS_TIMEOUT_SECONDS)
-            w.close()
-            return item
-        except Exception:
-            return None
-
-    res = [r for r in await asyncio.gather(*(_one(c) for c in cands)) if r]
-    return sorted(res, key=lambda r: r[2])
-
-
-_TRACE: dict = {"prefilter": set(), "skipped": {}, "ran": set(), "rescued": set()}
-
-
 async def run_tests(configs: list[str]) -> list[tuple[str, dict, float]]:
     """-> [(uri, clash_proxy_dict, latency_ms)] of configs that really work, fastest first."""
-    cands = await prefilter(configs)
-    _TRACE["prefilter"] = {c for c, _p, _m in cands}
-    print(f"   {len(cands)}/{len(configs)} convertible candidates"
-          + (" after TCP prefilter" if TCP_PREFILTER else " (TCP prefilter off)"))
-    if not cands:
+    if not XRAY_BIN:
+        print("⚠️  xray not found (install xray-core or set XRAY_BIN) — skipping tests.")
         return []
 
-    if not XRAY_BIN and not SINGBOX_BIN:
-        print("   ⚠️  Neither xray nor sing-box found (set XRAY_BIN / install xray-core).")
-        print("      Falling back to TCP+TLS only — this is NOT a real test and will let dead configs through.")
-        return await _tls_only_fallback(cands)
-
     items = []
-    for cfg, proxy, _ms in cands:
+    for cfg, proxy in convertible(configs):
         if proxy.get("type") == "hysteria2":
             ob = uri_to_singbox_outbound(cfg, "x") if SINGBOX_BIN else None
-            why = "hysteria2: sing-box missing or option unsupported (e.g. port-hopping)"
         else:
-            ob = clash_proxy_to_xray_outbound(proxy, "x") if XRAY_BIN else None
-            why = "xray outbound could not be built"
+            ob = clash_proxy_to_xray_outbound(proxy, "x")
         if ob:
             items.append((cfg, proxy, ob))
-        else:
-            _TRACE["skipped"][cfg] = why
-    if _TRACE["skipped"]:
-        print(f"   {len(_TRACE['skipped'])} configs skipped (no core available / config the core can't express)")
-    _TRACE["ran"] = {i[0] for i in items}
+    print(f"   {len(items)}/{len(configs)} configs testable")
 
     async def run_pass(pool: list, batch: int, timeout: float | None) -> list:
         sem = asyncio.Semaphore(CORE_PARALLEL)
@@ -1338,94 +1292,25 @@ async def run_tests(configs: list[str]) -> list[tuple[str, dict, float]]:
             jobs += [_go(kind, lst[k:k + batch]) for k in range(0, len(lst), batch)]
         return [r for part in await asyncio.gather(*jobs) for r in part]
 
-    print(f"   Real-testing {len(items)} configs...")
     results = await run_pass(items, REAL_TEST_BATCH, None)
-    print(f"   Pass 1: {len(results)} worked")
-
     if RETRY_FAILED:
         ok = {r[0] for r in results}
         failed = [i for i in items if i[0] not in ok]
         if failed:
-            print(f"   Retrying {len(failed)} failures gently (batch {RETRY_BATCH}, timeout {RETRY_TIMEOUT}s)...")
-            second = await run_pass(failed, RETRY_BATCH, RETRY_TIMEOUT)
-            _TRACE["rescued"] = {r[0] for r in second}
-            print(f"   Retry rescued {len(second)}")
-            results += second
+            results += await run_pass(failed, RETRY_BATCH, RETRY_TIMEOUT)
 
     results.sort(key=lambda r: r[2])
     print(f"   ✅ {len(results)} configs carried real traffic")
     return results
 
-
-def _describe(cfg: str) -> str:
-    """Original (pre-conversion) transport info, so lossy conversions are visible."""
-    try:
-        if cfg.startswith("vmess://"):
-            r = _decode_vmess(cfg.split("#")[0]) or {}
-            return f"vmess net={r.get('net','tcp')} hdr={r.get('type','none')} tls={r.get('tls','') or 'none'}"
-        parts = _uri_parts(cfg)
-        if parts:
-            p = parts[3]
-            return (f"{_scheme_of(cfg)} net={p.get('type','tcp')} hdr={p.get('headerType','none')} "
-                    f"sec={p.get('security','none')} flow={p.get('flow','')}")
-    except Exception:
-        pass
-    return _scheme_of(cfg)
-
-
-def report_known_good(all_configs: list[str], verified: list) -> None:
-    """If known_good.txt exists, show at which stage each hand-verified config was lost."""
-    if not KNOWN_GOOD_FILE.exists():
-        return
-    good = _find_uris(KNOWN_GOOD_FILE.read_text(encoding="utf-8", errors="ignore"))
-    if not good:
-        return
-    by_key = {_dedup_key(c): c for c in all_configs}
-    rank   = {_dedup_key(c): i for i, (c, _p, _l) in enumerate(verified)}
-    kept_n = len(verified) if TESTED_MAX is None else TESTED_MAX
-    tally: dict[str, int] = {}
-    print(f"\n🎯 known_good.txt: {len(good)} hand-verified configs")
-    for g in good:
-        k, cfg = _dedup_key(g), None
-        cfg = by_key.get(k)
-        if cfg is None:
-            stage = "NOT COLLECTED this run"
-        elif k in rank:
-            stage = "OK" if rank[k] < kept_n else "CUT by TESTED_MAX"
-            if stage == "OK" and cfg in _TRACE["rescued"]:
-                stage = "OK (rescued by retry)"
-        elif cfg in _TRACE["skipped"]:
-            stage = "SKIPPED: " + _TRACE["skipped"][cfg]
-        elif cfg not in _TRACE["prefilter"]:
-            stage = "FAILED TCP prefilter" if TCP_PREFILTER else "NOT CONVERTIBLE (parser/unsupported type)"
-        else:
-            stage = "FAILED real test from the runner"
-        tally[stage] = tally.get(stage, 0) + 1
-        print(f"   [{stage}] {_describe(g)}")
-    print("   Summary: " + "; ".join(f"{v}× {k}" for k, v in sorted(tally.items(), key=lambda x: -x[1])))
-
-
-def save_tested(verified: list[tuple[str, dict, float]]) -> None:
-    if not verified:
-        print("⚠️  No config passed the real test — leaving the tested list untouched.")
-        return
-    top = verified if TESTED_MAX is None else verified[:TESTED_MAX]
-    lines = [_with_remark(cfg, f"ok{i}_{_scheme_of(cfg)}_{int(lat)}ms")
-             for i, (cfg, _p, lat) in enumerate(top, start=1)]
-    raw = "\n".join(lines)
-    TESTED_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    TESTED_OUTPUT_FILE.write_text(raw)
-    TESTED_B64_OUTPUT_FILE.write_text(base64.b64encode(raw.encode()).decode())
-    print(f"✅ Saved {len(lines)} tested configs → {TESTED_OUTPUT_FILE} (+ base64 version)")
-
 # ── Xray "leastPing" balancer config ──────────────────────────────────────────
 
 def build_xray_leastping_config(tested: list[tuple[str, dict, float]]) -> dict:
     outbounds: list[dict] = []
-    for _cfg, proxy, _lat in tested:
+    for cfg, proxy, _lat in tested:
         if len(outbounds) >= MAX_BALANCER_SERVERS:
             break
-        ob = clash_proxy_to_xray_outbound(proxy, tag=f"p{len(outbounds) + 1}")
+        ob = clash_proxy_to_xray_outbound(proxy, tag=_remark(cfg) or f"mn_{len(outbounds) + 1}")
         if ob:
             outbounds.append(ob)
 
@@ -1433,7 +1318,7 @@ def build_xray_leastping_config(tested: list[tuple[str, dict, float]]) -> dict:
     outbounds.append({"tag": "direct", "protocol": "freedom", "settings": {}})
     outbounds.append({"tag": "block", "protocol": "blackhole", "settings": {}})
 
-    balancer: dict = {"tag": "auto", "selector": ["p"], "strategy": {"type": "leastPing"}}
+    balancer: dict = {"tag": "auto", "selector": ["mn_"], "strategy": {"type": "leastPing"}}
     if proxy_tags:
         balancer["fallbackTag"] = proxy_tags[0]       # defined behaviour before the first probe finishes
 
@@ -1452,7 +1337,7 @@ def build_xray_leastping_config(tested: list[tuple[str, dict, float]]) -> dict:
             "rules": [{"type": "field", "network": "tcp,udp", "balancerTag": "auto"}],
         },
         "observatory": {
-            "subjectSelector":   ["p"],
+            "subjectSelector":   ["mn_"],
             "probeURL":          "https://www.gstatic.com/generate_204",
             "probeInterval":     OBSERVATORY_PROBE_INTERVAL,
             "enableConcurrency": True,
@@ -1466,7 +1351,7 @@ def build_singbox_config(tested: list) -> dict | None:
     for cfg, _proxy, _lat in tested:
         if len(outbounds) >= MAX_SINGBOX_SERVERS:
             break
-        ob = uri_to_singbox_outbound(cfg, tag=f"s{len(outbounds) + 1}")
+        ob = uri_to_singbox_outbound(cfg, tag=_remark(cfg) or f"mn_{len(outbounds) + 1}")
         if ob:
             outbounds.append(ob)
     if not outbounds:
@@ -1514,7 +1399,7 @@ def save_singbox(tested: list, path: Path = SINGBOX_OUTPUT_FILE) -> None:
         print(f"⚠️ sing-box: no convertible configs, {path} not written")
         return
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(cfg, indent=2, ensure_ascii=False))
+    path.write_text(json.dumps(cfg, indent=2, ensure_ascii=False), encoding="utf-8")
     n = len(cfg["outbounds"]) - 3          # minus selector, urltest, direct
     print(f"✅ Saved sing-box profile with {n} servers → {path}")
 
@@ -1524,35 +1409,24 @@ def main() -> None:
     print(f"🔍 Collecting V2Ray configs [{utc_now()}]")
     print(f"   Channels      : {len(CHANNELS)}")
     print(f"   External subs : {len(EXTERNAL_SUB_URLS)}")
-    print(f"   Protocols     : {', '.join(p.removesuffix('://') for p in PROTOCOLS)}")
-    print(f"   Clash parser  : {'PyYAML' if yaml else 'built-in fallback'}")
     print(f"   Test cores    : xray={XRAY_BIN or 'NOT FOUND'}  sing-box={SINGBOX_BIN or 'not found'}\n")
 
     configs = asyncio.run(collect_all())
-
     if not configs:
-        print("⚠️  No configs found.")
-        OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-        OUTPUT_FILE.write_text("")
-        CLASH_OUTPUT_FILE.write_text("proxies: []\n")
+        print("⚠️  No configs found — leaving existing outputs untouched.")
         return
 
-    save(configs)
+    save_untested(configs)
 
     print(f"\n🧪 Testing {len(configs)} configs...")
-    verified = asyncio.run(run_tests(configs))
-    save_tested(verified)
-    report_known_good(configs, verified)
+    tested = save_tested(asyncio.run(run_tests(configs)))
 
-    if verified:
-        leastping_cfg = build_xray_leastping_config(verified)
-        LEASTPING_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-        LEASTPING_OUTPUT_FILE.write_text(json.dumps(leastping_cfg, indent=2))
-        included = len([o for o in leastping_cfg["outbounds"] if o["tag"].startswith("p")])
-        print(f"✅ Saved tested LeastPing config → {LEASTPING_OUTPUT_FILE} ({included} servers, auto-switching)")
-        save_singbox(verified, SINGBOX_OUTPUT_FILE)
-    else:
-        print("⚠️  Nothing passed — skipping LeastPing / sing-box configs.")
+    if tested:
+        leastping_cfg = build_xray_leastping_config(tested)
+        LEASTPING_OUTPUT_FILE.write_text(json.dumps(leastping_cfg, indent=2, ensure_ascii=False), encoding="utf-8")
+        included = sum(1 for o in leastping_cfg["outbounds"] if o["tag"].startswith("mn_"))
+        print(f"✅ Saved LeastPing config → {LEASTPING_OUTPUT_FILE} ({included} servers, auto-switching)")
+        save_singbox(tested, SINGBOX_OUTPUT_FILE)
 
 
 if __name__ == "__main__":
