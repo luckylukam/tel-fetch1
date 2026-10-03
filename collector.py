@@ -1,202 +1,168 @@
 import re
+import ssl
 import base64
 import json
+import ipaddress
 import uuid as _uuid
 import httpx
 import asyncio
 from html import unescape
 from pathlib import Path
-from datetime import datetime
-from urllib.parse import urlsplit, parse_qs, unquote
+from datetime import datetime, timezone
+from urllib.parse import urlsplit, parse_qs, unquote, quote
+
+try:                      # optional: pip install pyyaml  (script works without it)
+    import yaml
+except ImportError:
+    yaml = None
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
 CHANNELS = [
-    "kurdconfig", "Configir98", "YamYamProxy", "FreeConfigForYou", "begoo_vpn_gp","iranconnecting",
-    "Zed_NetMeli", "on_proxy1", "Spotify_Porteghali", "oxnet_ir", "proxy_station", "bygfw" , "ezaccess1",
+    "kurdconfig", "Configir98", "YamYamProxy", "FreeConfigForYou", "begoo_vpn_gp", "iranconnecting",
+    "Zed_NetMeli", "on_proxy1", "Spotify_Porteghali", "oxnet_ir", "proxy_station", "bygfw", "ezaccess1",
     "appxa", "v2rayyngvpn", "sparrk_vpn", "amir_webstudio"
 ]
 
+TELEGRAM_PAGES = 3   # t.me/s/<channel> only shows ~20 posts per page; fetch this many pages back
+
 # ── External subscription URLs ────────────────────────────────────────────────
-# Add any v2ray (base64) or Clash (YAML) subscription URLs here.
-# The script auto-detects the format and merges configs into both outputs.
+# Add any v2ray (plain or base64) or Clash (YAML, block or inline style) sub URLs.
 
 EXTERNAL_SUB_URLS: list[str] = [
-    "https://raw.githubusercontent.com/patterniha/Free-Configs/main/configs.txt"
-    # "https://example.com/v2ray-sub",       # v2ray base64 subscription
+    "https://raw.githubusercontent.com/patterniha/Free-Configs/main/configs.txt",
+    # "https://example.com/v2ray-sub",       # v2ray base64 / plain subscription
     # "https://example.com/clash-sub.yaml",  # Clash YAML subscription
 ]
 
 PROTOCOLS = ("vmess://", "vless://", "trojan://", "ss://", "ssr://", "tuic://", "hysteria2://", "hy2://")
+UDP_SCHEMES = ("hysteria2", "hy2", "tuic")   # QUIC/UDP: a TCP connect test is meaningless for these
 
 OUTPUT_FILE       = Path("output/configs.txt")
+PLAIN_OUTPUT_FILE = Path("output/configs_plain.txt")
 CLASH_OUTPUT_FILE = Path("output/clash.yaml")
 
-# ── Tested-only LeastPing balancer config (NEW, additive) ─────────────────────
-# Separate output: a single importable Xray JSON config containing ONLY configs
-# that passed a live TCP reachability test, wired into a "leastPing" balancer +
-# observatory so the client (v2rayNG "custom configuration") auto-switches to
-# whichever tested server currently responds fastest — no manual re-picking.
+# ── Live tests ────────────────────────────────────────────────────────────────
 
-LEASTPING_OUTPUT_FILE   = Path("output/xray_leastping.json")
-TEST_TIMEOUT_SECONDS    = 5      # per-server TCP connect timeout
-TEST_CONCURRENCY        = 60     # parallel TCP tests in flight
-MAX_BALANCER_SERVERS    = 40     # cap on how many tested servers go into the balancer
-OBSERVATORY_PROBE_INTERVAL = "1s"  # lowest practical value — see note in build_xray_leastping_config()
+TEST_TIMEOUT_SECONDS  = 5      # per-server TCP connect timeout
+TEST_CONCURRENCY      = 60     # parallel TCP tests in flight
+TLS_TIMEOUT_SECONDS   = 5      # TLS handshake timeout (TLS/Reality/Trojan configs)
+TLS_CONCURRENCY       = 40
 
-# ── Iran-reachability re-test (NEW, additive) ──────────────────────────────────
-# Second, separate output: takes only the configs that already passed the plain
-# TCP reachability test above, then re-checks each one from vantage points
-# actually inside Iran, using check-host.net's public network-check API
-# (https://check-host.net/about/api). check-host.net runs monitoring nodes
-# hosted inside Iranian networks (e.g. "ir1.node.check-host.net", city Tehran/
-# Tabriz/etc.) that open a real TCP connection to the server FROM Iran and
-# report back success/failure. That's a genuine "is this reachable from inside
-# Iran right now" signal — unlike a DNS lookup (which only tells you whether a
-# *domain* resolves, says nothing about whether the IP itself is filtered, and
-# is meaningless for the majority of these configs that use a bare IP as the
-# server address with no hostname involved at all). Only configs confirmed
-# reachable from Iran are written to IRAN_WORKING_OUTPUT_FILE.
+# ── Small verified list ───────────────────────────────────────────────────────
+# Deduped by server:port, TCP-tested (+ TLS handshake where the config uses TLS).
+# Configs that CAN'T be TCP-tested (hysteria2/tuic/ssr/...) are kept at the end,
+# checked as far as possible (DNS resolves) and labelled "untested".
 
+SMALL_TESTED_OUTPUT_FILE     = Path("output/configs_tested_small.txt")
+SMALL_TESTED_B64_OUTPUT_FILE = Path("output/configs_tested_small_base64.txt")
+SMALL_TESTED_MAX             = 50     # cap on fully-tested configs
+SMALL_UNTESTED_MAX           = None   # cap on untestable ones; None = keep them all
+
+# ── Tested-only LeastPing balancer config ─────────────────────────────────────
+LEASTPING_OUTPUT_FILE      = Path("output/xray_leastping.json")
+MAX_BALANCER_SERVERS       = 40
+OBSERVATORY_PROBE_INTERVAL = "1s"   # raise to e.g. "5s" if battery/data use is noticeable
+
+# ── Iran-reachability re-test via check-host.net ──────────────────────────────
 IRAN_WORKING_OUTPUT_FILE      = Path("output/configs_iran_working.txt")
 IRAN_WORKING_B64_OUTPUT_FILE  = Path("output/configs_iran_working_base64.txt")
-IRAN_CHECK_MAX_CANDIDATES     = 60    # only re-test the top N fastest TCP-alive configs
-IRAN_CHECK_CONCURRENCY        = 3     # parallel check-host.net requests in flight (be polite to a free public API)
-IRAN_CHECK_MAX_NODES          = 4     # how many Iranian check-host.net nodes to query per config
-IRAN_CHECK_POLL_INTERVAL      = 2     # seconds between result polls
-IRAN_CHECK_POLL_ATTEMPTS      = 6     # ~12s max wait per config before giving up
-IRAN_CHECK_MIN_SUCCESS_RATIO  = 0.5   # require a majority of responding Iran nodes to succeed
+IRAN_CHECK_MAX_CANDIDATES     = 60
+IRAN_CHECK_CONCURRENCY        = 3
+IRAN_CHECK_MAX_NODES          = 4
+IRAN_CHECK_POLL_INTERVAL      = 2
+IRAN_CHECK_POLL_ATTEMPTS      = 6
+IRAN_CHECK_MIN_SUCCESS_RATIO  = 0.5
 
-# ── sing-box output settings (NEW, additive) ──────────────────────────────────
-# Outputs a sing-box JSON profile usable as a "Remote profile" in the sing-box
-# Android app (SFA, available on F-Droid). See the sing-box section below.
-
+# ── sing-box output settings ──────────────────────────────────────────────────
 SINGBOX_OUTPUT_FILE       = Path("output/singbox.json")
 SINGBOX_IRAN_OUTPUT_FILE  = Path("output/singbox_iran_working.json")
-MAX_SINGBOX_SERVERS       = 40    # cap on servers inside the urltest group
+MAX_SINGBOX_SERVERS       = 40
 SINGBOX_TEST_URL          = "https://www.gstatic.com/generate_204"
 SINGBOX_TEST_INTERVAL     = "1m"
 
 # ─────────────────────────────────────────────────────────────────────────────
 
 CONFIG_PATTERN = re.compile(
-    r'(?:vmess|vless|trojan|ss|ssr|tuic|hysteria2|hy2)://[^\s<>"\'`]+'
+    r'(?<![A-Za-z0-9])(?:vmess|vless|trojan|ssr|ss|tuic|hysteria2|hy2)://[^\s<>"\'`]+'
 )
 
-# ── Telegram fetch ────────────────────────────────────────────────────────────
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
+
+# ── Small shared helpers ──────────────────────────────────────────────────────
+
+def _b64d(s: str) -> str:
+    """Decode standard OR urlsafe base64, with or without padding."""
+    s = s.strip().replace("-", "+").replace("_", "/").rstrip("=")
+    return base64.b64decode(s + "=" * (-len(s) % 4)).decode("utf-8", errors="ignore")
+
+
+def _int(v, default: int = 0) -> int:
+    try:
+        return int(v)
+    except (TypeError, ValueError):
+        return default
+
+
+def _scheme_of(cfg: str) -> str:
+    return cfg.split("://", 1)[0].lower()
+
+
+def _find_uris(text: str) -> list[str]:
+    """All proxy URIs found anywhere in text, order-preserving, exact-dupes removed."""
+    seen: set[str] = set()
+    out: list[str] = []
+    for m in CONFIG_PATTERN.findall(text):
+        c = m.strip().rstrip(".,;)")
+        if c not in seen and any(c.startswith(p) for p in PROTOCOLS):
+            seen.add(c)
+            out.append(c)
+    return out
+
+# ── Telegram fetch (with pagination) ──────────────────────────────────────────
 
 async def fetch_channel(client: httpx.AsyncClient, channel: str) -> list[str]:
     configs: list[str] = []
-    url = f"https://t.me/s/{channel}"
+    before: int | None = None
     try:
-        r = await client.get(url, timeout=20)
-        r.raise_for_status()
-        text = unescape(r.text)
-        for m in CONFIG_PATTERN.findall(text):
-            c = m.strip().rstrip(".,;)")
-            if any(c.startswith(p) for p in PROTOCOLS):
-                configs.append(c)
+        for _ in range(TELEGRAM_PAGES):
+            url = f"https://t.me/s/{channel}" + (f"?before={before}" if before else "")
+            r = await client.get(url, timeout=20)
+            r.raise_for_status()
+            configs.extend(_find_uris(unescape(r.text)))
+            ids = [int(x) for x in re.findall(r'data-post="[^"/]+/(\d+)"', r.text)]
+            if not ids or min(ids) <= 1 or min(ids) == before:
+                break
+            before = min(ids)
         print(f"  ✔ {channel}: {len(configs)} configs found")
     except Exception as e:
-        print(f"  ✘ {channel}: {e}")
+        print(f"  ✘ {channel}: {e}" + (f" (kept {len(configs)} from earlier pages)" if configs else ""))
     return configs
 
 # ── External subscription fetch ───────────────────────────────────────────────
 
 def _is_clash_yaml(text: str) -> bool:
-    """Heuristic: a Clash sub contains a 'proxies:' key near the top."""
     return bool(re.search(r'^\s*proxies\s*:', text, re.MULTILINE))
 
 
 def _extract_configs_from_v2ray_sub(text: str) -> list[str]:
     """
-    Decode a v2ray/xray base64 subscription.
-    The payload is a base64-encoded block of newline-separated proxy URIs.
+    Plain-text list first (b64decode never fails on plain text — it just returns
+    garbage — so base64 must be the FALLBACK, not the first attempt), then base64.
     """
-    text = text.strip()
+    text = text.strip().lstrip("\ufeff")
+    found = _find_uris(text)
+    if found:
+        return found
+    compact = re.sub(r"\s+", "", text)      # base64 blobs are often wrapped across lines
     try:
-        padded  = text + "=" * (-len(text) % 4)
-        decoded = base64.b64decode(padded).decode("utf-8", errors="ignore")
+        return _find_uris(_b64d(compact))
     except Exception:
-        decoded = text  # maybe already plain text
-
-    configs: list[str] = []
-    for line in decoded.splitlines():
-        line = line.strip()
-        if any(line.startswith(p) for p in PROTOCOLS):
-            configs.append(line)
-    return configs
-
-# ── Minimal YAML parser for Clash proxy blocks (no external deps) ─────────────
-
-def _parse_clash_yaml_proxies(text: str) -> list[dict]:
-    """
-    Extract the 'proxies:' list from a Clash YAML without using PyYAML.
-    Each proxy is a block of '  - key: value' lines.  Nested dicts (ws-opts,
-    grpc-opts, reality-opts, headers) are also handled one level deep.
-    Returns a list of dicts.
-    """
-    proxies_block_match = re.search(
-        r'^proxies\s*:\s*\n(.*?)(?=^\S|\Z)',
-        text,
-        re.MULTILINE | re.DOTALL,
-    )
-    if not proxies_block_match:
         return []
 
-    block = proxies_block_match.group(1)
-    proxies: list[dict] = []
-    current: dict | None = None
-    current_nested_key: str | None = None
-    current_nested: dict | None = None
-
-    for raw_line in block.splitlines():
-        item_start = re.match(r'^\s{0,4}-\s+(\w[\w-]*):\s*(.*)', raw_line)
-        if item_start:
-            if current is not None:
-                if current_nested is not None and current_nested_key:
-                    current[current_nested_key] = current_nested
-                proxies.append(current)
-            current = {}
-            current_nested_key = None
-            current_nested = None
-            key   = item_start.group(1)
-            value = item_start.group(2).strip().strip('"\'')
-            current[key] = _cast(value)
-            continue
-
-        if current is None:
-            continue
-
-        nested_start = re.match(r'^\s{4,6}([\w-]+)\s*:\s*$', raw_line)
-        if nested_start:
-            if current_nested is not None and current_nested_key:
-                current[current_nested_key] = current_nested
-            current_nested_key = nested_start.group(1)
-            current_nested = {}
-            continue
-
-        if current_nested is not None:
-            sub = re.match(r'^\s{6,8}([\w-]+)\s*:\s*(.*)', raw_line)
-            if sub:
-                current_nested[sub.group(1)] = _cast(sub.group(2).strip().strip('"\''))
-                continue
-            else:
-                current[current_nested_key] = current_nested
-                current_nested_key = None
-                current_nested = None
-
-        kv = re.match(r'^\s{4,6}([\w-]+)\s*:\s*(.*)', raw_line)
-        if kv:
-            current[kv.group(1)] = _cast(kv.group(2).strip().strip('"\''))
-
-    if current is not None:
-        if current_nested is not None and current_nested_key:
-            current[current_nested_key] = current_nested
-        proxies.append(current)
-
-    return proxies
-
+# ── Clash YAML parsing (PyYAML if installed, otherwise built-in fallback) ─────
 
 def _cast(value: str):
     """Best-effort cast a YAML scalar string to int / bool / str."""
@@ -207,463 +173,241 @@ def _cast(value: str):
     try:
         return int(value)
     except ValueError:
-        pass
-    return value
+        return value
+
+
+def _split_top_level(s: str, sep: str = ",") -> list[str]:
+    parts: list[str] = []
+    cur: list[str] = []
+    depth, quote_ch = 0, None
+    for ch in s:
+        if quote_ch:
+            cur.append(ch)
+            if ch == quote_ch:
+                quote_ch = None
+            continue
+        if ch in "\"'":
+            quote_ch = ch
+            cur.append(ch)
+            continue
+        if ch in "{[":
+            depth += 1
+        elif ch in "}]":
+            depth -= 1
+        if ch == sep and depth == 0:
+            parts.append("".join(cur))
+            cur = []
+        else:
+            cur.append(ch)
+    if cur:
+        parts.append("".join(cur))
+    return parts
+
+
+def _parse_inline_value(v: str):
+    v = v.strip()
+    if v.startswith("{") and v.endswith("}"):
+        return _parse_inline_dict(v)
+    if v.startswith("[") and v.endswith("]"):
+        return [_parse_inline_value(x) for x in _split_top_level(v[1:-1]) if x.strip()]
+    return _cast(v.strip("\"'"))
+
+
+def _parse_inline_dict(s: str) -> dict:
+    """Parse a YAML flow mapping:  {name: x, type: vmess, ws-opts: {path: /}}"""
+    d: dict = {}
+    for part in _split_top_level(s.strip()[1:-1]):
+        if ":" not in part:
+            continue
+        k, v = part.split(":", 1)
+        d[k.strip().strip("\"'")] = _parse_inline_value(v)
+    return d
+
+
+def _parse_clash_block_fallback(block: str) -> list[dict]:
+    """
+    Indentation-aware mini parser for the `proxies:` list. Handles block-style
+    items, inline `- {a: b}` items, nested dicts (ws-opts, reality-opts, ...),
+    and block lists (alpn). Works for any indent style, including list items
+    at column 0 (`proxies:\\n- name: x`).
+    """
+    lines = [l.rstrip() for l in block.splitlines() if l.strip() and not l.strip().startswith("#")]
+    dash_indent = None
+    for l in lines:
+        if l.lstrip().startswith("-"):
+            dash_indent = len(l) - len(l.lstrip())
+            break
+    if dash_indent is None:
+        return []
+
+    proxies: list[dict] = []
+    stack: list[tuple[int, dict]] = []                  # (exclusive_indent, dict)
+    pending: tuple[dict, str, int] | None = None        # (container, key, key_indent) awaiting children
+
+    def kv(content: str, ind: int) -> None:
+        nonlocal pending
+        m = re.match(r'^["\']?([\w.\-]+)["\']?\s*:(?:\s+(.*))?$', content)
+        if not m or not stack:
+            return
+        key, val = m.group(1), (m.group(2) or "").strip()
+        target = stack[-1][1]
+        if val == "":
+            target[key] = None
+            pending = (target, key, ind)
+        else:
+            target[key] = _parse_inline_value(val)
+            pending = None
+
+    for l in lines:
+        ind = len(l) - len(l.lstrip())
+        s = l.strip()
+        if s.startswith("-") and (len(s) == 1 or s[1] in " \t"):
+            rest = s[1:].strip()
+            if ind <= dash_indent:                       # new proxy item
+                pending = None
+                if rest.startswith("{"):
+                    proxies.append(_parse_inline_dict(rest))
+                    stack = []
+                    continue
+                cur: dict = {}
+                proxies.append(cur)
+                content_indent = ind + (len(s) - len(s[1:].lstrip()))
+                stack = [(content_indent - 1, cur)]
+                if rest:
+                    kv(rest, content_indent)
+            elif pending:                                # list item under a key
+                cont, key, _ = pending
+                if not isinstance(cont.get(key), list):
+                    cont[key] = []
+                cont[key].append(_parse_inline_value(rest))
+            continue
+        if not stack:
+            continue
+        while len(stack) > 1 and stack[-1][0] >= ind:
+            stack.pop()
+        if pending and ind > pending[2] and pending[0].get(pending[1]) is None:
+            child: dict = {}
+            pending[0][pending[1]] = child
+            stack.append((pending[2], child))
+        kv(s, ind)
+
+    return proxies
+
+
+def _parse_clash_yaml_proxies(text: str) -> list[dict]:
+    if yaml is not None:
+        try:
+            data = yaml.safe_load(text)
+            if isinstance(data, dict) and isinstance(data.get("proxies"), list):
+                return [p for p in data["proxies"] if isinstance(p, dict)]
+        except Exception:
+            pass
+    m = re.search(r'^proxies\s*:[ \t]*(?:#.*)?\n(.*?)(?=^[^\s#-]|\Z)', text, re.MULTILINE | re.DOTALL)
+    if not m:
+        return []
+    return _parse_clash_block_fallback(m.group(1))
+
+# ── URI building helpers (Clash -> URI) ───────────────────────────────────────
+
+def _qs(pairs) -> str:
+    return "&".join(f"{k}={quote(str(v), safe='')}" for k, v in pairs if v not in (None, ""))
+
+
+def _hp(host: str, port) -> str:
+    return f"[{host}]:{port}" if ":" in host and not host.startswith("[") else f"{host}:{port}"
+
+
+def _transport_pairs(proxy: dict, host: str) -> list[tuple[str, str]]:
+    net = str(proxy.get("network", "tcp"))
+    pairs: list[tuple[str, str]] = [("type", net)]
+    if net == "ws":
+        ws = proxy.get("ws-opts") or {}
+        pairs += [("path", ws.get("path", "/")), ("host", (ws.get("headers") or {}).get("Host", host))]
+    elif net == "grpc":
+        pairs.append(("serviceName", (proxy.get("grpc-opts") or {}).get("grpc-service-name", "")))
+    elif net in ("xhttp", "httpupgrade"):
+        o = proxy.get(f"{net}-opts") or {}
+        pairs += [("path", o.get("path", "/")), ("host", o.get("host", host))]
+    return pairs
 
 
 def _clash_proxy_to_uri(proxy: dict) -> str | None:
-    """
-    Convert a single Clash proxy dict back to a proxy URI string.
-    Supports vmess, vless, trojan, ss, hysteria2.
-    Returns None for unsupported / unparseable entries.
-    """
+    """Convert one Clash proxy dict back to a share URI. None if unsupported."""
     ptype = str(proxy.get("type", "")).lower()
     name  = str(proxy.get("name", "proxy"))
     host  = str(proxy.get("server", ""))
     port  = proxy.get("port", 443)
+    if not host:
+        return None
+    frag = "#" + quote(name, safe="")
 
     try:
         if ptype == "vmess":
             raw = {
-                "v":    "2",
-                "ps":   name,
-                "add":  host,
-                "port": str(port),
-                "id":   str(proxy.get("uuid", "")),
-                "aid":  str(proxy.get("alterId", 0)),
-                "scy":  str(proxy.get("cipher", "auto")),
-                "net":  "tcp",
-                "type": "none",
-                "tls":  "tls" if proxy.get("tls") else "",
-                "sni":  str(proxy.get("servername", "")),
+                "v": "2", "ps": name, "add": host, "port": str(port),
+                "id": str(proxy.get("uuid", "")), "aid": str(proxy.get("alterId", 0)),
+                "scy": str(proxy.get("cipher", "auto")), "net": "tcp", "type": "none",
+                "tls": "tls" if proxy.get("tls") else "", "sni": str(proxy.get("servername", "")),
+                "fp": str(proxy.get("client-fingerprint", "")),
             }
-            ws = proxy.get("ws-opts", {})
-            if proxy.get("network") == "ws":
-                raw["net"]  = "ws"
-                raw["path"] = str(ws.get("path", "/"))
-                raw["host"] = str((ws.get("headers") or {}).get("Host", host))
-            elif proxy.get("network") == "grpc":
-                raw["net"]  = "grpc"
-                raw["path"] = str((proxy.get("grpc-opts") or {}).get("grpc-service-name", ""))
-            b64 = base64.b64encode(json.dumps(raw, ensure_ascii=False).encode()).decode()
-            return f"vmess://{b64}"
+            net = str(proxy.get("network", "tcp"))
+            if net == "ws":
+                ws = proxy.get("ws-opts") or {}
+                raw.update(net="ws", path=str(ws.get("path", "/")),
+                           host=str((ws.get("headers") or {}).get("Host", host)))
+            elif net == "grpc":
+                raw.update(net="grpc", path=str((proxy.get("grpc-opts") or {}).get("grpc-service-name", "")))
+            elif net in ("xhttp", "httpupgrade"):
+                o = proxy.get(f"{net}-opts") or {}
+                raw.update(net=net, path=str(o.get("path", "/")), host=str(o.get("host", host)))
+            return "vmess://" + base64.b64encode(json.dumps(raw, ensure_ascii=False).encode()).decode()
 
         if ptype == "vless":
-            uuid   = str(proxy.get("uuid", ""))
-            params: list[str] = []
             reality = proxy.get("reality-opts") or {}
+            pairs: list[tuple[str, str]] = [("encryption", "none")]
             if reality:
-                params.append("security=reality")
-                params.append(f"pbk={reality.get('public-key', '')}")
-                params.append(f"sid={reality.get('short-id', '')}")
+                pairs += [("security", "reality"), ("pbk", reality.get("public-key", "")),
+                          ("sid", reality.get("short-id", ""))]
             elif proxy.get("tls"):
-                params.append("security=tls")
-            if proxy.get("servername"):
-                params.append(f"sni={proxy['servername']}")
-            if proxy.get("network") == "ws":
-                ws = proxy.get("ws-opts") or {}
-                params.append("type=ws")
-                params.append(f"path={ws.get('path', '/')}")
-                params.append(f"host={(ws.get('headers') or {}).get('Host', host)}")
-            elif proxy.get("network") == "grpc":
-                params.append("type=grpc")
-                params.append(f"serviceName={(proxy.get('grpc-opts') or {}).get('grpc-service-name', '')}")
-            qs = "?" + "&".join(params) if params else ""
-            return f"vless://{uuid}@{host}:{port}{qs}#{name}"
+                pairs.append(("security", "tls"))
+            alpn = proxy.get("alpn")
+            pairs += [("sni", proxy.get("servername")), ("fp", proxy.get("client-fingerprint")),
+                      ("flow", proxy.get("flow")),
+                      ("alpn", ",".join(alpn) if isinstance(alpn, list) else alpn)]
+            if proxy.get("skip-cert-verify"):
+                pairs.append(("allowInsecure", "1"))
+            pairs += _transport_pairs(proxy, host)
+            return f"vless://{quote(str(proxy.get('uuid', '')), safe='')}@{_hp(host, port)}?{_qs(pairs)}{frag}"
 
         if ptype == "trojan":
-            password = str(proxy.get("password", ""))
-            params: list[str] = []
-            if proxy.get("sni"):
-                params.append(f"sni={proxy['sni']}")
-            if proxy.get("network") == "ws":
-                ws = proxy.get("ws-opts") or {}
-                params.append("type=ws")
-                params.append(f"path={ws.get('path', '/')}")
-            qs = "?" + "&".join(params) if params else ""
-            return f"trojan://{password}@{host}:{port}{qs}#{name}"
+            pairs = [("sni", proxy.get("sni") or proxy.get("servername"))]
+            if proxy.get("skip-cert-verify"):
+                pairs.append(("allowInsecure", "1"))
+            pairs += _transport_pairs(proxy, "")
+            return f"trojan://{quote(str(proxy.get('password', '')), safe='')}@{_hp(host, port)}?{_qs(pairs)}{frag}"
 
         if ptype == "ss":
+            if proxy.get("plugin"):
+                return None
             method   = str(proxy.get("cipher", "aes-256-gcm"))
             password = str(proxy.get("password", ""))
-            userinfo = base64.b64encode(f"{method}:{password}".encode()).decode()
-            return f"ss://{userinfo}@{host}:{port}#{name}"
+            userinfo = base64.urlsafe_b64encode(f"{method}:{password}".encode()).decode().rstrip("=")
+            return f"ss://{userinfo}@{_hp(host, port)}{frag}"
 
         if ptype in ("hysteria2", "hy2"):
-            password = str(proxy.get("password", ""))
-            params: list[str] = []
-            if proxy.get("sni"):
-                params.append(f"sni={proxy['sni']}")
+            pairs = [("sni", proxy.get("sni")), ("obfs", proxy.get("obfs")),
+                     ("obfs-password", proxy.get("obfs-password"))]
             if proxy.get("skip-cert-verify"):
-                params.append("insecure=1")
-            qs = "?" + "&".join(params) if params else ""
-            return f"hysteria2://{password}@{host}:{port}{qs}#{name}"
-
+                pairs.append(("insecure", "1"))
+            return f"hysteria2://{quote(str(proxy.get('password', '')), safe='')}@{_hp(host, port)}?{_qs(pairs)}{frag}"
     except Exception:
         pass
     return None
-
-# ── Live reachability testing (NEW, additive) ──────────────────────────────────
-
-async def _tcp_ping(host: str, port: int, timeout: float = TEST_TIMEOUT_SECONDS) -> float | None:
-    """Try a raw TCP connect to host:port. Returns latency in ms, or None if dead."""
-    loop  = asyncio.get_event_loop()
-    start = loop.time()
-    try:
-        _, writer = await asyncio.wait_for(asyncio.open_connection(host, port), timeout=timeout)
-        latency_ms = (loop.time() - start) * 1000
-        writer.close()
-        try:
-            await writer.wait_closed()
-        except Exception:
-            pass
-        return latency_ms
-    except Exception:
-        return None
-
-
-async def test_configs(configs: list[str]) -> list[tuple[str, dict, float]]:
-    """
-    Actively test every config with a TCP connect to its host:port.
-    Returns only the ones that responded, as (config_uri, parsed_proxy_dict, latency_ms),
-    sorted fastest-first.
-    """
-    sem = asyncio.Semaphore(TEST_CONCURRENCY)
-    results: list[tuple[str, dict, float]] = []
-
-    async def _check(cfg: str) -> None:
-        proxy = config_to_clash_proxy(cfg, "test")
-        if not proxy or not proxy.get("server") or not proxy.get("port"):
-            return
-        async with sem:
-            latency = await _tcp_ping(str(proxy["server"]), int(proxy["port"]))
-        if latency is not None:
-            results.append((cfg, proxy, latency))
-
-    await asyncio.gather(*(_check(c) for c in configs))
-    results.sort(key=lambda r: r[2])
-    return results
-
-# ── Iran-reachability re-test via check-host.net (NEW, additive) ──────────────
-# See the config block near the top of the file for why check-host.net was
-# chosen over a plain DNS check.
-
-CHECK_HOST_API = "https://check-host.net"
-
-
-async def _fetch_iran_nodes(client: httpx.AsyncClient) -> list[str]:
-    """
-    Ask check-host.net for its current node list and return the hostnames of
-    nodes physically located in Iran (location country-code == 'ir'). Fetched
-    live instead of hardcoded because check-host.net's node fleet changes over
-    time — a hardcoded node name can silently go stale/offline.
-    """
-    try:
-        r = await client.get(
-            f"{CHECK_HOST_API}/nodes/hosts",
-            headers={"Accept": "application/json"},
-            timeout=15,
-        )
-        r.raise_for_status()
-        data = r.json()
-        nodes = data.get("nodes", {}) if isinstance(data, dict) else {}
-        iran_nodes = []
-        for name, info in nodes.items():
-            if not isinstance(info, dict):
-                continue
-            location = info.get("location") or []
-            country_code = str(location[0]).lower() if location else ""
-            if country_code == "ir":
-                iran_nodes.append(name)
-        return iran_nodes
-    except Exception as e:
-        print(f"  ⚠️  Could not fetch check-host.net node list: {e}")
-        return []
-
-
-async def _check_host_submit(
-    client: httpx.AsyncClient, host: str, port: int, nodes: list[str]
-) -> str | None:
-    """Kick off a check-host.net TCP check for host:port on the given nodes. Returns a request_id."""
-    params = [("host", f"{host}:{port}")]
-    for n in nodes[:IRAN_CHECK_MAX_NODES]:
-        params.append(("node", n))
-    try:
-        r = await client.get(
-            f"{CHECK_HOST_API}/check-tcp",
-            params=params,
-            headers={"Accept": "application/json"},
-            timeout=15,
-        )
-        r.raise_for_status()
-        data = r.json()
-        if data.get("ok"):
-            return data.get("request_id")
-    except Exception:
-        pass
-    return None
-
-
-async def _check_host_poll(client: httpx.AsyncClient, request_id: str) -> dict:
-    """
-    Poll check-host.net for results until every queried node has responded
-    (or we run out of attempts). Per-node result is either:
-      - a list of dicts, e.g. [{"time": 0.03, "address": "1.2.3.4"}]  → success
-      - a list of dicts, e.g. [{"error": "Connection timed out"}]     → failure
-      - null                                                          → still running
-    """
-    last: dict = {}
-    for _ in range(IRAN_CHECK_POLL_ATTEMPTS):
-        await asyncio.sleep(IRAN_CHECK_POLL_INTERVAL)
-        try:
-            r = await client.get(
-                f"{CHECK_HOST_API}/check-result/{request_id}",
-                headers={"Accept": "application/json"},
-                timeout=15,
-            )
-            r.raise_for_status()
-            last = r.json() or {}
-            if all(v is not None for v in last.values()):
-                break
-        except Exception:
-            continue
-    return last
-
-
-def _check_host_success_ratio(result: dict) -> float:
-    """Fraction of node results that report a successful TCP connect."""
-    total = 0
-    ok = 0
-    for _node, entries in result.items():
-        if not entries:
-            continue  # still pending / node never answered — excluded, not counted as failure
-        for entry in entries:
-            if not isinstance(entry, dict):
-                continue
-            total += 1
-            if "error" not in entry:
-                ok += 1
-    return (ok / total) if total else 0.0
-
-
-async def test_iran_reachability(
-    tested: list[tuple[str, dict, float]],
-) -> list[tuple[str, dict, float]]:
-    """
-    Second-stage test: of the configs that already passed the plain TCP check,
-    re-verify each one is reachable from real vantage points inside Iran via
-    check-host.net. Returns only the configs confirmed reachable, fastest-first.
-    """
-    headers = {"User-Agent": "Mozilla/5.0 (compatible; v2ray-collector/1.0)"}
-    async with httpx.AsyncClient(headers=headers, follow_redirects=True) as client:
-        iran_nodes = await _fetch_iran_nodes(client)
-        if not iran_nodes:
-            print("  ⚠️  No check-host.net Iran nodes available right now — skipping Iran-reachability stage.")
-            return []
-        print(f"  🇮🇷 Using {len(iran_nodes)} check-host.net Iran vantage node(s)")
-
-        candidates = tested[:IRAN_CHECK_MAX_CANDIDATES]
-        sem = asyncio.Semaphore(IRAN_CHECK_CONCURRENCY)
-        passed: list[tuple[str, dict, float]] = []
-
-        async def _check(item: tuple[str, dict, float]) -> None:
-            cfg, proxy, latency = item
-            host = str(proxy.get("server", ""))
-            port = proxy.get("port")
-            if not host or not port:
-                return
-            async with sem:
-                request_id = await _check_host_submit(client, host, int(port), iran_nodes)
-                if not request_id:
-                    return
-                result = await _check_host_poll(client, request_id)
-            if _check_host_success_ratio(result) >= IRAN_CHECK_MIN_SUCCESS_RATIO:
-                passed.append((cfg, proxy, latency))
-
-        await asyncio.gather(*(_check(c) for c in candidates))
-
-    passed.sort(key=lambda r: r[2])
-    return passed
-
-
-def save_iran_working(iran_ok: list[tuple[str, dict, float]]) -> None:
-    """Write only the Iran-confirmed-reachable configs, plain text + base64 (mirrors configs.txt / configs_plain.txt)."""
-    configs = [cfg for cfg, _proxy, _latency in iran_ok]
-    IRAN_WORKING_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    raw = "\n".join(configs)
-    IRAN_WORKING_OUTPUT_FILE.write_text(raw)
-    encoded = base64.b64encode(raw.encode()).decode()
-    IRAN_WORKING_B64_OUTPUT_FILE.write_text(encoded)
-    print(f"✅ Saved {len(configs)} Iran-confirmed-working configs → {IRAN_WORKING_OUTPUT_FILE}")
-    print(f"✅ Saved base64 subscription → {IRAN_WORKING_B64_OUTPUT_FILE}")
-
-# ── Xray "leastPing" balancer config builder (NEW, additive) ──────────────────
-
-def clash_proxy_to_xray_outbound(proxy: dict, tag: str) -> dict | None:
-    """
-    Convert an already-parsed clash-style proxy dict (from config_to_clash_proxy)
-    into a raw Xray-core outbound. Supports vmess / vless / trojan / shadowsocks —
-    the protocols Xray-core's own outbound + balancer machinery natively handles.
-    (hysteria2/hy2/ssr/tuic are skipped here; they still work fine in configs.txt
-    and clash.yaml, untouched, they just can't sit in this particular balancer.)
-    """
-    ptype   = str(proxy.get("type", "")).lower()
-    host    = str(proxy.get("server", ""))
-    port    = int(proxy.get("port", 443))
-    network = str(proxy.get("network", "tcp"))
-
-    stream: dict = {"network": network if network in ("tcp", "ws", "grpc", "xhttp", "httpupgrade") else "tcp"}
-    if network == "ws":
-        ws = proxy.get("ws-opts") or {}
-        stream["wsSettings"] = {"path": ws.get("path", "/"), "headers": ws.get("headers") or {}}
-    elif network == "grpc":
-        grpc = proxy.get("grpc-opts") or {}
-        stream["grpcSettings"] = {"serviceName": grpc.get("grpc-service-name", "")}
-    elif network == "xhttp":
-        xh = proxy.get("xhttp-opts") or {}
-        stream["xhttpSettings"] = {"path": xh.get("path", "/"), "host": xh.get("host", "")}
-    elif network == "httpupgrade":
-        hu = proxy.get("httpupgrade-opts") or {}
-        stream["httpupgradeSettings"] = {"path": hu.get("path", "/"), "host": hu.get("host", "")}
-
-    reality = proxy.get("reality-opts")
-    if reality:
-        stream["security"] = "reality"
-        stream["realitySettings"] = {
-            "serverName":  proxy.get("servername", ""),
-            "publicKey":   reality.get("public-key", ""),
-            "shortId":     reality.get("short-id", ""),
-            "fingerprint": "chrome",
-        }
-    elif proxy.get("tls") or ptype == "trojan":
-        # FIX: trojan is TLS-by-design (that's the whole point of the protocol —
-        # it disguises itself as HTTPS). The parsed proxy dict never carries an
-        # explicit "tls" key for trojan (Clash's own schema doesn't expose one
-        # either, since it's implicit there), so without this OR-condition every
-        # trojan outbound below was silently built with security:"none" — sent
-        # plaintext to a server expecting a TLS handshake, i.e. exactly the
-        # "TLS handshake timeout" v2rayNG reports.
-        stream["security"]    = "tls"
-        stream["tlsSettings"] = {
-            "serverName":    proxy.get("servername") or proxy.get("sni") or host,
-            "allowInsecure": bool(proxy.get("skip-cert-verify", False)),
-        }
-    else:
-        stream["security"] = "none"
-
-    try:
-        if ptype == "vmess":
-            return {
-                "tag": tag, "protocol": "vmess",
-                "settings": {"vnext": [{
-                    "address": host, "port": port,
-                    "users": [{
-                        "id": str(proxy.get("uuid", "")),
-                        "alterId": int(proxy.get("alterId", 0)),
-                        "security": str(proxy.get("cipher", "auto")),
-                    }],
-                }]},
-                "streamSettings": stream,
-            }
-        if ptype == "vless":
-            return {
-                "tag": tag, "protocol": "vless",
-                "settings": {"vnext": [{
-                    "address": host, "port": port,
-                    "users": [{"id": str(proxy.get("uuid", "")), "encryption": "none"}],
-                }]},
-                "streamSettings": stream,
-            }
-        if ptype == "trojan":
-            return {
-                "tag": tag, "protocol": "trojan",
-                "settings": {"servers": [{
-                    "address": host, "port": port,
-                    "password": str(proxy.get("password", "")),
-                }]},
-                "streamSettings": stream,
-            }
-        if ptype == "ss":
-            return {
-                "tag": tag, "protocol": "shadowsocks",
-                "settings": {"servers": [{
-                    "address": host, "port": port,
-                    "method": str(proxy.get("cipher", "aes-256-gcm")),
-                    "password": str(proxy.get("password", "")),
-                }]},
-                "streamSettings": {"network": "tcp", "security": "none"},
-            }
-    except Exception:
-        return None
-    return None
-
-
-def build_xray_leastping_config(tested: list[tuple[str, dict, float]]) -> dict:
-    """
-    Build a single, ready-to-import Xray JSON config containing only the tested,
-    currently-reachable servers, wired into a leastPing balancer + observatory.
-
-    v2rayNG: import this as a "custom configuration" and it will keep pinging
-    every server in the background and route through whichever is fastest/alive,
-    switching automatically without you touching the app.
-    """
-    outbounds: list[dict] = []
-    for i, (_cfg, proxy, _latency) in enumerate(tested[:MAX_BALANCER_SERVERS], start=1):
-        ob = clash_proxy_to_xray_outbound(proxy, tag=f"p{i}")
-        if ob:
-            outbounds.append(ob)
-
-    proxy_tags = [ob["tag"] for ob in outbounds]  # e.g. ["p1", "p2", ...] before direct/block are appended
-    outbounds.append({"tag": "direct", "protocol": "freedom", "settings": {}})
-    outbounds.append({"tag": "block", "protocol": "blackhole", "settings": {}})
-
-    balancer: dict = {"tag": "auto", "selector": ["p"], "strategy": {"type": "leastPing"}}
-    if proxy_tags:
-        # FIX: without a fallbackTag, outbound selection is undefined during the
-        # window before the first observatory probe finishes (right when you hit
-        # Connect) — this pins it to a known proxy instead of failing/blocking.
-        balancer["fallbackTag"] = proxy_tags[0]
-
-    return {
-        "log": {"loglevel": "warning"},
-        "inbounds": [
-            {
-                "tag": "socks-in", "listen": "127.0.0.1", "port": 10808, "protocol": "socks",
-                "settings": {"auth": "noauth", "udp": True},
-                "sniffing": {"enabled": True, "destOverride": ["http", "tls"]},
-            },
-            {"tag": "http-in", "listen": "127.0.0.1", "port": 10809, "protocol": "http"},
-        ],
-        "outbounds": outbounds,
-        "routing": {
-            "domainStrategy": "AsIs",
-            "balancers": [balancer],
-            "rules": [
-                {"type": "field", "network": "tcp,udp", "balancerTag": "auto"}
-            ],
-        },
-        "observatory": {
-            "subjectSelector":    ["p"],
-            "probeURL":           "https://www.gstatic.com/generate_204",
-            # Set to OBSERVATORY_PROBE_INTERVAL (lowest practical value) so a dead
-            # server drops out of rotation as fast as possible for the *next*
-            # connection. This does NOT save an already-open connection whose
-            # server died mid-session — nothing can, that TCP/TLS session is just
-            # gone. It only shortens how long a dead server stays eligible to be
-            # picked again. At "1s" with ~MAX_BALANCER_SERVERS outbounds probed
-            # concurrently every cycle, expect real background battery/data use —
-            # raise this (e.g. "5s") in one place here if that's noticeable.
-            "probeInterval":      OBSERVATORY_PROBE_INTERVAL,
-            "enableConcurrency":  True,
-        },
-    }
 
 
 def _extract_configs_from_clash_sub(text: str) -> list[str]:
-    """Parse a Clash YAML subscription and convert each proxy back to a URI."""
-    proxies = _parse_clash_yaml_proxies(text)
     configs: list[str] = []
-    for proxy in proxies:
+    for proxy in _parse_clash_yaml_proxies(text):
         uri = _clash_proxy_to_uri(proxy)
         if uri:
             configs.append(uri)
@@ -671,262 +415,312 @@ def _extract_configs_from_clash_sub(text: str) -> list[str]:
 
 
 async def fetch_external_sub(client: httpx.AsyncClient, url: str) -> list[str]:
-    """Fetch one external subscription URL (v2ray base64 or Clash YAML)."""
+    """Fetch one external subscription URL (plain list, base64, or Clash YAML)."""
     try:
         r = await client.get(url, timeout=30, follow_redirects=True)
         r.raise_for_status()
         text = r.text.strip()
+
         if _is_clash_yaml(text):
-            configs = _extract_configs_from_clash_sub(text)
-            print(f"  ✔ [Clash sub] {url}: {len(configs)} proxies converted")
+            configs = _extract_configs_from_clash_sub(text) or _extract_configs_from_v2ray_sub(text)
+            kind = "Clash sub"
         else:
-            configs = _extract_configs_from_v2ray_sub(text)
-            print(f"  ✔ [V2Ray sub] {url}: {len(configs)} configs found")
+            configs = _extract_configs_from_v2ray_sub(text) or _extract_configs_from_clash_sub(text)
+            kind = "V2Ray sub"
+
+        if configs:
+            print(f"  ✔ [{kind}] {url}: {len(configs)} configs found")
+        else:
+            preview = text[:120].replace("\n", " ")
+            print(f"  ⚠ [{kind}] {url}: 0 configs. Response starts with: {preview!r}")
         return configs
     except Exception as e:
         print(f"  ✘ [External sub] {url}: {e}")
         return []
 
-
-async def collect_all() -> list[str]:
-    headers = {"User-Agent": "Mozilla/5.0 (compatible; v2ray-collector/1.0)"}
-    async with httpx.AsyncClient(headers=headers, follow_redirects=True) as client:
-        tg_tasks  = [fetch_channel(client, ch) for ch in CHANNELS]
-        sub_tasks = [fetch_external_sub(client, url) for url in EXTERNAL_SUB_URLS]
-        tg_results  = await asyncio.gather(*tg_tasks)
-        sub_results = await asyncio.gather(*sub_tasks)
-
-    seen: set[str] = set()
-    all_configs: list[str] = []
-    for batch in (*tg_results, *sub_results):
-        for cfg in batch:
-            # FIX 1: dedup on URI only (strip remark) so the same proxy posted
-            # in two channels or with different remark labels isn't duplicated.
-            uri = cfg.split("#")[0]
-            if uri not in seen:
-                seen.add(uri)
-                all_configs.append(cfg)
-    return all_configs
-
-# ── Rename remarks ────────────────────────────────────────────────────────────
-
-def rename_remarks(configs: list[str]) -> list[str]:
-    renamed = []
-    for i, cfg in enumerate(configs, start=1):
-        # FIX 2: strip trailing '?' left by empty query strings (e.g. ss://...@host:port?)
-        base = cfg.split("#")[0].rstrip("?") if "#" in cfg else cfg.rstrip("?")
-        renamed.append(f"{base}#mn_conf{i}")
-    return renamed
-
-# ── Clash conversion ──────────────────────────────────────────────────────────
+# ── URI parsing (-> Clash-style dicts) ────────────────────────────────────────
 
 def _decode_vmess(uri: str) -> dict | None:
     try:
-        b64  = uri[len("vmess://"):]
-        b64 += "=" * (-len(b64) % 4)
-        data = json.loads(base64.b64decode(b64).decode())
-        return data
+        data = json.loads(_b64d(uri[len("vmess://"):]))
+        return data if isinstance(data, dict) else None
     except Exception:
         return None
 
 
-def _parse_userinfo_host(uri: str, scheme: str) -> tuple[str, str, int, str] | None:
+def _parse_ss(uri: str) -> dict | None:
+    """Parse ss:// in SIP002 (base64 userinfo or plain) and legacy (whole-body base64) forms."""
     try:
-        body   = uri[len(scheme):]
-        remark = ""
-        if "#" in body:
-            body, remark = body.split("#", 1)
+        body  = uri.split("#", 1)[0][len("ss://"):]
+        query = ""
         if "?" in body:
-            body, _ = body.split("?", 1)
+            body, query = body.split("?", 1)
+        body = unquote(body).rstrip("/")
         if "@" in body:
             userinfo, hostport = body.rsplit("@", 1)
+            if ":" not in userinfo:
+                userinfo = _b64d(userinfo)
         else:
-            userinfo, hostport = "", body
-        if ":" in hostport:
-            host, port_str = hostport.rsplit(":", 1)
-            port = int(port_str)
-        else:
-            host, port = hostport, 443
-        return userinfo, host, port, remark
+            userinfo, hostport = _b64d(body).rsplit("@", 1)
+        method, password = userinfo.split(":", 1)
+        host, port_str   = hostport.rsplit(":", 1)
+        return {"method": method, "password": password, "host": host.strip("[]"),
+                "port": int(port_str), "plugin": "plugin=" in query}
     except Exception:
         return None
 
 
-def config_to_clash_proxy(cfg: str, name: str) -> dict | None:
+def _uri_parts(uri: str):
+    """urlsplit-based parse for vless/trojan/hysteria2/tuic. -> (user, host, port, params) or None.
+    Query values are percent-decoded (so path=%2Fws becomes /ws) but '+' is kept as-is."""
+    try:
+        u    = urlsplit(uri.split("#", 1)[0])
+        host = u.hostname or ""
+        try:
+            port = u.port or 443
+        except ValueError:                        # e.g. hysteria2 port-hopping "443,5000-6000"
+            m    = re.search(r':(\d+)', u.netloc.rsplit("@", 1)[-1])
+            port = int(m.group(1)) if m else 443
+        user = unquote(u.username or "")
+        if u.password is not None:
+            user += ":" + unquote(u.password)
+        params: dict[str, str] = {}
+        for p in u.query.split("&"):
+            k, _, v = p.partition("=")
+            if k:
+                params[k] = unquote(v)
+        return user, host, port, params
+    except Exception:
+        return None
+
+
+def _apply_transport(proxy: dict, net: str, params: dict, default_host: str) -> None:
+    """Fill network/ws-opts/grpc-opts/... on a Clash proxy dict."""
+    if net == "ws":
+        proxy["network"] = "ws"
+        opts: dict = {"path": params.get("path") or "/"}
+        h = params.get("host") or default_host
+        if h:
+            opts["headers"] = {"Host": h}
+        proxy["ws-opts"] = opts
+    elif net == "grpc":
+        proxy["network"]   = "grpc"
+        proxy["grpc-opts"] = {"grpc-service-name": params.get("serviceName", "")}
+    elif net in ("xhttp", "httpupgrade"):
+        proxy["network"]       = net
+        proxy[f"{net}-opts"]   = {"path": params.get("path") or "/",
+                                  "host": params.get("host") or default_host}
+
+
+def _config_to_clash_proxy(cfg: str, name: str) -> dict | None:
     if cfg.startswith("vmess://"):
         raw = _decode_vmess(cfg.split("#")[0])
         if not raw:
             return None
+        server = str(raw.get("add", "")).strip()
+        port   = _int(raw.get("port"), 0)
+        if not server or not 1 <= port <= 65535:
+            return None
         proxy: dict = {
-            "name":    name,
-            "type":    "vmess",
-            "server":  str(raw.get("add", "")),
-            "port":    int(raw.get("port", 443)),
-            "uuid":    str(raw.get("id", "")),
-            "alterId": int(raw.get("aid", 0)),
-            "cipher":  str(raw.get("scy", raw.get("security", "auto"))),
-            "udp":     True,
+            "name": name, "type": "vmess", "server": server, "port": port,
+            "uuid": str(raw.get("id", "")), "alterId": _int(raw.get("aid"), 0),
+            "cipher": str(raw.get("scy") or raw.get("security") or "auto"), "udp": True,
         }
-        net = str(raw.get("net", "tcp"))
-        if net == "ws":
-            proxy["network"]  = "ws"
-            proxy["ws-opts"]  = {
-                "path":    str(raw.get("path", "/")),
-                "headers": {"Host": str(raw.get("host", proxy["server"]))},
-            }
-        elif net == "grpc":
-            proxy["network"]   = "grpc"
-            proxy["grpc-opts"] = {"grpc-service-name": str(raw.get("path", ""))}
-        # FIX 3: handle xhttp and httpupgrade transport for VMess
-        elif net == "xhttp":
-            proxy["network"]    = "xhttp"
-            proxy["xhttp-opts"] = {
-                "path": str(raw.get("path", "/")),
-                "host": str(raw.get("host", proxy["server"])),
-            }
-        elif net == "httpupgrade":
-            proxy["network"]           = "httpupgrade"
-            proxy["httpupgrade-opts"]  = {
-                "path": str(raw.get("path", "/")),
-                "host": str(raw.get("host", proxy["server"])),
-            }
+        path = str(raw.get("path", "") or "")
+        _apply_transport(proxy, str(raw.get("net", "tcp") or "tcp"),
+                         {"path": path, "host": str(raw.get("host", "") or ""), "serviceName": path}, server)
         if str(raw.get("tls", "")) == "tls":
             proxy["tls"] = True
-            sni = str(raw.get("sni", raw.get("host", "")))
+            sni = str(raw.get("sni") or raw.get("host") or "")
             if sni:
                 proxy["servername"] = sni
+            if raw.get("fp"):
+                proxy["client-fingerprint"] = str(raw["fp"])
         return proxy
 
     if cfg.startswith("vless://"):
-        try:
-            body       = cfg[len("vless://"):]
-            if "#" in body:
-                body, _ = body.split("#", 1)
-            params_str = ""
-            if "?" in body:
-                body, params_str = body.split("?", 1)
-            uuid, hostport = body.split("@", 1)
-            host, port_str = hostport.rsplit(":", 1)
-            port   = int(port_str)
-            params = dict(p.split("=", 1) for p in params_str.split("&") if "=" in p)
-        except Exception:
+        parts = _uri_parts(cfg)
+        if not parts or not parts[0] or not parts[1]:
             return None
+        uuid, host, port, params = parts
         proxy = {"name": name, "type": "vless", "server": host, "port": port, "uuid": uuid, "udp": True}
-        if params.get("security") == "tls":
+        security = params.get("security", "")
+        sni = params.get("sni") or params.get("peer")
+        if security in ("tls", "reality"):
             proxy["tls"] = True
-            if params.get("sni"):
-                proxy["servername"] = params["sni"]
-        if params.get("security") == "reality":
-            proxy["tls"] = True
+            if sni:
+                proxy["servername"] = sni
+        if security == "reality":
             proxy["reality-opts"] = {"public-key": params.get("pbk", ""), "short-id": params.get("sid", "")}
-            if params.get("sni"):
-                proxy["servername"] = params["sni"]
-        net = params.get("type", "tcp")
-        if net == "ws":
-            proxy["network"]  = "ws"
-            proxy["ws-opts"]  = {"path": params.get("path", "/"), "headers": {"Host": params.get("host", host)}}
-        elif net == "grpc":
-            proxy["network"]   = "grpc"
-            proxy["grpc-opts"] = {"grpc-service-name": params.get("serviceName", "")}
-        # FIX 3: handle xhttp and httpupgrade transport for VLESS
-        elif net == "xhttp":
-            proxy["network"]    = "xhttp"
-            proxy["xhttp-opts"] = {
-                "path": params.get("path", "/"),
-                "host": params.get("host", host),
-            }
-        elif net == "httpupgrade":
-            proxy["network"]          = "httpupgrade"
-            proxy["httpupgrade-opts"] = {
-                "path": params.get("path", "/"),
-                "host": params.get("host", host),
-            }
+        if params.get("fp"):
+            proxy["client-fingerprint"] = params["fp"]
+        if params.get("alpn"):
+            proxy["alpn"] = [a for a in params["alpn"].split(",") if a]
+        if params.get("flow"):
+            proxy["flow"] = params["flow"]
+        if params.get("allowInsecure") in ("1", "true") or params.get("insecure") in ("1", "true"):
+            proxy["skip-cert-verify"] = True
+        _apply_transport(proxy, params.get("type", "tcp"), params, host)
         return proxy
 
     if cfg.startswith("trojan://"):
-        parsed = _parse_userinfo_host(cfg, "trojan://")
-        if not parsed:
+        parts = _uri_parts(cfg)
+        if not parts or not parts[0] or not parts[1]:
             return None
-        password, host, port, _ = parsed
+        password, host, port, params = parts
         proxy = {"name": name, "type": "trojan", "server": host, "port": port, "password": password, "udp": True}
-        try:
-            params_str = cfg.split("?", 1)[1].split("#")[0] if "?" in cfg else ""
-            params = dict(p.split("=", 1) for p in params_str.split("&") if "=" in p)
-            if params.get("sni"):
-                proxy["sni"] = params["sni"]
-            net = params.get("type", "tcp")
-            if net == "ws":
-                proxy["network"]  = "ws"
-                proxy["ws-opts"]  = {"path": params.get("path", "/")}
-            elif net == "grpc":
-                proxy["network"]   = "grpc"
-                proxy["grpc-opts"] = {"grpc-service-name": params.get("serviceName", "")}
-            # FIX 3: handle xhttp and httpupgrade transport for Trojan
-            elif net == "xhttp":
-                proxy["network"]    = "xhttp"
-                proxy["xhttp-opts"] = {
-                    "path": params.get("path", "/"),
-                    "host": params.get("host", host),
-                }
-            elif net == "httpupgrade":
-                proxy["network"]          = "httpupgrade"
-                proxy["httpupgrade-opts"] = {
-                    "path": params.get("path", "/"),
-                    "host": params.get("host", host),
-                }
-        except Exception:
-            pass
+        sni = params.get("sni") or params.get("peer")
+        if sni:
+            proxy["sni"] = sni
+        if params.get("alpn"):
+            proxy["alpn"] = [a for a in params["alpn"].split(",") if a]
+        if params.get("fp"):
+            proxy["client-fingerprint"] = params["fp"]
+        if params.get("allowInsecure") in ("1", "true") or params.get("insecure") in ("1", "true"):
+            proxy["skip-cert-verify"] = True
+        _apply_transport(proxy, params.get("type", "tcp"), params, "")
         return proxy
 
     if cfg.startswith("ss://"):
-        try:
-            body = cfg[len("ss://"):]
-            if "#" in body:
-                body, _ = body.split("#", 1)
-            # FIX 2 (also in Clash parser): strip trailing '?' from query-less ss URIs
-            body = body.rstrip("?")
-            if "@" in body:
-                userinfo, hostport = body.rsplit("@", 1)
-                host, port_str     = hostport.rsplit(":", 1)
-                port               = int(port_str)
-                if ":" in userinfo:
-                    method, password = userinfo.split(":", 1)
-                else:
-                    decoded  = base64.b64decode(userinfo + "==").decode()
-                    method, password = decoded.split(":", 1)
-            else:
-                decoded            = base64.b64decode(body + "==").decode()
-                method_pass, hostport = decoded.split("@", 1)
-                method, password   = method_pass.split(":", 1)
-                host, port_str     = hostport.rsplit(":", 1)
-                port               = int(port_str)
-        except Exception:
+        ss = _parse_ss(cfg)
+        if not ss or ss["plugin"]:          # plugin-based ss can't be expressed here
             return None
-        return {"name": name, "type": "ss", "server": host, "port": port, "cipher": method, "password": password, "udp": True}
+        return {"name": name, "type": "ss", "server": ss["host"], "port": ss["port"],
+                "cipher": ss["method"], "password": ss["password"], "udp": True}
 
     if cfg.startswith("hysteria2://") or cfg.startswith("hy2://"):
-        scheme = "hysteria2://" if cfg.startswith("hysteria2://") else "hy2://"
-        try:
-            body = cfg[len(scheme):]
-            if "#" in body:
-                body, _ = body.split("#", 1)
-            params_str = ""
-            if "?" in body:
-                body, params_str = body.split("?", 1)
-            password, hostport = body.split("@", 1)
-            host, port_str     = hostport.rsplit(":", 1)
-            port               = int(port_str)
-            params = dict(p.split("=", 1) for p in params_str.split("&") if "=" in p)
-        except Exception:
+        parts = _uri_parts(cfg)
+        if not parts or not parts[0] or not parts[1]:
             return None
-        proxy: dict = {"name": name, "type": "hysteria2", "server": host, "port": port, "password": password, "udp": True}
+        password, host, port, params = parts
+        proxy = {"name": name, "type": "hysteria2", "server": host, "port": port, "password": password, "udp": True}
         if params.get("sni"):
             proxy["sni"] = params["sni"]
-        if params.get("insecure", "0") == "1":
+        if params.get("insecure", "0") in ("1", "true"):
             proxy["skip-cert-verify"] = True
+        if params.get("obfs"):
+            proxy["obfs"] = params["obfs"]
+            proxy["obfs-password"] = params.get("obfs-password", "")
         return proxy
 
     return None
+
+
+def config_to_clash_proxy(cfg: str, name: str) -> dict | None:
+    """Safe wrapper: a malformed config returns None instead of crashing the run."""
+    try:
+        return _config_to_clash_proxy(cfg, name)
+    except Exception:
+        return None
+
+
+def _endpoint_of(cfg: str) -> tuple[str, int] | None:
+    """host/port for ANY supported URI, including ones the Clash parser can't represent."""
+    scheme = _scheme_of(cfg)
+    base   = cfg.split("#", 1)[0]
+    try:
+        if scheme == "vmess":
+            raw = _decode_vmess(base)
+            return (str(raw["add"]), int(raw["port"])) if raw else None
+        if scheme == "ss":
+            ss = _parse_ss(base)
+            return (ss["host"], ss["port"]) if ss else None
+        if scheme == "ssr":
+            main  = _b64d(base[len("ssr://"):]).split("/?")[0]
+            parts = main.split(":")                 # host:port:protocol:method:obfs:pass
+            return ":".join(parts[:-5]), int(parts[-5])
+        parts = _uri_parts(base)
+        if parts and parts[1]:
+            return parts[1], parts[2]
+    except Exception:
+        pass
+    return None
+
+# ── Full dedup ────────────────────────────────────────────────────────────────
+
+def _dedup_key(cfg: str) -> str:
+    """
+    Canonical identity of a config, ignoring remark/label and cosmetic differences:
+      - vmess: the remark lives INSIDE the base64 JSON ("ps"), so strings differ
+        even for the same server — compare the decoded JSON minus "ps".
+      - ss: normalises the base64-vs-plain userinfo forms.
+      - others: scheme + credentials + host + port + query params (order-insensitive).
+    """
+    base = cfg.split("#", 1)[0].rstrip("?")
+    try:
+        scheme = _scheme_of(base)
+        if scheme == "vmess":
+            raw = _decode_vmess(base)
+            if raw:
+                return "vmess|" + json.dumps({k: str(v) for k, v in raw.items() if k != "ps"}, sort_keys=True)
+        elif scheme == "ss":
+            ss = _parse_ss(base)
+            if ss:
+                return f"ss|{ss['method']}|{ss['password']}|{ss['host'].lower()}|{ss['port']}|{ss['plugin']}"
+        elif scheme != "ssr":
+            parts = _uri_parts(base)
+            if parts and parts[1]:
+                user, host, port, params = parts
+                return f"{scheme}|{user}|{host.lower()}|{port}|{sorted(params.items())}"
+    except Exception:
+        pass
+    return base
+
+# ── Collect ───────────────────────────────────────────────────────────────────
+
+async def collect_all() -> list[str]:
+    headers = {"User-Agent": "Mozilla/5.0 (compatible; v2ray-collector/1.0)"}
+    async with httpx.AsyncClient(headers=headers, follow_redirects=True) as client:
+        tg_results  = await asyncio.gather(*(fetch_channel(client, ch) for ch in CHANNELS))
+        sub_results = await asyncio.gather(*(fetch_external_sub(client, u) for u in EXTERNAL_SUB_URLS))
+
+    seen: set[str] = set()
+    all_configs: list[str] = []
+    total = 0
+    for batch in (*tg_results, *sub_results):
+        for cfg in batch:
+            total += 1
+            key = _dedup_key(cfg)
+            if key not in seen:
+                seen.add(key)
+                all_configs.append(cfg)
+    print(f"   Collected {total} configs, {len(all_configs)} unique after full dedup")
+    return all_configs
+
+# ── Rename remarks ────────────────────────────────────────────────────────────
+
+def _with_remark(cfg: str, remark: str) -> str:
+    """Replace a config's remark. For vmess the remark is the JSON "ps" field, so set that too."""
+    base = cfg.split("#", 1)[0].rstrip("?")
+    if base.startswith("vmess://"):
+        raw = _decode_vmess(base)
+        if raw:
+            raw["ps"] = remark
+            base = "vmess://" + base64.b64encode(json.dumps(raw, ensure_ascii=False).encode()).decode()
+    return f"{base}#{remark}"
+
+
+def rename_remarks(configs: list[str]) -> list[str]:
+    return [_with_remark(cfg, f"mn_conf{i}") for i, cfg in enumerate(configs, start=1)]
+
+# ── Clash YAML output ─────────────────────────────────────────────────────────
+
+def _yaml_emit(lines: list[str], key: str, value, indent: int) -> None:
+    pad = " " * indent
+    if isinstance(value, dict):
+        if not value:
+            return
+        lines.append(f"{pad}{key}:")
+        for k, v in value.items():
+            _yaml_emit(lines, k, v, indent + 2)
+    elif isinstance(value, bool):
+        lines.append(f"{pad}{key}: {str(value).lower()}")
+    elif isinstance(value, (int, float)):
+        lines.append(f"{pad}{key}: {value}")
+    elif isinstance(value, list):
+        lines.append(f"{pad}{key}: {json.dumps(value, ensure_ascii=False)}")
+    else:
+        lines.append(f"{pad}{key}: {json.dumps(str(value), ensure_ascii=False)}")
 
 
 def build_clash_yaml(configs: list[str]) -> str:
@@ -943,63 +737,34 @@ def build_clash_yaml(configs: list[str]) -> str:
     if not proxies:
         return "# No parseable proxies found\nproxies: []\n"
 
-    lines: list[str] = []
-    lines.append("# Clash subscription — auto-generated")
-    lines.append(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}")
-    lines.append(f"# Total proxies: {len(proxies)}")
-    lines.append("")
-    lines.append("mixed-port: 7890")
-    lines.append("allow-lan: false")
-    lines.append("mode: rule")
-    lines.append("log-level: info")
-    lines.append("")
-    lines.append("proxies:")
-
+    lines: list[str] = [
+        "# Clash subscription — auto-generated",
+        f"# Generated: {utc_now()}",
+        f"# Total proxies: {len(proxies)}",
+        "",
+        "mixed-port: 7890",
+        "allow-lan: false",
+        "mode: rule",
+        "log-level: info",
+        "",
+        "proxies:",
+    ]
     for p in proxies:
-        lines.append(f"  - name: \"{p['name']}\"")
+        lines.append(f"  - name: {json.dumps(p['name'], ensure_ascii=False)}")
         for k, v in p.items():
-            if k == "name":
-                continue
-            if isinstance(v, dict):
-                lines.append(f"    {k}:")
-                for dk, dv in v.items():
-                    if isinstance(dv, dict):
-                        lines.append(f"      {dk}:")
-                        for ddk, ddv in dv.items():
-                            lines.append(f"        {ddk}: \"{ddv}\"")
-                    else:
-                        lines.append(f"      {dk}: \"{dv}\"")
-            elif isinstance(v, bool):
-                lines.append(f"    {k}: {str(v).lower()}")
-            elif isinstance(v, str):
-                lines.append(f"    {k}: \"{v}\"")
-            else:
-                lines.append(f"    {k}: {v}")
+            if k != "name":
+                _yaml_emit(lines, k, v, 4)
         lines.append("")
 
-    lines.append("proxy-groups:")
-    lines.append("  - name: \"AUTO\"")
-    lines.append("    type: url-test")
-    lines.append("    url: http://www.gstatic.com/generate_204")
-    lines.append("    interval: 300")
-    lines.append("    proxies:")
-    for n in proxy_names:
-        lines.append(f"      - \"{n}\"")
-    lines.append("")
-    lines.append("  - name: \"PROXY\"")
-    lines.append("    type: select")
-    lines.append("    proxies:")
-    lines.append("      - \"AUTO\"")
-    for n in proxy_names:
-        lines.append(f"      - \"{n}\"")
-    lines.append("")
-    lines.append("rules:")
-    lines.append("  - MATCH,AUTO")
-    lines.append("")
-
+    lines += ["proxy-groups:", '  - name: "AUTO"', "    type: url-test",
+              "    url: http://www.gstatic.com/generate_204", "    interval: 300", "    proxies:"]
+    lines += [f"      - {json.dumps(n)}" for n in proxy_names]
+    lines += ["", '  - name: "PROXY"', "    type: select", "    proxies:", '      - "AUTO"']
+    lines += [f"      - {json.dumps(n)}" for n in proxy_names]
+    lines += ["", "rules:", "  - MATCH,AUTO", ""]
     return "\n".join(lines)
 
-# ── Save ──────────────────────────────────────────────────────────────────────
+# ── Save main outputs ─────────────────────────────────────────────────────────
 
 def save(configs: list[str]) -> None:
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -1007,7 +772,7 @@ def save(configs: list[str]) -> None:
     raw     = "\n".join(configs)
     encoded = base64.b64encode(raw.encode()).decode()
     OUTPUT_FILE.write_text(encoded)
-    Path("output/configs_plain.txt").write_text(raw)
+    PLAIN_OUTPUT_FILE.write_text(raw)
     print(f"\n✅ Saved {len(configs)} unique configs → {OUTPUT_FILE}")
     print(f"   Base64 length: {len(encoded)} chars")
 
@@ -1016,18 +781,416 @@ def save(configs: list[str]) -> None:
     clash_count = clash_yaml.count("\n  - name:")
     print(f"✅ Saved Clash subscription → {CLASH_OUTPUT_FILE} ({clash_count} proxies)")
 
-# ── sing-box output (NEW, additive) ───────────────────────────────────────────
-# Builds ONE sing-box JSON profile that the sing-box Android app (SFA) can load
-# as a "Remote profile" URL and auto-update. Contains only the servers passed in
-# (TCP-tested / Iran-confirmed), wired into a urltest group so sing-box keeps
-# picking the fastest live server by itself.
-#
-# Unlike the Clash-dict -> Xray path above, this parses the ORIGINAL URIs, so it
-# keeps fields the Clash dict drops: VLESS `flow` (xtls-rprx-vision), uTLS
-# fingerprint (`fp`), `alpn`, ws early-data, hysteria2 obfs, etc.
+# ── Live testing ──────────────────────────────────────────────────────────────
 
-# Ciphers sing-box's shadowsocks outbound accepts. Anything else would make the
-# WHOLE profile fail to load, so unknown ones are skipped instead.
+async def _tcp_ping(host: str, port: int, timeout: float = TEST_TIMEOUT_SECONDS) -> float | None:
+    """Raw TCP connect. Returns latency in ms, or None if dead."""
+    loop  = asyncio.get_running_loop()
+    start = loop.time()
+    try:
+        _, writer = await asyncio.wait_for(asyncio.open_connection(host, port), timeout=timeout)
+        latency_ms = (loop.time() - start) * 1000
+        writer.close()
+        try:
+            await writer.wait_closed()
+        except Exception:
+            pass
+        return latency_ms
+    except Exception:
+        return None
+
+
+async def _tls_handshake(host: str, port: int, sni: str) -> bool:
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode    = ssl.CERT_NONE
+    try:
+        _, writer = await asyncio.wait_for(
+            asyncio.open_connection(host, port, ssl=ctx, server_hostname=sni or None),
+            timeout=TLS_TIMEOUT_SECONDS,
+        )
+        writer.close()
+        try:
+            await writer.wait_closed()
+        except Exception:
+            pass
+        return True
+    except Exception:
+        return False
+
+
+async def _resolves(host: str) -> bool:
+    try:
+        ipaddress.ip_address(host)
+        return True                                   # literal IP, nothing to resolve
+    except ValueError:
+        pass
+    try:
+        await asyncio.wait_for(asyncio.get_running_loop().getaddrinfo(host, None), timeout=5)
+        return True
+    except Exception:
+        return False
+
+
+async def test_configs(configs: list[str]):
+    """
+    Returns (alive, untestable):
+      alive      — [(uri, clash_proxy_dict, latency_ms)] that answered a TCP connect, fastest first
+      untestable — [(uri, host, port)] configs a TCP connect can't judge (hysteria2/tuic are
+                   UDP/QUIC; ssr / unparseable ones) — kept, NOT discarded
+    TCP-testable configs that fail the connect are dead and dropped.
+    """
+    sem = asyncio.Semaphore(TEST_CONCURRENCY)
+    alive: list[tuple[str, dict, float]] = []
+    untestable: list[tuple[str, str, int]] = []
+
+    async def _check(cfg: str) -> None:
+        scheme = _scheme_of(cfg)
+        proxy  = None if (scheme in UDP_SCHEMES or scheme == "ssr") else config_to_clash_proxy(cfg, "test")
+        if proxy and proxy.get("server") and proxy.get("port"):
+            async with sem:
+                latency = await _tcp_ping(str(proxy["server"]), int(proxy["port"]))
+            if latency is not None:
+                alive.append((cfg, proxy, latency))
+            return
+        ep = _endpoint_of(cfg)
+        if ep:
+            untestable.append((cfg, ep[0], ep[1]))
+
+    await asyncio.gather(*(_check(c) for c in configs))
+    alive.sort(key=lambda r: r[2])
+    return alive, untestable
+
+
+async def verify_and_dedupe(alive: list[tuple[str, dict, float]]) -> list[tuple[str, dict, float]]:
+    """
+    Confirm a TLS handshake for every config that uses TLS/Reality/Trojan (a TCP
+    connect alone doesn't prove the TLS layer works; non-TLS configs pass on the
+    TCP result), THEN keep only the fastest survivor per server:port. Verifying
+    before deduping means a failed TLS config can't knock out a working config
+    that shares its endpoint. Identical (host, port, sni) handshakes are cached.
+    """
+    sem = asyncio.Semaphore(TLS_CONCURRENCY)
+    cache: dict[tuple[str, int, str], asyncio.Task] = {}
+
+    async def _handshake(host: str, port: int, sni: str) -> bool:
+        async with sem:
+            return await _tls_handshake(host, port, sni)
+
+    async def _verify(item):
+        proxy = item[1]
+        if not (proxy.get("tls") or proxy.get("type") == "trojan"):
+            return item
+        key = (str(proxy["server"]), int(proxy["port"]), str(proxy.get("servername") or proxy.get("sni") or ""))
+        if key not in cache:
+            cache[key] = asyncio.ensure_future(_handshake(*key))
+        return item if await cache[key] else None
+
+    passed = [r for r in await asyncio.gather(*(_verify(i) for i in alive)) if r]
+    passed.sort(key=lambda r: r[2])                     # fastest first
+
+    seen: set[tuple[str, int]] = set()
+    verified: list[tuple[str, dict, float]] = []
+    for item in passed:
+        key = (str(item[1]["server"]).lower(), int(item[1]["port"]))
+        if key not in seen:
+            seen.add(key)
+            verified.append(item)
+    print(f"   {len(alive)} TCP-alive → {len(passed)} after TLS check → {len(verified)} unique servers")
+    return verified
+
+
+async def check_untestable(items: list[tuple[str, str, int]]) -> list[tuple[str, str, int]]:
+    """Dedupe untestable configs by host:port and drop only those whose hostname doesn't resolve."""
+    seen: set[tuple[str, int, bool]] = set()
+    unique: list[tuple[str, str, int]] = []
+    for cfg, host, port in items:
+        key = (host.lower(), port, _scheme_of(cfg) in UDP_SCHEMES)
+        if key not in seen:
+            seen.add(key)
+            unique.append((cfg, host, port))
+
+    sem = asyncio.Semaphore(TEST_CONCURRENCY)
+
+    async def _r(item):
+        async with sem:
+            return item if await _resolves(item[1]) else None
+
+    kept = [r for r in await asyncio.gather(*(_r(i) for i in unique)) if r]
+    print(f"   {len(items)} untestable → {len(unique)} unique → {len(kept)} with resolvable host (kept, marked untested)")
+    return kept
+
+
+async def run_local_tests(configs: list[str]):
+    alive, untestable = await test_configs(configs)
+    print(f"   ✅ {len(alive)}/{len(configs)} answered TCP; {len(untestable)} can't be TCP-tested (UDP/other)")
+    verified = await verify_and_dedupe(alive)
+    untested = await check_untestable(untestable)
+    return verified, untested
+
+
+def save_small_list(verified: list[tuple[str, dict, float]], untested: list[tuple[str, str, int]]) -> None:
+    lines: list[str] = []
+    for i, (cfg, _p, lat) in enumerate(verified[:SMALL_TESTED_MAX], start=1):
+        lines.append(_with_remark(cfg, f"ok{i}_{int(lat)}ms"))
+    n_ok = len(lines)
+    pool = untested if SMALL_UNTESTED_MAX is None else untested[:SMALL_UNTESTED_MAX]
+    for j, (cfg, _h, _p) in enumerate(pool, start=1):
+        lines.append(_with_remark(cfg, f"untested{j}_{_scheme_of(cfg)}"))
+    if not lines:
+        print("⚠️  Nothing for the small verified list — leaving it untouched.")
+        return
+    raw = "\n".join(lines)
+    SMALL_TESTED_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    SMALL_TESTED_OUTPUT_FILE.write_text(raw)
+    SMALL_TESTED_B64_OUTPUT_FILE.write_text(base64.b64encode(raw.encode()).decode())
+    print(f"✅ Saved small list → {SMALL_TESTED_OUTPUT_FILE}: {n_ok} tested + {len(lines) - n_ok} untested (+ base64 version)")
+
+# ── Iran-reachability re-test via check-host.net ──────────────────────────────
+
+CHECK_HOST_API = "https://check-host.net"
+
+
+async def _fetch_iran_nodes(client: httpx.AsyncClient) -> list[str]:
+    """Live list of check-host.net nodes located in Iran."""
+    try:
+        r = await client.get(f"{CHECK_HOST_API}/nodes/hosts", headers={"Accept": "application/json"}, timeout=15)
+        r.raise_for_status()
+        data  = r.json()
+        nodes = data.get("nodes", {}) if isinstance(data, dict) else {}
+        out = []
+        for name, info in nodes.items():
+            if not isinstance(info, dict):
+                continue
+            location = info.get("location") or []
+            if (str(location[0]).lower() if location else "") == "ir":
+                out.append(name)
+        return out
+    except Exception as e:
+        print(f"  ⚠️  Could not fetch check-host.net node list: {e}")
+        return []
+
+
+async def _check_host_submit(client: httpx.AsyncClient, host: str, port: int, nodes: list[str]) -> str | None:
+    params = [("host", f"{host}:{port}")] + [("node", n) for n in nodes[:IRAN_CHECK_MAX_NODES]]
+    for attempt in range(2):                      # one retry (rate limits / transient errors)
+        try:
+            r = await client.get(f"{CHECK_HOST_API}/check-tcp", params=params,
+                                 headers={"Accept": "application/json"}, timeout=15)
+            r.raise_for_status()
+            data = r.json()
+            if data.get("ok"):
+                return data.get("request_id")
+        except Exception:
+            pass
+        if attempt == 0:
+            await asyncio.sleep(3)
+    return None
+
+
+async def _check_host_poll(client: httpx.AsyncClient, request_id: str) -> dict:
+    last: dict = {}
+    for _ in range(IRAN_CHECK_POLL_ATTEMPTS):
+        await asyncio.sleep(IRAN_CHECK_POLL_INTERVAL)
+        try:
+            r = await client.get(f"{CHECK_HOST_API}/check-result/{request_id}",
+                                 headers={"Accept": "application/json"}, timeout=15)
+            r.raise_for_status()
+            last = r.json() or {}
+            if all(v is not None for v in last.values()):
+                break
+        except Exception:
+            continue
+    return last
+
+
+def _check_host_success_ratio(result: dict) -> float:
+    total = ok = 0
+    for _node, entries in result.items():
+        if not entries:
+            continue                              # pending / never answered: excluded, not a failure
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            total += 1
+            if "error" not in entry:
+                ok += 1
+    return (ok / total) if total else 0.0
+
+
+async def test_iran_reachability(tested: list[tuple[str, dict, float]]) -> list[tuple[str, dict, float]]:
+    headers = {"User-Agent": "Mozilla/5.0 (compatible; v2ray-collector/1.0)"}
+    async with httpx.AsyncClient(headers=headers, follow_redirects=True) as client:
+        iran_nodes = await _fetch_iran_nodes(client)
+        if not iran_nodes:
+            print("  ⚠️  No check-host.net Iran nodes available right now — skipping Iran-reachability stage.")
+            return []
+        print(f"  🇮🇷 Using {len(iran_nodes)} check-host.net Iran vantage node(s)")
+
+        candidates = tested[:IRAN_CHECK_MAX_CANDIDATES]
+        sem = asyncio.Semaphore(IRAN_CHECK_CONCURRENCY)
+        passed: list[tuple[str, dict, float]] = []
+
+        async def _check(item: tuple[str, dict, float]) -> None:
+            _cfg, proxy, _lat = item
+            host, port = str(proxy.get("server", "")), proxy.get("port")
+            if not host or not port:
+                return
+            async with sem:
+                request_id = await _check_host_submit(client, host, int(port), iran_nodes)
+                if not request_id:
+                    return
+                result = await _check_host_poll(client, request_id)
+            if _check_host_success_ratio(result) >= IRAN_CHECK_MIN_SUCCESS_RATIO:
+                passed.append(item)
+
+        await asyncio.gather(*(_check(c) for c in candidates))
+
+    passed.sort(key=lambda r: r[2])
+    return passed
+
+
+def save_iran_working(iran_ok: list[tuple[str, dict, float]]) -> None:
+    configs = [cfg for cfg, _p, _l in iran_ok]
+    IRAN_WORKING_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    raw = "\n".join(configs)
+    IRAN_WORKING_OUTPUT_FILE.write_text(raw)
+    IRAN_WORKING_B64_OUTPUT_FILE.write_text(base64.b64encode(raw.encode()).decode())
+    print(f"✅ Saved {len(configs)} Iran-confirmed-working configs → {IRAN_WORKING_OUTPUT_FILE}")
+    print(f"✅ Saved base64 subscription → {IRAN_WORKING_B64_OUTPUT_FILE}")
+
+# ── Xray "leastPing" balancer config ──────────────────────────────────────────
+
+_XRAY_VMESS_SECURITY = {"auto", "aes-128-gcm", "chacha20-poly1305", "none", "zero"}
+
+
+def clash_proxy_to_xray_outbound(proxy: dict, tag: str) -> dict | None:
+    """Clash-style proxy dict -> raw Xray outbound (vmess / vless / trojan / shadowsocks)."""
+    ptype   = str(proxy.get("type", "")).lower()
+    host    = str(proxy.get("server", ""))
+    port    = int(proxy.get("port", 443))
+    network = str(proxy.get("network", "tcp"))
+
+    stream: dict = {"network": network if network in ("tcp", "ws", "grpc", "xhttp", "httpupgrade") else "tcp"}
+    if network == "ws":
+        ws = proxy.get("ws-opts") or {}
+        stream["wsSettings"] = {"path": ws.get("path", "/"), "headers": ws.get("headers") or {}}
+    elif network == "grpc":
+        stream["grpcSettings"] = {"serviceName": (proxy.get("grpc-opts") or {}).get("grpc-service-name", "")}
+    elif network == "xhttp":
+        xh = proxy.get("xhttp-opts") or {}
+        stream["xhttpSettings"] = {"path": xh.get("path", "/"), "host": xh.get("host", "")}
+    elif network == "httpupgrade":
+        hu = proxy.get("httpupgrade-opts") or {}
+        stream["httpupgradeSettings"] = {"path": hu.get("path", "/"), "host": hu.get("host", "")}
+
+    fingerprint = proxy.get("client-fingerprint")
+    reality     = proxy.get("reality-opts")
+    if reality:
+        stream["security"] = "reality"
+        stream["realitySettings"] = {
+            "serverName":  proxy.get("servername", ""),
+            "publicKey":   reality.get("public-key", ""),
+            "shortId":     reality.get("short-id", ""),
+            "fingerprint": fingerprint or "chrome",
+        }
+    elif proxy.get("tls") or ptype == "trojan":      # trojan is TLS by design
+        stream["security"] = "tls"
+        tls: dict = {
+            "serverName":    proxy.get("servername") or proxy.get("sni") or host,
+            "allowInsecure": bool(proxy.get("skip-cert-verify", False)),
+        }
+        if proxy.get("alpn"):
+            tls["alpn"] = proxy["alpn"]
+        if fingerprint:
+            tls["fingerprint"] = fingerprint
+        stream["tlsSettings"] = tls
+    else:
+        stream["security"] = "none"
+
+    try:
+        if ptype == "vmess":
+            cipher = str(proxy.get("cipher", "auto"))
+            return {
+                "tag": tag, "protocol": "vmess",
+                "settings": {"vnext": [{"address": host, "port": port, "users": [{
+                    "id": str(proxy.get("uuid", "")), "alterId": int(proxy.get("alterId", 0)),
+                    "security": cipher if cipher in _XRAY_VMESS_SECURITY else "auto",
+                }]}]},
+                "streamSettings": stream,
+            }
+        if ptype == "vless":
+            user = {"id": str(proxy.get("uuid", "")), "encryption": "none"}
+            if proxy.get("flow"):                     # without this, Reality+Vision servers reject the connection
+                user["flow"] = str(proxy["flow"])
+            return {
+                "tag": tag, "protocol": "vless",
+                "settings": {"vnext": [{"address": host, "port": port, "users": [user]}]},
+                "streamSettings": stream,
+            }
+        if ptype == "trojan":
+            return {
+                "tag": tag, "protocol": "trojan",
+                "settings": {"servers": [{"address": host, "port": port,
+                                          "password": str(proxy.get("password", ""))}]},
+                "streamSettings": stream,
+            }
+        if ptype == "ss":
+            return {
+                "tag": tag, "protocol": "shadowsocks",
+                "settings": {"servers": [{"address": host, "port": port,
+                                          "method": str(proxy.get("cipher", "aes-256-gcm")),
+                                          "password": str(proxy.get("password", ""))}]},
+                "streamSettings": {"network": "tcp", "security": "none"},
+            }
+    except Exception:
+        return None
+    return None
+
+
+def build_xray_leastping_config(tested: list[tuple[str, dict, float]]) -> dict:
+    outbounds: list[dict] = []
+    for _cfg, proxy, _lat in tested:
+        if len(outbounds) >= MAX_BALANCER_SERVERS:
+            break
+        ob = clash_proxy_to_xray_outbound(proxy, tag=f"p{len(outbounds) + 1}")
+        if ob:
+            outbounds.append(ob)
+
+    proxy_tags = [ob["tag"] for ob in outbounds]
+    outbounds.append({"tag": "direct", "protocol": "freedom", "settings": {}})
+    outbounds.append({"tag": "block", "protocol": "blackhole", "settings": {}})
+
+    balancer: dict = {"tag": "auto", "selector": ["p"], "strategy": {"type": "leastPing"}}
+    if proxy_tags:
+        balancer["fallbackTag"] = proxy_tags[0]       # defined behaviour before the first probe finishes
+
+    return {
+        "log": {"loglevel": "warning"},
+        "inbounds": [
+            {"tag": "socks-in", "listen": "127.0.0.1", "port": 10808, "protocol": "socks",
+             "settings": {"auth": "noauth", "udp": True},
+             "sniffing": {"enabled": True, "destOverride": ["http", "tls"]}},
+            {"tag": "http-in", "listen": "127.0.0.1", "port": 10809, "protocol": "http"},
+        ],
+        "outbounds": outbounds,
+        "routing": {
+            "domainStrategy": "AsIs",
+            "balancers": [balancer],
+            "rules": [{"type": "field", "network": "tcp,udp", "balancerTag": "auto"}],
+        },
+        "observatory": {
+            "subjectSelector":   ["p"],
+            "probeURL":          "https://www.gstatic.com/generate_204",
+            "probeInterval":     OBSERVATORY_PROBE_INTERVAL,
+            "enableConcurrency": True,
+        },
+    }
+
+# ── sing-box output ───────────────────────────────────────────────────────────
+# Parses the ORIGINAL URIs, so it keeps fields the Clash dict drops (VLESS flow,
+# uTLS fingerprint, alpn, ws early-data, hysteria2 obfs, ...).
+
 _SB_SS_METHODS = {
     "none", "aes-128-gcm", "aes-192-gcm", "aes-256-gcm",
     "chacha20-ietf-poly1305", "xchacha20-ietf-poly1305",
@@ -1054,7 +1217,6 @@ def _sb_valid_uuid(s: str) -> bool:
 
 
 def _sb_valid_reality(pbk: str, sid: str) -> bool:
-    # public key: 32 bytes base64url (43 chars, no padding); short id: 0-16 hex, even length
     if len(pbk) != 43:
         return False
     if len(sid) > 16 or len(sid) % 2 or any(c not in _HEX for c in sid):
@@ -1091,7 +1253,7 @@ def _sb_transport(net: str, params: dict, server: str) -> tuple[bool, dict | Non
     path = unquote(_q(params, "path", "/")) or "/"
     if net in ("", "tcp"):
         if _q(params, "headerType") not in ("", "none"):
-            return False, None          # tcp+http header obfuscation: skip
+            return False, None
         return True, None
     if net == "ws":
         t: dict = {"type": "ws", "path": path}
@@ -1117,7 +1279,7 @@ def _sb_transport(net: str, params: dict, server: str) -> tuple[bool, dict | Non
 
 def _sb_parse_hostport(hostport: str) -> tuple[str, int] | None:
     try:
-        if hostport.startswith("["):                      # [ipv6]:port
+        if hostport.startswith("["):
             host, _, port = hostport[1:].partition("]:")
         else:
             host, _, port = hostport.rpartition(":")
@@ -1165,27 +1327,14 @@ def uri_to_singbox_outbound(cfg: str, tag: str) -> dict | None:
             return ob
 
         if base.startswith("ss://"):
-            body = base[len("ss://"):]
-            if "?" in body:
-                body, query = body.split("?", 1)
-                if "plugin" in parse_qs(query):
-                    return None                           # plugin-based ss: skip
-            body = unquote(body)
-            if "@" in body:
-                userinfo, hostport = body.rsplit("@", 1)
-                if ":" not in userinfo:
-                    userinfo = base64.urlsafe_b64decode(userinfo + "=" * (-len(userinfo) % 4)).decode()
-            else:
-                decoded = base64.urlsafe_b64decode(body + "=" * (-len(body) % 4)).decode()
-                userinfo, hostport = decoded.rsplit("@", 1)
-            method, password = userinfo.split(":", 1)
-            hp = _sb_parse_hostport(hostport)
-            if not hp or method not in _SB_SS_METHODS:
+            ss = _parse_ss(base)
+            if not ss or ss["plugin"] or ss["method"] not in _SB_SS_METHODS:
                 return None
-            return {"type": "shadowsocks", "tag": tag, "server": hp[0], "server_port": hp[1],
-                    "method": method, "password": password}
+            if not 1 <= ss["port"] <= 65535:
+                return None
+            return {"type": "shadowsocks", "tag": tag, "server": ss["host"], "server_port": ss["port"],
+                    "method": ss["method"], "password": ss["password"]}
 
-        # vless / trojan / hysteria2 share URL-style parsing
         for scheme in ("vless://", "trojan://", "hysteria2://", "hy2://"):
             if base.startswith(scheme):
                 break
@@ -1207,13 +1356,12 @@ def uri_to_singbox_outbound(cfg: str, tag: str) -> dict | None:
             ob = {"type": "vless", "tag": tag, "server": server, "server_port": port, "uuid": user}
             flow = _q(params, "flow")
             if flow:
-                # sing-box only knows plain vision; Xray's "-udp443" variant maps to it
                 if flow not in ("xtls-rprx-vision", "xtls-rprx-vision-udp443"):
                     return None
                 ob["flow"] = "xtls-rprx-vision"
             tls = _sb_tls(params, server)
             if _q(params, "security") in ("tls", "reality") and not tls:
-                return None                                # broken reality/tls params
+                return None
             if tls:
                 ob["tls"] = tls
             if transport:
@@ -1224,7 +1372,7 @@ def uri_to_singbox_outbound(cfg: str, tag: str) -> dict | None:
             ok, transport = _sb_transport(_q(params, "type", "tcp"), params, server)
             if not ok:
                 return None
-            tls = _sb_tls(params, server, force=True)     # trojan is always TLS
+            tls = _sb_tls(params, server, force=True)
             if not tls:
                 return None
             ob = {"type": "trojan", "tag": tag, "server": server, "server_port": port,
@@ -1247,11 +1395,6 @@ def uri_to_singbox_outbound(cfg: str, tag: str) -> dict | None:
 
 
 def build_singbox_config(tested: list) -> dict | None:
-    """
-    tested: list of (config_uri, proxy_dict, latency_ms) fastest-first (what
-    test_configs() / test_iran_reachability() return). Returns a full sing-box
-    profile dict, or None if no config could be converted.
-    """
     outbounds: list[dict] = []
     for cfg, _proxy, _lat in tested:
         if len(outbounds) >= MAX_SINGBOX_SERVERS:
@@ -1299,7 +1442,6 @@ def build_singbox_config(tested: list) -> dict | None:
 
 
 def save_singbox(tested: list, path: Path = SINGBOX_OUTPUT_FILE) -> None:
-    """Write a sing-box profile for the given tested configs. Does nothing if none convert."""
     cfg = build_singbox_config(tested)
     if cfg is None:
         print(f"⚠️ sing-box: no convertible configs, {path} not written")
@@ -1309,14 +1451,14 @@ def save_singbox(tested: list, path: Path = SINGBOX_OUTPUT_FILE) -> None:
     n = len(cfg["outbounds"]) - 3          # minus selector, urltest, direct
     print(f"✅ Saved sing-box profile with {n} servers → {path}")
 
-
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 def main() -> None:
-    print(f"🔍 Collecting V2Ray configs [{datetime.now().strftime('%Y-%m-%d %H:%M UTC')}]")
+    print(f"🔍 Collecting V2Ray configs [{utc_now()}]")
     print(f"   Channels      : {len(CHANNELS)}")
     print(f"   External subs : {len(EXTERNAL_SUB_URLS)}")
-    print(f"   Protocols     : {', '.join(p.rstrip('://') for p in PROTOCOLS)}\n")
+    print(f"   Protocols     : {', '.join(p.removesuffix('://') for p in PROTOCOLS)}")
+    print(f"   Clash parser  : {'PyYAML' if yaml else 'built-in fallback'}\n")
 
     configs = asyncio.run(collect_all())
 
@@ -1329,36 +1471,31 @@ def main() -> None:
 
     save(configs)
 
-    # ── NEW, additive: test every config live, build the tested-only ──────────
-    # leastPing balancer config as a separate file. Doesn't touch configs.txt
-    # or clash.yaml above.
-    print(f"\n🧪 Testing {len(configs)} configs for live reachability (timeout {TEST_TIMEOUT_SECONDS}s)...")
-    tested = asyncio.run(test_configs(configs))
-    print(f"   ✅ {len(tested)}/{len(configs)} configs responded")
+    # Live tests: TCP connect (+ TLS handshake for TLS configs), deduped by server:port.
+    # Configs that can't be TCP-tested are kept separately, not discarded.
+    print(f"\n🧪 Testing {len(configs)} configs (TCP timeout {TEST_TIMEOUT_SECONDS}s)...")
+    verified, untested = asyncio.run(run_local_tests(configs))
 
-    if tested:
-        leastping_cfg = build_xray_leastping_config(tested)
+    save_small_list(verified, untested)
+
+    if verified:
+        leastping_cfg = build_xray_leastping_config(verified)
         LEASTPING_OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
         LEASTPING_OUTPUT_FILE.write_text(json.dumps(leastping_cfg, indent=2))
-        included = min(len(tested), MAX_BALANCER_SERVERS)
+        included = len([o for o in leastping_cfg["outbounds"] if o["tag"].startswith("p")])
         print(f"✅ Saved tested LeastPing config → {LEASTPING_OUTPUT_FILE} ({included} servers, auto-switching)")
-
-        # sing-box profile from the same TCP-tested list
-        save_singbox(tested, SINGBOX_OUTPUT_FILE)
+        save_singbox(verified, SINGBOX_OUTPUT_FILE)
     else:
-        print("⚠️  No configs passed the reachability test — skipping LeastPing config.")
+        print("⚠️  No configs passed the reachability test — skipping LeastPing / sing-box configs.")
 
-    # ── NEW, additive: re-test the TCP-alive configs from inside Iran ─────────
-    # Separate output again: doesn't touch configs.txt, clash.yaml, or
-    # xray_leastping.json above.
-    if tested:
-        candidate_count = min(len(tested), IRAN_CHECK_MAX_CANDIDATES)
-        print(f"\n🇮🇷 Re-testing {candidate_count} TCP-alive configs for reachability from inside Iran (via check-host.net)...")
-        iran_ok = asyncio.run(test_iran_reachability(tested))
+    # Re-test the verified configs from inside Iran (check-host.net).
+    if verified:
+        candidate_count = min(len(verified), IRAN_CHECK_MAX_CANDIDATES)
+        print(f"\n🇮🇷 Re-testing {candidate_count} verified configs for reachability from inside Iran (via check-host.net)...")
+        iran_ok = asyncio.run(test_iran_reachability(verified))
         print(f"   ✅ {len(iran_ok)}/{candidate_count} configs confirmed reachable from Iran")
         if iran_ok:
             save_iran_working(iran_ok)
-            # sing-box profile from the Iran-confirmed list
             save_singbox(iran_ok, SINGBOX_IRAN_OUTPUT_FILE)
         else:
             print(f"⚠️  No configs confirmed reachable from Iran this run — leaving {IRAN_WORKING_OUTPUT_FILE} untouched.")
