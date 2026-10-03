@@ -60,22 +60,7 @@
         "s22",
         "s23",
         "s24",
-        "s25",
-        "s26",
-        "s27",
-        "s28",
-        "s29",
-        "s30",
-        "s31",
-        "s32",
-        "s33",
-        "s34",
-        "s35",
-        "s36",
-        "s37",
-        "s38",
-        "s39",
-        "s40"
+        "s25"
       ],
       "default": "auto"
     },
@@ -107,22 +92,7 @@
         "s22",
         "s23",
         "s24",
-        "s25",
-        "s26",
-        "s27",
-        "s28",
-        "s29",
-        "s30",
-        "s31",
-        "s32",
-        "s33",
-        "s34",
-        "s35",
-        "s36",
-        "s37",
-        "s38",
-        "s39",
-        "s40"
+        "s25"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
@@ -131,7 +101,32 @@
     {
       "type": "trojan",
       "tag": "s1",
-      "server": "151.101.56.7",
+      "server": "199.232.78.170",
+      "server_port": 443,
+      "password": "mitivpn",
+      "tls": {
+        "enabled": true,
+        "server_name": "ssl.fastly.com",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "@mehrosabiran",
+        "headers": {
+          "Host": "mitivpn---de--s---mitivpn-11.global.ssl.fastly.net"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "s2",
+      "server": "199.232.78.160",
       "server_port": 443,
       "password": "MiTiVPN",
       "tls": {
@@ -142,301 +137,141 @@
         ],
         "utls": {
           "enabled": true,
-          "fingerprint": "firefox"
+          "fingerprint": "chrome"
         }
       },
       "transport": {
         "type": "ws",
-        "path": "@mehrosaboran",
+        "path": "/",
         "headers": {
-          "Host": "mitivpn-mitivpn-mitivpn--mitivpn-mitivpn--mitivpn.global.ssl.fastly.net"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s2",
-      "server": "199.232.78.159",
-      "server_port": 443,
-      "uuid": "a1ee277e-93b7-4aa9-86a2-c7ef85a2adb0",
-      "tls": {
-        "enabled": true,
-        "server_name": "ssl.fastly.com"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TELEGRAM_on_proxy1",
-        "headers": {
-          "Host": "pane3.global.ssl.fastly.net"
+          "Host": "mitivpn-mitivpn-mitivpn---mitivpn--mitivpn.global.ssl.fastly.net"
         }
       }
     },
     {
       "type": "vless",
       "tag": "s3",
-      "server": "199.232.78.159",
+      "server": "104.16.10.2",
       "server_port": 443,
-      "uuid": "284dde63-5d87-4df2-a6bb-438f48765b1d",
+      "uuid": "c4edb87e-8544-4fa4-bd1c-b0cda9a34b46",
       "tls": {
         "enabled": true,
-        "server_name": "ssl.fastly.com"
+        "server_name": "a.cwvps.eu.org"
       },
       "transport": {
         "type": "ws",
-        "path": "/",
+        "path": "/ws#TELEGRAM--MARAMBASHI--MARAMBASHI",
+        "max_early_data": 512,
+        "early_data_header_name": "Sec-WebSocket-Protocol",
         "headers": {
-          "Host": "sevenfeshab.global.ssl.fastly.net."
+          "Host": "a.cwvps.eu.org"
         }
       }
     },
     {
       "type": "vless",
       "tag": "s4",
-      "server": "199.232.78.159",
+      "server": "104.21.60.109",
       "server_port": 443,
-      "uuid": "d6962b1a-4701-4456-ba61-deb28c913a66",
+      "uuid": "44eae030-290b-4083-8102-6f8bab05701b",
       "tls": {
         "enabled": true,
-        "server_name": "ssl.fastly.com"
+        "server_name": "cfvvv-ev1.pages.dev"
       },
       "transport": {
         "type": "ws",
-        "path": "/",
+        "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI?ed=2560",
         "headers": {
-          "Host": "pan2e.global.ssl.fastly.net"
+          "Host": "cfvvv-ev1.pages.dev"
         }
       }
     },
     {
       "type": "vless",
       "tag": "s5",
-      "server": "199.232.78.159",
-      "server_port": 443,
-      "uuid": "24a3853d-01c7-4fae-a0cc-97ef0f25a455",
-      "tls": {
-        "enabled": true,
-        "server_name": "ssl.fastly.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
+      "server": "104.18.13.229",
+      "server_port": 8880,
+      "uuid": "4af06e6a-63ae-43c1-83c0-f8f613aef263",
       "transport": {
         "type": "ws",
-        "path": "/",
+        "path": "/pyip=ProxyIP.JP.CMLiussss.net",
         "headers": {
-          "Host": "7wwwspeedtestnet.global.ssl.fastly.net"
+          "Host": "withered-sea-c187.445-608.workers.dev"
         }
       }
     },
     {
       "type": "vless",
       "tag": "s6",
-      "server": "151.101.56.7",
-      "server_port": 443,
-      "uuid": "a8e13805-33db-492e-a166-2a3cd9d75d6b",
-      "tls": {
-        "enabled": true,
-        "server_name": "ssl.fastly.com"
-      },
+      "server": "104.18.12.149",
+      "server_port": 80,
+      "uuid": "5f4845b4-11dc-41d6-9508-4ff6a02e36c1",
       "transport": {
         "type": "ws",
-        "path": "/",
+        "path": "/@ProxyVPN11",
         "headers": {
-          "Host": "italyan.global.ssl.fastly.net."
+          "Host": "silent-paper-fa57.fipiyag989.workers.dev"
         }
       }
     },
     {
-      "type": "trojan",
+      "type": "vless",
       "tag": "s7",
-      "server": "151.101.56.7",
-      "server_port": 443,
-      "password": "MiTiVPN",
+      "server": "104.21.8.201",
+      "server_port": 2096,
+      "uuid": "735b8344-0b95-464c-b687-1c5616138908",
       "tls": {
         "enabled": true,
-        "server_name": "ssl.fastly.com",
-        "alpn": [
-          "http/1.1"
-        ],
+        "server_name": "cdn-de.skyvora.app",
         "utls": {
           "enabled": true,
-          "fingerprint": "firefox"
+          "fingerprint": "chrome"
         }
       },
       "transport": {
         "type": "ws",
-        "path": "/",
+        "path": "/3cagtz3",
         "headers": {
-          "Host": "mitivpn-mitivpn-mitivpn---mitivpn--mitivpn.global.ssl.fastly.net"
+          "Host": "cdn-de.skyvora.app"
         }
       }
     },
     {
-      "type": "trojan",
+      "type": "vless",
       "tag": "s8",
-      "server": "167.82.76.7",
+      "server": "104.21.83.140",
       "server_port": 443,
-      "password": "mitivpn",
+      "uuid": "ef5c5d5c-08c6-4549-b05e-d1ff29ecc8ba",
       "tls": {
         "enabled": true,
-        "server_name": "ssl.fastly.com",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
+        "server_name": "0-m16.ChIANG-maI2032.kdNS.fr"
       },
       "transport": {
         "type": "ws",
-        "path": "/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/NLSs---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN",
+        "path": "/JRr6VGcSLFc034DC6sDbwyWJLbB",
         "headers": {
-          "Host": "mitivpn---deb--s---mitivpn-4.global.ssl.fastly.net"
+          "Host": "0-m16.ChIAng-Mai2032.kdnS.fR"
         }
       }
     },
     {
-      "type": "trojan",
+      "type": "vless",
       "tag": "s9",
-      "server": "199.232.78.160",
-      "server_port": 443,
-      "password": "MiTiVPN",
-      "tls": {
-        "enabled": true,
-        "server_name": "ssl.fastly.com",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
+      "server": "172.65.90.53",
+      "server_port": 8880,
+      "uuid": "812b1aeb-c6f7-43cb-8d8b-981711fea21a",
       "transport": {
         "type": "ws",
         "path": "/",
         "headers": {
-          "Host": "mitivpn-mitivpn-mitivpn---mitivpn--mitivpn.global.ssl.fastly.net"
+          "Host": "dark-cake-4743.198-46c.workers.dev"
         }
       }
     },
     {
       "type": "trojan",
       "tag": "s10",
-      "server": "199.232.78.160",
-      "server_port": 443,
-      "password": "mitivpn",
-      "tls": {
-        "enabled": true,
-        "server_name": "ssl.fastly.com",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "firefox"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/D-e1i@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN",
-        "headers": {
-          "Host": "mitivpn---deb--s---mitivpn-2.global.ssl.fastly.net"
-        }
-      }
-    },
-    {
-      "type": "trojan",
-      "tag": "s11",
-      "server": "199.232.78.101",
-      "server_port": 443,
-      "password": "mitivpn",
-      "tls": {
-        "enabled": true,
-        "server_name": "ssl.fastly.com",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/NLSus---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN",
-        "headers": {
-          "Host": "mitivpn---deb--s---mitivpn-1.global.ssl.fastly.net"
-        }
-      }
-    },
-    {
-      "type": "trojan",
-      "tag": "s12",
-      "server": "199.232.78.160",
-      "server_port": 443,
-      "password": "MiTiVPN",
-      "tls": {
-        "enabled": true,
-        "server_name": "ssl.fastly.com"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/NLSs---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN",
-        "headers": {
-          "Host": "mitivpn-ss-mitivpn-----mitivpn.global.ssl.fastly.net"
-        }
-      }
-    },
-    {
-      "type": "trojan",
-      "tag": "s13",
-      "server": "151.101.56.7",
-      "server_port": 443,
-      "password": "MiTiVPN",
-      "tls": {
-        "enabled": true,
-        "server_name": "ssl.fastly.com"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/@mehrosaboran",
-        "headers": {
-          "Host": "mitivpn-mitivpn-mitivpn--mitivpn-mitivpn--mitivpn.global.ssl.fastly.net"
-        }
-      }
-    },
-    {
-      "type": "trojan",
-      "tag": "s14",
-      "server": "199.232.78.160",
-      "server_port": 443,
-      "password": "mitivpn",
-      "tls": {
-        "enabled": true,
-        "server_name": "ssl.fastly.com",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "firefox"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/---@GHOFLSHCAN---@GHOFLSHCAN/---@GHOFLSHCAN---@GHOFLSHCAN/---@GHOFLSHCAN---@GHOFLSHCAN/D-e1i@GHOFLSHCAN---@GHOFLSHCAN/---@GHOFLSHCAN---@GHOFLSHCAN/---@GHOFLSHCAN---@GHOFLSHCAN",
-        "headers": {
-          "Host": "mitivpn---us--s---mitivpn-11.global.ssl.fastly.net"
-        }
-      }
-    },
-    {
-      "type": "trojan",
-      "tag": "s15",
-      "server": "199.232.78.160",
+      "server": "199.232.78.188",
       "server_port": 443,
       "password": "MiTiVPN",
       "tls": {
@@ -454,105 +289,61 @@
         "type": "ws",
         "path": "/",
         "headers": {
-          "Host": "mitivpn-ss-mitivpn-----mitivpn.global.ssl.fastly.net"
+          "Host": ".global.ssl.fastly.net"
         }
       }
     },
     {
       "type": "vless",
-      "tag": "s16",
-      "server": "104.16.107.139",
-      "server_port": 8880,
-      "uuid": "2fb22d40-598f-4890-85a6-d69928b1fd55",
-      "transport": {
-        "type": "ws",
-        "path": "/pyip=ProxyIP.SG.CMLiussss.net",
-        "headers": {
-          "Host": "odd-cloud-f2a1.73-12e.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s17",
-      "server": "172.67.208.1",
+      "tag": "s11",
+      "server": "216.24.57.15",
       "server_port": 443,
-      "uuid": "1443b7a1-7ba9-4ec9-b904-2e867367b5d7",
+      "uuid": "2ee0d2aa-867e-a77e-9538-2edfc0b242aa",
       "tls": {
         "enabled": true,
-        "server_name": "odd-violet-5440.asdgrweeee13.workers.dev",
+        "server_name": "four04-rd37.onrender.com",
+        "alpn": [
+          "http/1.1"
+        ]
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "four04-rd37.onrender.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "s12",
+      "server": "172.64.154.211",
+      "server_port": 443,
+      "uuid": "8ccb3a94-9e3c-45d0-a280-850faea6bbff",
+      "tls": {
+        "enabled": true,
+        "server_name": "fdjl8sdmc774ru70b3a45lv4w8.akbar1sale6.workers.dev",
+        "alpn": [
+          "http/1.1"
+        ],
         "utls": {
           "enabled": true,
-          "fingerprint": "chrome"
+          "fingerprint": "ios"
         }
       },
       "transport": {
         "type": "ws",
-        "path": "/sync",
+        "path": "/vl/EpnESUGGdoM40CHmsDT",
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol",
         "headers": {
-          "Host": "odd-violet-5440.asdgrweeee13.workers.dev"
+          "Host": "fdjl8sdmc774ru70b3a45lv4w8.akbar1sale6.workers.dev"
         }
       }
     },
     {
       "type": "vless",
-      "tag": "s18",
-      "server": "104.16.107.139",
-      "server_port": 8880,
-      "uuid": "bf380279-cbd5-4e55-96d1-f5a652aaf6b3",
-      "transport": {
-        "type": "ws",
-        "path": "/pyip=ProxyIP.US.CMLiussss.net",
-        "headers": {
-          "Host": "mute-dust-f0c4.456-8ae.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s19",
-      "server": "104.16.72.101",
-      "server_port": 8880,
-      "uuid": "ddef628e-e3a8-43c4-85eb-bd767a5f3b13",
-      "transport": {
-        "type": "ws",
-        "path": "/pyip",
-        "headers": {
-          "Host": "autumn-forest-3479.121-488.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s20",
-      "server": "172.67.151.243",
-      "server_port": 2086,
-      "uuid": "b4a16091-a25d-4d33-aee3-f5ae04f34b14",
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiRjJEdlF3U251aCIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbIjE0Ni4xMDMuMTEzLjE1OCIsIjEwMy45Ny44OC4xMzMiLCIxOTQuMTgwLjE4OC4yNDEiLCIxMTYuMjAyLjEzMi4yMDUiXX0",
-        "headers": {
-          "Host": "blue-brook-cc73.karren391.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s21",
-      "server": "104.18.39.196",
-      "server_port": 8880,
-      "uuid": "5fc8a5e4-d0c5-4ad2-8bfe-db589553c6c1",
-      "transport": {
-        "type": "ws",
-        "path": "/pyip",
-        "headers": {
-          "Host": "red-disk-58df.153-2ce.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s22",
+      "tag": "s13",
       "server": "172.67.173.89",
       "server_port": 443,
       "uuid": "ffa431ab-a59b-4092-a418-905fcb1e4d5f",
@@ -580,21 +371,28 @@
     },
     {
       "type": "vless",
-      "tag": "s23",
-      "server": "104.18.36.122",
-      "server_port": 8880,
-      "uuid": "6d73dc1e-1627-4b16-b471-53e63aa16c78",
+      "tag": "s14",
+      "server": "188.114.97.3",
+      "server_port": 443,
+      "uuid": "c5db14f6-2a21-401c-8160-a8093ff4ffd3",
+      "tls": {
+        "enabled": true,
+        "server_name": "mxp6jvjacystdp-s4f.kjnnv3i410u6mq-itd.workers.dev",
+        "alpn": [
+          "http/1.1"
+        ]
+      },
       "transport": {
         "type": "ws",
-        "path": "/",
+        "path": "/vl/14m2B3TtxW5N85ews",
         "headers": {
-          "Host": "sweet-truth-ccdb.134-7e9.workers.dev"
+          "Host": "mxp6jvjacystdp-s4f.kjnnv3i410u6mq-itd.workers.dev"
         }
       }
     },
     {
       "type": "vless",
-      "tag": "s24",
+      "tag": "s15",
       "server": "172.67.142.2",
       "server_port": 443,
       "uuid": "36d9003c-7240-40bc-af62-07c39f7a0b94",
@@ -616,27 +414,47 @@
     },
     {
       "type": "vless",
-      "tag": "s25",
-      "server": "172.67.209.127",
-      "server_port": 8880,
-      "uuid": "1742863c-ce4b-4bb7-b807-80da29cbec86",
+      "tag": "s16",
+      "server": "172.67.193.253",
+      "server_port": 443,
+      "uuid": "c35050ce-01ab-45a9-91b8-54cec637d0a8",
+      "tls": {
+        "enabled": true,
+        "server_name": "octopusss5.info",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
-        "path": "/",
+        "path": "/udfyfws",
         "headers": {
-          "Host": "icy-fog-9a41.70-a39.workers.dev"
+          "Host": "octopusss5.info"
         }
       }
     },
     {
       "type": "vless",
-      "tag": "s26",
-      "server": "69.46.46.92",
+      "tag": "s17",
+      "server": "89.116.250.135",
+      "server_port": 8880,
+      "uuid": "3a3de813-bfaa-4355-bc47-05c7245431d2",
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/?ed=2082",
+        "host": "FFar.9.postshup.ir"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "s18",
+      "server": "188.42.145.180",
       "server_port": 443,
-      "uuid": "399f9850-428a-b00a-6688-01d24438f959",
+      "password": "humanity",
       "tls": {
         "enabled": true,
-        "server_name": "solipanelwodi-production-0e0c.up.railway.app",
+        "server_name": "www.volumeroot.com",
         "alpn": [
           "http/1.1"
         ],
@@ -647,121 +465,109 @@
       },
       "transport": {
         "type": "ws",
-        "path": "/ws/399f9850-428a-b00a-6688-01d24438f959",
+        "path": "/assignment",
         "headers": {
-          "Host": "solipanelwodi-production-0e0c.up.railway.app"
+          "Host": "www.volumeroot.com"
         }
       }
     },
     {
       "type": "vless",
-      "tag": "s27",
-      "server": "172.67.179.98",
-      "server_port": 8880,
-      "uuid": "8c9be850-32a0-4cc1-809b-4a5161413a90",
-      "transport": {
-        "type": "ws",
-        "path": "/pyip=ProxyIP.KR.CMLiussss.net",
-        "headers": {
-          "Host": "sparkling-frog-59e1.256-d4e.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s28",
-      "server": "104.26.3.125",
-      "server_port": 2052,
-      "uuid": "e8d06b09-acd9-448c-9874-3c36151d36ee",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "icy-wildflower-2590.lihuifeng595.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s29",
-      "server": "104.21.201.219",
+      "tag": "s19",
+      "server": "172.67.74.10",
       "server_port": 443,
-      "uuid": "fdc48be3-a615-41ac-8bd1-ed844c931048",
+      "uuid": "d171491a-9995-46ce-8719-f64463ca3a45",
       "tls": {
         "enabled": true,
-        "server_name": "edgetunnel-4uw.pages.dev"
+        "server_name": "sertraline.adaspoloandco.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
       },
       "transport": {
         "type": "ws",
-        "path": "/",
+        "path": "/download.php",
         "headers": {
-          "Host": "edgetunnel-4uw.pages.dev"
+          "Host": "sertraline.adaspoloandco.com"
         }
       }
     },
     {
-      "type": "vless",
-      "tag": "s30",
-      "server": "104.16.107.139",
-      "server_port": 8880,
-      "uuid": "37fce9ce-9fec-4f30-89a0-fbb1f6f33b3c",
-      "transport": {
-        "type": "ws",
-        "path": "/pyip=ProxyIP.US.CMLiussss.net",
-        "headers": {
-          "Host": "white-night-afee.419-acc.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s31",
-      "server": "104.17.147.22",
+      "type": "trojan",
+      "tag": "s20",
+      "server": "104.18.32.87",
       "server_port": 443,
-      "uuid": "518de0d4-6ce8-4404-80db-23c4a8806128",
+      "password": "018b8e7b-7813-4dcb-84a5-3c98f1521e00",
       "tls": {
         "enabled": true,
-        "server_name": "ez-5faafb.esmaoi.workers.dev"
+        "server_name": "id1.nathaya.web.id"
       },
       "transport": {
         "type": "ws",
-        "path": "/eyJqdW5rIjoiQkFLTnhqM2tZTSIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0",
+        "path": "/trojan",
         "headers": {
-          "Host": "ez-5faafb.esmaoi.workers.dev"
+          "Host": "id1.nathaya.web.id"
         }
       }
     },
     {
       "type": "vless",
-      "tag": "s32",
-      "server": "104.16.97.215",
-      "server_port": 8880,
-      "uuid": "ce977d82-824b-4209-87f1-0719f78d6a2e",
+      "tag": "s21",
+      "server": "104.16.72.50",
+      "server_port": 443,
+      "uuid": "f0db70ae-559e-4cba-aa00-3a04eb04c3e0",
+      "tls": {
+        "enabled": true,
+        "server_name": "fm3.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "s22",
+      "server": "188.114.96.19",
+      "server_port": 80,
+      "uuid": "479526cd-5011-43cf-a788-504da95e07c2",
+      "security": "auto",
+      "alter_id": 0,
       "transport": {
         "type": "ws",
         "path": "/",
         "headers": {
-          "Host": "royal-mode-cf74.210-62d.workers.dev"
+          "Host": "google.whatsapp.snapp.torob.basalam.fortresshost.ir."
         }
       }
     },
     {
-      "type": "vless",
-      "tag": "s33",
-      "server": "104.18.13.229",
-      "server_port": 8880,
-      "uuid": "4af06e6a-63ae-43c1-83c0-f8f613aef263",
+      "type": "trojan",
+      "tag": "s23",
+      "server": "45.130.125.112",
+      "server_port": 443,
+      "password": "humanity",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.calmlunch.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
-        "path": "/pyip=ProxyIP.JP.CMLiussss.net",
-        "headers": {
-          "Host": "withered-sea-c187.445-608.workers.dev"
-        }
+        "path": "/assignment"
       }
     },
     {
       "type": "vless",
-      "tag": "s34",
+      "tag": "s24",
       "server": "172.67.136.43",
       "server_port": 443,
       "uuid": "7700ff6d-cefb-4768-a806-ec4f63fe3b38",
@@ -779,118 +585,15 @@
     },
     {
       "type": "vless",
-      "tag": "s35",
-      "server": "104.19.12.94",
-      "server_port": 443,
-      "uuid": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-      "tls": {
-        "enabled": true,
-        "server_name": "jp3.yohototo.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/tyxyws#telegram--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI",
-        "headers": {
-          "Host": "jp3.yohototo.top"
-        }
-      }
-    },
-    {
-      "type": "vmess",
-      "tag": "s36",
-      "server": "188.114.96.19",
-      "server_port": 80,
-      "uuid": "479526cd-5011-43cf-a788-504da95e07c2",
-      "security": "auto",
-      "alter_id": 0,
+      "tag": "s25",
+      "server": "104.26.3.125",
+      "server_port": 2052,
+      "uuid": "e8d06b09-acd9-448c-9874-3c36151d36ee",
       "transport": {
         "type": "ws",
         "path": "/",
         "headers": {
-          "Host": "google.whatsapp.snapp.torob.basalam.fortresshost.ir."
-        }
-      }
-    },
-    {
-      "type": "trojan",
-      "tag": "s37",
-      "server": "188.114.97.7",
-      "server_port": 443,
-      "password": "humanity",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.ignitelimit.com"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/assignment"
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s38",
-      "server": "172.67.213.218",
-      "server_port": 2096,
-      "uuid": "e6b59d15-364c-4025-899a-84efa291d651",
-      "tls": {
-        "enabled": true,
-        "server_name": "REd-suRf-2007.MatriSkA.wOrkeRs.DeV",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiYWNoMkxHaUVYIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcmVmaXgiLCJwYW5lbElQcyI6WyJbMmEwMjo4OTg6MTQ2OjY0OjpdIl19",
-        "headers": {
-          "Host": "REd-suRf-2007.MatriSkA.wOrkeRs.DeV"
-        }
-      }
-    },
-    {
-      "type": "trojan",
-      "tag": "s39",
-      "server": "188.114.97.3",
-      "server_port": 443,
-      "password": "Telegram_healer_config",
-      "tls": {
-        "enabled": true,
-        "server_name": "6m1rgyieclmrx9hef1.z6-0hlnubjibwzpa85.workers.dev",
-        "insecure": true,
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/tr/ox5zBiRQjs2Rscy0XwxXY2ZzE",
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "headers": {
-          "Host": "6m1rgyieclmrx9hef1.z6-0hlnubjibwzpa85.workers.dev"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "s40",
-      "server": "104.21.60.109",
-      "server_port": 443,
-      "uuid": "44eae030-290b-4083-8102-6f8bab05701b",
-      "tls": {
-        "enabled": true,
-        "server_name": "cfvvv-ev1.pages.dev"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI?ed=2560",
-        "headers": {
-          "Host": "cfvvv-ev1.pages.dev"
+          "Host": "icy-wildflower-2590.lihuifeng595.workers.dev"
         }
       }
     },
