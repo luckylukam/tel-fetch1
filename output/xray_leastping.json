@@ -29,12 +29,35 @@
   ],
   "outbounds": [
     {
-      "tag": "mn_🚀_1",
+      "tag": "mn_⭐_1",
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "67.220.95.3",
+            "port": 18000,
+            "users": [
+              {
+                "id": "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe",
+                "alterId": 0,
+                "security": "aes-128-gcm"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none"
+      }
+    },
+    {
+      "tag": "mn_🎧_2",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.98.0",
+            "address": "b2n.ir",
             "port": 443,
             "users": [
               {
@@ -48,7 +71,7 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/cart/docs/www/proxyip=108.160.132.132?ed#Telegram---bored_vpn",
+          "path": "/cart/docs/www/proxyip=108.160.132.132?ed#TELEGRAM---@MTMVPN---@MTMVPN---@MTMVPN---@MTMVPN",
           "headers": {
             "Host": "lucasjow.us.ci"
           }
@@ -60,21 +83,89 @@
           "alpn": [
             "http/1.1"
           ],
-          "fingerprint": "unsafe"
+          "fingerprint": "chrome"
         }
       }
     },
     {
-      "tag": "mn_🔥_2",
+      "tag": "mn_🍓_3",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.18.0.181",
-            "port": 8080,
+            "address": "172.67.155.65",
+            "port": 8443,
             "users": [
               {
-                "id": "e5cc16a6-ea42-46b2-82ae-ad2157e1641b",
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/DailyConfigs---DailyConfigs---DailyConfigs?ed=1024",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "mn_🍑_4",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/cart/docs/www/proxyip",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "tag": "mn_🔥_5",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
                 "encryption": "none"
               }
             ]
@@ -86,124 +177,27 @@
         "wsSettings": {
           "path": "/",
           "headers": {
-            "Host": "hhlfy.twiladaphne.ndjp.net"
-          }
-        },
-        "security": "none"
-      }
-    },
-    {
-      "tag": "mn_🦉_3",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "22424ee2-6fe3-42ca-9749-6d4c5a8acc82",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/id-pusat",
-          "headers": {
-            "Host": "tn1r.eu.cc"
+            "Host": "lucasjow.us.ci"
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "tn1r.eu.cc",
+          "serverName": "lucasjow.us.ci",
           "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
           "fingerprint": "chrome"
         }
       }
     },
     {
-      "tag": "mn_🎧_4",
+      "tag": "mn_🚀_6",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/cart/docs/www/proxyip?ed#Telegram---bored_vpn",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_⭐_5",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?V2XAY-joinV",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_⚡_6",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "169.40.42.224",
+            "address": "169.40.42.35",
             "port": 443,
             "users": [
               {
@@ -227,47 +221,16 @@
       }
     },
     {
-      "tag": "mn_🧿_7",
-      "protocol": "trojan",
-      "settings": {
-        "servers": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "password": "mitivpn"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET",
-          "headers": {
-            "Host": "de.mitivpn.in.net"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "de.mitivpn.in.net",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎈_8",
+      "tag": "mn_🦊_7",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "172.64.150.28",
-            "port": 2082,
+            "address": "172.67.155.65",
+            "port": 8443,
             "users": [
               {
-                "id": "e5cc16a6-ea42-46b2-82ae-ad2157e1641b",
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
                 "encryption": "none"
               }
             ]
@@ -277,16 +240,78 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/fp",
+          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=512",
           "headers": {
-            "Host": "hhlfy.twiladaphne.ndjp.net"
+            "Host": "lucasjow.us.ci"
           }
         },
-        "security": "none"
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false
+        }
       }
     },
     {
-      "tag": "mn_🦊_9",
+      "tag": "mn_🦉_8",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "169.40.42.104",
+            "port": 443,
+            "users": [
+              {
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a",
+          "fingerprint": "ios"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐧_9",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "169.40.42.235",
+            "port": 443,
+            "users": [
+              {
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a",
+          "fingerprint": "random"
+        }
+      }
+    },
+    {
+      "tag": "mn_🥝_10",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -305,7 +330,7 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?edfp=chrome",
+          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=512",
           "headers": {
             "Host": "lucasjow.us.ci"
           }
@@ -322,13 +347,13 @@
       }
     },
     {
-      "tag": "mn_🎲_10",
+      "tag": "mn_🦉_11",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.98.0",
-            "port": 443,
+            "address": "172.67.155.65",
+            "port": 8443,
             "users": [
               {
                 "id": "e6df2095-a73c-4043-8693-8d5a03686870",
@@ -341,7 +366,7 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=512",
+          "path": "/cart/docs/www/proxyip",
           "headers": {
             "Host": "lucasjow.us.ci"
           }
@@ -349,16 +374,12 @@
         "security": "tls",
         "tlsSettings": {
           "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
+          "allowInsecure": false
         }
       }
     },
     {
-      "tag": "mn_🌻_11",
+      "tag": "mn_🌻_12",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -394,36 +415,349 @@
       }
     },
     {
-      "tag": "mn_🦋_12",
+      "tag": "mn_🍑_13",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "169.40.42.235",
+            "address": "188.114.98.0",
             "port": 443,
             "users": [
               {
-                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
               }
             ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🎲_14",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?SAFEWEBS_SAFEWEBS_SAFEWEBS_SAFEWEBSfp=chrome",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🌈_15",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/V2ray_confiig---V2ray_confiig---V2ray_confiig?ed=1024",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍓_16",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/cart/docs/www/proxyip=108.160.132.132?ed#Telegram---bored_vpn",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍄_17",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/cart/docs/www/proxyip=108.160.132.132?ed#",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍑_18",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---fp=chrome",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🎁_19",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/+",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍩_20",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---Vpney",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_☀_21",
+      "protocol": "shadowsocks",
+      "settings": {
+        "servers": [
+          {
+            "address": "37.19.198.244",
+            "port": 443,
+            "method": "aes-128-gcm",
+            "password": "shadowsocks"
           }
         ]
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "yahoo.com",
-          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
-          "shortId": "c39cc7310a",
-          "fingerprint": "random"
+        "security": "none"
+      }
+    },
+    {
+      "tag": "mn_🎁_22",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.97.6",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2560",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "chrome"
         }
       }
     },
     {
-      "tag": "mn_⭐_13",
+      "tag": "mn_🎧_23",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -442,7 +776,7 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/?DailyConfigs---DailyConfigs---DailyConfigs?ed=2056",
+          "path": "/DailyConfigs---DailyConfigs---DailyConfigs?ed=1024",
           "headers": {
             "Host": "lucasjow.us.ci"
           }
@@ -459,820 +793,51 @@
       }
     },
     {
-      "tag": "mn_🍉_14",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/cart/docs/www/proxyipsecurity=tls",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🐙_15",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "3",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_💎_16",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM-TOOTFFARANGIfp=chrome",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🐢_17",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/cart/docs/www/proxyip=108.160.132.132?ed#Telegram---TOOTFARANGI",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_⚡_18",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---TEHRANARGO",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎧_19",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/cart/docs/www/proxyip=108.160.132.132?ed#Telegram---JKVPN--JKVPN--JKVPN",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎧_20",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎁_21",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "Tfp=chrome",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍓_22",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "?TELEGRAM--B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub--TELEGRAM",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🔥_23",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?SAFEWEBS",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🔥_24",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM--i10VPN?edfp=chrome",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍀_25",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/cart/docs/www/proxyip",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍑_26",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "?---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---fp=chrome",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍕_27",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---bored_vpn",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎁_28",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "0",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍑_29",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/cart/docs/www/proxyip=108.160.132.132?ed#Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_☀_30",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍩_31",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM-TOOTFFARANGI",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎧_32",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---V2ray_confiig?ed=2560",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🚀_33",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM--B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub--TELEGRAM",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🌻_34",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "T",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🐼_35",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/fp=chrome",
-          "headers": {
-            "Host": "lucasjow.us.ci"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🦉_36",
-      "protocol": "trojan",
+      "tag": "mn_🐼_24",
+      "protocol": "shadowsocks",
       "settings": {
         "servers": [
           {
+            "address": "37.19.198.236",
+            "port": 443,
+            "method": "aes-128-gcm",
+            "password": "shadowsocks"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none"
+      }
+    },
+    {
+      "tag": "mn_🐬_25",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "188.114.98.0",
             "port": 443,
-            "password": "mitivpn"
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
           }
         ]
       },
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/--@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN",
+          "path": "/?Telegram---TEHRANARGOfp=chrome",
           "headers": {
-            "Host": "d-e.mitivpn.in.net"
+            "Host": "lucasjow.us.ci"
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "d-e.mitivpn.in.net",
+          "serverName": "lucasjow.us.ci",
           "allowInsecure": false,
           "alpn": [
             "http/1.1"
@@ -1282,7 +847,7 @@
       }
     },
     {
-      "tag": "mn_🦄_37",
+      "tag": "mn_🍀_26",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1318,7 +883,7 @@
       }
     },
     {
-      "tag": "mn_🦉_38",
+      "tag": "mn_🥝_27",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1337,7 +902,403 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2560",
+          "path": "/?TELEGRAM-TOOTFFARANGIfp=chrome",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🔥_28",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM--i10VPN?edfp=chrome",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐧_29",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM--v2ray_configs_pools?edfp=chrome",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐝_30",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2560fp=chrome",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_☀_31",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---i10VPN",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🌙_32",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?edfp=chrome",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🌊_33",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---pirozi_ArGaP---pirozi_ArGaP---pirozi_ArGaP---pirozi_ArGaP",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🎧_34",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "b2n.ir",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/cart/docs/www/proxyip=108.160.132.132?ed#TELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "tag": "mn_🦉_35",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "?---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---fp=chrome",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐧_36",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---@Fear_Config---fp=chrome",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🥝_37",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?DailyConfigs---DailyConfigs---DailyConfigs?ed=2056",
+          "headers": {
+            "Host": "lucasjow.us.ci"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "lucasjow.us.ci",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍑_38",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "e6df2095-a73c-4043-8693-8d5a03686870",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/cart/docs/www/proxyip?ed#Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET",
           "headers": {
             "Host": "lucasjow.us.ci"
           }
@@ -1363,6 +1324,42 @@
             "port": 443,
             "users": [
               {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2048",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐙_40",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
                 "id": "e6df2095-a73c-4043-8693-8d5a03686870",
                 "encryption": "none"
               }
@@ -1373,7 +1370,7 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "?Telegram---bored_vpn?ed=2560",
+          "path": "/?---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---@VPNine1---",
           "headers": {
             "Host": "lucasjow.us.ci"
           }
@@ -1381,37 +1378,6 @@
         "security": "tls",
         "tlsSettings": {
           "serverName": "lucasjow.us.ci",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_⚡_40",
-      "protocol": "trojan",
-      "settings": {
-        "servers": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "password": "mitivpn"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/--@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN",
-          "headers": {
-            "Host": "de.mitivpn.in.net"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "de.mitivpn.in.net",
           "allowInsecure": false,
           "alpn": [
             "http/1.1"
@@ -1442,7 +1408,7 @@
         "strategy": {
           "type": "leastPing"
         },
-        "fallbackTag": "mn_🚀_1"
+        "fallbackTag": "mn_⭐_1"
       }
     ],
     "rules": [
