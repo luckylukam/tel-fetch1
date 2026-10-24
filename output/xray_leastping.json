@@ -29,16 +29,16 @@
   ],
   "outbounds": [
     {
-      "tag": "mn_🍑_1",
+      "tag": "mn_🌊_1",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "tuic.moxin1245.win",
-            "port": 8443,
+            "address": "47.253.226.114",
+            "port": 443,
             "users": [
               {
-                "id": "ab5fac73-e8c3-44e3-8596-0fdab35477d1",
+                "id": "055a1ce8-2a16-4a0d-a2c2-22826c9b2413",
                 "encryption": "none",
                 "flow": "xtls-rprx-vision"
               }
@@ -51,737 +51,140 @@
         "security": "reality",
         "realitySettings": {
           "serverName": "www.cloudflare.com",
-          "publicKey": "yyp3p-OdwN1MUuviO3r1tBNMYY4giulLMDOeNLNfyhI",
-          "shortId": "4522e8266a24d531",
+          "publicKey": "Svl81isn16RPAFnjtmYw7A6TPnsEPLHuYYaJht65Rzc",
+          "shortId": "",
           "fingerprint": "chrome"
         }
       }
     },
     {
-      "tag": "mn_🌈_2",
-      "protocol": "shadowsocks",
+      "tag": "mn_🍩_2",
+      "protocol": "vless",
       "settings": {
-        "servers": [
+        "vnext": [
           {
-            "address": "216.105.168.18",
+            "address": "188.114.98.0",
             "port": 443,
-            "method": "chacha20-ietf-poly1305",
-            "password": "hCCWOcIsK5wrFz4OX70rWf"
+            "users": [
+              {
+                "id": "e5833a75-2095-48bb-8bb5-ce17291efd13",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?ed=2560",
+          "headers": {
+            "Host": "fm3.pages.dev"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "fm3.pages.dev",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐙_3",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "xstack.mahanfixe.workers.dev",
+            "port": 443,
+            "users": [
+              {
+                "id": "a8b1d666-d3ba-4b17-90c4-ba7514c74f78",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/xiron",
+          "headers": {
+            "Host": "xstack.mahanfixe.workers.dev"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "xstack.mahanfixe.workers.dev",
+          "allowInsecure": false
+        }
+      }
+    },
+    {
+      "tag": "mn_🌈_4",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "169.40.42.104",
+            "port": 443,
+            "users": [
+              {
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
           }
         ]
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "none"
-      }
-    },
-    {
-      "tag": "mn_🦄_3",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/fd",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_💎_4",
-      "protocol": "trojan",
-      "settings": {
-        "servers": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "password": "mitivpn"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "de.mitivpn.in.net"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "de.mitivpn.in.net",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a",
+          "fingerprint": "ios"
         }
       }
     },
     {
       "tag": "mn_🍓_5",
-      "protocol": "trojan",
-      "settings": {
-        "servers": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "password": "mitivpn"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET",
-          "headers": {
-            "Host": "de.mitivpn.in.net"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "de.mitivpn.in.net",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🌻_6",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.98.0",
+            "address": "169.40.42.224",
             "port": 443,
             "users": [
               {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET?ed=2560",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a",
+          "fingerprint": "chrome"
         }
       }
     },
     {
-      "tag": "mn_🍋_7",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM-TOOTFFARANGI",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎯_8",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/fdip",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🚀_9",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎁_10",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/fdip#TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2048",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🌸_11",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---@MTMVPN---@MTMVPN---@MTMVPN---@MTMVPN",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🥝_12",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---pirozi_ArGaP---pirozi_ArGaP---pirozi_ArGaP---pirozi_ArGaP",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍒_13",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---DailyConfigs---DailyConfigs---DailyConfigs",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🥑_14",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM--B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub--TELEGRAM?ed=2048",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🔥_15",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🪐_16",
-      "protocol": "trojan",
-      "settings": {
-        "servers": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "password": "mitivpn"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/---@VPNine1---@VPNine1/---@VPNine1---@VPNine1/---@VPNine1---@VPNine1/--@VPNine1---@VPNine1/---@VPNine1---@VPNine1/---@VPNine1---@VPNine1",
-          "headers": {
-            "Host": "de.mitivpn.in.net"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "de.mitivpn.in.net",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍄_17",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2560",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_☀_18",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/fdip#TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍄_19",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/fdip#/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2048",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🐢_20",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM-TOOTFFARANGIfp=chrome",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🪐_21",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NETfp=chrome",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎈_22",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---bored_vpn",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍓_23",
+      "tag": "mn_🍓_6",
       "protocol": "trojan",
       "settings": {
         "servers": [
@@ -812,159 +215,57 @@
       }
     },
     {
-      "tag": "mn_🎧_24",
+      "tag": "mn_🎁_7",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "188.114.98.0",
+            "address": "169.40.42.235",
             "port": 443,
             "users": [
               {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
+                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=512",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🦊_25",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/fdip#TELEGRAM--MARAMBASHI--MARAMBASHI?ed=512",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍕_26",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---mehrosaboran",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🦋_27",
-      "protocol": "shadowsocks",
-      "settings": {
-        "servers": [
-          {
-            "address": "156.146.38.167",
-            "port": 443,
-            "method": "aes-128-gcm",
-            "password": "shadowsocks"
           }
         ]
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "none"
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
+          "shortId": "c39cc7310a",
+          "fingerprint": "random"
+        }
       }
     },
     {
-      "tag": "mn_🌙_28",
-      "protocol": "vless",
+      "tag": "mn_🎁_8",
+      "protocol": "trojan",
       "settings": {
-        "vnext": [
+        "servers": [
           {
             "address": "188.114.98.0",
             "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
+            "password": "mitivpn"
           }
         ]
       },
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "-",
+          "path": "/",
           "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
+            "Host": "de.mitivpn.in.net"
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
+          "serverName": "de.mitivpn.in.net",
           "allowInsecure": false,
           "alpn": [
             "http/1.1"
@@ -974,115 +275,7 @@
       }
     },
     {
-      "tag": "mn_🐬_29",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/fdip#TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2560",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🦄_30",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_⭐_31",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/?telegram--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI",
-          "headers": {
-            "Host": "snip.edgeoneai.cc.cd"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "snip.edgeoneai.cc.cd",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🌈_32",
+      "tag": "mn_🌙_9",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1118,72 +311,7 @@
       }
     },
     {
-      "tag": "mn_🐝_33",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "188.114.98.0",
-            "port": 443,
-            "users": [
-              {
-                "id": "5504eaa8-1395-402f-8e0e-75ecd762e627",
-                "encryption": "none"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/fiughoieuhti834t90?ed=2560",
-          "headers": {
-            "Host": "server6.9966338.xyz"
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "server6.9966338.xyz",
-          "allowInsecure": false,
-          "alpn": [
-            "http/1.1"
-          ],
-          "fingerprint": "unsafe"
-        }
-      }
-    },
-    {
-      "tag": "mn_🎲_34",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "169.40.42.35",
-            "port": 443,
-            "users": [
-              {
-                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "yahoo.com",
-          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
-          "shortId": "c39cc7310a",
-          "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "tag": "mn_🐼_35",
+      "tag": "mn_🌈_10",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1212,41 +340,84 @@
       }
     },
     {
-      "tag": "mn_🎈_36",
+      "tag": "mn_☀_11",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "169.40.42.235",
+            "address": "188.114.98.0",
             "port": 443,
             "users": [
               {
-                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "yahoo.com",
-          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
-          "shortId": "c39cc7310a",
-          "fingerprint": "random"
+        "network": "ws",
+        "wsSettings": {
+          "path": "/fd",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
         }
       }
     },
     {
-      "tag": "mn_🍓_37",
+      "tag": "mn_🐙_12",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "169.40.42.224",
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---@MTMVPN---@MTMVPN---@MTMVPN---@MTMVPN",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🔥_13",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "169.40.42.35",
             "port": 443,
             "users": [
               {
@@ -1270,7 +441,439 @@
       }
     },
     {
-      "tag": "mn_☀_38",
+      "tag": "mn_🌙_14",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "45.91.248.127",
+            "port": 8443,
+            "users": [
+              {
+                "id": "81a227e3-cb97-40fe-b7b6-45a60ed065cf",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "grpc-api-v2"
+        },
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "node.nodebrcsp.ru",
+          "publicKey": "75SvxhvlOLct7K2eSg4-a1o6Z6N3JMTqp3wIQmLSqTA",
+          "shortId": "8c609726e0233f08",
+          "fingerprint": "random"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐢_15",
+      "protocol": "shadowsocks",
+      "settings": {
+        "servers": [
+          {
+            "address": "198.98.53.130",
+            "port": 443,
+            "method": "chacha20-ietf-poly1305",
+            "password": "eDfN7SODQceIOmIAbtJJtK"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none"
+      }
+    },
+    {
+      "tag": "mn_🐢_16",
+      "protocol": "trojan",
+      "settings": {
+        "servers": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "password": "mitivpn"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/---@VPNine1---@VPNine1/---@VPNine1---@VPNine1/---@VPNine1---@VPNine1/--@VPNine1---@VPNine1/---@VPNine1---@VPNine1/---@VPNine1---@VPNine1",
+          "headers": {
+            "Host": "de.mitivpn.in.net"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "de.mitivpn.in.net",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🥑_17",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM-TOOTFFARANGI",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🎈_18",
+      "protocol": "trojan",
+      "settings": {
+        "servers": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "password": "mitivpn"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET",
+          "headers": {
+            "Host": "de.mitivpn.in.net"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "de.mitivpn.in.net",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🦋_19",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🦊_20",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/fdip#TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2560",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🦄_21",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---pirozi_ArGaP---pirozi_ArGaP---pirozi_ArGaP---pirozi_ArGaP",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍕_22",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "22424ee2-6fe3-42ca-9749-6d4c5a8acc82",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/id-pusat",
+          "headers": {
+            "Host": "tn1r.eu.cc"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "tn1r.eu.cc",
+          "allowInsecure": false,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "tag": "mn_🦄_23",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🌻_24",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2560",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍄_25",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=512",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🌙_26",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET?ed=2560",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐝_27",
       "protocol": "vmess",
       "settings": {
         "vnext": [
@@ -1293,36 +896,7 @@
       }
     },
     {
-      "tag": "mn_🍑_39",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "169.40.42.104",
-            "port": 443,
-            "users": [
-              {
-                "id": "d65cc14c-f53f-4fe2-b262-97856601319c",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "yahoo.com",
-          "publicKey": "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg",
-          "shortId": "c39cc7310a",
-          "fingerprint": "ios"
-        }
-      }
-    },
-    {
-      "tag": "mn_🍉_40",
+      "tag": "mn_🪐_28",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1331,7 +905,7 @@
             "port": 443,
             "users": [
               {
-                "id": "8be461cb-a0df-47cf-bc0d-4d9e6a22fa74",
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
                 "encryption": "none"
               }
             ]
@@ -1341,14 +915,446 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/pai50288",
+          "path": "/?Telegram---mehrosaboran",
           "headers": {
-            "Host": "ccs2g.pai50288.uk"
+            "Host": "snip.edgeoneai.cc.cd"
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "ccs2g.pai50288.uk",
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🌈_29",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/fdip",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍓_30",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM--B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub--TELEGRAM?ed=2048",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🌸_31",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/fdip#/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2048",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍀_32",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/fdip#TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍓_33",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---bored_vpn",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🥝_34",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM-TOOTFFARANGIfp=chrome",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🌙_35",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---DailyConfigs---DailyConfigs---DailyConfigs",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐝_36",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "-",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍄_37",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/fdip#TELEGRAM--MARAMBASHI--MARAMBASHI?ed=512",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🍕_38",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/fdip#TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed=2048",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🎧_39",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NETfp=chrome",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
+          "allowInsecure": false,
+          "alpn": [
+            "http/1.1"
+          ],
+          "fingerprint": "unsafe"
+        }
+      }
+    },
+    {
+      "tag": "mn_🐧_40",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "188.114.98.0",
+            "port": 443,
+            "users": [
+              {
+                "id": "495c7195-85b8-498a-bf20-2ea9ce9175b5",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/?TELEGRAM--MARAMBASHI--MARAMBASHI--MARAMBASHI--MARAMBASHI?ed",
+          "headers": {
+            "Host": "snip.edgeoneai.cc.cd"
+          }
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "snip.edgeoneai.cc.cd",
           "allowInsecure": false,
           "alpn": [
             "http/1.1"
@@ -1379,7 +1385,7 @@
         "strategy": {
           "type": "leastPing"
         },
-        "fallbackTag": "mn_🍑_1"
+        "fallbackTag": "mn_🌊_1"
       }
     ],
     "rules": [
