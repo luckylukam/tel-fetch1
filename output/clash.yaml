@@ -1,6 +1,6 @@
 # Clash subscription — auto-generated
-# Generated: 2026-10-25 15:12 UTC
-# Total proxies: 102
+# Generated: 2026-10-25 18:31 UTC
+# Total proxies: 81
 
 mixed-port: 7890
 allow-lan: false
@@ -8,124 +8,7 @@ mode: rule
 log-level: info
 
 proxies:
-  - name: "mn_🐧_1"
-    type: "ss"
-    server: "156.146.38.167"
-    port: 443
-    cipher: "aes-128-gcm"
-    password: "shadowsocks"
-    udp: true
-
-  - name: "mn_🐢_2"
-    type: "vless"
-    server: "51.161.72.153"
-    port: 37765
-    uuid: "12af3df8-2ffe-48fe-9b60-376f015ea4f8"
-    udp: true
-    tls: true
-    servername: "www.semiconductor.samsung.com"
-    reality-opts:
-      public-key: "g-4UVtgbojoxQaglMCttyLme4xjtTqomqxdZaVsruQ4"
-      short-id: "defda00d613c"
-    network: "grpc"
-    grpc-opts:
-      grpc-service-name: "grpc_common1"
-
-  - name: "mn_🐙_3"
-    type: "vless"
-    server: "169.40.42.104"
-    port: 443
-    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
-    udp: true
-    tls: true
-    servername: "yahoo.com"
-    reality-opts:
-      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
-      short-id: "c39cc7310a"
-    client-fingerprint: "ios"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🌙_4"
-    type: "vless"
-    server: "169.40.42.224"
-    port: 443
-    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
-    udp: true
-    tls: true
-    servername: "yahoo.com"
-    reality-opts:
-      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
-      short-id: "c39cc7310a"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🧿_5"
-    type: "vmess"
-    server: "67.220.95.3"
-    port: 18000
-    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
-    alterId: 0
-    cipher: "aes-128-gcm"
-    udp: true
-
-  - name: "mn_🐝_6"
-    type: "vless"
-    server: "169.40.42.235"
-    port: 443
-    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
-    udp: true
-    tls: true
-    servername: "yahoo.com"
-    reality-opts:
-      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
-      short-id: "c39cc7310a"
-    client-fingerprint: "random"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🎁_7"
-    type: "vless"
-    server: "169.40.42.35"
-    port: 443
-    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
-    udp: true
-    tls: true
-    servername: "yahoo.com"
-    reality-opts:
-      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
-      short-id: "c39cc7310a"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🎯_8"
-    type: "vless"
-    server: "208.84.100.209"
-    port: 2112
-    uuid: "36c3dcc2-17b6-4478-b8a7-3978e6d5afe9"
-    udp: true
-    tls: true
-    servername: "play.google.com"
-    reality-opts:
-      public-key: "p8pUe3hwND5rhAti-yRQ5qMaIkNdhxOV1K1jpbtJlEQ"
-      short-id: "125ba3"
-    client-fingerprint: "chrome"
-
-  - name: "mn_🍋_9"
-    type: "ss"
-    server: "216.105.168.18"
-    port: 443
-    cipher: "chacha20-ietf-poly1305"
-    password: "hCCWOcIsK5wrFz4OX70rWf"
-    udp: true
-
-  - name: "mn_🐝_10"
-    type: "ss"
-    server: "51.222.136.236"
-    port: 8882
-    cipher: "aes-256-gcm"
-    password: "kDWvXYZoTBcGkC4"
-    udp: true
-
-  - name: "mn_🥝_11"
+  - name: "mn_🍋_1"
     type: "vless"
     server: "169.40.42.231"
     port: 443
@@ -139,39 +22,88 @@ proxies:
     client-fingerprint: "ios"
     flow: "xtls-rprx-vision"
 
-  - name: "mn_🐬_12"
+  - name: "mn_🌻_2"
     type: "vless"
-    server: "188.114.98.0"
+    server: "169.40.42.35"
     port: 443
-    uuid: "c4edb87e-8544-4fa4-bd1c-b0cda9a34b46"
+    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
     udp: true
     tls: true
-    servername: "a.cwvps.eu.org"
-    client-fingerprint: "unsafe"
-    alpn: ["http/1.1"]
-    network: "ws"
-    ws-opts:
-      path: "/ws#/?TELEGRAM--MTMVPN--MTMVPN?ed=512"
-      headers:
-        Host: "a.cwvps.eu.org"
+    servername: "yahoo.com"
+    reality-opts:
+      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
+      short-id: "c39cc7310a"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
 
-  - name: "mn_🔥_13"
+  - name: "mn_🌻_3"
     type: "vless"
-    server: "188.114.98.0"
+    server: "169.40.42.104"
     port: 443
-    uuid: "c4edb87e-8544-4fa4-bd1c-b0cda9a34b46"
+    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
     udp: true
     tls: true
-    servername: "a.cwvps.eu.org"
-    client-fingerprint: "unsafe"
-    alpn: ["http/1.1"]
-    network: "ws"
-    ws-opts:
-      path: "/ws#TELEGRAM--MARAMBASHI--MARAMBASHI?ed=512"
-      headers:
-        Host: "a.cwvps.eu.org"
+    servername: "yahoo.com"
+    reality-opts:
+      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
+      short-id: "c39cc7310a"
+    client-fingerprint: "ios"
+    flow: "xtls-rprx-vision"
 
-  - name: "mn_🚀_14"
+  - name: "mn_🥑_4"
+    type: "vless"
+    server: "169.40.42.235"
+    port: 443
+    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
+    udp: true
+    tls: true
+    servername: "yahoo.com"
+    reality-opts:
+      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
+      short-id: "c39cc7310a"
+    client-fingerprint: "random"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🌊_5"
+    type: "vless"
+    server: "169.40.42.224"
+    port: 443
+    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
+    udp: true
+    tls: true
+    servername: "yahoo.com"
+    reality-opts:
+      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
+      short-id: "c39cc7310a"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🌊_6"
+    type: "ss"
+    server: "156.146.38.167"
+    port: 443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+
+  - name: "mn_🐝_7"
+    type: "vmess"
+    server: "67.220.95.3"
+    port: 18000
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "aes-128-gcm"
+    udp: true
+
+  - name: "mn_🍓_8"
+    type: "ss"
+    server: "216.105.168.18"
+    port: 443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hCCWOcIsK5wrFz4OX70rWf"
+    udp: true
+
+  - name: "mn_🍉_9"
     type: "vless"
     server: "188.114.97.6"
     port: 443
@@ -185,463 +117,7 @@ proxies:
       headers:
         Host: "a.cwvps.eu.org"
 
-  - name: "mn_🍩_15"
-    type: "vmess"
-    server: "57.129.132.223"
-    port: 80
-    uuid: "a25cbf11-2908-4a1b-a3a8-9a571777dca3"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "/vmess/"
-      headers:
-        Host: "google.com"
-
-  - name: "mn_🍄_16"
-    type: "vless"
-    server: "51.89.194.151"
-    port: 2053
-    uuid: "8e790f25-1d71-4601-9fb0-d503931dcfca"
-    udp: true
-    tls: true
-    servername: "www.apple.com"
-    reality-opts:
-      public-key: "xPEBx4wUmwAAv4ikUALNBf5wH6TRhyeQ0Q2pcNELsV0"
-      short-id: "d051f678212f9d54"
-    client-fingerprint: "chrome"
-
-  - name: "mn_🍩_17"
-    type: "vless"
-    server: "144.31.125.60"
-    port: 443
-    uuid: "9015f0bc-2053-4ca1-9b9b-a018b97b32d2"
-    udp: true
-    tls: true
-    servername: "www.intel.com"
-    reality-opts:
-      public-key: "SVgtyuD9khylgHuB0treGekxVSHPOS-wPZTNHUf6zj8"
-      short-id: "85c86a9863"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🦄_18"
-    type: "ss"
-    server: "82.38.31.162"
-    port: 443
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🦄_19"
-    type: "ss"
-    server: "185.176.206.9"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🍒_20"
-    type: "vless"
-    server: "137.74.16.237"
-    port: 443
-    uuid: "aaec4e42-a095-44b6-a239-f16d234a0798"
-    udp: true
-    tls: true
-    servername: "www.icloud.com"
-    reality-opts:
-      public-key: "7LSzvilTVKGMtBDuKGeMrLtlhY7tQf5YcG566dEgO0I"
-      short-id: "b390e0a721d242b0"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🌊_21"
-    type: "ss"
-    server: "82.38.31.184"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🍑_22"
-    type: "ss"
-    server: "82.38.31.219"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🍓_23"
-    type: "vless"
-    server: "82.39.171.12"
-    port: 443
-    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
-    udp: true
-    tls: true
-    servername: "yahoo.com"
-    reality-opts:
-      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
-      short-id: "c39cc7310a"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🎲_24"
-    type: "ss"
-    server: "185.176.204.18"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🧿_25"
-    type: "vless"
-    server: "193.160.141.2"
-    port: 8443
-    uuid: "d24e0961-dd20-4528-8796-2a974e79348e"
-    udp: true
-    tls: true
-    servername: "apple.com"
-    reality-opts:
-      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
-      short-id: ""
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🌙_26"
-    type: "trojan"
-    server: "188.114.98.0"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.calmlunch.com"
-    alpn: ["http/1.1"]
-    client-fingerprint: "chrome"
-    network: "ws"
-    ws-opts:
-      path: "//assignment"
-      headers:
-        Host: "www.calmlunch.com"
-
-  - name: "mn_🐼_27"
-    type: "vless"
-    server: "185.121.179.122"
-    port: 443
-    uuid: "63c5f8b3-3d3d-46a9-ae1f-58635cdaf891"
-    udp: true
-    tls: true
-    servername: "de.stream-node6.com"
-    reality-opts:
-      public-key: "wpZDT_592emHu309qN-7-qceofbMJzoAdIx9m9RFJGg"
-      short-id: "98753667b2406829"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍀_28"
-    type: "ss"
-    server: "178.83.185.156"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🔥_29"
-    type: "vless"
-    server: "185.98.63.6"
-    port: 8443
-    uuid: "6845a59f-970b-4e1e-8e26-06a34ee663d6"
-    udp: true
-    tls: true
-    servername: "apple.com"
-    reality-opts:
-      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
-      short-id: ""
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍉_30"
-    type: "vless"
-    server: "htz1.rayan-gaming.ir"
-    port: 8443
-    uuid: "2c1cf7c5-47e4-4eed-8b6a-59699a6c9d75"
-    udp: true
-    tls: true
-    servername: "status.play.google.com"
-    reality-opts:
-      public-key: "h9ZR6IkPEz80yKb4EzBFSYsRbaU0KcycD8dKucsBNg0"
-      short-id: "961d51c938166832"
-    client-fingerprint: "ios"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍄_31"
-    type: "ss"
-    server: "82.38.31.155"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🍑_32"
-    type: "ss"
-    server: "82.38.31.16"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🦄_33"
-    type: "vless"
-    server: "pl1.song69.fun"
-    port: 20268
-    uuid: "408c51e8-9246-483d-ba73-34ab4e202eb9"
-    udp: true
-    tls: true
-    servername: "metrika.yandex.ru"
-    reality-opts:
-      public-key: "5H_MmyfvF4SkwS84wTbLmtcZDecXJIJtZ3uisiKQpSM"
-      short-id: "0c774b50"
-    client-fingerprint: "firefox"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🔥_34"
-    type: "vless"
-    server: "193.160.140.117"
-    port: 8443
-    uuid: "57c87188-1056-4bd5-92f8-c7ca1fd19147"
-    udp: true
-    tls: true
-    servername: "apple.com"
-    reality-opts:
-      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
-      short-id: ""
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🦉_35"
-    type: "ss"
-    server: "82.38.31.215"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🎧_36"
-    type: "ss"
-    server: "193.29.139.202"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🌙_37"
-    type: "vless"
-    server: "147.45.47.83"
-    port: 443
-    uuid: "8a1f8853-9a71-4ef2-a64c-4f0a94c2e14b"
-    udp: true
-    tls: true
-    servername: "ozon.ru"
-    reality-opts:
-      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
-      short-id: ""
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍕_38"
-    type: "ss"
-    server: "57.131.48.45"
-    port: 8388
-    cipher: "aes-256-gcm"
-    password: "itzvpn@321"
-    udp: true
-
-  - name: "mn_🎧_39"
-    type: "vless"
-    server: "host.taghvimtime.ir"
-    port: 8443
-    uuid: "90c08c98-7ec8-4fab-da36-cf140d18c708"
-    udp: true
-    tls: true
-    servername: "host.taghvimtime.ir"
-    client-fingerprint: "chrome"
-    alpn: ["h2"]
-    network: "xhttp"
-    xhttp-opts:
-      path: "/Meh?di=443"
-      host: "host.taghvimtime.ir"
-
-  - name: "mn_🐢_40"
-    type: "vless"
-    server: "hikvision-plus.com"
-    port: 2053
-    uuid: "aa5d861a-7799-41a7-bdf4-7a6414cf98fd"
-    udp: true
-    tls: true
-    servername: "uwu.blueknightnet.qzz.io"
-    client-fingerprint: "chrome"
-    alpn: ["h2"]
-    network: "ws"
-    ws-opts:
-      path: "/@BlueKnight_net--@BlueKnight_net--@BlueKnight_net--@BlueKnight_net--@BlueKnight_net--@BlueKnight_net"
-      headers:
-        Host: "uwu.blueknightnet.qzz.io"
-
-  - name: "mn_⚡_41"
-    type: "vmess"
-    server: "168.138.43.75"
-    port: 80
-    uuid: "11c3627f-31e8-4695-dfbd-34076e2f1f5d"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "/cctv13.m3u8"
-      headers:
-        Host: "None"
-
-  - name: "mn_🍓_42"
-    type: "vless"
-    server: "163.245.42.48"
-    port: 443
-    uuid: "b9bfa54d-bc44-4592-a6d6-89a9665d286f"
-    udp: true
-    tls: true
-    servername: "mother-earth.fyi"
-    reality-opts:
-      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
-      short-id: ""
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🐙_43"
-    type: "vless"
-    server: "gb2.murainternet.network"
-    port: 443
-    uuid: "afbd410e-1663-4f40-9d3b-df5117aa23ca"
-    udp: true
-    tls: true
-    servername: "gb2.murainternet.network"
-    reality-opts:
-      public-key: "fyfX-egDrRvXNW1Gt2P_8rH4jdupAcmhFLOCZCzCowo"
-      short-id: "fc36b4a584871aa5"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍄_44"
-    type: "trojan"
-    server: "188.114.98.0"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.calmlunch.com"
-    alpn: ["http/1.1"]
-    client-fingerprint: "chrome"
-    network: "ws"
-    ws-opts:
-      path: "/assignment"
-      headers:
-        Host: "www.calmlunch.com"
-
-  - name: "mn_🌙_45"
-    type: "ss"
-    server: "193.29.139.147"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🎁_46"
-    type: "ss"
-    server: "82.38.31.181"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🥑_47"
-    type: "trojan"
-    server: "188.114.98.0"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.pleadcourt.org"
-    alpn: ["http/1.1"]
-    client-fingerprint: "unsafe"
-    network: "ws"
-    ws-opts:
-      path: "/assignment"
-      headers:
-        Host: "www.pleadcourt.org"
-
-  - name: "mn_🎈_48"
-    type: "ss"
-    server: "bogging-eyeteeth-fly.freesocks.work"
-    port: 443
-    cipher: "chacha20-ietf-poly1305"
-    password: "QFWzCw2uX9B9i6qAYeFBIE"
-    udp: true
-
-  - name: "mn_🥝_49"
-    type: "ss"
-    server: "202.50.253.36"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🎈_50"
-    type: "trojan"
-    server: "188.114.98.0"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.calmlunch.com"
-    alpn: ["http/1.1"]
-    client-fingerprint: "unsafe"
-    network: "ws"
-    ws-opts:
-      path: "/assignment?ed#Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET"
-      headers:
-        Host: "www.calmlunch.com"
-
-  - name: "mn_🐢_51"
-    type: "vless"
-    server: "edge.bookmai.com"
-    port: 443
-    uuid: "b9bfa54d-bc44-4592-a6d6-89a9665d286f"
-    udp: true
-    tls: true
-    servername: "mother-earth.fyi"
-    reality-opts:
-      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
-      short-id: ""
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🥝_52"
-    type: "ss"
-    server: "82.38.31.202"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🎲_53"
-    type: "vless"
-    server: "150.40.126.22"
-    port: 443
-    uuid: "2f35965a-9a9b-45fd-ba32-987296dfb6be"
-    udp: true
-    tls: true
-    servername: "rs4.univesalsrv.com"
-    reality-opts:
-      public-key: "sXsJ4ET-50TYqlhKZf03nPQr2JIy1F0D4m6lOsI0cAs"
-      short-id: "861ac7d66953e55f"
-    client-fingerprint: "firefox"
-    network: "grpc"
-    grpc-opts:
-      grpc-service-name: "media.v1.StreamService"
-
-  - name: "mn_🌸_54"
+  - name: "mn_🐝_10"
     type: "vless"
     server: "188.114.98.0"
     port: 443
@@ -657,276 +133,21 @@ proxies:
       headers:
         Host: "a.cwvps.eu.org"
 
-  - name: "mn_🥝_55"
-    type: "trojan"
-    server: "188.114.98.0"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.trusteeforward.com"
-    alpn: ["http/1.1"]
-    client-fingerprint: "unsafe"
-    network: "ws"
-    ws-opts:
-      path: "/assignment"
-      headers:
-        Host: "www.trusteeforward.com"
-
-  - name: "mn_☀_56"
-    type: "trojan"
-    server: "185.220.100.168"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.calmlunch.com"
-    network: "ws"
-    ws-opts:
-      path: "/assignment"
-      headers:
-        Host: "www.calmlunch.com"
-
-  - name: "mn_⭐_57"
-    type: "vless"
-    server: "51.161.204.242"
-    port: 443
-    uuid: "a14b736b-a92a-48d6-a596-5d31f7378ded"
-    udp: true
-    tls: true
-    servername: "www.cloudflare.com"
-    reality-opts:
-      public-key: "a2qGjvUPq6Nz5FTbn_MSHp-055q2h8YXqIL5VIJ5zwE"
-      short-id: "d15c17cef9b2e456"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🔥_58"
-    type: "vless"
-    server: "165.154.63.139"
-    port: 443
-    uuid: "91ad30e9-ab06-4b4c-9fb9-1c2aa97d8b3a"
-    udp: true
-    tls: true
-    servername: "www.amazon.com"
-    reality-opts:
-      public-key: "AE81BrwMc8-kwGEIA1LhzaL03er0Qwt2V-fFy76F5jQ"
-      short-id: "ca4aedd4"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🌊_59"
-    type: "vless"
-    server: "201.7.25.100"
-    port: 24446
-    uuid: "88281d02-b387-4fe3-918e-26ed331e6d08"
-    udp: true
-    tls: true
-    servername: "willow.cdn.cachefleet.com"
-    reality-opts:
-      public-key: "w9JCByLSU3NGciCv2iceOz4TRL4swv8jfIAYoaKSyEw"
-      short-id: "a0938b702257f780"
-    client-fingerprint: "random"
-    network: "grpc"
-    grpc-opts:
-      grpc-service-name: "telegram-bridge"
-
-  - name: "mn_🦊_60"
-    type: "vless"
-    server: "47.238.210.5"
-    port: 13779
-    uuid: "928e6cce-8ced-4243-9a48-a6642edd09b0"
-    udp: true
-    tls: true
-    servername: "tesla.com"
-    reality-opts:
-      public-key: "llTyp52oRXnJmQ3I9UUrmlwbMA79B-wLCRHCu-8dLGg"
-      short-id: "af1bdd293097b664"
-    client-fingerprint: "chrome"
-
-  - name: "mn_🍒_61"
+  - name: "mn_🎯_11"
     type: "vmess"
-    server: "47.244.120.197"
-    port: 23026
-    uuid: "b9de1bc9-baa7-41ac-86f7-ccd59695cb21"
+    server: "57.129.132.223"
+    port: 80
+    uuid: "a25cbf11-2908-4a1b-a3a8-9a571777dca3"
     alterId: 0
     cipher: "auto"
     udp: true
     network: "ws"
     ws-opts:
-      path: "/arki"
+      path: "/vmess/"
       headers:
-        Host: "47.244.120.197"
+        Host: "google.com"
 
-  - name: "mn_🐝_62"
-    type: "ss"
-    server: "82.38.31.185"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🐧_63"
-    type: "trojan"
-    server: "188.114.97.6"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.pleadcourt.org"
-    alpn: ["http/1.1"]
-    client-fingerprint: "chrome"
-    network: "ws"
-    ws-opts:
-      path: "/assignment?ed#Telegram---mehrosaboran"
-      headers:
-        Host: "www.pleadcourt.org"
-
-  - name: "mn_🍋_64"
-    type: "trojan"
-    server: "188.114.97.6"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.pleadcourt.org"
-    network: "ws"
-    ws-opts:
-      path: "/assignment"
-      headers:
-        Host: "www.pleadcourt.org"
-
-  - name: "mn_🐬_65"
-    type: "vless"
-    server: "217.11.164.183"
-    port: 2120
-    uuid: "4476ca08-bdb4-41c1-bae4-a960bdb28c19"
-    udp: true
-    tls: true
-    servername: "www.apple.com"
-    reality-opts:
-      public-key: "bWIOrQAqUWCrz6BGdwaG42xaV-HEo8sUdGqVktUh0XU"
-      short-id: "ddaaf1630788aeac"
-    client-fingerprint: "chrome"
-
-  - name: "mn_🐙_66"
-    type: "vless"
-    server: "147.93.173.45"
-    port: 10444
-    uuid: "75c5f51b-d548-4eab-a26e-aa10fc3dbc7b"
-    udp: true
-    tls: true
-    servername: "video.yandex.ru"
-    reality-opts:
-      public-key: "0oTkcqwLTUNLnSOP-VUWErmy6usAIg-biBE6ioZO-Vo"
-      short-id: "8debcf36f1cc69ff"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🌙_67"
-    type: "trojan"
-    server: "188.114.98.0"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.calmlunch.com"
-    alpn: ["http/1.1"]
-    client-fingerprint: "unsafe"
-    network: "ws"
-    ws-opts:
-      path: "/%2Fassignment"
-      headers:
-        Host: "www.calmlunch.com"
-
-  - name: "mn_🐢_68"
-    type: "vless"
-    server: "node.remnagecsp.ru"
-    port: 7443
-    uuid: "81a227e3-cb97-40fe-b7b6-45a60ed065cf"
-    udp: true
-    tls: true
-    servername: "node.remnagecsp.ru"
-    reality-opts:
-      public-key: "0BVxZKOt6wO0jIB1xRkAAtaFUkmyFAbVWfkkKSJBfEI"
-      short-id: "570ffeb12f6e4635"
-    client-fingerprint: "firefox"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🎧_69"
-    type: "vless"
-    server: "217.11.164.183"
-    port: 2118
-    uuid: "4476ca08-bdb4-41c1-bae4-a960bdb28c19"
-    udp: true
-    tls: true
-    servername: "www.apple.com"
-    reality-opts:
-      public-key: "bWIOrQAqUWCrz6BGdwaG42xaV-HEo8sUdGqVktUh0XU"
-      short-id: "68c328105c"
-    client-fingerprint: "chrome"
-
-  - name: "mn_☀_70"
-    type: "vless"
-    server: "45.9.156.28"
-    port: 443
-    uuid: "2f35965a-9a9b-45fd-ba32-987296dfb6be"
-    udp: true
-    tls: true
-    servername: "bg4.univesalsrv.com"
-    reality-opts:
-      public-key: "k-vH6pkyAv26L1_dXKOFhp0Kesur9-FCUDoj-IIpVhc"
-      short-id: "51f45d4fd58cc319"
-    client-fingerprint: "firefox"
-    network: "grpc"
-    grpc-opts:
-      grpc-service-name: "cloud.v1.RelayService"
-
-  - name: "mn_🧿_71"
-    type: "vmess"
-    server: "47.250.135.244"
-    port: 10000
-    uuid: "aedc66b8-99d7-4a21-8310-61870e7f870d"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-
-  - name: "mn_🎯_72"
-    type: "vless"
-    server: "104.171.133.209"
-    port: 443
-    uuid: "ebd1c0d6-7ff4-4b9f-8692-237517a27a64"
-    udp: true
-    tls: true
-    servername: "anyfile2file.com"
-    reality-opts:
-      public-key: "mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0"
-      short-id: "64c1fe36c7846400"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_💎_73"
-    type: "vless"
-    server: "78.17.178.125"
-    port: 443
-    uuid: "6c713691-3ca2-4446-ad25-113d1bed6b03"
-    udp: true
-    tls: true
-    servername: "cdn.tbank.ru"
-    reality-opts:
-      public-key: "jcp4Lj_qYzxtkalm_XFjrmvqEMGRG7sb19yMwLe16WE"
-      short-id: "e0215064d8d1fd7c"
-    client-fingerprint: "qq"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍒_74"
-    type: "vless"
-    server: "213.152.165.203"
-    port: 2093
-    uuid: "0b418782-e023-447e-ba99-e66b84ff118d"
-    udp: true
-    tls: true
-    servername: "www.apple.com"
-    reality-opts:
-      public-key: "C_GA8wVjeLmyqLK6em5OHn4WPlsbndA-RyvyNU1aGFM"
-      short-id: "8a9725533854a7e8"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍩_75"
+  - name: "mn_🎁_12"
     type: "trojan"
     server: "188.114.98.0"
     port: 443
@@ -941,20 +162,22 @@ proxies:
       headers:
         Host: "www.calmlunch.com"
 
-  - name: "mn_🪐_76"
-    type: "vless"
-    server: "217.11.164.183"
-    port: 2112
-    uuid: "4476ca08-bdb4-41c1-bae4-a960bdb28c19"
+  - name: "mn_🎈_13"
+    type: "trojan"
+    server: "188.114.98.0"
+    port: 443
+    password: "humanity"
     udp: true
-    tls: true
-    servername: "www.apple.com"
-    reality-opts:
-      public-key: "bWIOrQAqUWCrz6BGdwaG42xaV-HEo8sUdGqVktUh0XU"
-      short-id: "06"
-    client-fingerprint: "chrome"
+    sni: "www.calmlunch.com"
+    alpn: ["http/1.1"]
+    client-fingerprint: "unsafe"
+    network: "ws"
+    ws-opts:
+      path: "/assignment?ed#Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET"
+      headers:
+        Host: "www.calmlunch.com"
 
-  - name: "mn_🦊_77"
+  - name: "mn_🌈_14"
     type: "trojan"
     server: "188.114.98.0"
     port: 443
@@ -969,15 +192,50 @@ proxies:
       headers:
         Host: "www.calmlunch.com"
 
-  - name: "mn_🐧_78"
-    type: "ss"
-    server: "82.38.31.207"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
+  - name: "mn_🎁_15"
+    type: "trojan"
+    server: "188.114.98.0"
+    port: 443
+    password: "humanity"
     udp: true
+    sni: "www.calmlunch.com"
+    alpn: ["http/1.1"]
+    client-fingerprint: "chrome"
+    network: "ws"
+    ws-opts:
+      path: "//assignment"
+      headers:
+        Host: "www.calmlunch.com"
 
-  - name: "mn_🍀_79"
+  - name: "mn_🍩_16"
+    type: "vless"
+    server: "163.245.42.48"
+    port: 443
+    uuid: "b9bfa54d-bc44-4592-a6d6-89a9665d286f"
+    udp: true
+    tls: true
+    servername: "mother-earth.fyi"
+    reality-opts:
+      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
+      short-id: ""
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🦄_17"
+    type: "vless"
+    server: "82.39.171.12"
+    port: 443
+    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
+    udp: true
+    tls: true
+    servername: "yahoo.com"
+    reality-opts:
+      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
+      short-id: "c39cc7310a"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🍑_18"
     type: "trojan"
     server: "188.114.97.6"
     port: 443
@@ -990,29 +248,506 @@ proxies:
       headers:
         Host: "www.calmlunch.com"
 
-  - name: "mn_🎲_80"
+  - name: "mn_🦋_19"
+    type: "ss"
+    server: "178.83.185.156"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+
+  - name: "mn_🦉_20"
     type: "vless"
-    server: "45.85.117.174"
+    server: "137.74.16.237"
     port: 443
-    uuid: "92a4056a-38d6-49d0-8bd2-600e55af1e9f"
+    uuid: "aaec4e42-a095-44b6-a239-f16d234a0798"
     udp: true
     tls: true
-    servername: "addons.mozilla.org"
+    servername: "www.icloud.com"
     reality-opts:
-      public-key: "rF4J_igTFQRUXEaY351LiZG0Ea4OuNpOakuAbqT0bAw"
-      short-id: "088faf47"
+      public-key: "7LSzvilTVKGMtBDuKGeMrLtlhY7tQf5YcG566dEgO0I"
+      short-id: "b390e0a721d242b0"
     client-fingerprint: "chrome"
     flow: "xtls-rprx-vision"
 
-  - name: "mn_🍉_81"
+  - name: "mn_🌊_21"
     type: "ss"
-    server: "82.38.31.211"
+    server: "82.38.31.185"
     port: 8080
     cipher: "chacha20-ietf-poly1305"
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
 
-  - name: "mn_🌊_82"
+  - name: "mn_🌙_22"
+    type: "vless"
+    server: "185.121.179.122"
+    port: 443
+    uuid: "63c5f8b3-3d3d-46a9-ae1f-58635cdaf891"
+    udp: true
+    tls: true
+    servername: "de.stream-node6.com"
+    reality-opts:
+      public-key: "wpZDT_592emHu309qN-7-qceofbMJzoAdIx9m9RFJGg"
+      short-id: "98753667b2406829"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🦊_23"
+    type: "trojan"
+    server: "172.66.40.99"
+    port: 443
+    password: "humanity"
+    udp: true
+    sni: "www.trusteeforward.com"
+    alpn: ["http/1.1"]
+    network: "ws"
+    ws-opts:
+      path: "/assignment"
+      headers:
+        Host: "www.trusteeforward.com"
+
+  - name: "mn_🎧_24"
+    type: "ss"
+    server: "82.38.31.199"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🌊_25"
+    type: "ss"
+    server: "193.29.139.202"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+
+  - name: "mn_🍕_26"
+    type: "vless"
+    server: "edge.bookmai.com"
+    port: 443
+    uuid: "b9bfa54d-bc44-4592-a6d6-89a9665d286f"
+    udp: true
+    tls: true
+    servername: "mother-earth.fyi"
+    reality-opts:
+      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
+      short-id: ""
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🦉_27"
+    type: "ss"
+    server: "193.29.139.147"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🎲_28"
+    type: "ss"
+    server: "82.38.31.162"
+    port: 443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+
+  - name: "mn_🌊_29"
+    type: "ss"
+    server: "82.38.31.181"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🥝_30"
+    type: "vless"
+    server: "144.31.125.60"
+    port: 443
+    uuid: "9015f0bc-2053-4ca1-9b9b-a018b97b32d2"
+    udp: true
+    tls: true
+    servername: "www.intel.com"
+    reality-opts:
+      public-key: "SVgtyuD9khylgHuB0treGekxVSHPOS-wPZTNHUf6zj8"
+      short-id: "85c86a9863"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🍕_31"
+    type: "ss"
+    server: "82.38.31.155"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+
+  - name: "mn_🍓_32"
+    type: "trojan"
+    server: "188.114.98.0"
+    port: 443
+    password: "humanity"
+    udp: true
+    sni: "www.calmlunch.com"
+    alpn: ["http/1.1"]
+    client-fingerprint: "chrome"
+    network: "ws"
+    ws-opts:
+      path: "/assignment"
+      headers:
+        Host: "www.calmlunch.com"
+
+  - name: "mn_🍑_33"
+    type: "trojan"
+    server: "188.114.98.0"
+    port: 443
+    password: "humanity"
+    udp: true
+    sni: "www.calmlunch.com"
+    alpn: ["http/1.1"]
+    client-fingerprint: "unsafe"
+    network: "ws"
+    ws-opts:
+      path: "/%2Fassignment"
+      headers:
+        Host: "www.calmlunch.com"
+
+  - name: "mn_🍀_34"
+    type: "trojan"
+    server: "188.114.98.0"
+    port: 443
+    password: "humanity"
+    udp: true
+    sni: "www.trusteeforward.com"
+    alpn: ["http/1.1"]
+    client-fingerprint: "unsafe"
+    network: "ws"
+    ws-opts:
+      path: "/assignment"
+      headers:
+        Host: "www.trusteeforward.com"
+
+  - name: "mn_🐼_35"
+    type: "vless"
+    server: "host.taghvimtime.ir"
+    port: 8443
+    uuid: "90c08c98-7ec8-4fab-da36-cf140d18c708"
+    udp: true
+    tls: true
+    servername: "host.taghvimtime.ir"
+    client-fingerprint: "chrome"
+    alpn: ["h2"]
+    network: "xhttp"
+    xhttp-opts:
+      path: "/Meh?di=443"
+      host: "host.taghvimtime.ir"
+
+  - name: "mn_🥝_36"
+    type: "trojan"
+    server: "188.114.97.6"
+    port: 443
+    password: "humanity"
+    udp: true
+    sni: "www.pleadcourt.org"
+    network: "ws"
+    ws-opts:
+      path: "/assignment"
+      headers:
+        Host: "www.pleadcourt.org"
+
+  - name: "mn_🐼_37"
+    type: "ss"
+    server: "82.38.31.215"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🐙_38"
+    type: "ss"
+    server: "57.131.48.45"
+    port: 8388
+    cipher: "aes-256-gcm"
+    password: "itzvpn@321"
+    udp: true
+
+  - name: "mn_🍋_39"
+    type: "vless"
+    server: "pl1.song69.fun"
+    port: 20268
+    uuid: "408c51e8-9246-483d-ba73-34ab4e202eb9"
+    udp: true
+    tls: true
+    servername: "metrika.yandex.ru"
+    reality-opts:
+      public-key: "5H_MmyfvF4SkwS84wTbLmtcZDecXJIJtZ3uisiKQpSM"
+      short-id: "0c774b50"
+    client-fingerprint: "firefox"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🎯_40"
+    type: "trojan"
+    server: "188.114.98.0"
+    port: 443
+    password: "humanity"
+    udp: true
+    sni: "www.pleadcourt.org"
+    alpn: ["http/1.1"]
+    client-fingerprint: "unsafe"
+    network: "ws"
+    ws-opts:
+      path: "/assignment"
+      headers:
+        Host: "www.pleadcourt.org"
+
+  - name: "mn_🦄_41"
+    type: "ss"
+    server: "51.222.141.125"
+    port: 445
+    cipher: "aes-256-gcm"
+    password: "zDNVedRFPQexG9v"
+    udp: true
+
+  - name: "mn_🎈_42"
+    type: "ss"
+    server: "202.50.253.36"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🦊_43"
+    type: "ss"
+    server: "bogging-eyeteeth-fly.freesocks.work"
+    port: 443
+    cipher: "chacha20-ietf-poly1305"
+    password: "QFWzCw2uX9B9i6qAYeFBIE"
+    udp: true
+
+  - name: "mn_🎧_44"
+    type: "vmess"
+    server: "168.138.43.75"
+    port: 80
+    uuid: "11c3627f-31e8-4695-dfbd-34076e2f1f5d"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: "ws"
+    ws-opts:
+      path: "/cctv13.m3u8"
+      headers:
+        Host: "None"
+
+  - name: "mn_🎧_45"
+    type: "ss"
+    server: "82.38.31.207"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🪐_46"
+    type: "ss"
+    server: "82.38.31.16"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+
+  - name: "mn_🍒_47"
+    type: "ss"
+    server: "82.38.31.184"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🦋_48"
+    type: "vless"
+    server: "51.161.72.153"
+    port: 37765
+    uuid: "12af3df8-2ffe-48fe-9b60-376f015ea4f8"
+    udp: true
+    tls: true
+    servername: "www.semiconductor.samsung.com"
+    reality-opts:
+      public-key: "g-4UVtgbojoxQaglMCttyLme4xjtTqomqxdZaVsruQ4"
+      short-id: "defda00d613c"
+    network: "grpc"
+    grpc-opts:
+      grpc-service-name: "grpc_common1"
+
+  - name: "mn_🍉_49"
+    type: "vless"
+    server: "hikvision-plus.com"
+    port: 2053
+    uuid: "aa5d861a-7799-41a7-bdf4-7a6414cf98fd"
+    udp: true
+    tls: true
+    servername: "uwu.blueknightnet.qzz.io"
+    client-fingerprint: "chrome"
+    alpn: ["h2"]
+    network: "ws"
+    ws-opts:
+      path: "/@BlueKnight_net--@BlueKnight_net--@BlueKnight_net--@BlueKnight_net--@BlueKnight_net--@BlueKnight_net"
+      headers:
+        Host: "uwu.blueknightnet.qzz.io"
+
+  - name: "mn_🐝_50"
+    type: "vmess"
+    server: "47.244.120.197"
+    port: 23026
+    uuid: "b9de1bc9-baa7-41ac-86f7-ccd59695cb21"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: "ws"
+    ws-opts:
+      path: "/arki"
+      headers:
+        Host: "47.244.120.197"
+
+  - name: "mn_🍒_51"
+    type: "vless"
+    server: "47.238.210.5"
+    port: 13779
+    uuid: "928e6cce-8ced-4243-9a48-a6642edd09b0"
+    udp: true
+    tls: true
+    servername: "tesla.com"
+    reality-opts:
+      public-key: "llTyp52oRXnJmQ3I9UUrmlwbMA79B-wLCRHCu-8dLGg"
+      short-id: "af1bdd293097b664"
+    client-fingerprint: "chrome"
+
+  - name: "mn_🎲_52"
+    type: "vless"
+    server: "78.17.178.125"
+    port: 443
+    uuid: "6c713691-3ca2-4446-ad25-113d1bed6b03"
+    udp: true
+    tls: true
+    servername: "cdn.tbank.ru"
+    reality-opts:
+      public-key: "jcp4Lj_qYzxtkalm_XFjrmvqEMGRG7sb19yMwLe16WE"
+      short-id: "e0215064d8d1fd7c"
+    client-fingerprint: "qq"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🍀_53"
+    type: "ss"
+    server: "57.129.113.16"
+    port: 8388
+    cipher: "chacha20-ietf-poly1305"
+    password: "NcAXc0UZI6yQJE1p8QmOv8"
+    udp: true
+
+  - name: "mn_🐬_54"
+    type: "vless"
+    server: "217.11.164.183"
+    port: 2112
+    uuid: "4476ca08-bdb4-41c1-bae4-a960bdb28c19"
+    udp: true
+    tls: true
+    servername: "www.apple.com"
+    reality-opts:
+      public-key: "bWIOrQAqUWCrz6BGdwaG42xaV-HEo8sUdGqVktUh0XU"
+      short-id: "06"
+    client-fingerprint: "chrome"
+
+  - name: "mn_🎈_55"
+    type: "vless"
+    server: "147.93.173.45"
+    port: 10444
+    uuid: "75c5f51b-d548-4eab-a26e-aa10fc3dbc7b"
+    udp: true
+    tls: true
+    servername: "video.yandex.ru"
+    reality-opts:
+      public-key: "0oTkcqwLTUNLnSOP-VUWErmy6usAIg-biBE6ioZO-Vo"
+      short-id: "8debcf36f1cc69ff"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🍑_56"
+    type: "trojan"
+    server: "188.114.98.0"
+    port: 443
+    password: "34bfb8d8-e37f-4872-a452-a2b2b4310aed"
+    udp: true
+    sni: "support.zoom.us.sg4.zidstore.net"
+    alpn: ["http/1.1"]
+    client-fingerprint: "unsafe"
+    network: "ws"
+    ws-opts:
+      path: "/whatever/trojan-ws"
+      headers:
+        Host: "support.zoom.us.sg4.zidstore.net"
+
+  - name: "mn_🧿_57"
+    type: "vless"
+    server: "104.171.133.209"
+    port: 443
+    uuid: "ebd1c0d6-7ff4-4b9f-8692-237517a27a64"
+    udp: true
+    tls: true
+    servername: "anyfile2file.com"
+    reality-opts:
+      public-key: "mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0"
+      short-id: "64c1fe36c7846400"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🍒_58"
+    type: "vless"
+    server: "188.114.98.0"
+    port: 443
+    uuid: "2c5e1028-528f-4017-8832-addcb6797ddf"
+    udp: true
+    tls: true
+    servername: "ru.dostupnety.website"
+    client-fingerprint: "unsafe"
+    alpn: ["http/1.1"]
+    network: "ws"
+    ws-opts:
+      path: "/ws-hidden"
+      headers:
+        Host: "ru.dostupnety.website"
+
+  - name: "mn_🐝_59"
+    type: "vless"
+    server: "217.11.164.183"
+    port: 2118
+    uuid: "4476ca08-bdb4-41c1-bae4-a960bdb28c19"
+    udp: true
+    tls: true
+    servername: "www.apple.com"
+    reality-opts:
+      public-key: "bWIOrQAqUWCrz6BGdwaG42xaV-HEo8sUdGqVktUh0XU"
+      short-id: "68c328105c"
+    client-fingerprint: "chrome"
+
+  - name: "mn_🍕_60"
+    type: "vless"
+    server: "217.11.164.183"
+    port: 2120
+    uuid: "4476ca08-bdb4-41c1-bae4-a960bdb28c19"
+    udp: true
+    tls: true
+    servername: "www.apple.com"
+    reality-opts:
+      public-key: "bWIOrQAqUWCrz6BGdwaG42xaV-HEo8sUdGqVktUh0XU"
+      short-id: "ddaaf1630788aeac"
+    client-fingerprint: "chrome"
+
+  - name: "mn_🐬_61"
+    type: "vmess"
+    server: "112.132.215.108"
+    port: 50002
+    uuid: "418048af-a293-4b99-9b0c-98ca3580dd24"
+    alterId: 64
+    cipher: "auto"
+    udp: true
+
+  - name: "mn_🌊_62"
     type: "vmess"
     server: "152.67.8.205"
     port: 80
@@ -1026,237 +761,31 @@ proxies:
       headers:
         Host: "152.67.8.205"
 
-  - name: "mn_🍑_83"
-    type: "ss"
-    server: "57.129.113.16"
-    port: 8388
-    cipher: "chacha20-ietf-poly1305"
-    password: "NcAXc0UZI6yQJE1p8QmOv8"
-    udp: true
-
-  - name: "mn_🍓_84"
+  - name: "mn_🍕_63"
     type: "vless"
     server: "188.114.98.0"
     port: 443
-    uuid: "4e4f1f70-5e56-4a76-bb9d-db087f4690c4"
+    uuid: "c4edb87e-8544-4fa4-bd1c-b0cda9a34b46"
     udp: true
     tls: true
-    servername: "jp3.yohototo.top"
+    servername: "a.cwvps.eu.org"
     client-fingerprint: "unsafe"
     alpn: ["http/1.1"]
     network: "ws"
     ws-opts:
-      path: "/tyxyws"
+      path: "/ws#TELEGRAM--MARAMBASHI--MARAMBASHI?ed=512"
       headers:
-        Host: "jp3.yohototo.top"
+        Host: "a.cwvps.eu.org"
 
-  - name: "mn_🔥_85"
-    type: "vless"
-    server: "funagfrdfs.alixxplay.com"
-    port: 35544
-    uuid: "57beeeb0-03fc-4fc9-94da-7604488a7134"
-    udp: true
-    tls: true
-    servername: "iosapps.itunes.apple.com"
-    reality-opts:
-      public-key: "HrcXRHtsitc_AVlN-_8fZuRgaP-Mqa_9JJotI9OnkVc"
-      short-id: "25c79e5856c7"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🦊_86"
-    type: "vless"
-    server: "randomquaint.net"
-    port: 2053
-    uuid: "95a608b6-bff1-4e10-bb61-0a39f221bb7d"
-    udp: true
-    tls: true
-    servername: "randomquaint.net"
-    client-fingerprint: "firefox"
-    alpn: ["h2", "http/1.1"]
-    network: "xhttp"
-    xhttp-opts:
-      path: "/api/v1/upload"
-      host: "randomquaint.net"
-
-  - name: "mn_🦊_87"
-    type: "vless"
-    server: "188.114.98.0"
-    port: 443
-    uuid: "3c52e091-6714-4915-949f-2149fe69951b"
-    udp: true
-    tls: true
-    servername: "v2ray.simspeedup.com"
-    client-fingerprint: "unsafe"
-    alpn: ["http/1.1"]
-    network: "ws"
-    ws-opts:
-      path: "/ws"
-      headers:
-        Host: "v2ray.simspeedup.com"
-
-  - name: "mn_🍋_88"
+  - name: "mn_🌸_64"
     type: "ss"
-    server: "82.38.31.199"
+    server: "82.38.31.219"
     port: 8080
     cipher: "chacha20-ietf-poly1305"
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
 
-  - name: "mn_🎲_89"
-    type: "vless"
-    server: "funagfrdfs.alixxplay.com"
-    port: 30892
-    uuid: "57beeeb0-03fc-4fc9-94da-7604488a7134"
-    udp: true
-    tls: true
-    servername: "us1p1.xn--ghq880n3na965a.com"
-    reality-opts:
-      public-key: "YinI5MijeZpRatg6QNDvP0qXEif-6VHC6gV5yoji4i4"
-      short-id: "3d31326f95"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🎈_90"
-    type: "ss"
-    server: "202.50.253.72"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🐼_91"
-    type: "trojan"
-    server: "188.114.98.0"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.calmlunch.com"
-    alpn: ["http/1.1"]
-    client-fingerprint: "unsafe"
-    network: "ws"
-    ws-opts:
-      path: "/assignment?ed"
-      headers:
-        Host: "www.calmlunch.com"
-
-  - name: "mn_⚡_92"
-    type: "vless"
-    server: "bg2.univesalsrv.com"
-    port: 443
-    uuid: "2f35965a-9a9b-45fd-ba32-987296dfb6be"
-    udp: true
-    tls: true
-    servername: "bg2.univesalsrv.com"
-    reality-opts:
-      public-key: "0f0dh_FUju5cHgQcIwUjHvxQb9aIZ00p0kZRHeE7Ey4"
-      short-id: "501ab3325b77e1ca"
-    client-fingerprint: "chrome"
-    network: "grpc"
-    grpc-opts:
-      grpc-service-name: "api.v2.PushService"
-
-  - name: "mn_🐙_93"
-    type: "vmess"
-    server: "112.132.215.108"
-    port: 50002
-    uuid: "418048af-a293-4b99-9b0c-98ca3580dd24"
-    alterId: 64
-    cipher: "auto"
-    udp: true
-
-  - name: "mn_🍀_94"
-    type: "vmess"
-    server: "156.245.232.239"
-    port: 35043
-    uuid: "b15e481d-17e4-41a8-84c2-23d4f0514d9a"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "/"
-      headers:
-        Host: "156.245.232.239"
-
-  - name: "mn_🐢_95"
-    type: "vless"
-    server: "bg3.univesalsrv.com"
-    port: 443
-    uuid: "2f35965a-9a9b-45fd-ba32-987296dfb6be"
-    udp: true
-    tls: true
-    servername: "bg3.univesalsrv.com"
-    reality-opts:
-      public-key: "XBfCioniAKXgKYBUVnvBXu80AIaIa4SpAB3w8qeF7Gk"
-      short-id: "1be1bd931c98c84a"
-    client-fingerprint: "firefox"
-    network: "grpc"
-    grpc-opts:
-      grpc-service-name: "home.v1.ApiService"
-
-  - name: "mn_🍓_96"
-    type: "ss"
-    server: "51.79.49.116"
-    port: 8882
-    cipher: "aes-256-gcm"
-    password: "kDWvXYZoTBcGkC4"
-    udp: true
-
-  - name: "mn_🚀_97"
-    type: "ss"
-    server: "198.98.53.130"
-    port: 443
-    cipher: "chacha20-ietf-poly1305"
-    password: "eDfN7SODQceIOmIAbtJJtK"
-    udp: true
-
-  - name: "mn_🍄_98"
-    type: "trojan"
-    server: "8.47.69.0"
-    port: 443
-    password: "humanity"
-    udp: true
-    sni: "www.pleadcourt.org"
-    alpn: ["http/1.1"]
-    client-fingerprint: "safari"
-    network: "ws"
-    ws-opts:
-      path: "/assignment"
-      headers:
-        Host: "www.pleadcourt.org"
-
-  - name: "mn_🌻_99"
-    type: "vless"
-    server: "45.9.156.42"
-    port: 443
-    uuid: "2f35965a-9a9b-45fd-ba32-987296dfb6be"
-    udp: true
-    tls: true
-    servername: "bg5.univesalsrv.com"
-    reality-opts:
-      public-key: "RDWvDEygSk1eyAQhIK95H9EteFbrS2d9JEjBrco54Bw"
-      short-id: "1a3102bb8e51399e"
-    client-fingerprint: "random"
-    network: "grpc"
-    grpc-opts:
-      grpc-service-name: "gw.v2.RelayService"
-
-  - name: "mn_🐬_100"
-    type: "ss"
-    server: "51.79.85.185"
-    port: 8118
-    cipher: "aes-256-gcm"
-    password: "cdBIDV42DCwnfIN"
-    udp: true
-
-  - name: "mn_🐝_101"
-    type: "ss"
-    server: "51.222.141.125"
-    port: 445
-    cipher: "aes-256-gcm"
-    password: "zDNVedRFPQexG9v"
-    udp: true
-
-  - name: "mn_🎲_102"
+  - name: "mn_☀_65"
     type: "vless"
     server: "188.114.98.0"
     port: 443
@@ -1272,221 +801,367 @@ proxies:
       headers:
         Host: "a.cwvps.eu.org"
 
+  - name: "mn_🍑_66"
+    type: "vless"
+    server: "md2.univesalsrv.com"
+    port: 443
+    uuid: "2f35965a-9a9b-45fd-ba32-987296dfb6be"
+    udp: true
+    tls: true
+    servername: "md2.univesalsrv.com"
+    reality-opts:
+      public-key: "JXFsWHYjhAcR-7yz9tuCTMdcfuiyC9a-C9ewA55Z63o"
+      short-id: "d36a38659ce106cb"
+    client-fingerprint: "firefox"
+    network: "grpc"
+    grpc-opts:
+      grpc-service-name: "hub.v1.SyncService"
+
+  - name: "mn_⚡_67"
+    type: "ss"
+    server: "202.50.253.72"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🌙_68"
+    type: "vless"
+    server: "188.114.98.0"
+    port: 443
+    uuid: "4e4f1f70-5e56-4a76-bb9d-db087f4690c4"
+    udp: true
+    tls: true
+    servername: "jp3.yohototo.top"
+    client-fingerprint: "unsafe"
+    alpn: ["http/1.1"]
+    network: "ws"
+    ws-opts:
+      path: "/tyxyws"
+      headers:
+        Host: "jp3.yohototo.top"
+
+  - name: "mn_🎲_69"
+    type: "vless"
+    server: "gb2.murainternet.network"
+    port: 443
+    uuid: "afbd410e-1663-4f40-9d3b-df5117aa23ca"
+    udp: true
+    tls: true
+    servername: "gb2.murainternet.network"
+    reality-opts:
+      public-key: "fyfX-egDrRvXNW1Gt2P_8rH4jdupAcmhFLOCZCzCowo"
+      short-id: "fc36b4a584871aa5"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🍓_70"
+    type: "vless"
+    server: "randomquaint.net"
+    port: 2053
+    uuid: "95a608b6-bff1-4e10-bb61-0a39f221bb7d"
+    udp: true
+    tls: true
+    servername: "randomquaint.net"
+    client-fingerprint: "firefox"
+    alpn: ["h2", "http/1.1"]
+    network: "xhttp"
+    xhttp-opts:
+      path: "/api/v1/upload"
+      host: "randomquaint.net"
+
+  - name: "mn_🍋_71"
+    type: "ss"
+    server: "198.98.53.130"
+    port: 443
+    cipher: "chacha20-ietf-poly1305"
+    password: "eDfN7SODQceIOmIAbtJJtK"
+    udp: true
+
+  - name: "mn_🐝_72"
+    type: "vless"
+    server: "188.114.98.0"
+    port: 443
+    uuid: "fc7d2cfe-f5ef-40c8-a848-a0bdc11f6349"
+    udp: true
+    tls: true
+    servername: "vpn.cintaku.qzz.io"
+    client-fingerprint: "unsafe"
+    alpn: ["http/1.1"]
+    network: "ws"
+    ws-opts:
+      path: "/vlessws"
+      headers:
+        Host: "vpn.cintaku.qzz.io"
+
+  - name: "mn_🍄_73"
+    type: "trojan"
+    server: "185.220.100.168"
+    port: 443
+    password: "humanity"
+    udp: true
+    sni: "www.calmlunch.com"
+    network: "ws"
+    ws-opts:
+      path: "/assignment"
+      headers:
+        Host: "www.calmlunch.com"
+
+  - name: "mn_🍓_74"
+    type: "vless"
+    server: "147.45.47.83"
+    port: 443
+    uuid: "8a1f8853-9a71-4ef2-a64c-4f0a94c2e14b"
+    udp: true
+    tls: true
+    servername: "ozon.ru"
+    reality-opts:
+      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
+      short-id: ""
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🐼_75"
+    type: "ss"
+    server: "51.222.136.236"
+    port: 8882
+    cipher: "aes-256-gcm"
+    password: "kDWvXYZoTBcGkC4"
+    udp: true
+
+  - name: "mn_🍑_76"
+    type: "ss"
+    server: "82.38.31.211"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🦋_77"
+    type: "vless"
+    server: "188.114.98.0"
+    port: 443
+    uuid: "c4edb87e-8544-4fa4-bd1c-b0cda9a34b46"
+    udp: true
+    tls: true
+    servername: "a.cwvps.eu.org"
+    client-fingerprint: "unsafe"
+    alpn: ["http/1.1"]
+    network: "ws"
+    ws-opts:
+      path: "/ws#/?TELEGRAM--MTMVPN--MTMVPN?ed=512"
+      headers:
+        Host: "a.cwvps.eu.org"
+
+  - name: "mn_🍉_78"
+    type: "vmess"
+    server: "156.245.232.239"
+    port: 35043
+    uuid: "b15e481d-17e4-41a8-84c2-23d4f0514d9a"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: "ws"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "156.245.232.239"
+
+  - name: "mn_🍋_79"
+    type: "ss"
+    server: "51.79.49.116"
+    port: 8882
+    cipher: "aes-256-gcm"
+    password: "kDWvXYZoTBcGkC4"
+    udp: true
+
+  - name: "mn_🧿_80"
+    type: "ss"
+    server: "51.222.155.32"
+    port: 5003
+    cipher: "aes-256-gcm"
+    password: "g5MeD6Ft3CWlJId"
+    udp: true
+
+  - name: "mn_☀_81"
+    type: "ss"
+    server: "51.79.85.185"
+    port: 8118
+    cipher: "aes-256-gcm"
+    password: "cdBIDV42DCwnfIN"
+    udp: true
+
 proxy-groups:
   - name: "AUTO"
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - "mn_\ud83d\udc27_1"
-      - "mn_\ud83d\udc22_2"
-      - "mn_\ud83d\udc19_3"
-      - "mn_\ud83c\udf19_4"
-      - "mn_\ud83e\uddff_5"
-      - "mn_\ud83d\udc1d_6"
-      - "mn_\ud83c\udf81_7"
-      - "mn_\ud83c\udfaf_8"
-      - "mn_\ud83c\udf4b_9"
+      - "mn_\ud83c\udf4b_1"
+      - "mn_\ud83c\udf3b_2"
+      - "mn_\ud83c\udf3b_3"
+      - "mn_\ud83e\udd51_4"
+      - "mn_\ud83c\udf0a_5"
+      - "mn_\ud83c\udf0a_6"
+      - "mn_\ud83d\udc1d_7"
+      - "mn_\ud83c\udf53_8"
+      - "mn_\ud83c\udf49_9"
       - "mn_\ud83d\udc1d_10"
-      - "mn_\ud83e\udd5d_11"
-      - "mn_\ud83d\udc2c_12"
-      - "mn_\ud83d\udd25_13"
-      - "mn_\ud83d\ude80_14"
-      - "mn_\ud83c\udf69_15"
-      - "mn_\ud83c\udf44_16"
-      - "mn_\ud83c\udf69_17"
-      - "mn_\ud83e\udd84_18"
-      - "mn_\ud83e\udd84_19"
-      - "mn_\ud83c\udf52_20"
+      - "mn_\ud83c\udfaf_11"
+      - "mn_\ud83c\udf81_12"
+      - "mn_\ud83c\udf88_13"
+      - "mn_\ud83c\udf08_14"
+      - "mn_\ud83c\udf81_15"
+      - "mn_\ud83c\udf69_16"
+      - "mn_\ud83e\udd84_17"
+      - "mn_\ud83c\udf51_18"
+      - "mn_\ud83e\udd8b_19"
+      - "mn_\ud83e\udd89_20"
       - "mn_\ud83c\udf0a_21"
-      - "mn_\ud83c\udf51_22"
-      - "mn_\ud83c\udf53_23"
-      - "mn_\ud83c\udfb2_24"
-      - "mn_\ud83e\uddff_25"
-      - "mn_\ud83c\udf19_26"
-      - "mn_\ud83d\udc3c_27"
-      - "mn_\ud83c\udf40_28"
-      - "mn_\ud83d\udd25_29"
-      - "mn_\ud83c\udf49_30"
-      - "mn_\ud83c\udf44_31"
-      - "mn_\ud83c\udf51_32"
-      - "mn_\ud83e\udd84_33"
-      - "mn_\ud83d\udd25_34"
-      - "mn_\ud83e\udd89_35"
-      - "mn_\ud83c\udfa7_36"
-      - "mn_\ud83c\udf19_37"
-      - "mn_\ud83c\udf55_38"
-      - "mn_\ud83c\udfa7_39"
-      - "mn_\ud83d\udc22_40"
-      - "mn_\u26a1_41"
-      - "mn_\ud83c\udf53_42"
-      - "mn_\ud83d\udc19_43"
-      - "mn_\ud83c\udf44_44"
-      - "mn_\ud83c\udf19_45"
-      - "mn_\ud83c\udf81_46"
-      - "mn_\ud83e\udd51_47"
-      - "mn_\ud83c\udf88_48"
-      - "mn_\ud83e\udd5d_49"
-      - "mn_\ud83c\udf88_50"
-      - "mn_\ud83d\udc22_51"
-      - "mn_\ud83e\udd5d_52"
-      - "mn_\ud83c\udfb2_53"
-      - "mn_\ud83c\udf38_54"
-      - "mn_\ud83e\udd5d_55"
-      - "mn_\u2600_56"
-      - "mn_\u2b50_57"
-      - "mn_\ud83d\udd25_58"
-      - "mn_\ud83c\udf0a_59"
-      - "mn_\ud83e\udd8a_60"
-      - "mn_\ud83c\udf52_61"
-      - "mn_\ud83d\udc1d_62"
-      - "mn_\ud83d\udc27_63"
-      - "mn_\ud83c\udf4b_64"
-      - "mn_\ud83d\udc2c_65"
-      - "mn_\ud83d\udc19_66"
-      - "mn_\ud83c\udf19_67"
-      - "mn_\ud83d\udc22_68"
-      - "mn_\ud83c\udfa7_69"
-      - "mn_\u2600_70"
-      - "mn_\ud83e\uddff_71"
-      - "mn_\ud83c\udfaf_72"
-      - "mn_\ud83d\udc8e_73"
-      - "mn_\ud83c\udf52_74"
-      - "mn_\ud83c\udf69_75"
-      - "mn_\ud83e\ude90_76"
-      - "mn_\ud83e\udd8a_77"
-      - "mn_\ud83d\udc27_78"
-      - "mn_\ud83c\udf40_79"
-      - "mn_\ud83c\udfb2_80"
-      - "mn_\ud83c\udf49_81"
-      - "mn_\ud83c\udf0a_82"
-      - "mn_\ud83c\udf51_83"
-      - "mn_\ud83c\udf53_84"
-      - "mn_\ud83d\udd25_85"
-      - "mn_\ud83e\udd8a_86"
-      - "mn_\ud83e\udd8a_87"
-      - "mn_\ud83c\udf4b_88"
-      - "mn_\ud83c\udfb2_89"
-      - "mn_\ud83c\udf88_90"
-      - "mn_\ud83d\udc3c_91"
-      - "mn_\u26a1_92"
-      - "mn_\ud83d\udc19_93"
-      - "mn_\ud83c\udf40_94"
-      - "mn_\ud83d\udc22_95"
-      - "mn_\ud83c\udf53_96"
-      - "mn_\ud83d\ude80_97"
-      - "mn_\ud83c\udf44_98"
-      - "mn_\ud83c\udf3b_99"
-      - "mn_\ud83d\udc2c_100"
-      - "mn_\ud83d\udc1d_101"
-      - "mn_\ud83c\udfb2_102"
+      - "mn_\ud83c\udf19_22"
+      - "mn_\ud83e\udd8a_23"
+      - "mn_\ud83c\udfa7_24"
+      - "mn_\ud83c\udf0a_25"
+      - "mn_\ud83c\udf55_26"
+      - "mn_\ud83e\udd89_27"
+      - "mn_\ud83c\udfb2_28"
+      - "mn_\ud83c\udf0a_29"
+      - "mn_\ud83e\udd5d_30"
+      - "mn_\ud83c\udf55_31"
+      - "mn_\ud83c\udf53_32"
+      - "mn_\ud83c\udf51_33"
+      - "mn_\ud83c\udf40_34"
+      - "mn_\ud83d\udc3c_35"
+      - "mn_\ud83e\udd5d_36"
+      - "mn_\ud83d\udc3c_37"
+      - "mn_\ud83d\udc19_38"
+      - "mn_\ud83c\udf4b_39"
+      - "mn_\ud83c\udfaf_40"
+      - "mn_\ud83e\udd84_41"
+      - "mn_\ud83c\udf88_42"
+      - "mn_\ud83e\udd8a_43"
+      - "mn_\ud83c\udfa7_44"
+      - "mn_\ud83c\udfa7_45"
+      - "mn_\ud83e\ude90_46"
+      - "mn_\ud83c\udf52_47"
+      - "mn_\ud83e\udd8b_48"
+      - "mn_\ud83c\udf49_49"
+      - "mn_\ud83d\udc1d_50"
+      - "mn_\ud83c\udf52_51"
+      - "mn_\ud83c\udfb2_52"
+      - "mn_\ud83c\udf40_53"
+      - "mn_\ud83d\udc2c_54"
+      - "mn_\ud83c\udf88_55"
+      - "mn_\ud83c\udf51_56"
+      - "mn_\ud83e\uddff_57"
+      - "mn_\ud83c\udf52_58"
+      - "mn_\ud83d\udc1d_59"
+      - "mn_\ud83c\udf55_60"
+      - "mn_\ud83d\udc2c_61"
+      - "mn_\ud83c\udf0a_62"
+      - "mn_\ud83c\udf55_63"
+      - "mn_\ud83c\udf38_64"
+      - "mn_\u2600_65"
+      - "mn_\ud83c\udf51_66"
+      - "mn_\u26a1_67"
+      - "mn_\ud83c\udf19_68"
+      - "mn_\ud83c\udfb2_69"
+      - "mn_\ud83c\udf53_70"
+      - "mn_\ud83c\udf4b_71"
+      - "mn_\ud83d\udc1d_72"
+      - "mn_\ud83c\udf44_73"
+      - "mn_\ud83c\udf53_74"
+      - "mn_\ud83d\udc3c_75"
+      - "mn_\ud83c\udf51_76"
+      - "mn_\ud83e\udd8b_77"
+      - "mn_\ud83c\udf49_78"
+      - "mn_\ud83c\udf4b_79"
+      - "mn_\ud83e\uddff_80"
+      - "mn_\u2600_81"
 
   - name: "PROXY"
     type: select
     proxies:
       - "AUTO"
-      - "mn_\ud83d\udc27_1"
-      - "mn_\ud83d\udc22_2"
-      - "mn_\ud83d\udc19_3"
-      - "mn_\ud83c\udf19_4"
-      - "mn_\ud83e\uddff_5"
-      - "mn_\ud83d\udc1d_6"
-      - "mn_\ud83c\udf81_7"
-      - "mn_\ud83c\udfaf_8"
-      - "mn_\ud83c\udf4b_9"
+      - "mn_\ud83c\udf4b_1"
+      - "mn_\ud83c\udf3b_2"
+      - "mn_\ud83c\udf3b_3"
+      - "mn_\ud83e\udd51_4"
+      - "mn_\ud83c\udf0a_5"
+      - "mn_\ud83c\udf0a_6"
+      - "mn_\ud83d\udc1d_7"
+      - "mn_\ud83c\udf53_8"
+      - "mn_\ud83c\udf49_9"
       - "mn_\ud83d\udc1d_10"
-      - "mn_\ud83e\udd5d_11"
-      - "mn_\ud83d\udc2c_12"
-      - "mn_\ud83d\udd25_13"
-      - "mn_\ud83d\ude80_14"
-      - "mn_\ud83c\udf69_15"
-      - "mn_\ud83c\udf44_16"
-      - "mn_\ud83c\udf69_17"
-      - "mn_\ud83e\udd84_18"
-      - "mn_\ud83e\udd84_19"
-      - "mn_\ud83c\udf52_20"
+      - "mn_\ud83c\udfaf_11"
+      - "mn_\ud83c\udf81_12"
+      - "mn_\ud83c\udf88_13"
+      - "mn_\ud83c\udf08_14"
+      - "mn_\ud83c\udf81_15"
+      - "mn_\ud83c\udf69_16"
+      - "mn_\ud83e\udd84_17"
+      - "mn_\ud83c\udf51_18"
+      - "mn_\ud83e\udd8b_19"
+      - "mn_\ud83e\udd89_20"
       - "mn_\ud83c\udf0a_21"
-      - "mn_\ud83c\udf51_22"
-      - "mn_\ud83c\udf53_23"
-      - "mn_\ud83c\udfb2_24"
-      - "mn_\ud83e\uddff_25"
-      - "mn_\ud83c\udf19_26"
-      - "mn_\ud83d\udc3c_27"
-      - "mn_\ud83c\udf40_28"
-      - "mn_\ud83d\udd25_29"
-      - "mn_\ud83c\udf49_30"
-      - "mn_\ud83c\udf44_31"
-      - "mn_\ud83c\udf51_32"
-      - "mn_\ud83e\udd84_33"
-      - "mn_\ud83d\udd25_34"
-      - "mn_\ud83e\udd89_35"
-      - "mn_\ud83c\udfa7_36"
-      - "mn_\ud83c\udf19_37"
-      - "mn_\ud83c\udf55_38"
-      - "mn_\ud83c\udfa7_39"
-      - "mn_\ud83d\udc22_40"
-      - "mn_\u26a1_41"
-      - "mn_\ud83c\udf53_42"
-      - "mn_\ud83d\udc19_43"
-      - "mn_\ud83c\udf44_44"
-      - "mn_\ud83c\udf19_45"
-      - "mn_\ud83c\udf81_46"
-      - "mn_\ud83e\udd51_47"
-      - "mn_\ud83c\udf88_48"
-      - "mn_\ud83e\udd5d_49"
-      - "mn_\ud83c\udf88_50"
-      - "mn_\ud83d\udc22_51"
-      - "mn_\ud83e\udd5d_52"
-      - "mn_\ud83c\udfb2_53"
-      - "mn_\ud83c\udf38_54"
-      - "mn_\ud83e\udd5d_55"
-      - "mn_\u2600_56"
-      - "mn_\u2b50_57"
-      - "mn_\ud83d\udd25_58"
-      - "mn_\ud83c\udf0a_59"
-      - "mn_\ud83e\udd8a_60"
-      - "mn_\ud83c\udf52_61"
-      - "mn_\ud83d\udc1d_62"
-      - "mn_\ud83d\udc27_63"
-      - "mn_\ud83c\udf4b_64"
-      - "mn_\ud83d\udc2c_65"
-      - "mn_\ud83d\udc19_66"
-      - "mn_\ud83c\udf19_67"
-      - "mn_\ud83d\udc22_68"
-      - "mn_\ud83c\udfa7_69"
-      - "mn_\u2600_70"
-      - "mn_\ud83e\uddff_71"
-      - "mn_\ud83c\udfaf_72"
-      - "mn_\ud83d\udc8e_73"
-      - "mn_\ud83c\udf52_74"
-      - "mn_\ud83c\udf69_75"
-      - "mn_\ud83e\ude90_76"
-      - "mn_\ud83e\udd8a_77"
-      - "mn_\ud83d\udc27_78"
-      - "mn_\ud83c\udf40_79"
-      - "mn_\ud83c\udfb2_80"
-      - "mn_\ud83c\udf49_81"
-      - "mn_\ud83c\udf0a_82"
-      - "mn_\ud83c\udf51_83"
-      - "mn_\ud83c\udf53_84"
-      - "mn_\ud83d\udd25_85"
-      - "mn_\ud83e\udd8a_86"
-      - "mn_\ud83e\udd8a_87"
-      - "mn_\ud83c\udf4b_88"
-      - "mn_\ud83c\udfb2_89"
-      - "mn_\ud83c\udf88_90"
-      - "mn_\ud83d\udc3c_91"
-      - "mn_\u26a1_92"
-      - "mn_\ud83d\udc19_93"
-      - "mn_\ud83c\udf40_94"
-      - "mn_\ud83d\udc22_95"
-      - "mn_\ud83c\udf53_96"
-      - "mn_\ud83d\ude80_97"
-      - "mn_\ud83c\udf44_98"
-      - "mn_\ud83c\udf3b_99"
-      - "mn_\ud83d\udc2c_100"
-      - "mn_\ud83d\udc1d_101"
-      - "mn_\ud83c\udfb2_102"
+      - "mn_\ud83c\udf19_22"
+      - "mn_\ud83e\udd8a_23"
+      - "mn_\ud83c\udfa7_24"
+      - "mn_\ud83c\udf0a_25"
+      - "mn_\ud83c\udf55_26"
+      - "mn_\ud83e\udd89_27"
+      - "mn_\ud83c\udfb2_28"
+      - "mn_\ud83c\udf0a_29"
+      - "mn_\ud83e\udd5d_30"
+      - "mn_\ud83c\udf55_31"
+      - "mn_\ud83c\udf53_32"
+      - "mn_\ud83c\udf51_33"
+      - "mn_\ud83c\udf40_34"
+      - "mn_\ud83d\udc3c_35"
+      - "mn_\ud83e\udd5d_36"
+      - "mn_\ud83d\udc3c_37"
+      - "mn_\ud83d\udc19_38"
+      - "mn_\ud83c\udf4b_39"
+      - "mn_\ud83c\udfaf_40"
+      - "mn_\ud83e\udd84_41"
+      - "mn_\ud83c\udf88_42"
+      - "mn_\ud83e\udd8a_43"
+      - "mn_\ud83c\udfa7_44"
+      - "mn_\ud83c\udfa7_45"
+      - "mn_\ud83e\ude90_46"
+      - "mn_\ud83c\udf52_47"
+      - "mn_\ud83e\udd8b_48"
+      - "mn_\ud83c\udf49_49"
+      - "mn_\ud83d\udc1d_50"
+      - "mn_\ud83c\udf52_51"
+      - "mn_\ud83c\udfb2_52"
+      - "mn_\ud83c\udf40_53"
+      - "mn_\ud83d\udc2c_54"
+      - "mn_\ud83c\udf88_55"
+      - "mn_\ud83c\udf51_56"
+      - "mn_\ud83e\uddff_57"
+      - "mn_\ud83c\udf52_58"
+      - "mn_\ud83d\udc1d_59"
+      - "mn_\ud83c\udf55_60"
+      - "mn_\ud83d\udc2c_61"
+      - "mn_\ud83c\udf0a_62"
+      - "mn_\ud83c\udf55_63"
+      - "mn_\ud83c\udf38_64"
+      - "mn_\u2600_65"
+      - "mn_\ud83c\udf51_66"
+      - "mn_\u26a1_67"
+      - "mn_\ud83c\udf19_68"
+      - "mn_\ud83c\udfb2_69"
+      - "mn_\ud83c\udf53_70"
+      - "mn_\ud83c\udf4b_71"
+      - "mn_\ud83d\udc1d_72"
+      - "mn_\ud83c\udf44_73"
+      - "mn_\ud83c\udf53_74"
+      - "mn_\ud83d\udc3c_75"
+      - "mn_\ud83c\udf51_76"
+      - "mn_\ud83e\udd8b_77"
+      - "mn_\ud83c\udf49_78"
+      - "mn_\ud83c\udf4b_79"
+      - "mn_\ud83e\uddff_80"
+      - "mn_\u2600_81"
 
 rules:
   - MATCH,AUTO
