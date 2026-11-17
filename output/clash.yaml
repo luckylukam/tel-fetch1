@@ -1,6 +1,6 @@
 # Clash subscription — auto-generated
-# Generated: 2026-11-16 18:15 UTC
-# Total proxies: 115
+# Generated: 2026-11-17 01:52 UTC
+# Total proxies: 103
 
 mixed-port: 7890
 allow-lan: false
@@ -8,23 +8,15 @@ mode: rule
 log-level: info
 
 proxies:
-  - name: "mn_🌙_1"
+  - name: "mn_🐼_1"
     type: "ss"
-    server: "156.146.38.167"
-    port: 443
-    cipher: "aes-128-gcm"
-    password: "shadowsocks"
-    udp: true
-
-  - name: "mn_🍕_2"
-    type: "ss"
-    server: "167.17.67.171"
+    server: "149.40.57.138"
     port: 19999
     cipher: "aes-256-gcm"
     password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_🥑_3"
+  - name: "mn_🌻_2"
     type: "ss"
     server: "149.40.57.135"
     port: 19999
@@ -32,67 +24,36 @@ proxies:
     password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_🦄_4"
+  - name: "mn_🍩_3"
     type: "vless"
-    server: "85.155.179.206"
+    server: "xstack.mahanfixe.workers.dev"
     port: 443
-    uuid: "86a83d11-d751-4b60-aa4e-1dca5cff7028"
+    uuid: "a8b1d666-d3ba-4b17-90c4-ba7514c74f78"
     udp: true
     tls: true
-    servername: "us3.shtil.io"
-    client-fingerprint: "firefox"
-    alpn: ["h2", "http/1.1"]
+    network: "ws"
+    ws-opts:
+      path: "/xiron"
+      headers:
+        Host: "xstack.mahanfixe.workers.dev"
 
-  - name: "mn_🍄_5"
-    type: "vmess"
-    server: "38.91.107.49"
-    port: 18000
-    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-
-  - name: "mn_🎁_6"
+  - name: "mn_🥝_4"
     type: "ss"
-    server: "162.251.62.31"
+    server: "167.88.63.99"
     port: 19999
     cipher: "aes-256-gcm"
     password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_🎈_7"
+  - name: "mn_🥑_5"
     type: "ss"
-    server: "216.105.168.18"
-    port: 443
-    cipher: "chacha20-ietf-poly1305"
-    password: "hCCWOcIsK5wrFz4OX70rWf"
-    udp: true
-
-  - name: "mn_🐝_8"
-    type: "trojan"
-    server: "169.197.140.171"
-    port: 443
-    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
-    udp: true
-    sni: "cdn.discoverfreshgraduatejobsstartyourprofessionaljourney.com"
-
-  - name: "mn_🌻_9"
-    type: "ss"
-    server: "172.111.36.123"
+    server: "38.121.43.231"
     port: 19999
     cipher: "aes-256-gcm"
     password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_🍉_10"
-    type: "ss"
-    server: "38.121.43.18"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🐬_11"
+  - name: "mn_🐙_6"
     type: "ss"
     server: "185.215.132.9"
     port: 19999
@@ -100,54 +61,23 @@ proxies:
     password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_🍩_12"
+  - name: "mn_🌈_7"
     type: "ss"
-    server: "45.86.51.18"
+    server: "185.215.132.18"
     port: 19999
     cipher: "aes-256-gcm"
     password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_☀_13"
+  - name: "mn_🐙_8"
     type: "ss"
-    server: "198.98.53.130"
-    port: 443
-    cipher: "chacha20-ietf-poly1305"
-    password: "eDfN7SODQceIOmIAbtJJtK"
+    server: "38.22.17.129"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_🍒_14"
-    type: "trojan"
-    server: "170.101.101.237"
-    port: 443
-    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
-    udp: true
-    sni: "cdn.explorecreativejobsandenhanceyourcareerportfolio.com"
-
-  - name: "mn_🥑_15"
-    type: "vmess"
-    server: "38.110.1.246"
-    port: 18000
-    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-
-  - name: "mn_🎧_16"
-    type: "vless"
-    server: "169.40.42.89"
-    port: 443
-    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
-    udp: true
-    tls: true
-    servername: "yahoo.com"
-    reality-opts:
-      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
-      short-id: "c39cc7310a"
-    client-fingerprint: "ios"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🐢_17"
+  - name: "mn_🐢_9"
     type: "vless"
     server: "169.40.42.35"
     port: 443
@@ -161,15 +91,145 @@ proxies:
     client-fingerprint: "chrome"
     flow: "xtls-rprx-vision"
 
-  - name: "mn_🌻_18"
+  - name: "mn_🍑_10"
     type: "ss"
-    server: "185.215.132.18"
+    server: "38.121.43.225"
     port: 19999
     cipher: "aes-256-gcm"
     password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_🌸_19"
+  - name: "mn_🦉_11"
+    type: "ss"
+    server: "167.17.67.171"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🍑_12"
+    type: "vless"
+    server: "169.40.42.89"
+    port: 443
+    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
+    udp: true
+    tls: true
+    servername: "yahoo.com"
+    reality-opts:
+      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
+      short-id: "c39cc7310a"
+    client-fingerprint: "ios"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🚀_13"
+    type: "ss"
+    server: "156.146.38.167"
+    port: 443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+
+  - name: "mn_🪐_14"
+    type: "ss"
+    server: "156.146.38.170"
+    port: 443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+
+  - name: "mn_🐙_15"
+    type: "ss"
+    server: "198.98.53.130"
+    port: 443
+    cipher: "chacha20-ietf-poly1305"
+    password: "eDfN7SODQceIOmIAbtJJtK"
+    udp: true
+
+  - name: "mn_🌻_16"
+    type: "ss"
+    server: "51.222.141.125"
+    port: 445
+    cipher: "aes-256-gcm"
+    password: "zDNVedRFPQexG9v"
+    udp: true
+
+  - name: "mn_🐙_17"
+    type: "vmess"
+    server: "67.220.95.3"
+    port: 18000
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+
+  - name: "mn_🍋_18"
+    type: "ss"
+    server: "45.86.51.18"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🥑_19"
+    type: "vmess"
+    server: "38.110.1.246"
+    port: 18000
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+
+  - name: "mn_⭐_20"
+    type: "vmess"
+    server: "38.91.107.49"
+    port: 18000
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+
+  - name: "mn_🐧_21"
+    type: "trojan"
+    server: "169.197.140.171"
+    port: 443
+    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
+    udp: true
+    sni: "cdn.discoverfreshgraduatejobsstartyourprofessionaljourney.com"
+
+  - name: "mn_🍉_22"
+    type: "trojan"
+    server: "170.101.101.237"
+    port: 443
+    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
+    udp: true
+    sni: "cdn.explorecreativejobsandenhanceyourcareerportfolio.com"
+
+  - name: "mn_🐙_23"
+    type: "vless"
+    server: "xray2-direct-mci1-fs-ce.freesocks.work"
+    port: 443
+    uuid: "13e1ad32-9b0c-40fe-ab38-8888a812973a"
+    udp: true
+    tls: true
+    servername: "dl.google.com"
+    reality-opts:
+      public-key: "7j3hmlHrEDk3Kjx-dFG3E3jf0c6PZF45trIPFsuKWmI"
+      short-id: ""
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🪐_24"
+    type: "vless"
+    server: "85.155.179.206"
+    port: 443
+    uuid: "86a83d11-d751-4b60-aa4e-1dca5cff7028"
+    udp: true
+    tls: true
+    servername: "us3.shtil.io"
+    client-fingerprint: "firefox"
+    alpn: ["h2", "http/1.1"]
+
+  - name: "mn_🎧_25"
     type: "vless"
     server: "15.204.97.219"
     port: 23576
@@ -183,873 +243,7 @@ proxies:
     client-fingerprint: "chrome"
     flow: "xtls-rprx-vision"
 
-  - name: "mn_🎲_20"
-    type: "ss"
-    server: "198.244.202.215"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🧿_21"
-    type: "vless"
-    server: "51.158.206.20"
-    port: 23576
-    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
-    udp: true
-    tls: true
-    servername: "fuck.rkn"
-    reality-opts:
-      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
-      short-id: "01"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🥑_22"
-    type: "vless"
-    server: "51.158.206.29"
-    port: 23576
-    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
-    udp: true
-    tls: true
-    servername: "fuck.rkn"
-    reality-opts:
-      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
-      short-id: "01"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🎈_23"
-    type: "ss"
-    server: "51.170.179.206"
-    port: 45819
-    cipher: "2022-blake3-chacha20-poly1305"
-    password: "tolBTSv+yXMxg+JGGEjJbeGi96nnV3Ax5+7q51jCcEk="
-    udp: true
-
-  - name: "mn_🐢_24"
-    type: "vless"
-    server: "51.158.206.34"
-    port: 23576
-    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
-    udp: true
-    tls: true
-    servername: "fuck.rkn"
-    reality-opts:
-      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
-      short-id: "01"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍄_25"
-    type: "vless"
-    server: "51.158.206.96"
-    port: 23576
-    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
-    udp: true
-    tls: true
-    servername: "fuck.rkn"
-    reality-opts:
-      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
-      short-id: "01"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_⚡_26"
-    type: "vless"
-    server: "51.158.206.12"
-    port: 23576
-    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
-    udp: true
-    tls: true
-    servername: "fuck.rkn"
-    reality-opts:
-      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
-      short-id: "01"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🐬_27"
-    type: "vless"
-    server: "62.210.91.2"
-    port: 23576
-    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
-    udp: true
-    tls: true
-    servername: "fuck.rkn"
-    reality-opts:
-      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
-      short-id: "01"
-    client-fingerprint: "firefox"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🐢_28"
-    type: "vless"
-    server: "88.216.70.125"
-    port: 443
-    uuid: "88e79aa6-f431-4453-8dcc-652a0c747198"
-    udp: true
-    tls: true
-    servername: "o685y.save-node.com"
-    client-fingerprint: "firefox"
-    network: "ws"
-    ws-opts:
-      path: "/api/se1k2rfxlsuer3ry4u6e84kl8rqp721p"
-      headers:
-        Host: "o685y.save-node.com"
-
-  - name: "mn_🎁_29"
-    type: "vless"
-    server: "51.158.206.25"
-    port: 23576
-    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
-    udp: true
-    tls: true
-    servername: "fuck.rkn"
-    reality-opts:
-      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
-      short-id: "01"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🎯_30"
-    type: "vmess"
-    server: "57.129.132.223"
-    port: 80
-    uuid: "a25cbf11-2908-4a1b-a3a8-9a571777dca3"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "/vmess/"
-      headers:
-        Host: "google.com"
-
-  - name: "mn_☀_31"
-    type: "ss"
-    server: "185.176.204.18"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🥑_32"
-    type: "vless"
-    server: "5.253.86.3"
-    port: 443
-    uuid: "8197b9b9-8945-460f-99c9-325ef8a8a7c3"
-    udp: true
-    tls: true
-    servername: "nl3.gofizz.in"
-    reality-opts:
-      public-key: "51ZCyVOxvcD_smARtd9mV-3Rh_WurOzMGRFxk9u2Kgo"
-      short-id: "fa1754221e4c5f9e"
-    client-fingerprint: "edge"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🌈_33"
-    type: "vless"
-    server: "9.247.23.209"
-    port: 443
-    uuid: "b9bfa54d-bc44-4592-a6d6-89a9665d286f"
-    udp: true
-    tls: true
-    servername: "mother-earth.fyi"
-    reality-opts:
-      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
-      short-id: ""
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🌸_34"
-    type: "ss"
-    server: "51.83.61.102"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "29irqk0paakcx19v"
-    udp: true
-
-  - name: "mn_🐝_35"
-    type: "ss"
-    server: "193.29.139.223"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🐝_36"
-    type: "vless"
-    server: "200.96.106.2"
-    port: 9889
-    uuid: "0dcefe19-a42a-4d57-96be-83dcbffd425f"
-    udp: true
-    tls: true
-    servername: "tiktok2.transitbp2systems.com"
-    reality-opts:
-      public-key: "GPwEGfRBoztNbcAvfX4ojY9FJ1vaMD3v21tnIrN2xyE"
-      short-id: ""
-    client-fingerprint: "firefox"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍩_37"
-    type: "vless"
-    server: "87.199.205.28"
-    port: 443
-    uuid: "501a2da5-cb22-4a3f-915e-e3b821d1d62d"
-    udp: true
-    tls: true
-    servername: "vkvd754.okcdn.ru"
-    reality-opts:
-      public-key: "W-9zyiOq287RtXVTZlTFbSDJ0Mx8joyBLJoA7ZE7eBw"
-      short-id: "ef1d3554c652a436"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🌸_38"
-    type: "vless"
-    server: "185.121.179.122"
-    port: 443
-    uuid: "63c5f8b3-3d3d-46a9-ae1f-58635cdaf891"
-    udp: true
-    tls: true
-    servername: "de.stream-node6.com"
-    reality-opts:
-      public-key: "wpZDT_592emHu309qN-7-qceofbMJzoAdIx9m9RFJGg"
-      short-id: "98753667b2406829"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🦊_39"
-    type: "vless"
-    server: "91.107.255.63"
-    port: 39653
-    uuid: "baded307-189c-4ffc-a271-9acdab51a324"
-    udp: true
-    tls: true
-    servername: "online.shop.ir.eeso.cc"
-    alpn: ["h2", "http/1.1"]
-
-  - name: "mn_🐧_40"
-    type: "ss"
-    server: "82.38.31.202"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🍩_41"
-    type: "ss"
-    server: "82.38.31.61"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🌊_42"
-    type: "ss"
-    server: "193.29.139.168"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "QCXDxuDlTTMD7jtgHUjIoj"
-    udp: true
-
-  - name: "mn_🌈_43"
-    type: "vless"
-    server: "82.39.171.12"
-    port: 443
-    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
-    udp: true
-    tls: true
-    servername: "yahoo.com"
-    reality-opts:
-      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
-      short-id: "c39cc7310a"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🐝_44"
-    type: "ss"
-    server: "82.38.31.157"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🦉_45"
-    type: "vless"
-    server: "144.31.125.60"
-    port: 443
-    uuid: "9015f0bc-2053-4ca1-9b9b-a018b97b32d2"
-    udp: true
-    tls: true
-    servername: "www.intel.com"
-    reality-opts:
-      public-key: "SVgtyuD9khylgHuB0treGekxVSHPOS-wPZTNHUf6zj8"
-      short-id: "85c86a9863"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_💎_46"
-    type: "ss"
-    server: "82.38.31.194"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🍀_47"
-    type: "ss"
-    server: "82.38.31.220"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_⭐_48"
-    type: "ss"
-    server: "82.38.31.185"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🌈_49"
-    type: "vless"
-    server: "ai.smrtai.top"
-    port: 443
-    uuid: "086bf957-9cd0-4e55-8280-bbef10435b41"
-    udp: true
-    tls: true
-    servername: "www.cloudflare.com"
-    reality-opts:
-      public-key: "R-w7BpNgtryZRBMyRoHx81OnjzAwrKhVtV1EUKLFJzc"
-      short-id: "086bf957"
-    client-fingerprint: "chrome"
-
-  - name: "mn_🐼_50"
-    type: "ss"
-    server: "82.38.31.203"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🎲_51"
-    type: "ss"
-    server: "178.83.185.156"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🌙_52"
-    type: "ss"
-    server: "82.38.31.215"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🍉_53"
-    type: "ss"
-    server: "82.38.31.182"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🍑_54"
-    type: "ss"
-    server: "82.38.31.62"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🦄_55"
-    type: "ss"
-    server: "82.38.31.184"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_⭐_56"
-    type: "ss"
-    server: "82.38.31.162"
-    port: 443
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-
-  - name: "mn_🚀_57"
-    type: "vless"
-    server: "31.43.179.111"
-    port: 2087
-    uuid: "50414e45-4c5f-5a45-5553-8b680ff0aff9"
-    udp: true
-    tls: true
-    servername: "l5zgnlesutjs.foxvpn551144.workers.dev"
-    network: "ws"
-    ws-opts:
-      path: "/stream/PANEL_ZEUS/8b680ff0aff9"
-      headers:
-        Host: "l5zgnlesutjs.foxvpn551144.workers.dev"
-
-  - name: "mn_☀_58"
-    type: "ss"
-    server: "84.20.27.183"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🦊_59"
-    type: "vless"
-    server: "201.58.189.105"
-    port: 2083
-    uuid: "d7ddade6-b7a0-4cab-a910-d5d5c378d98a"
-    udp: true
-    tls: true
-    servername: "dl.google.com"
-    reality-opts:
-      public-key: "B7x5bYp-YhtLeH31zYcilpKFCkGTMe3jtSECSw-bMC4"
-      short-id: "8bd80253"
-    client-fingerprint: "chrome"
-    network: "grpc"
-    grpc-opts:
-      grpc-service-name: "google.storage.v2.Storage"
-
-  - name: "mn_🎧_60"
-    type: "ss"
-    server: "202.50.253.27"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🎈_61"
-    type: "vless"
-    server: "48.103.120.3"
-    port: 443
-    uuid: "a30903dc-1bf0-0001-8b1b-603a3a56211c"
-    udp: true
-    tls: true
-    servername: "de1b.galioncc.com"
-    reality-opts:
-      public-key: "drl7nndYdfzZY1aQ0eUAWmNV0nsHig2uDnu9siy9biQ"
-      short-id: "868419504747f6de"
-    client-fingerprint: "edge"
-
-  - name: "mn_🎈_62"
-    type: "ss"
-    server: "57.131.4.13"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "mx81glqbtlwuhcjo"
-    udp: true
-
-  - name: "mn_🐙_63"
-    type: "vless"
-    server: "45.91.93.47"
-    port: 443
-    uuid: "8197b9b9-8945-460f-99c9-325ef8a8a7c3"
-    udp: true
-    tls: true
-    servername: "uk2.gofizz.in"
-    reality-opts:
-      public-key: "WgTZR-o6VbFYeqb7iZNBh-izcWAQlpotOyxibJnAXVc"
-      short-id: "f51489cb3d7e8be2"
-    client-fingerprint: "ios"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🎧_64"
-    type: "trojan"
-    server: "66.163.127.44"
-    port: 443
-    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
-    udp: true
-    sni: "learn.indyourperfectremotetechjobfromthecomfortofhome.com"
-
-  - name: "mn_🍑_65"
-    type: "ss"
-    server: "82.38.31.219"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🎈_66"
-    type: "trojan"
-    server: "66.163.127.215"
-    port: 443
-    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
-    udp: true
-    sni: "courses.indyourperfectremotetechjobfromthecomfortofhome.com"
-
-  - name: "mn_🌈_67"
-    type: "vless"
-    server: "185.155.55.2"
-    port: 8443
-    uuid: "5c09e56b-f97f-4360-8f01-eb4d39202095"
-    udp: true
-    tls: true
-    servername: "ee-nf.reddotcorp.org"
-    reality-opts:
-      public-key: "ApMfbcEyBOve6DxXoBNVu3bCCzQ7XCEYB4ummsDtTBE"
-      short-id: "661766b2bcef440a"
-    client-fingerprint: "firefox"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍋_68"
-    type: "trojan"
-    server: "66.163.118.40"
-    port: 443
-    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
-    udp: true
-    sni: "cdn.discovergreatjobsandadvanceyourcareer.com"
-
-  - name: "mn_⚡_69"
-    type: "vless"
-    server: "213.165.39.134"
-    port: 443
-    uuid: "6a251a93-8eee-43b5-92ed-ecadedcfd0a8"
-    udp: true
-    tls: true
-    servername: "platform-api.max.ru"
-    reality-opts:
-      public-key: "Gtz3xOdQdWSocdx4NNie6s-bsa9VDiG6thqanJ4h31s"
-      short-id: "6f3332a09b0ab6d1"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_💎_70"
-    type: "trojan"
-    server: "66.163.118.203"
-    port: 443
-    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
-    udp: true
-    sni: "blog.discovergreatjobsandadvanceyourcareer.com"
-
-  - name: "mn_🌙_71"
-    type: "vless"
-    server: "31.76.31.240"
-    port: 4443
-    uuid: "62995b2a-8f82-41f8-ac80-dfdfc1253e76"
-    udp: true
-    tls: true
-    servername: "gallery.kristinadmitriywedding.ru"
-    reality-opts:
-      public-key: "NORtYfSTVbYq7r3qD1p8f7GWN8lCapPxqQTzGE7-3WQ"
-      short-id: "69e9f04fdfe55673"
-    client-fingerprint: "chrome"
-    network: "xhttp"
-    xhttp-opts:
-      path: "/astral-edge-fi"
-      host: "gallery.kristinadmitriywedding.ru"
-
-  - name: "mn_☀_72"
-    type: "ss"
-    server: "54.37.240.40"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "8nrpt2il04ptci2j"
-    udp: true
-
-  - name: "mn_🌙_73"
-    type: "ss"
-    server: "63.189.213.38"
-    port: 443
-    cipher: "2022-blake3-chacha20-poly1305"
-    password: "8yO3ANWefuuGs1lRKXECQA1FEhxlWFV2ppQMcBaZo5Y="
-    udp: true
-
-  - name: "mn_🪐_74"
-    type: "vmess"
-    server: "47.244.120.197"
-    port: 23026
-    uuid: "b9de1bc9-baa7-41ac-86f7-ccd59695cb21"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "/arki"
-      headers:
-        Host: "47.244.120.197"
-
-  - name: "mn_🚀_75"
-    type: "trojan"
-    server: "178.17.60.97"
-    port: 5443
-    password: "X00HagvwL8gQXNDAnsxsN8dv1_VdneEo"
-    udp: true
-    sni: "fi1.nebulaguard.org"
-    alpn: ["h2", "http/1.1"]
-    client-fingerprint: "firefox"
-
-  - name: "mn_🌊_76"
-    type: "ss"
-    server: "149.88.106.74"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🍑_77"
-    type: "ss"
-    server: "149.88.107.74"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🎧_78"
-    type: "vless"
-    server: "trn18.mobileemdad.top"
-    port: 443
-    uuid: "d1bd74c3-765c-419f-ad00-bd3a73b04661"
-    udp: true
-    tls: true
-    servername: "delivery.mp.microsoft.com"
-    reality-opts:
-      public-key: "PjR-SM4fOm2fY4mTqWoqZDRyxontvpailM0gBqUxlUQ"
-      short-id: "aefc7f3722"
-    client-fingerprint: "firefox"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_⚡_79"
-    type: "ss"
-    server: "79.127.184.104"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🍀_80"
-    type: "vless"
-    server: "95.129.234.108"
-    port: 8443
-    uuid: "b229d38c-35ec-4a0b-9c86-8fceba243d6c"
-    udp: true
-    tls: true
-    servername: "hazel-beacon.cdn.cachefleet.com"
-    client-fingerprint: "firefox"
-    alpn: ["h2"]
-    network: "xhttp"
-    xhttp-opts:
-      path: "/ccxf5snr06b8xxb6"
-      host: "fafeqdhlett2p5la6d.cdn.cachefleet.com"
-
-  - name: "mn_🐝_81"
-    type: "vmess"
-    server: "156.245.232.239"
-    port: 35043
-    uuid: "b15e481d-17e4-41a8-84c2-23d4f0514d9a"
-    alterId: 0
-    cipher: "auto"
-    udp: true
-    network: "ws"
-    ws-opts:
-      path: "/"
-      headers:
-        Host: "156.245.232.239"
-
-  - name: "mn_🦉_82"
-    type: "vless"
-    server: "66.70.179.198"
-    port: 2053
-    uuid: "dc620cd6-a9d8-4a0f-8f18-006b895db77e"
-    udp: true
-    tls: true
-    servername: "www.cloudflare.com"
-    reality-opts:
-      public-key: "k4l6TxwkBbx9DhZAFpByq5rfCWFSgyOex3f_eFe9CWU"
-      short-id: "83f8317a948bb769"
-    client-fingerprint: "firefox"
-
-  - name: "mn_🍑_83"
-    type: "ss"
-    server: "185.22.153.117"
-    port: 18443
-    cipher: "aes-256-gcm"
-    password: "NTiHBg64fsY8u8DbGrtypD9gPGSL386p"
-    udp: true
-
-  - name: "mn_🐼_84"
-    type: "ss"
-    server: "82.38.31.207"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🥝_85"
-    type: "ss"
-    server: "15.235.121.109"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "575hiopq2h28yao6"
-    udp: true
-
-  - name: "mn_🎁_86"
-    type: "ss"
-    server: "51.222.141.125"
-    port: 445
-    cipher: "aes-256-gcm"
-    password: "zDNVedRFPQexG9v"
-    udp: true
-
-  - name: "mn_🐢_87"
-    type: "vless"
-    server: "212.98.224.35"
-    port: 443
-    uuid: "8197b9b9-8945-460f-99c9-325ef8a8a7c3"
-    udp: true
-    tls: true
-    servername: "tr1.gofizzin.com"
-    reality-opts:
-      public-key: "9_UhwEt_9pf8WahM1K9O6-_0vAK6q0uiNGFoHBO7s3A"
-      short-id: "0e3e4d96"
-    client-fingerprint: "firefox"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_⭐_88"
-    type: "vless"
-    server: "104.171.133.209"
-    port: 443
-    uuid: "ebd1c0d6-7ff4-4b9f-8692-237517a27a64"
-    udp: true
-    tls: true
-    servername: "anyfile2file.com"
-    reality-opts:
-      public-key: "mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0"
-      short-id: "64c1fe36c7846400"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🍋_89"
-    type: "vless"
-    server: "83.217.201.82"
-    port: 443
-    uuid: "ebd1c0d6-7ff4-4b9f-8692-237517a27a64"
-    udp: true
-    tls: true
-    servername: "skvoz-dpi.com"
-    reality-opts:
-      public-key: "mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0"
-      short-id: "d1579a8745398e34"
-    client-fingerprint: "firefox"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🔥_90"
-    type: "vless"
-    server: "tgfree.rush-server.com"
-    port: 443
-    uuid: "ebd1c0d6-7ff4-4b9f-8692-237517a27a64"
-    udp: true
-    tls: true
-    servername: "anyfile2file.com"
-    reality-opts:
-      public-key: "mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0"
-      short-id: "64c1fe36c7846400"
-    client-fingerprint: "chrome"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_⭐_91"
-    type: "ss"
-    server: "57.129.113.16"
-    port: 8388
-    cipher: "chacha20-ietf-poly1305"
-    password: "NcAXc0UZI6yQJE1p8QmOv8"
-    udp: true
-
-  - name: "mn_🚀_92"
-    type: "ss"
-    server: "23.230.52.119"
-    port: 42878
-    cipher: "chacha20-ietf-poly1305"
-    password: "ijoUwfdnkz7mX4pWdkSpmEixTZCt2TRm1JDr4BSaBAWkLxYGoXBHXadFKY5D5ZfoVTwqsx46jCmEUDnQUizJDYrM7B5anhnu"
-    udp: true
-
-  - name: "mn_🎈_93"
-    type: "ss"
-    server: "202.50.253.81"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🦉_94"
-    type: "trojan"
-    server: "sclass-c1.catcat321.com"
-    port: 20086
-    password: "d9064589-74af-432a-9390-5d8a9da281bf"
-    udp: true
-    sni: "hk.catxstar.com"
-    client-fingerprint: "chrome"
-
-  - name: "mn_🐼_95"
-    type: "vless"
-    server: "193.243.189.64"
-    port: 443
-    uuid: "8197b9b9-8945-460f-99c9-325ef8a8a7c3"
-    udp: true
-    tls: true
-    servername: "no1.gofizz.in"
-    reality-opts:
-      public-key: "631qtx5_iiR8HBYdp3duf2SMqdN0URE1AWVb85I_FFg"
-      short-id: "b12c3119d219dc"
-    client-fingerprint: "ios"
-    flow: "xtls-rprx-vision"
-
-  - name: "mn_🥑_96"
-    type: "ss"
-    server: "202.50.253.63"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🐝_97"
-    type: "ss"
-    server: "82.38.31.211"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_🎈_98"
-    type: "ss"
-    server: "82.38.31.199"
-    port: 8080
-    cipher: "chacha20-ietf-poly1305"
-    password: "k1dBOmOB4oqi7Ump37a1bQ"
-    udp: true
-
-  - name: "mn_⭐_99"
-    type: "ss"
-    server: "202.50.253.18"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🔥_100"
-    type: "ss"
-    server: "202.50.253.36"
-    port: 19999
-    cipher: "aes-256-gcm"
-    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    udp: true
-
-  - name: "mn_🎈_101"
-    type: "ss"
-    server: "51.222.136.236"
-    port: 8882
-    cipher: "aes-256-gcm"
-    password: "kDWvXYZoTBcGkC4"
-    udp: true
-
-  - name: "mn_☀_102"
+  - name: "mn_🌙_26"
     type: "vless"
     server: "188.114.98.0"
     port: 443
@@ -1065,23 +259,7 @@ proxies:
       headers:
         Host: "ws137.mydosss.ccwu.cc"
 
-  - name: "mn_🥝_103"
-    type: "vless"
-    server: "188.114.98.0"
-    port: 443
-    uuid: "44be961e-c60d-463c-86d6-50ce6d8866c5"
-    udp: true
-    tls: true
-    servername: "ws137.mydosss.ccwu.cc"
-    client-fingerprint: "unsafe"
-    alpn: ["http/1.1"]
-    network: "ws"
-    ws-opts:
-      path: "/3b575ddc8596"
-      headers:
-        Host: "ws137.mydosss.ccwu.cc"
-
-  - name: "mn_🎯_104"
+  - name: "mn_🐬_27"
     type: "vless"
     server: "188.114.98.0"
     port: 443
@@ -1097,15 +275,468 @@ proxies:
       headers:
         Host: "ws137.mydosss.ccwu.cc"
 
-  - name: "mn_🌻_105"
+  - name: "mn_🚀_28"
+    type: "vless"
+    server: "188.114.98.0"
+    port: 443
+    uuid: "44be961e-c60d-463c-86d6-50ce6d8866c5"
+    udp: true
+    tls: true
+    servername: "ws137.mydosss.ccwu.cc"
+    client-fingerprint: "unsafe"
+    alpn: ["http/1.1"]
+    network: "ws"
+    ws-opts:
+      path: "/3b575ddc8596"
+      headers:
+        Host: "ws137.mydosss.ccwu.cc"
+
+  - name: "mn_🔥_29"
+    type: "vless"
+    server: "188.114.98.0"
+    port: 443
+    uuid: "369360e9-ff90-43c3-b81b-ebac420fce73"
+    udp: true
+    tls: true
+    servername: "ws137.mydosss.ccwu.cc"
+    client-fingerprint: "unsafe"
+    alpn: ["http/1.1"]
+    network: "ws"
+    ws-opts:
+      path: "/3b575ddc8596"
+      headers:
+        Host: "ws137.mydosss.ccwu.cc"
+
+  - name: "mn_🍩_30"
+    type: "vmess"
+    server: "57.129.132.223"
+    port: 80
+    uuid: "a25cbf11-2908-4a1b-a3a8-9a571777dca3"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: "ws"
+    ws-opts:
+      path: "/vmess/"
+      headers:
+        Host: "google.com"
+
+  - name: "mn_🌻_31"
     type: "ss"
-    server: "51.79.85.185"
-    port: 8118
+    server: "198.244.202.215"
+    port: 19999
     cipher: "aes-256-gcm"
-    password: "cdBIDV42DCwnfIN"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_🎲_106"
+  - name: "mn_🌙_32"
+    type: "vless"
+    server: "51.158.206.20"
+    port: 23576
+    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
+    udp: true
+    tls: true
+    servername: "fuck.rkn"
+    reality-opts:
+      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
+      short-id: "01"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🌸_33"
+    type: "trojan"
+    server: "66.163.127.44"
+    port: 443
+    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
+    udp: true
+    sni: "learn.indyourperfectremotetechjobfromthecomfortofhome.com"
+
+  - name: "mn_🦋_34"
+    type: "vless"
+    server: "51.158.206.25"
+    port: 23576
+    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
+    udp: true
+    tls: true
+    servername: "fuck.rkn"
+    reality-opts:
+      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
+      short-id: "01"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🥑_35"
+    type: "ss"
+    server: "54.37.240.40"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "8nrpt2il04ptci2j"
+    udp: true
+
+  - name: "mn_🌙_36"
+    type: "ss"
+    server: "23.230.52.119"
+    port: 42878
+    cipher: "chacha20-ietf-poly1305"
+    password: "ijoUwfdnkz7mX4pWdkSpmEixTZCt2TRm1JDr4BSaBAWkLxYGoXBHXadFKY5D5ZfoVTwqsx46jCmEUDnQUizJDYrM7B5anhnu"
+    udp: true
+
+  - name: "mn_🐙_37"
+    type: "ss"
+    server: "185.176.204.18"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🐼_38"
+    type: "vless"
+    server: "51.158.206.29"
+    port: 23576
+    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
+    udp: true
+    tls: true
+    servername: "fuck.rkn"
+    reality-opts:
+      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
+      short-id: "01"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🌈_39"
+    type: "vless"
+    server: "185.121.179.122"
+    port: 443
+    uuid: "63c5f8b3-3d3d-46a9-ae1f-58635cdaf891"
+    udp: true
+    tls: true
+    servername: "de.stream-node6.com"
+    reality-opts:
+      public-key: "wpZDT_592emHu309qN-7-qceofbMJzoAdIx9m9RFJGg"
+      short-id: "98753667b2406829"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🔥_40"
+    type: "vless"
+    server: "51.158.206.96"
+    port: 23576
+    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
+    udp: true
+    tls: true
+    servername: "fuck.rkn"
+    reality-opts:
+      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
+      short-id: "01"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🥝_41"
+    type: "vless"
+    server: "185.79.19.8"
+    port: 443
+    uuid: "8197b9b9-8945-460f-99c9-325ef8a8a7c3"
+    udp: true
+    tls: true
+    servername: "fazuno.net"
+    reality-opts:
+      public-key: "YLcEO7lE6TeHKOMwRMkzLwaka7JOCbV8WCQ15eQVWEE"
+      short-id: "1d482377da"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🐬_42"
+    type: "vless"
+    server: "82.39.171.12"
+    port: 443
+    uuid: "d65cc14c-f53f-4fe2-b262-97856601319c"
+    udp: true
+    tls: true
+    servername: "yahoo.com"
+    reality-opts:
+      public-key: "e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg"
+      short-id: "c39cc7310a"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🐧_43"
+    type: "vless"
+    server: "9.247.23.209"
+    port: 443
+    uuid: "b9bfa54d-bc44-4592-a6d6-89a9665d286f"
+    udp: true
+    tls: true
+    servername: "mother-earth.fyi"
+    reality-opts:
+      public-key: "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc"
+      short-id: ""
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🦄_44"
+    type: "vless"
+    server: "200.96.106.2"
+    port: 9889
+    uuid: "0dcefe19-a42a-4d57-96be-83dcbffd425f"
+    udp: true
+    tls: true
+    servername: "tiktok2.transitbp2systems.com"
+    reality-opts:
+      public-key: "GPwEGfRBoztNbcAvfX4ojY9FJ1vaMD3v21tnIrN2xyE"
+      short-id: ""
+    client-fingerprint: "firefox"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🐝_45"
+    type: "trojan"
+    server: "66.163.127.215"
+    port: 443
+    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
+    udp: true
+    sni: "courses.indyourperfectremotetechjobfromthecomfortofhome.com"
+
+  - name: "mn_🦄_46"
+    type: "ss"
+    server: "51.83.61.102"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "29irqk0paakcx19v"
+    udp: true
+
+  - name: "mn_💎_47"
+    type: "vless"
+    server: "188.114.98.0"
+    port: 443
+    uuid: "22424ee2-6fe3-42ca-9749-6d4c5a8acc82"
+    udp: true
+    tls: true
+    servername: "tn1r.eu.cc"
+    client-fingerprint: "chrome"
+    network: "ws"
+    ws-opts:
+      path: "/id-pusat"
+      headers:
+        Host: "tn1r.eu.cc"
+
+  - name: "mn_🍩_48"
+    type: "trojan"
+    server: "66.163.118.203"
+    port: 443
+    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
+    udp: true
+    sni: "blog.discovergreatjobsandadvanceyourcareer.com"
+
+  - name: "mn_⭐_49"
+    type: "vless"
+    server: "51.158.206.12"
+    port: 23576
+    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
+    udp: true
+    tls: true
+    servername: "fuck.rkn"
+    reality-opts:
+      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
+      short-id: "01"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🎧_50"
+    type: "vless"
+    server: "5.35.44.218"
+    port: 8443
+    uuid: "549766c3-fa5f-471e-8031-ffc1f8d5064f"
+    udp: true
+    tls: true
+    servername: "nl17.blog-forme.ru"
+    reality-opts:
+      public-key: "bxCIwojWO_edyWgi_QS-BOEnbX-prYu5B1hN_7Skgnc"
+      short-id: "b6efdae4d829da97"
+    client-fingerprint: "firefox"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🦉_51"
+    type: "ss"
+    server: "185.4.115.146"
+    port: 8044
+    cipher: "chacha20-ietf-poly1305"
+    password: "_c43uV0__ztFhshnuY4RvhVOC2FgxCjA"
+    udp: true
+
+  - name: "mn_🚀_52"
+    type: "ss"
+    server: "79.127.184.104"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🐝_53"
+    type: "vless"
+    server: "87.248.149.50"
+    port: 443
+    uuid: "667016ca-f02e-4b5f-bfc3-3d8ed81e9bec"
+    udp: true
+    tls: true
+    servername: "base.hosamobenl.co.uk"
+    client-fingerprint: "firefox"
+
+  - name: "mn_🍩_54"
+    type: "vless"
+    server: "194.60.228.97"
+    port: 443
+    uuid: "667016ca-f02e-4b5f-bfc3-3d8ed81e9bec"
+    udp: true
+    tls: true
+    servername: "base.hosamobenl.co.uk"
+    client-fingerprint: "chrome"
+    alpn: ["http/1.1"]
+
+  - name: "mn_🍉_55"
+    type: "ss"
+    server: "82.38.31.215"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🐢_56"
+    type: "ss"
+    server: "193.29.139.223"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_⭐_57"
+    type: "ss"
+    server: "82.38.31.162"
+    port: 443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+
+  - name: "mn_🍀_58"
+    type: "ss"
+    server: "82.38.31.62"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+
+  - name: "mn_🦄_59"
+    type: "ss"
+    server: "82.38.31.202"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🍓_60"
+    type: "vless"
+    server: "51.158.206.34"
+    port: 23576
+    uuid: "48ff2b70-e180-582f-8866-d9a2edeed5f5"
+    udp: true
+    tls: true
+    servername: "fuck.rkn"
+    reality-opts:
+      public-key: "1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s"
+      short-id: "01"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🍉_61"
+    type: "ss"
+    server: "82.38.31.203"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🐼_62"
+    type: "ss"
+    server: "82.38.31.199"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🥑_63"
+    type: "ss"
+    server: "178.83.185.156"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+
+  - name: "mn_🦉_64"
+    type: "ss"
+    server: "193.29.139.168"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "QCXDxuDlTTMD7jtgHUjIoj"
+    udp: true
+
+  - name: "mn_🍑_65"
+    type: "ss"
+    server: "82.38.31.207"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🐢_66"
+    type: "vless"
+    server: "213.165.39.134"
+    port: 443
+    uuid: "6a251a93-8eee-43b5-92ed-ecadedcfd0a8"
+    udp: true
+    tls: true
+    servername: "platform-api.max.ru"
+    reality-opts:
+      public-key: "Gtz3xOdQdWSocdx4NNie6s-bsa9VDiG6thqanJ4h31s"
+      short-id: "6f3332a09b0ab6d1"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🍋_67"
+    type: "ss"
+    server: "82.38.31.219"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🍩_68"
+    type: "ss"
+    server: "82.38.31.185"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🎧_69"
+    type: "ss"
+    server: "82.38.31.211"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_☀_70"
+    type: "ss"
+    server: "82.38.31.182"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🍄_71"
+    type: "ss"
+    server: "82.38.31.61"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+
+  - name: "mn_🍑_72"
     type: "ss"
     server: "202.50.253.54"
     port: 19999
@@ -1113,7 +744,258 @@ proxies:
     password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
 
-  - name: "mn_🍕_107"
+  - name: "mn_🌸_73"
+    type: "ss"
+    server: "202.50.253.81"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🎲_74"
+    type: "ss"
+    server: "202.50.253.63"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🎯_75"
+    type: "ss"
+    server: "202.50.253.36"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🎈_76"
+    type: "ss"
+    server: "202.50.253.27"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🐢_77"
+    type: "vless"
+    server: "ai.smrtai.top"
+    port: 443
+    uuid: "086bf957-9cd0-4e55-8280-bbef10435b41"
+    udp: true
+    tls: true
+    servername: "www.cloudflare.com"
+    reality-opts:
+      public-key: "R-w7BpNgtryZRBMyRoHx81OnjzAwrKhVtV1EUKLFJzc"
+      short-id: "086bf957"
+    client-fingerprint: "chrome"
+
+  - name: "mn_☀_78"
+    type: "ss"
+    server: "57.131.4.13"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "mx81glqbtlwuhcjo"
+    udp: true
+
+  - name: "mn_🧿_79"
+    type: "ss"
+    server: "202.50.253.18"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🪐_80"
+    type: "vless"
+    server: "201.58.189.105"
+    port: 2083
+    uuid: "d7ddade6-b7a0-4cab-a910-d5d5c378d98a"
+    udp: true
+    tls: true
+    servername: "dl.google.com"
+    reality-opts:
+      public-key: "B7x5bYp-YhtLeH31zYcilpKFCkGTMe3jtSECSw-bMC4"
+      short-id: "8bd80253"
+    client-fingerprint: "chrome"
+    network: "grpc"
+    grpc-opts:
+      grpc-service-name: "google.storage.v2.Storage"
+
+  - name: "mn_⭐_81"
+    type: "vless"
+    server: "87.199.205.28"
+    port: 443
+    uuid: "501a2da5-cb22-4a3f-915e-e3b821d1d62d"
+    udp: true
+    tls: true
+    servername: "vkvd754.okcdn.ru"
+    reality-opts:
+      public-key: "W-9zyiOq287RtXVTZlTFbSDJ0Mx8joyBLJoA7ZE7eBw"
+      short-id: "ef1d3554c652a436"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_⭐_82"
+    type: "ss"
+    server: "82.38.31.184"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "mn_🥝_83"
+    type: "ss"
+    server: "57.129.113.16"
+    port: 8388
+    cipher: "chacha20-ietf-poly1305"
+    password: "NcAXc0UZI6yQJE1p8QmOv8"
+    udp: true
+
+  - name: "mn_🎯_84"
+    type: "trojan"
+    server: "66.163.118.40"
+    port: 443
+    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
+    udp: true
+    sni: "cdn.discovergreatjobsandadvanceyourcareer.com"
+
+  - name: "mn_🌙_85"
+    type: "ss"
+    server: "51.222.136.236"
+    port: 8882
+    cipher: "aes-256-gcm"
+    password: "kDWvXYZoTBcGkC4"
+    udp: true
+
+  - name: "mn_🍑_86"
+    type: "trojan"
+    server: "95.143.196.97"
+    port: 443
+    password: "FkQH0Q5EFneySv20Qj3yoArD2GSb2XZF"
+    udp: true
+    sni: "connect-se.mimowhat.online"
+
+  - name: "mn_🦊_87"
+    type: "vless"
+    server: "laptop.samesung.tr"
+    port: 27930
+    uuid: "6487a480-ab9c-4043-8dec-368dbe90b1e5"
+    udp: true
+    tls: true
+    servername: "www.zavqeron.ir"
+    reality-opts:
+      public-key: "oVO1VcaklylCMOG1EBLl1NT5WBYzLBzGWoV2G1ZakgM"
+      short-id: "552c7735917f2888"
+    client-fingerprint: "qq"
+
+  - name: "mn_🎧_88"
+    type: "vless"
+    server: "95.129.234.108"
+    port: 8443
+    uuid: "b229d38c-35ec-4a0b-9c86-8fceba243d6c"
+    udp: true
+    tls: true
+    servername: "hazel-beacon.cdn.cachefleet.com"
+    client-fingerprint: "firefox"
+    alpn: ["h2"]
+    network: "xhttp"
+    xhttp-opts:
+      path: "/ccxf5snr06b8xxb6"
+      host: "fafeqdhlett2p5la6d.cdn.cachefleet.com"
+
+  - name: "mn_🍓_89"
+    type: "vless"
+    server: "tgfree.rush-server.com"
+    port: 443
+    uuid: "ebd1c0d6-7ff4-4b9f-8692-237517a27a64"
+    udp: true
+    tls: true
+    servername: "anyfile2file.com"
+    reality-opts:
+      public-key: "mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0"
+      short-id: "64c1fe36c7846400"
+    client-fingerprint: "chrome"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🍒_90"
+    type: "vless"
+    server: "104.171.133.209"
+    port: 443
+    uuid: "ebd1c0d6-7ff4-4b9f-8692-237517a27a64"
+    udp: true
+    tls: true
+    servername: "anyfile2file.com"
+    reality-opts:
+      public-key: "mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0"
+      short-id: "64c1fe36c7846400"
+    flow: "xtls-rprx-vision"
+
+  - name: "mn_🎈_91"
+    type: "ss"
+    server: "192.144.59.146"
+    port: 29348
+    cipher: "chacha20-ietf-poly1305"
+    password: "por7Eu0qqxHmGMA9mRXys9kR7u8g7KGyNIxUNT"
+    udp: true
+
+  - name: "mn_🌻_92"
+    type: "vmess"
+    server: "47.244.120.197"
+    port: 23026
+    uuid: "b9de1bc9-baa7-41ac-86f7-ccd59695cb21"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: "ws"
+    ws-opts:
+      path: "/arki"
+      headers:
+        Host: "47.244.120.197"
+
+  - name: "mn_🔥_93"
+    type: "vless"
+    server: "fb00fe3d-toq2o0-tpkogt-1ryup.hk2.hyhuawei.com"
+    port: 443
+    uuid: "3ee091ca-ab9c-11ef-a791-f23c9164ca5d"
+    udp: true
+    tls: true
+    servername: "download.windowsupdate.com"
+    reality-opts:
+      public-key: "c9DdggKaJGSH7FN3JgGbi9ZvsUqOGGpIr7BhzTWeTCo"
+      short-id: ""
+    client-fingerprint: "chrome"
+
+  - name: "mn_🦉_94"
+    type: "ss"
+    server: "185.22.153.117"
+    port: 18443
+    cipher: "aes-256-gcm"
+    password: "NTiHBg64fsY8u8DbGrtypD9gPGSL386p"
+    udp: true
+
+  - name: "mn_⭐_95"
+    type: "vmess"
+    server: "156.245.232.239"
+    port: 35043
+    uuid: "b15e481d-17e4-41a8-84c2-23d4f0514d9a"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: "ws"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "156.245.232.239"
+
+  - name: "mn_🔥_96"
+    type: "ss"
+    server: "149.88.107.74"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    udp: true
+
+  - name: "mn_🎁_97"
     type: "vless"
     server: "80.96.108.29"
     port: 8443
@@ -1130,51 +1012,15 @@ proxies:
       path: "/ae1b809ceb77"
       host: "80.96.108.29"
 
-  - name: "mn_🌈_108"
-    type: "vless"
-    server: "188.114.98.0"
-    port: 443
-    uuid: "7e0e7ca3-7aab-420e-9b40-c15a228ef33a"
+  - name: "mn_🎯_98"
+    type: "ss"
+    server: "149.88.106.74"
+    port: 19999
+    cipher: "aes-256-gcm"
+    password: "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     udp: true
-    tls: true
-    servername: "ws137.mydosss.ccwu.cc"
-    client-fingerprint: "unsafe"
-    alpn: ["http/1.1"]
-    network: "ws"
-    ws-opts:
-      path: "/3b575ddc8596"
-      headers:
-        Host: "ws137.mydosss.ccwu.cc"
 
-  - name: "mn_⚡_109"
-    type: "vless"
-    server: "188.114.98.0"
-    port: 443
-    uuid: "369360e9-ff90-43c3-b81b-ebac420fce73"
-    udp: true
-    tls: true
-    servername: "ws137.mydosss.ccwu.cc"
-    client-fingerprint: "unsafe"
-    alpn: ["http/1.1"]
-    network: "ws"
-    ws-opts:
-      path: "/3b575ddc8596"
-      headers:
-        Host: "ws137.mydosss.ccwu.cc"
-
-  - name: "mn_🦉_110"
-    type: "vless"
-    server: "153.52.85.198"
-    port: 443
-    uuid: "26843758-24de-4f76-b5d0-624038e353c4"
-    udp: true
-    tls: true
-    servername: "15d7fft.nl11.h1clayd.click"
-    reality-opts:
-      public-key: "xv6OUZcyzEHXFMTfumuJH-1Rd4NQ0cdmWikek4mm0m4"
-      short-id: "c71118d9399fb8c2"
-
-  - name: "mn_🦉_111"
+  - name: "mn_🔥_99"
     type: "vless"
     server: "188.114.98.0"
     port: 443
@@ -1190,7 +1036,24 @@ proxies:
       headers:
         Host: "jp3.yohototo.top"
 
-  - name: "mn_🎁_112"
+  - name: "mn_🎯_100"
+    type: "trojan"
+    server: "sclass-c1.catcat321.com"
+    port: 20086
+    password: "d9064589-74af-432a-9390-5d8a9da281bf"
+    udp: true
+    sni: "hk.catxstar.com"
+    client-fingerprint: "chrome"
+
+  - name: "mn_⭐_101"
+    type: "ss"
+    server: "51.79.85.185"
+    port: 8118
+    cipher: "aes-256-gcm"
+    password: "cdBIDV42DCwnfIN"
+    udp: true
+
+  - name: "mn_☀_102"
     type: "ss"
     server: "51.222.155.113"
     port: 5601
@@ -1198,15 +1061,7 @@ proxies:
     password: "Y6R9pAtvxxzmGC"
     udp: true
 
-  - name: "mn_🦄_113"
-    type: "trojan"
-    server: "95.143.196.97"
-    port: 443
-    password: "FkQH0Q5EFneySv20Qj3yoArD2GSb2XZF"
-    udp: true
-    sni: "connect-se.mimowhat.online"
-
-  - name: "mn_🐙_114"
+  - name: "mn_🎲_103"
     type: "ss"
     server: "51.79.49.116"
     port: 8882
@@ -1214,262 +1069,223 @@ proxies:
     password: "kDWvXYZoTBcGkC4"
     udp: true
 
-  - name: "mn_🌙_115"
-    type: "vless"
-    server: "o685y.save-node.com"
-    port: 443
-    uuid: "88e79aa6-f431-4453-8dcc-652a0c747198"
-    udp: true
-    tls: true
-    servername: "o685y.save-node.com"
-    client-fingerprint: "firefox"
-    network: "ws"
-    ws-opts:
-      path: "/api/se1k2rfxlsuer3ry4u6e84kl8rqp721p"
-      headers:
-        Host: "o685y.save-node.com"
-
 proxy-groups:
   - name: "AUTO"
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - "mn_\ud83c\udf19_1"
-      - "mn_\ud83c\udf55_2"
-      - "mn_\ud83e\udd51_3"
-      - "mn_\ud83e\udd84_4"
-      - "mn_\ud83c\udf44_5"
-      - "mn_\ud83c\udf81_6"
-      - "mn_\ud83c\udf88_7"
-      - "mn_\ud83d\udc1d_8"
-      - "mn_\ud83c\udf3b_9"
-      - "mn_\ud83c\udf49_10"
-      - "mn_\ud83d\udc2c_11"
-      - "mn_\ud83c\udf69_12"
-      - "mn_\u2600_13"
-      - "mn_\ud83c\udf52_14"
-      - "mn_\ud83e\udd51_15"
-      - "mn_\ud83c\udfa7_16"
-      - "mn_\ud83d\udc22_17"
-      - "mn_\ud83c\udf3b_18"
-      - "mn_\ud83c\udf38_19"
-      - "mn_\ud83c\udfb2_20"
-      - "mn_\ud83e\uddff_21"
-      - "mn_\ud83e\udd51_22"
-      - "mn_\ud83c\udf88_23"
-      - "mn_\ud83d\udc22_24"
-      - "mn_\ud83c\udf44_25"
-      - "mn_\u26a1_26"
+      - "mn_\ud83d\udc3c_1"
+      - "mn_\ud83c\udf3b_2"
+      - "mn_\ud83c\udf69_3"
+      - "mn_\ud83e\udd5d_4"
+      - "mn_\ud83e\udd51_5"
+      - "mn_\ud83d\udc19_6"
+      - "mn_\ud83c\udf08_7"
+      - "mn_\ud83d\udc19_8"
+      - "mn_\ud83d\udc22_9"
+      - "mn_\ud83c\udf51_10"
+      - "mn_\ud83e\udd89_11"
+      - "mn_\ud83c\udf51_12"
+      - "mn_\ud83d\ude80_13"
+      - "mn_\ud83e\ude90_14"
+      - "mn_\ud83d\udc19_15"
+      - "mn_\ud83c\udf3b_16"
+      - "mn_\ud83d\udc19_17"
+      - "mn_\ud83c\udf4b_18"
+      - "mn_\ud83e\udd51_19"
+      - "mn_\u2b50_20"
+      - "mn_\ud83d\udc27_21"
+      - "mn_\ud83c\udf49_22"
+      - "mn_\ud83d\udc19_23"
+      - "mn_\ud83e\ude90_24"
+      - "mn_\ud83c\udfa7_25"
+      - "mn_\ud83c\udf19_26"
       - "mn_\ud83d\udc2c_27"
-      - "mn_\ud83d\udc22_28"
-      - "mn_\ud83c\udf81_29"
-      - "mn_\ud83c\udfaf_30"
-      - "mn_\u2600_31"
-      - "mn_\ud83e\udd51_32"
-      - "mn_\ud83c\udf08_33"
-      - "mn_\ud83c\udf38_34"
-      - "mn_\ud83d\udc1d_35"
-      - "mn_\ud83d\udc1d_36"
-      - "mn_\ud83c\udf69_37"
-      - "mn_\ud83c\udf38_38"
-      - "mn_\ud83e\udd8a_39"
-      - "mn_\ud83d\udc27_40"
-      - "mn_\ud83c\udf69_41"
-      - "mn_\ud83c\udf0a_42"
-      - "mn_\ud83c\udf08_43"
-      - "mn_\ud83d\udc1d_44"
-      - "mn_\ud83e\udd89_45"
-      - "mn_\ud83d\udc8e_46"
-      - "mn_\ud83c\udf40_47"
-      - "mn_\u2b50_48"
-      - "mn_\ud83c\udf08_49"
-      - "mn_\ud83d\udc3c_50"
-      - "mn_\ud83c\udfb2_51"
-      - "mn_\ud83c\udf19_52"
-      - "mn_\ud83c\udf49_53"
-      - "mn_\ud83c\udf51_54"
-      - "mn_\ud83e\udd84_55"
-      - "mn_\u2b50_56"
-      - "mn_\ud83d\ude80_57"
-      - "mn_\u2600_58"
-      - "mn_\ud83e\udd8a_59"
-      - "mn_\ud83c\udfa7_60"
-      - "mn_\ud83c\udf88_61"
-      - "mn_\ud83c\udf88_62"
-      - "mn_\ud83d\udc19_63"
-      - "mn_\ud83c\udfa7_64"
+      - "mn_\ud83d\ude80_28"
+      - "mn_\ud83d\udd25_29"
+      - "mn_\ud83c\udf69_30"
+      - "mn_\ud83c\udf3b_31"
+      - "mn_\ud83c\udf19_32"
+      - "mn_\ud83c\udf38_33"
+      - "mn_\ud83e\udd8b_34"
+      - "mn_\ud83e\udd51_35"
+      - "mn_\ud83c\udf19_36"
+      - "mn_\ud83d\udc19_37"
+      - "mn_\ud83d\udc3c_38"
+      - "mn_\ud83c\udf08_39"
+      - "mn_\ud83d\udd25_40"
+      - "mn_\ud83e\udd5d_41"
+      - "mn_\ud83d\udc2c_42"
+      - "mn_\ud83d\udc27_43"
+      - "mn_\ud83e\udd84_44"
+      - "mn_\ud83d\udc1d_45"
+      - "mn_\ud83e\udd84_46"
+      - "mn_\ud83d\udc8e_47"
+      - "mn_\ud83c\udf69_48"
+      - "mn_\u2b50_49"
+      - "mn_\ud83c\udfa7_50"
+      - "mn_\ud83e\udd89_51"
+      - "mn_\ud83d\ude80_52"
+      - "mn_\ud83d\udc1d_53"
+      - "mn_\ud83c\udf69_54"
+      - "mn_\ud83c\udf49_55"
+      - "mn_\ud83d\udc22_56"
+      - "mn_\u2b50_57"
+      - "mn_\ud83c\udf40_58"
+      - "mn_\ud83e\udd84_59"
+      - "mn_\ud83c\udf53_60"
+      - "mn_\ud83c\udf49_61"
+      - "mn_\ud83d\udc3c_62"
+      - "mn_\ud83e\udd51_63"
+      - "mn_\ud83e\udd89_64"
       - "mn_\ud83c\udf51_65"
-      - "mn_\ud83c\udf88_66"
-      - "mn_\ud83c\udf08_67"
-      - "mn_\ud83c\udf4b_68"
-      - "mn_\u26a1_69"
-      - "mn_\ud83d\udc8e_70"
-      - "mn_\ud83c\udf19_71"
-      - "mn_\u2600_72"
-      - "mn_\ud83c\udf19_73"
-      - "mn_\ud83e\ude90_74"
-      - "mn_\ud83d\ude80_75"
-      - "mn_\ud83c\udf0a_76"
-      - "mn_\ud83c\udf51_77"
-      - "mn_\ud83c\udfa7_78"
-      - "mn_\u26a1_79"
-      - "mn_\ud83c\udf40_80"
-      - "mn_\ud83d\udc1d_81"
-      - "mn_\ud83e\udd89_82"
-      - "mn_\ud83c\udf51_83"
-      - "mn_\ud83d\udc3c_84"
-      - "mn_\ud83e\udd5d_85"
-      - "mn_\ud83c\udf81_86"
-      - "mn_\ud83d\udc22_87"
-      - "mn_\u2b50_88"
-      - "mn_\ud83c\udf4b_89"
-      - "mn_\ud83d\udd25_90"
-      - "mn_\u2b50_91"
-      - "mn_\ud83d\ude80_92"
-      - "mn_\ud83c\udf88_93"
+      - "mn_\ud83d\udc22_66"
+      - "mn_\ud83c\udf4b_67"
+      - "mn_\ud83c\udf69_68"
+      - "mn_\ud83c\udfa7_69"
+      - "mn_\u2600_70"
+      - "mn_\ud83c\udf44_71"
+      - "mn_\ud83c\udf51_72"
+      - "mn_\ud83c\udf38_73"
+      - "mn_\ud83c\udfb2_74"
+      - "mn_\ud83c\udfaf_75"
+      - "mn_\ud83c\udf88_76"
+      - "mn_\ud83d\udc22_77"
+      - "mn_\u2600_78"
+      - "mn_\ud83e\uddff_79"
+      - "mn_\ud83e\ude90_80"
+      - "mn_\u2b50_81"
+      - "mn_\u2b50_82"
+      - "mn_\ud83e\udd5d_83"
+      - "mn_\ud83c\udfaf_84"
+      - "mn_\ud83c\udf19_85"
+      - "mn_\ud83c\udf51_86"
+      - "mn_\ud83e\udd8a_87"
+      - "mn_\ud83c\udfa7_88"
+      - "mn_\ud83c\udf53_89"
+      - "mn_\ud83c\udf52_90"
+      - "mn_\ud83c\udf88_91"
+      - "mn_\ud83c\udf3b_92"
+      - "mn_\ud83d\udd25_93"
       - "mn_\ud83e\udd89_94"
-      - "mn_\ud83d\udc3c_95"
-      - "mn_\ud83e\udd51_96"
-      - "mn_\ud83d\udc1d_97"
-      - "mn_\ud83c\udf88_98"
-      - "mn_\u2b50_99"
-      - "mn_\ud83d\udd25_100"
-      - "mn_\ud83c\udf88_101"
+      - "mn_\u2b50_95"
+      - "mn_\ud83d\udd25_96"
+      - "mn_\ud83c\udf81_97"
+      - "mn_\ud83c\udfaf_98"
+      - "mn_\ud83d\udd25_99"
+      - "mn_\ud83c\udfaf_100"
+      - "mn_\u2b50_101"
       - "mn_\u2600_102"
-      - "mn_\ud83e\udd5d_103"
-      - "mn_\ud83c\udfaf_104"
-      - "mn_\ud83c\udf3b_105"
-      - "mn_\ud83c\udfb2_106"
-      - "mn_\ud83c\udf55_107"
-      - "mn_\ud83c\udf08_108"
-      - "mn_\u26a1_109"
-      - "mn_\ud83e\udd89_110"
-      - "mn_\ud83e\udd89_111"
-      - "mn_\ud83c\udf81_112"
-      - "mn_\ud83e\udd84_113"
-      - "mn_\ud83d\udc19_114"
-      - "mn_\ud83c\udf19_115"
+      - "mn_\ud83c\udfb2_103"
 
   - name: "PROXY"
     type: select
     proxies:
       - "AUTO"
-      - "mn_\ud83c\udf19_1"
-      - "mn_\ud83c\udf55_2"
-      - "mn_\ud83e\udd51_3"
-      - "mn_\ud83e\udd84_4"
-      - "mn_\ud83c\udf44_5"
-      - "mn_\ud83c\udf81_6"
-      - "mn_\ud83c\udf88_7"
-      - "mn_\ud83d\udc1d_8"
-      - "mn_\ud83c\udf3b_9"
-      - "mn_\ud83c\udf49_10"
-      - "mn_\ud83d\udc2c_11"
-      - "mn_\ud83c\udf69_12"
-      - "mn_\u2600_13"
-      - "mn_\ud83c\udf52_14"
-      - "mn_\ud83e\udd51_15"
-      - "mn_\ud83c\udfa7_16"
-      - "mn_\ud83d\udc22_17"
-      - "mn_\ud83c\udf3b_18"
-      - "mn_\ud83c\udf38_19"
-      - "mn_\ud83c\udfb2_20"
-      - "mn_\ud83e\uddff_21"
-      - "mn_\ud83e\udd51_22"
-      - "mn_\ud83c\udf88_23"
-      - "mn_\ud83d\udc22_24"
-      - "mn_\ud83c\udf44_25"
-      - "mn_\u26a1_26"
+      - "mn_\ud83d\udc3c_1"
+      - "mn_\ud83c\udf3b_2"
+      - "mn_\ud83c\udf69_3"
+      - "mn_\ud83e\udd5d_4"
+      - "mn_\ud83e\udd51_5"
+      - "mn_\ud83d\udc19_6"
+      - "mn_\ud83c\udf08_7"
+      - "mn_\ud83d\udc19_8"
+      - "mn_\ud83d\udc22_9"
+      - "mn_\ud83c\udf51_10"
+      - "mn_\ud83e\udd89_11"
+      - "mn_\ud83c\udf51_12"
+      - "mn_\ud83d\ude80_13"
+      - "mn_\ud83e\ude90_14"
+      - "mn_\ud83d\udc19_15"
+      - "mn_\ud83c\udf3b_16"
+      - "mn_\ud83d\udc19_17"
+      - "mn_\ud83c\udf4b_18"
+      - "mn_\ud83e\udd51_19"
+      - "mn_\u2b50_20"
+      - "mn_\ud83d\udc27_21"
+      - "mn_\ud83c\udf49_22"
+      - "mn_\ud83d\udc19_23"
+      - "mn_\ud83e\ude90_24"
+      - "mn_\ud83c\udfa7_25"
+      - "mn_\ud83c\udf19_26"
       - "mn_\ud83d\udc2c_27"
-      - "mn_\ud83d\udc22_28"
-      - "mn_\ud83c\udf81_29"
-      - "mn_\ud83c\udfaf_30"
-      - "mn_\u2600_31"
-      - "mn_\ud83e\udd51_32"
-      - "mn_\ud83c\udf08_33"
-      - "mn_\ud83c\udf38_34"
-      - "mn_\ud83d\udc1d_35"
-      - "mn_\ud83d\udc1d_36"
-      - "mn_\ud83c\udf69_37"
-      - "mn_\ud83c\udf38_38"
-      - "mn_\ud83e\udd8a_39"
-      - "mn_\ud83d\udc27_40"
-      - "mn_\ud83c\udf69_41"
-      - "mn_\ud83c\udf0a_42"
-      - "mn_\ud83c\udf08_43"
-      - "mn_\ud83d\udc1d_44"
-      - "mn_\ud83e\udd89_45"
-      - "mn_\ud83d\udc8e_46"
-      - "mn_\ud83c\udf40_47"
-      - "mn_\u2b50_48"
-      - "mn_\ud83c\udf08_49"
-      - "mn_\ud83d\udc3c_50"
-      - "mn_\ud83c\udfb2_51"
-      - "mn_\ud83c\udf19_52"
-      - "mn_\ud83c\udf49_53"
-      - "mn_\ud83c\udf51_54"
-      - "mn_\ud83e\udd84_55"
-      - "mn_\u2b50_56"
-      - "mn_\ud83d\ude80_57"
-      - "mn_\u2600_58"
-      - "mn_\ud83e\udd8a_59"
-      - "mn_\ud83c\udfa7_60"
-      - "mn_\ud83c\udf88_61"
-      - "mn_\ud83c\udf88_62"
-      - "mn_\ud83d\udc19_63"
-      - "mn_\ud83c\udfa7_64"
+      - "mn_\ud83d\ude80_28"
+      - "mn_\ud83d\udd25_29"
+      - "mn_\ud83c\udf69_30"
+      - "mn_\ud83c\udf3b_31"
+      - "mn_\ud83c\udf19_32"
+      - "mn_\ud83c\udf38_33"
+      - "mn_\ud83e\udd8b_34"
+      - "mn_\ud83e\udd51_35"
+      - "mn_\ud83c\udf19_36"
+      - "mn_\ud83d\udc19_37"
+      - "mn_\ud83d\udc3c_38"
+      - "mn_\ud83c\udf08_39"
+      - "mn_\ud83d\udd25_40"
+      - "mn_\ud83e\udd5d_41"
+      - "mn_\ud83d\udc2c_42"
+      - "mn_\ud83d\udc27_43"
+      - "mn_\ud83e\udd84_44"
+      - "mn_\ud83d\udc1d_45"
+      - "mn_\ud83e\udd84_46"
+      - "mn_\ud83d\udc8e_47"
+      - "mn_\ud83c\udf69_48"
+      - "mn_\u2b50_49"
+      - "mn_\ud83c\udfa7_50"
+      - "mn_\ud83e\udd89_51"
+      - "mn_\ud83d\ude80_52"
+      - "mn_\ud83d\udc1d_53"
+      - "mn_\ud83c\udf69_54"
+      - "mn_\ud83c\udf49_55"
+      - "mn_\ud83d\udc22_56"
+      - "mn_\u2b50_57"
+      - "mn_\ud83c\udf40_58"
+      - "mn_\ud83e\udd84_59"
+      - "mn_\ud83c\udf53_60"
+      - "mn_\ud83c\udf49_61"
+      - "mn_\ud83d\udc3c_62"
+      - "mn_\ud83e\udd51_63"
+      - "mn_\ud83e\udd89_64"
       - "mn_\ud83c\udf51_65"
-      - "mn_\ud83c\udf88_66"
-      - "mn_\ud83c\udf08_67"
-      - "mn_\ud83c\udf4b_68"
-      - "mn_\u26a1_69"
-      - "mn_\ud83d\udc8e_70"
-      - "mn_\ud83c\udf19_71"
-      - "mn_\u2600_72"
-      - "mn_\ud83c\udf19_73"
-      - "mn_\ud83e\ude90_74"
-      - "mn_\ud83d\ude80_75"
-      - "mn_\ud83c\udf0a_76"
-      - "mn_\ud83c\udf51_77"
-      - "mn_\ud83c\udfa7_78"
-      - "mn_\u26a1_79"
-      - "mn_\ud83c\udf40_80"
-      - "mn_\ud83d\udc1d_81"
-      - "mn_\ud83e\udd89_82"
-      - "mn_\ud83c\udf51_83"
-      - "mn_\ud83d\udc3c_84"
-      - "mn_\ud83e\udd5d_85"
-      - "mn_\ud83c\udf81_86"
-      - "mn_\ud83d\udc22_87"
-      - "mn_\u2b50_88"
-      - "mn_\ud83c\udf4b_89"
-      - "mn_\ud83d\udd25_90"
-      - "mn_\u2b50_91"
-      - "mn_\ud83d\ude80_92"
-      - "mn_\ud83c\udf88_93"
+      - "mn_\ud83d\udc22_66"
+      - "mn_\ud83c\udf4b_67"
+      - "mn_\ud83c\udf69_68"
+      - "mn_\ud83c\udfa7_69"
+      - "mn_\u2600_70"
+      - "mn_\ud83c\udf44_71"
+      - "mn_\ud83c\udf51_72"
+      - "mn_\ud83c\udf38_73"
+      - "mn_\ud83c\udfb2_74"
+      - "mn_\ud83c\udfaf_75"
+      - "mn_\ud83c\udf88_76"
+      - "mn_\ud83d\udc22_77"
+      - "mn_\u2600_78"
+      - "mn_\ud83e\uddff_79"
+      - "mn_\ud83e\ude90_80"
+      - "mn_\u2b50_81"
+      - "mn_\u2b50_82"
+      - "mn_\ud83e\udd5d_83"
+      - "mn_\ud83c\udfaf_84"
+      - "mn_\ud83c\udf19_85"
+      - "mn_\ud83c\udf51_86"
+      - "mn_\ud83e\udd8a_87"
+      - "mn_\ud83c\udfa7_88"
+      - "mn_\ud83c\udf53_89"
+      - "mn_\ud83c\udf52_90"
+      - "mn_\ud83c\udf88_91"
+      - "mn_\ud83c\udf3b_92"
+      - "mn_\ud83d\udd25_93"
       - "mn_\ud83e\udd89_94"
-      - "mn_\ud83d\udc3c_95"
-      - "mn_\ud83e\udd51_96"
-      - "mn_\ud83d\udc1d_97"
-      - "mn_\ud83c\udf88_98"
-      - "mn_\u2b50_99"
-      - "mn_\ud83d\udd25_100"
-      - "mn_\ud83c\udf88_101"
+      - "mn_\u2b50_95"
+      - "mn_\ud83d\udd25_96"
+      - "mn_\ud83c\udf81_97"
+      - "mn_\ud83c\udfaf_98"
+      - "mn_\ud83d\udd25_99"
+      - "mn_\ud83c\udfaf_100"
+      - "mn_\u2b50_101"
       - "mn_\u2600_102"
-      - "mn_\ud83e\udd5d_103"
-      - "mn_\ud83c\udfaf_104"
-      - "mn_\ud83c\udf3b_105"
-      - "mn_\ud83c\udfb2_106"
-      - "mn_\ud83c\udf55_107"
-      - "mn_\ud83c\udf08_108"
-      - "mn_\u26a1_109"
-      - "mn_\ud83e\udd89_110"
-      - "mn_\ud83e\udd89_111"
-      - "mn_\ud83c\udf81_112"
-      - "mn_\ud83e\udd84_113"
-      - "mn_\ud83d\udc19_114"
-      - "mn_\ud83c\udf19_115"
+      - "mn_\ud83c\udfb2_103"
 
 rules:
   - MATCH,AUTO
